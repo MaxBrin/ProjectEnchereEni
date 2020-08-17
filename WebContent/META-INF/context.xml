@@ -4,7 +4,7 @@
         name="jdbc/pool_cnx"
         driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
         type="javax.sql.DataSource"
-        url="jdbc:sqlserver://10.104.200.13:8081;databasename=PROJET_ENCHERE"
+        url="jdbc:sqlserver://10.104.200.13;databasename=PROJET_ENCHERE"
         username="user_enchere"
         password="Toto"
         maxTotal="100"
