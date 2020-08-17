@@ -44,7 +44,7 @@
 			<input type="text" name="identifiant" id="identifiant">
 			
 			<button type="submit">Enregistrer</button>
-			<a href=""><button>Annuler</button></a>
+			<a href="">Annuler</a>
 			
 			
 </form>

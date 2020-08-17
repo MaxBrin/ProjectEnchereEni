@@ -50,7 +50,7 @@
 			
 			<button type="submit">Enregistrer</button>
 			
-			<a href=""><button>Supprimer mon compte</button></a>
+			<a href="">Supprimer mon compte</a>
 			
 			
 </form>
