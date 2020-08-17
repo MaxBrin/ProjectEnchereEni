@@ -36,6 +36,9 @@ public class UtilisateurMgr {
 			throw new BLLException("Erreur getListUtilisateur", e);
 		}
 		return listUtilisateur;
+	}
+
+	public void verifUtilisateur(Utilisateur utilisateur) {
 
 	}
 }
