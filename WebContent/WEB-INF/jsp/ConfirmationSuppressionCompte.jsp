@@ -7,8 +7,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-	
-				<p>Votre compte a bien été supprimé</p>
 		
+		<p>Votre compte a bien été supprimé</p>
 	</body>
 </html>

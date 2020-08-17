@@ -23,7 +23,7 @@
 			<input type="text" name="identifiant" id="identifiant">
 			
 			<label for="identifiant">Email</label>
-			<input type="text" name="identifiant" id="identifiant">
+			<input type="email" name="identifiant" id="identifiant">
 			
 			<label for="identifiant">Téléphone</label>
 			<input type="text" name="identifiant" id="identifiant">
@@ -38,10 +38,10 @@
 			<input type="text" name="identifiant" id="identifiant">
 			
 			<label for="identifiant">Mot de passe</label>
-			<input type="text" name="identifiant" id="identifiant">
+			<input type="password" name="identifiant" id="identifiant">
 			
 			<label for="identifiant">Confirmer</label>
-			<input type="text" name="identifiant" id="identifiant">
+			<input type="password" name="identifiant" id="identifiant">
 			
 			<button type="submit">Enregistrer</button>
 			<a href=""><button>Annuler</button></a>

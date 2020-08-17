@@ -25,7 +25,7 @@
 			
 			<a href="">Mot de passe oublié</a>
 			
-			<a href="/creationProfil.jsp"><button value="Créer un compte">Creer un compte</button></a>
+			<a href="<%=request.getContextPath()%>/CreationCompte">creation</a>
 				
 		
 		
