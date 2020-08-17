@@ -7,15 +7,17 @@ import fr.eni.projetenchere.dal.UtilisateurDAO;
 
 public class UtilisateurMgr {
 		
-	private UtilisateurDAO utilisateurDAO ;
-	
+	private static UtilisateurDAO utilisateurDAO ;
+	static {
+		utilisateurDAO = DAOFactory.getUtilisateurDAO();
+	}
 	
 	public UtilisateurMgr() {
-		utilisateurDAO = DAOFactory.getUtilisateurDAO();
+		
 	}
 
 
-	public void ajoutUtilisateur (Utilisateur utilisateur) throws BLLException {
+	public static void ajoutUtilisateur (Utilisateur utilisateur) throws BLLException {
 		try {
 			utilisateurDAO.insertUtilisateur(utilisateur);
 			
