@@ -66,5 +66,6 @@
 	<classpathentry kind="lib" path="C:/Users/mbrin2020/Documents/apache-tomcat-8.5.57 (1)/apache-tomcat-8.5.57/lib/tomcat-util-scan.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mbrin2020/Documents/apache-tomcat-8.5.57 (1)/apache-tomcat-8.5.57/lib/tomcat-websocket.jar"/>
 	<classpathentry kind="lib" path="C:/Users/mbrin2020/Documents/apache-tomcat-8.5.57 (1)/apache-tomcat-8.5.57/lib/websocket-api.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl-1.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
