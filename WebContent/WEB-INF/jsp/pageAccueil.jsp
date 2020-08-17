@@ -18,15 +18,19 @@
 			<label for="motDePasse">Mot de passe</label>
 			<input type="password" name="motDePasse" id="motDePasse">
 			
-			<button type="submit">Connexion</button>
+			<button type="submit"></button>
 			
 			<p>Se souvenir de moi</p>
 			<input type="checkbox" name="seSouvenir">
 			
 			<a href="">Mot de passe oublié</a>
 			
-			<a href="/creationProfil.jsp"><button value="Créer un compte">Creer un compte</button></a>
-				
+			<a href=""><button></button></a>
+			
+			
+		
+		
+		
 		
 		
 		
