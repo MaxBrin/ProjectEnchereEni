@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.projetenchere.bll.BLLException;
+import fr.eni.projetenchere.bll.UtilisateurMgr;
+import fr.eni.projetenchere.bo.Utilisateur;
 import fr.eni.projetenchere.dal.ConnectionProvider;
 /**
  * Servlet implementation class ServletTestConnection
@@ -30,15 +33,18 @@ public class ServletTestConnection extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-		Connection con;
+		Utilisateur utilisateurTampon1= new Utilisateur("Neo","Brin","Maxime","max@max.max","0123456789","10 rue franklin","44000","Nantes","Pa$$w0rd",100,true);
+		Utilisateur utilisateurTampon2= new Utilisateur("Bob","Dupond","Robert","bob@bob.bob","9876543210","5 rue franklin","44000","Nantes","Pa$$w0rd",200,false);
 		try {
-			con = ConnectionProvider.getConnection();
-			out.print("la connection :"+(con.isClosed()? "ferme":"ouverte"));
-		} catch (SQLException e) {
+			UtilisateurMgr.ajoutUtilisateur(utilisateurTampon1);
+			UtilisateurMgr.ajoutUtilisateur(utilisateurTampon2);
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

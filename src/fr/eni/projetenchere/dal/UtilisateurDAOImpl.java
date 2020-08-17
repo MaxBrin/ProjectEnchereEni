@@ -36,4 +36,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			throw new DALException("Erreur insertUtilisateur",e);
 		}
 	}
+	
+
 }
