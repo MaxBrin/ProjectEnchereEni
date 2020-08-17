@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class Connexion
  */
 @WebServlet("/Connexion")
-public class Connexion extends HttpServlet {
+public class VersPageConnection extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 
@@ -21,7 +21,7 @@ public class Connexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnection.jsp");
 		rd.forward(request, response);
 	
 	}

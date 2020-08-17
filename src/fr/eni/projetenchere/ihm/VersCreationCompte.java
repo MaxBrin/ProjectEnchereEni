@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class CreationCompte
  */
 @WebServlet("/CreationCompte")
-public class CreationCompteServlet extends HttpServlet {
+public class VersCreationCompte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
