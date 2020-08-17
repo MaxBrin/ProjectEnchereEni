@@ -1,7 +1,8 @@
 package fr.eni.projetenchere.dal;
 
 public class DAOFactory {
-	public UtilisateurDAO getUtilisateurDAO() {
+	
+	public static UtilisateurDAO getUtilisateurDAO() {
 		return new UtilisateurDAOImpl();
 	}
 }
