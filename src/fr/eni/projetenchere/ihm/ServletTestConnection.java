@@ -36,7 +36,6 @@ public class ServletTestConnection extends HttpServlet {
 			con = ConnectionProvider.getConnection();
 			out.print("la connection :"+(con.isClosed()? "ferme":"ouverte"));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
