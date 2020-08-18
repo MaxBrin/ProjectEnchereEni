@@ -38,10 +38,6 @@ public class UtilisateurMgr {
 		return listUtilisateur;
 	}
 
-	public void verifUtilisateur(Utilisateur utilisateur) {
-
-	}
-
 	public static void modificationUtilisateur(Utilisateur utlisateur) throws BLLException {
 		try {
 			utilisateurDAO.updateUtilisateur(utlisateur);
