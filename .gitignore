@@ -2,3 +2,6 @@
 .classpath
 .classpath
 .classpath
+*.class
+.classpath
+.classpath
