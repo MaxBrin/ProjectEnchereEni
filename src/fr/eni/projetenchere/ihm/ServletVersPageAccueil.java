@@ -18,6 +18,16 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String choix = request.getParameter("choix");
+
+		if ("achat".equals(choix)) {
+			request.setAttribute("choixAchat", "achat");
+		}
+
+		if ("mesVentes".equals(choix)) {
+			request.setAttribute("choixAchat", "ventes");
+		}
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		rd.forward(request, response);
 	}

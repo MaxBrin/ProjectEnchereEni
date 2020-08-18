@@ -74,7 +74,9 @@ public class ServletVersCreationCompte extends HttpServlet {
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
+
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
+
 			rd.forward(request, response);
 		}
 
