@@ -9,38 +9,38 @@
 
 <body>
 	<div>
-		Pseudo :
+		<p>Pseudo :</p>
 	</div>
 	
 	<div>
-		Nom :
+		<p>Nom :</p>
 	</div>
 
 	<div>
-		Prénom :
+		<p>Prénom :</p>
 	</div>
 
 	<div>
-		Email :
+		<p>Email :</p>
 	</div>
 
 	<div>
-		Telephone :
+		<p>Téléphone :</p>
 	</div>
 	
 	<div>
-		Rue :
+		<p>Rue :</p>
 	</div>
 	
 	<div>
-		Code postal :
+		<p>Code postal :</p>
 	</div>
 	
 	<div>
-		Ville :
+		<p>Ville :</p>
 	</div>	
 	
-<a href=""><button>Modifier</button></a>
+<a href="">Modifier</a>
 
 
 	
