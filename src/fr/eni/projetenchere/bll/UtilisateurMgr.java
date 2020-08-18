@@ -38,7 +38,30 @@ public class UtilisateurMgr {
 		return listUtilisateur;
 	}
 
-	public void verifUtilisateur(Utilisateur utilisateur) {
-
+	public static void modificationUtilisateur(Utilisateur utlisateur) throws BLLException {
+		try {
+			utilisateurDAO.updateUtilisateur(utlisateur);
+		} catch (DALException e) {
+			throw new BLLException("Erreur modificationUtilisateur", e);
+		}
 	}
+
+	public static void effacerUtilisateur(int noUtilisateur) throws BLLException {
+		try {
+			utilisateurDAO.deleteUtilisateur(noUtilisateur);
+		} catch (DALException e) {
+			throw new BLLException("Erreur effacerUtilisateur", e);
+		}
+	}
+
+	public static Utilisateur getUtilisateur(int noUtilisateur) throws BLLException {
+		Utilisateur utilisateur;
+		try {
+			utilisateur = utilisateurDAO.selectById(noUtilisateur);
+		} catch (DALException e) {
+			throw new BLLException("Erreur getUtilisateur", e);
+		}
+		return utilisateur;
+	}
+
 }

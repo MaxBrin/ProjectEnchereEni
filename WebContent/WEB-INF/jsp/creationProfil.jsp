@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html> 
 <html>
 <head>
@@ -11,40 +13,46 @@
 
 <h1>Mon profil</h1>
 
-<form action="" method="post">
+<form action="CreationCompte" method="post"> 
 			
-			<label for="identifiant">Pseudo</label>
-			<input type="text" name="pseudo" id="identifiant">
+			<label for="pseudo">Pseudo</label>
+			<input type="text" name="pseudo" id="pseudo">
 			
-			<label for="identifiant">Nom</label>
-			<input type="text" name="nom" id="identifiant">
+			<label for="nom">Nom</label>
+			<input type="text" name="nom" id="nom">
 			
-			<label for="identifiant">Prénom</label>
-			<input type="text" name="prenom" id="identifiant">
+			<label for="prenom">Prénom</label>
+			<input type="text" name="prenom" id="prenom">
 			
-			<label for="identifiant">Email</label>
-			<input type="email" name="email" id="identifiant">
+			<label for="email">Email</label>
+			<input type="email" name="email" id="email">
 			
-			<label for="identifiant">Téléphone</label>
-			<input type="text" name="telephone" id="identifiant">
+			<label for="telephone">Téléphone</label>
+			<input type="text" name="telephone" id="telephone">
 			
-			<label for="identifiant">Rue</label>
-			<input type="text" name="rue" id="identifiant">
+			<label for="rue">Rue</label>
+			<input type="text" name="rue" id="rue">
 			
-			<label for="identifiant">Code postal</label>
-			<input type="text" name="codePostal" id="identifiant">
+			<label for="codePostal">Code postal</label>
+			<input type="text" name="codePostal" id="codePostal">
 			
-			<label for="identifiant">Ville</label>
-			<input type="text" name="ville" id="identifiant">
+			<label for="ville">Ville</label>
+			<input type="text" name="ville" id="ville">
 			
-			<label for="identifiant">Mot de passe</label>
-			<input type="password" name="motDePasse" id="identifiant">
+			<label for="motDePasse">Mot de passe</label>
+			<input type="password" name="motDePasse" id="motDePasse">
 			
-			<label for="identifiant">Confirmer</label>
-			<input type="password" name="confirmerMotDePasse" id="identifiant">
+			<label for="confirmerMotDePasse">Confirmer</label>
+			<input type="password" name="confirmerMotDePasse" id="confirmerMotDePasse">
+			
+			<p id="erreurMdpInvalide"><c:if test="${messageErreur != null}">
+					${messageErreur}
+			</c:if>
+			
+			</p>
 			
 			<button type="submit">Enregistrer</button>
-			<a href="/ProjectEnchereEni/Accueil"><button>Annuler</button></a>
+			<a href="/ProjectEnchereEni/Accueil">Annuler</a>
 			
 			
 </form>
