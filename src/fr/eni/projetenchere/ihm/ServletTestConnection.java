@@ -33,7 +33,7 @@ public class ServletTestConnection extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Utilisateur utilisateurTampon1 = new Utilisateur("Neo", "Brin", "Maxime", "max@max.max", "0123456789",
-				"10 rue franklin", "44000", "Nantes", "Pa$$w0rd", 100, false);
+				"10 rue franklin", "44000", "Nantes", "Pa$$w0rd", 100, true);
 		Utilisateur utilisateurTampon2 = new Utilisateur("Bob", "Dupond", "Robert", "bob@bob.bob", "9876543210",
 				"5 rue franklin", "44000", "Nantes", "Pa$$w0rd", 200, false);
 		try {

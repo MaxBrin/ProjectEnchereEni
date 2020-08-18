@@ -7,12 +7,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Mon profil</title>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css">
+
 </head>
 
 <body>
 
-<h3 id="bobo">Mon profil</h3>
+<h1>Mon profil</h1>
 
 <form action="/ModificationProfil" method="post">
 			

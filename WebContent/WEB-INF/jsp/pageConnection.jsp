@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +11,7 @@
 	
 	<body>
 	
-		<form action="" method="post">
+		<form action="Connexion" method="post">
 			
 			<label for="identifiant">Identifiant</label>
 			<input type="text" name="identifiant" id="identifiant">
@@ -24,7 +24,7 @@
 			<p>Se souvenir de moi</p>
 			<input type="checkbox" name="seSouvenir">
 			
-			<a href="">Mot de passe oubliÃ©</a>
+			<a href="">Mot de passe oublié</a>
 			
 		
 		</form>

@@ -17,10 +17,10 @@ import fr.eni.projetenchere.bll.UtilisateurMgr;
 import fr.eni.projetenchere.bo.Utilisateur;
 
 /**
- * Servlet implementation class Connexion
+ * Servlet implementation class ServletValidationConnection
  */
-@WebServlet("/Connexion")
-public class ServletVersPageConnection extends HttpServlet {
+@WebServlet("/ValidationConnection")
+public class ServletValidationConnection extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -29,9 +29,6 @@ public class ServletVersPageConnection extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnection.jsp");
-		rd.forward(request, response);
-
 	}
 
 	/**
@@ -55,7 +52,7 @@ public class ServletVersPageConnection extends HttpServlet {
 			if (utilisateur.getEmail().equals(identifiant) || utilisateur.getPseudo().equals(identifiant)) {
 				if (utilisateur.getMotDePasse().equals(mdp)) {
 					HttpSession session = request.getSession();
-					session.setAttribute("Utilisateur", utilisateur);
+					session.setAttribute("utilisateur", utilisateur);
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 					rd.forward(request, response);
 				}
@@ -63,6 +60,8 @@ public class ServletVersPageConnection extends HttpServlet {
 			} else {
 				messageErreur = "L'identifiant ou le mot de passe est incorrect";
 				request.setAttribute("erreurAuthentification", messageErreur);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
+				rd.forward(request, response);
 			}
 		}
 
