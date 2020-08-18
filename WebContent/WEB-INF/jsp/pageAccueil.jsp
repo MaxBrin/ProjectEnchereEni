@@ -12,6 +12,7 @@
 		<a href="/ProjectEnchereEni/CreationCompte">S'inscrire</a>
 		<a href="/ProjectEnchereEni/Connexion">Se connecter</a>
 		
+		
 	
 	</body>
 </html>
