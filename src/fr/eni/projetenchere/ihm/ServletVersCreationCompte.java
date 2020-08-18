@@ -123,6 +123,9 @@ public class ServletVersCreationCompte extends HttpServlet {
 		}
 		if (!(utilisateurValid)) {
 			request.setAttribute("messageErreur", sb.toString());
+			if (listErreur.isEmpty()) {
+				listErreur = null;
+			}
 			request.setAttribute("listErreur", listErreur);
 			request.setAttribute("utilisateur", utilisateur);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/creationProfil.jsp");
