@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Mon profil</title>
+
 </head>
 
 <body>
@@ -13,6 +14,8 @@
 
 <form action="" method="post">
 			
+		<div class="colonnes">
+			<div class="colonneA">
 			<label for="identifiant">Pseudo</label>
 			<input type="text" name="pseudo" id="identifiant">
 			
@@ -27,7 +30,9 @@
 			
 			<label for="identifiant">Téléphone</label>
 			<input type="text" name="telephone" id="identifiant">
+			</div>
 			
+			<div class="colonneB">
 			<label for="identifiant">Rue</label>
 			<input type="text" name="rue" id="identifiant">
 			
@@ -45,6 +50,8 @@
 			
 			<label for="identifiant">Confirmer</label>
 			<input type="text" name="confirmerMotDePasse" id="identifiant">
+			</div>
+		</div>
 			
 			<h2>Crédit</h2>
 			
