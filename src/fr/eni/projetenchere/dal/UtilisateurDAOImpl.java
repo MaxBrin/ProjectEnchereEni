@@ -11,7 +11,14 @@ import fr.eni.projetenchere.bo.Utilisateur;
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private static final String INSERT = "INSERT INTO UTILISATEURS VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String SELECTALL = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM UTILISATEURS";
+	private static final String SELECTALL = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal"
+			+ ",ville,mot_de_passe,credit,administrateur FROM UTILISATEURS";
+	private static final String UPDATE = "UPDATE UTILISATEURS SET pseudo=?,nom=?,prenom=?,email=?"
+			+ ",telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?"
+			+ ",administrateur=? WHERE no_utilisateur = ?";
+	private static final String DELETE = "DELETE FROM UTILISATEUR WHERE no_utilisateur=?";
+	private static final String SELECTBYID = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal"
+			+ ",ville,mot_de_passe,credit,administrateur FROM UTILISATEURS WHERE no_utilisateur =?";
 
 	@Override
 	public void insertUtilisateur(Utilisateur utilisateur) throws DALException {
@@ -54,6 +61,29 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			throw new DALException("Erreur selectAll", e);
 		}
 		return listUtilisateur;
+	}
+
+	@Override
+	public void deleteUtilisateur(int noUtilisateur) throws DALException {
+		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(DELETE)) {
+			pStmt.setInt(1, noUtilisateur);
+			pStmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException("Erreur deleteUtilisateur", e);
+		}
+
+	}
+
+	@Override
+	public void updateUtilisateur(Utilisateur utilisateur) throws DALException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Utilisateur selectById(int id) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

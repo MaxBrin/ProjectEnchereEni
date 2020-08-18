@@ -9,4 +9,9 @@ public interface UtilisateurDAO {
 
 	public abstract List<Utilisateur> selectAll() throws DALException;
 
+	public abstract void deleteUtilisateur(int noUtilisateur) throws DALException;
+
+	public abstract void updateUtilisateur(Utilisateur utilisateur) throws DALException;
+
+	public abstract Utilisateur selectById(int id) throws DALException;
 }

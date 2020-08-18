@@ -1,21 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Page d'Accueil</title>
-</head>
-<body>
-
-<h1>Liste des enchères</h1>
-<a href="/ProjectEnchereEni/Accueil">S'inscrire</a>
-<a href="/ProjectEnchereEni/CreationCompte">Se connecter</a>
-<p>Filtres :</p>
-
-<p>Catégorie :</p>
-
-
-
-</body>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+	</head>
+	
+	<body>
+		
+		<a href="/ProjectEnchereEni/CreationCompte">S'inscrire</a>
+		<a href="/ProjectEnchereEni/Connexion">Se connecter</a>
+		
+	
+	</body>
 </html>
