@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="utf-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html> 
@@ -22,13 +22,13 @@
 			<label for="nom">Nom</label>
 			<input type="text" name="nom" id="nom">
 			
-			<label for="prenom">Prénom</label>
+			<label for="prenom">PrÃ©nom</label>
 			<input type="text" name="prenom" id="prenom">
 			
 			<label for="email">Email</label>
 			<input type="email" name="email" id="email">
 			
-			<label for="telephone">Téléphone</label>
+			<label for="telephone">TÃ©lÃ©phone</label>
 			<input type="text" name="telephone" id="telephone">
 			
 			<label for="rue">Rue</label>

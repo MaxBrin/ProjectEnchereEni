@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+    
 <!DOCTYPE html> 
 <html>
 <head>
@@ -12,7 +14,7 @@
 
 <h3 id="bobo">Mon profil</h3>
 
-<form action="" method="post">
+<form action="/ModificationProfil" method="post">
 			
 		<div class="colonnes">
 			<div class="colonneA">
@@ -48,8 +50,12 @@
 			<label for="identifiant">Nouveau mot de passe </label>
 			<input type="text" name="nouveauMotDePasse" id="identifiant">
 			
-			<label for="identifiant">Confirmer</label>
-			<input type="text" name="confirmerMotDePasse" id="identifiant">
+			<label for="identifiant">Confirmation</label>
+			<input type="password" name="confirmerNouveauMotDePasse" id="confirmerNouveauMotDePasse">
+			
+			<p id="erreurNouveauMdpInvalide"><c:if test="${messageErreur != null}">
+				${messageErreur}
+			</c:if>
 			</div>
 		</div>
 			
