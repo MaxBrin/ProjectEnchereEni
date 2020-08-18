@@ -8,8 +8,14 @@
 </head>
 <body>
 
+<h1>Liste des enchères</h1>
+<a href="/ProjectEnchereEni/Accueil">S'inscrire</a>
+<a href="/ProjectEnchereEni/CreationCompte">Se connecter</a>
+<p>Filtres :</p>
 
-<a href="/ProjectEnchereEni/">S'inscrire</a>
-<a href="/ProjectEnchereEni/">Se connecter</a>
+<p>Catégorie :</p>
+
+
+
 </body>
 </html>
