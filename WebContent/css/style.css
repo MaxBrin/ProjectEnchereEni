@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+
+body{
+	margin : 10px 30px;
+}
+
+.left-part-header{
+	display:flex;
+	align-items:center;
+	}
+	
+h1{
+	text_align :right;
+	color : #ff0000;
+	
+}
+
+
+.colonnes{
+	color :red;
+	display : flex;
+	justify_content : space_between;
+}
+
+.colonneA{
+	display:flex;
+	margin:8px;
+}
