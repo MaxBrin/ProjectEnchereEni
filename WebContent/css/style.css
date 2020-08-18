@@ -9,9 +9,13 @@ body{
 	display:flex;
 	align-items:center;
 	}
-	
+
+
+#bobo{
+	color: #ff0000;
+}	
 h1{
-	text_align :right;
+	
 	color : #ff0000;
 	
 }
@@ -19,8 +23,7 @@ h1{
 
 .colonnes{
 	color :red;
-	display : flex;
-	justify_content : space_between;
+	
 }
 
 .colonneA{

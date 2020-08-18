@@ -5,12 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Mon profil</title>
-
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css">
 </head>
 
 <body>
 
-<h1>Mon profil</h1>
+<h3 id="bobo">Mon profil</h3>
 
 <form action="" method="post">
 			
