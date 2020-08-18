@@ -8,7 +8,6 @@ import fr.eni.projetenchere.dal.DALException;
 import fr.eni.projetenchere.dal.DAOFactory;
 import fr.eni.projetenchere.dal.UtilisateurDAO;
 
-
 public class UtilisateurMgr {
 
 	private static UtilisateurDAO utilisateurDAO;
