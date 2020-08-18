@@ -33,49 +33,61 @@
 		
 	<h1>Liste des enchères</h1>
 	
-	<p>Filtres : </p>
-	
-	<label for="Filtre :"></label>
-	<input type="texte" placeholder="Le nom de l'article contient" >
+	<form action="">
+	<label for="filtre" >Filtres</label>
+	<input type="texte" placeholder="Le nom de l'article contient" id="filtre" >
 	
 	
 	
 	
 	<p>Catégorie :</p>
 	
-	<select name="gender" id="">
-	<option value="Toutes" name="gender">Toutes</option>
-	<option value="" name="gender"></option>
+	<select name="categorie" id="categorie">
+		
+		<option value="Informatique" name="categorie">Informatique</option>
+		<option value="Ammeublement" name="categorie">Ammeublement</option>	
+		<option value="Vêtement" name="categorie">Vêtement</option>
+		<option value="Sport & Loisirs" name="categorie">Sport & Loisirs</option>
+
 	</select>
 	
 	
-	<input type="submit" value="Rechercher"><br><br>
+	
 	
 	
 	<div>
-	<label for="test"><input type="radio">Achats</label><br>
+		<input type="radio" name="choixAchatOuVente">Achats<br>
+		<input type="radio" name="choixAchatOuVente">Mes ventes<br>
+	</div>
 	
-	<label for="color">
-	<input type="checkbox" name="color" value="bleu">Enchères ouvertes<br>
-	<input type="checkbox" name="color" value="bleu">Mes enchères<br>
-	<input type="checkbox" name="color" value="bleu">Mes enchères remportées
-	</label><br>
+	
+	<div>
+		<input type="checkbox" name="encheresOuvertes">Enchères ouvertes<br>
+		<input type="checkbox" name="mesEncheres">Mes enchères<br>
+		<input type="checkbox" name="encheresRemportees">Mes enchères remportées<br>
 	</div>
 	
 	<br><br>
 	
 	<div>
-	<label for="test"><input type="radio">Mes ventes</label><br>
 	
-	<label for="color">
-	<input type="checkbox" name="color" value="bleu">Mes ventes en cours<br>
-	<input type="checkbox" name="color" value="bleu">Ventes non débutées<br>
-	<input type="checkbox" name="color" value="bleu">Ventes terminées<br>
-	</label>
+	
+	<div>
+		<input type="checkbox" name="ventesEnCours">Mes ventes en cours<br>
+		<input type="checkbox" name="ventesNonDebutess">Ventes non débutées<br>
+		<input type="checkbox" name="ventesTerminees">Ventes terminées<br>
 	</div>
 	
-	
+	<input type="submit" value="Rechercher"><br><br>
 	<br>	
+	
+	
+	
+	
+	
+	
+	
+	
 	<textarea name="nom de l'article" id="" cols="40" rows="5">
 	PC Gamer pour travailler 
 	Prix :
