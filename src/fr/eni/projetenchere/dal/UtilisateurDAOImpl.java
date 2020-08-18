@@ -76,14 +76,42 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	@Override
 	public void updateUtilisateur(Utilisateur utilisateur) throws DALException {
-		// TODO Auto-generated method stub
+		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(UPDATE)) {
+			pStmt.setString(1, utilisateur.getPseudo());
+			pStmt.setString(2, utilisateur.getNom());
+			pStmt.setString(3, utilisateur.getPrenom());
+			pStmt.setString(4, utilisateur.getEmail());
+			pStmt.setString(5, utilisateur.getTelephone());
+			pStmt.setString(6, utilisateur.getRue());
+			pStmt.setString(7, utilisateur.getCodePostal());
+			pStmt.setString(8, utilisateur.getVille());
+			pStmt.setString(9, utilisateur.getMotDePasse());
+			pStmt.setInt(10, utilisateur.getCredit());
+			pStmt.setBoolean(11, utilisateur.isAdministrateur());
+			pStmt.setInt(12, utilisateur.getNoUtilisateur());
+			pStmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException("Erreur updateUtilisateur", e);
+		}
 
 	}
 
 	@Override
 	public Utilisateur selectById(int id) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		Utilisateur utilisateur = null;
+		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(SELECTBYID)) {
+			pStmt.setInt(1, id);
+			ResultSet rs = pStmt.executeQuery();
+			if (rs.next()) {
+				utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"),
+						rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
+						rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"),
+						rs.getInt("credit"), rs.getBoolean("administrateur"));
+			}
+		} catch (SQLException e) {
+			throw new DALException("Erreur selectAll", e);
+		}
+		return utilisateur;
 	}
 
 }
