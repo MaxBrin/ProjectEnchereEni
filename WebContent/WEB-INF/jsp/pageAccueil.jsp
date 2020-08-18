@@ -31,7 +31,7 @@
 	<br>
 	<a href="/ProjectEnchereEni/CreationCompte">Mon profil</a><br>
 	<br>
-	<a href="/ProjectEnchereEni/Connexion">Déconnexion</a>
+	<a href="Deconnexion">Déconnexion</a>
 		</c:otherwise>
 		
 	</c:choose>
