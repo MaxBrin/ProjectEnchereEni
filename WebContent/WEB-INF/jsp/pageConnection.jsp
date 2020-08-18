@@ -11,7 +11,7 @@
 	
 	<body>
 	
-		<form action="" method="post">
+		<form action="ValidationConnection" method="post">
 			
 			<label for="identifiant">Identifiant</label>
 			<input type="text" name="identifiant" id="identifiant">
