@@ -25,15 +25,8 @@
 			
 			<a href="">Mot de passe oublié</a>
 			
-			<a href="<%=request.getContextPath()%>/CreationCompte">creation</a>
-				
-		
-		
 		
 		</form>
-	
-	
-	
 	
 	
 	</body>
