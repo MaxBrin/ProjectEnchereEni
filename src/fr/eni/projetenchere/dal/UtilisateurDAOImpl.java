@@ -64,8 +64,13 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public void deleteUtilisateur() throws DALException {
-		// TODO Auto-generated method stub
+	public void deleteUtilisateur(int noUtilisateur) throws DALException {
+		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(DELETE)) {
+			pStmt.setInt(1, noUtilisateur);
+			pStmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException("Erreur deleteUtilisateur", e);
+		}
 
 	}
 
