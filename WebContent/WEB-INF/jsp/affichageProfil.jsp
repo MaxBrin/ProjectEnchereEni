@@ -3,8 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Affichage profil</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Affichage profil</title>
+	
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/stylePageAccueil.css">
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>

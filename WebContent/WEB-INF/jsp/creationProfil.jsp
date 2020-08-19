@@ -61,7 +61,9 @@
 
 			<c:otherwise>
 
-				<c:set var="erreur" value="${listErreur }" />
+				<c:set var="erreur" value="${listErreur}" />
+				
+				
 				<label for="pseudo">Pseudo</label>
 				<c:choose>
 					<c:when test="${fn:contains(erreur,'Pseudo') }">

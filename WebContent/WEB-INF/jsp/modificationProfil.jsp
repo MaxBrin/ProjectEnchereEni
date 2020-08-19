@@ -5,8 +5,11 @@
 <!DOCTYPE html> 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Mon profil</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+		<link rel="stylesheet" href="<%=request.getContextPath()%>/css/stylePageAccueil.css">
+		<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+	<title>Mon profil</title>
 
 </head>
 
@@ -22,46 +25,44 @@
 			<input type="text" name="pseudo" value="${utilisateur.pseudo}" id="pseudo">
 			
 			<label for="nom">Nom</label>
-			<input type="text" name="nom" id="nom">
+			<input type="text" name="nom" value="${utilisateur.nom}" id="nom">
 			
 			<label for="prenom">Prénom</label>
-			<input type="text" name="prenom" id="prenom">
+			<input type="text" name="prenom" value="${utilisateur.prenom}" id="prenom">
 			
 			<label for="email">Email</label>
-			<input type="text" name="email" id="email">
+			<input type="text" name="email" value="${utilisateur.email}" id="email">
 			
 			<label for="telephone">Téléphone</label>
-			<input type="text" name="telephone" id="telephone">
+			<input type="text" name="telephone" value="${utilisateur.telephone}" id="telephone">
 			</div>
 			
 			<div class="colonneB">
 			<label for="rue">Rue</label>
-			<input type="text" name="rue" id="rue">
+			<input type="text" name="rue" value="${utilisateur.rue}" id="rue">
 			
 			<label for="codePostal">Code postal</label>
-			<input type="text" name="codePostal" id="codePostal">
+			<input type="text" name="codePostal" value="${utilisateur.codePostal}" id="codePostal">
 			
 			<label for="ville">Ville</label>
-			<input type="text" name="ville" id="ville">
+			<input type="text" name="ville" value="${utilisateur.ville}" id="ville">
 			
 			<label for="ancienMotDePasse">Mot de passe actuel</label>
-			<input type="text" name="ancienMotDePasse" id="ancienMotDePasse">
+			<input type="text" name="ancienMotDePasse"   id="ancienMotDePasse">
 			
 			<label for="nouveauMotDePasse">Nouveau mot de passe </label>
-			<input type="text" name="nouveauMotDePasse" id="nouveauMotDePasse">
+			<input type="text" name="nouveauMotDePasse"   id="nouveauMotDePasse">
 			
 			<label for="confirmerNouveauMotDePasse">Confirmation</label>
-			<input type="password" name="confirmerNouveauMotDePasse" id="confirmerNouveauMotDePasse">
+			<input type="password" name="confirmerNouveauMotDePasse"  id="confirmerNouveauMotDePasse">
 			
-			<p id="erreurNouveauMdpInvalide"><c:if test="${messageErreur != null}">
-				${messageErreur}
-			</c:if>
+			
 			</div>
 		</div>
 			
-			
-			<label for="credit">Crédit</label>
-			${utilisateur.credit}
+			<p>
+			<label for="credit" >Crédit  </label>${utilisateur.credit}
+			</p>
 			
 			<button type="submit">Enregistrer</button>
 			
