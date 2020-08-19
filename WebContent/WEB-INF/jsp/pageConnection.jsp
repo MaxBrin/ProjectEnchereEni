@@ -7,6 +7,10 @@
 		<meta charset="utf-8">
 		<title>Insert title here</title>
 		
+		<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/stylePageAccueil.css">
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+		
 	</head>
 	
 	<body>

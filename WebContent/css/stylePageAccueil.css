@@ -1,19 +1,46 @@
 @charset "ISO-8859-1";
 
-
-.navigation {
+/*General*/
+body  {
+	background-color: #dddddd;
 	display: flex;
-	
 }
-
 a {
 	text-decoration: none;
 	color: black;
 	margin: 20px;
+	font-family: Raleway, sans-serif;
 }
-
 a:hover {
 	color: #797a7e;
+}
+.navigation {
+	display: flex;
+}
+h1 {
+	font-size: 35px;
+	font-family: Raleway, sans-serif;
+}
+p {
+	font-family: Raleway, sans-serif;
+}
+
+label {
+	font-family: Raleway, sans-serif;
+}
+input {
+	font-family: Raleway, sans-serif;
+}
+option {
+	font-family: Raleway, sans-serif;
+}
+select {
+	font-family: Raleway, sans-serif;
+}
+/***************************page Accueil*****************************************/
+
+#titre {
+	font-size: 20px;
 }
 
 form {
@@ -27,4 +54,15 @@ form {
 
 .formulaire {
 	display: flex;
+	text-align: center;
+}
+
+#filtre {
+	width: 200px;
+	height: 30px;
+}
+
+#categorie {
+	width: 200px;
+	height: 30px;
 }

@@ -9,7 +9,6 @@
 	<meta charset="UTF-8">
 	<title>Liste des enchères</title>
 	
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/stylePageAccueil.css">
 	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
 </head>
@@ -30,7 +29,7 @@
 	<div class="navigation">
 		<a href="/ProjectEnchereEni/CreationCompte">Enchères</a><br>
 		<br>
-		<a href="/ProjectEnchereEni/Connexion">Vendre un article</a>
+		<a href="/ProjectEnchereEni/NouvelleVente">Vendre un article</a>
 		<br>
 		<a href="/ProjectEnchereEni/CreationCompte">Mon profil</a><br>
 		<br>
@@ -43,13 +42,13 @@
 	
 	
 		
-	<h1 class="titre">LISTE DES ENCHERES</h1>
+	<h1 id="titre">LISTE DES ENCHERES</h1>
 	
 	
 	<div class="formulaire">
 	<form action="">
 	<label for="filtre" class="labelFiltre">Filtres</label>
-	<input type="texte" placeholder="Le nom de l'article contient" id="filtre" >
+	<input type="texte" placeholder="Ex : voiture, console" id="filtre" >
 	
 	
 	
@@ -134,22 +133,12 @@
 	
 	
 	
+	<div id="affichageEncheres">
+	</div>
 	
 	
-	
-	<textarea name="nom de l'article" id="" cols="40" rows="5">
-	PC Gamer pour travailler 
-	Prix :
-	Fin de l'enchère :
-	Vendeur : <a href="VisualiserProfil">jojo44</a>
-	</textarea>	
 
-	<textarea name="nom de l'article" id="" cols="40" rows="5">
-	Rocket stove pour riz et pâtes 
-	Prix :
-	Fin de l'enchère :
-	Vendeur :
-	</textarea>	
+	
 	
 	</body>
 </html>
