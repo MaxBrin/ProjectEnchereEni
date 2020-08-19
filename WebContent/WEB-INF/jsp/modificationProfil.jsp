@@ -17,7 +17,7 @@
 
 <h1>Mon profil</h1>
 
-<form action="/ModificationProfil" method="post">
+<form action="${pageContext.request.contextPath}/ModificationProfil" method="post">
 			
 		<div class="colonnes">
 			<div class="colonneA">
@@ -48,10 +48,10 @@
 			<input type="text" name="ville" value="${utilisateur.ville}" id="ville">
 			
 			<label for="ancienMotDePasse">Mot de passe actuel</label>
-			<input type="text" name="ancienMotDePasse"   id="ancienMotDePasse">
+			<input type="password" name="ancienMotDePasse"   id="ancienMotDePasse">
 			
 			<label for="nouveauMotDePasse">Nouveau mot de passe </label>
-			<input type="text" name="nouveauMotDePasse"   id="nouveauMotDePasse">
+			<input type="password" name="nouveauMotDePasse"   id="nouveauMotDePasse">
 			
 			<label for="confirmerNouveauMotDePasse">Confirmation</label>
 			<input type="password" name="confirmerNouveauMotDePasse"  id="confirmerNouveauMotDePasse">
@@ -63,6 +63,10 @@
 			<p>
 			<label for="credit" >Crédit  </label>${utilisateur.credit}
 			</p>
+			
+			<c:if test="${message != null}">
+				<p>${message}</p>
+			</c:if>
 			
 			<button type="submit">Enregistrer</button>
 			

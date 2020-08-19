@@ -56,11 +56,19 @@ select {
 }
 .navigation {
 	justify-content: flex-end;
-	width: 85%;
+	width: 100%;
 }
-p.nom_site {
+p.logo {
 	font-family: 'Architects Daughter', cursive;
-	font-size: 
+	font-size: 30px;
+    width: 300px;
+}
+
+.corps {
+	display: flex;
+	flex-direction: rows;
+	justify-content: center;
+	
 }
 
 
