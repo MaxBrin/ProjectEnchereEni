@@ -24,6 +24,8 @@ public class ServletVersCreationCompte extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Utilisateur utilisateur = new Utilisateur("", "", "", "", "", "", "", "", "", 0, false);
+		String erreur = "";
+		request.setAttribute("listErreur", erreur);
 		request.setAttribute("utilisateur", utilisateur);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/creationProfil.jsp");
 		rd.forward(request, response);
