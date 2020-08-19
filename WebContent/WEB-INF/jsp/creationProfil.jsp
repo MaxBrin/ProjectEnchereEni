@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/Erreur.css">
+	href="${pageContext.request.contextPath }/css/Erreur.css">
 <title>Mon profil</title>
 </head>
 
@@ -16,7 +16,7 @@
 
 	<h1>Mon profil</h1>
 
-	<form action="CreationCompte" method="post">
+	<form action="${pageContext.request.contextPath }/CreationCompte" method="post">
 		<c:choose>
 			<c:when test="${listErreur ==null }">
 
@@ -184,12 +184,7 @@
 				</c:choose>
 			</c:otherwise>
 		</c:choose>
-		<p id="erreurMdpInvalide">
-			<c:if test="${messageErreur != null}">
-					${messageErreur}
-			</c:if>
-
-		</p>
+		
 		<h4>
 			<c:if test="${fn:contains(erreur,'PseudoNonValide') }">
 			Le pseudo n'est pas valide.<br>

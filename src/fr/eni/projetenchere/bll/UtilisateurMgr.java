@@ -2,7 +2,6 @@ package fr.eni.projetenchere.bll;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -70,10 +69,10 @@ public class UtilisateurMgr {
 
 	public static String verifUtilisateur(Utilisateur utilisateur) {
 		StringBuilder erreur = new StringBuilder();
-		// TEST donn√©es saisie
+		// TEST donnÈes saisie
 
 		// Pseudo
-		if (utilisateur.getPseudo() == null || StringUtils.isAlphanumeric(utilisateur.getPseudo())
+		if (utilisateur.getPseudo() == null || (!(StringUtils.isAlphanumeric(utilisateur.getPseudo())))
 				|| utilisateur.getPseudo().trim().equals("")) {
 			erreur.append("PseudoNonValide");
 		}
@@ -94,9 +93,9 @@ public class UtilisateurMgr {
 			erreur.append("EmailNonValide");
 		}
 
-		// Test si Pseudo et Email d√©j√† pr√©sent
+		// Test si Pseudo et Email dÈj‡† prÈsent
 
-		// R√©cuperation de la liste des utilisateurs
+		// RÈcuperation de la liste des utilisateurs
 		List<Utilisateur> listUtilisateur = new ArrayList<Utilisateur>();
 		try {
 			listUtilisateur = UtilisateurMgr.getListUtilisateur();
@@ -115,7 +114,7 @@ public class UtilisateurMgr {
 			}
 		}
 
-		// T√©l√©phone
+		// TÈlÈphone
 		if (!(StringUtils.isNumeric(utilisateur.getTelephone())) || (!(utilisateur.getTelephone().length() == 10))) {
 			erreur.append("Telephone");
 
@@ -139,30 +138,12 @@ public class UtilisateurMgr {
 		if (utilisateur.getMotDePasse() == null) {
 			erreur.append("MotDePasseIdentique");
 
-		} else if (!(isLegalPassword(utilisateur.getMotDePasse())) || (utilisateur.getMotDePasse().length() < 8)) {
+		} else if (!(PasswordValidator.isLegalPassword(utilisateur.getMotDePasse()))
+				|| (utilisateur.getMotDePasse().length() < 8)) {
 			erreur.append("MotDePasseVerif");
 		}
 
 		return erreur.toString();
 	}
 
-	// Pattern pour le password et v√©rifier qu'il conttient au moins une
-	// majuscule,une miniscule,une caract√®re sp√©ciaux et un chiffre
-	private static final Pattern[] passwordRegexes = new Pattern[4];
-	static {
-		passwordRegexes[0] = Pattern.compile(".*[A-Z].*");
-		passwordRegexes[1] = Pattern.compile(".*[a-z].*");
-		passwordRegexes[2] = Pattern.compile(".*\\d.*");
-		passwordRegexes[3] = Pattern.compile(".*[~!].*");
-	}
-
-	// V√©rification que le mot de passe correspond au pattern
-	public static boolean isLegalPassword(String pass) {
-
-		for (int i = 0; i < passwordRegexes.length; i++) {
-			if (!passwordRegexes[i].matcher(pass).matches())
-				return false;
-		}
-		return true;
-	}
 }
