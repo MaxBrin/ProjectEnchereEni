@@ -1,7 +1,6 @@
 package fr.eni.projetenchere.ihm;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,18 +20,6 @@ import fr.eni.projetenchere.bo.Utilisateur;
 @WebServlet("/CreationCompte")
 public class ServletVersCreationCompte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static List<Utilisateur> listUtilisateur;
-
-	@Override
-	public void init() throws ServletException {
-		try {
-			listUtilisateur = UtilisateurMgr.getListUtilisateur();
-		} catch (BLLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		super.init();
-	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -71,7 +58,6 @@ public class ServletVersCreationCompte extends HttpServlet {
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
-			System.out.println(utilisateur.getNoUtilisateur());
 			HttpSession session = request.getSession();
 
 			session.setAttribute("utilisateur", utilisateur);

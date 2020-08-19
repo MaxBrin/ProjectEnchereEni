@@ -1,4 +1,4 @@
-package fr.eni.projetenchere.dal;
+package fr.eni.projetenchere.dal.impl;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projetenchere.bo.Utilisateur;
+import fr.eni.projetenchere.dal.DALException;
+import fr.eni.projetenchere.dal.UtilisateurDAO;
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private static final String INSERT = "INSERT INTO UTILISATEURS VALUES(?,?,?,?,?,?,?,?,?,?,?)";
