@@ -4,6 +4,7 @@
 body  {
 	background-color: #dddddd;
 	display: flex;
+	flex-direction: column;
 }
 a {
 	text-decoration: none;
@@ -20,6 +21,7 @@ a:hover {
 h1 {
 	font-size: 35px;
 	font-family: Raleway, sans-serif;
+	justify-content: center;
 }
 p {
 	font-family: Raleway, sans-serif;
@@ -38,31 +40,27 @@ select {
 	font-family: Raleway, sans-serif;
 }
 /***************************page Accueil*****************************************/
-
-#titre {
-	font-size: 20px;
-}
-
-form {
-	display: grid;
-	text-align: center;
-}
-
-.labelFiltre {
-	margin: 15px;
-}
-
 .formulaire {
+	justify-content: center;
+}
+
+.formPlusTitre {
 	display: flex;
-	text-align: center;
+	flex-direction: column;
+	justify-content: center;
 }
 
-#filtre {
-	width: 200px;
-	height: 30px;
+.logoPlusNavigation {
+	display: flex;
+	flex-direction: rows;
+}
+.navigation {
+	justify-content: flex-end;
+	width: 85%;
+}
+p.nom_site {
+	font-family: 'Architects Daughter', cursive;
+	font-size: 
 }
 
-#categorie {
-	width: 200px;
-	height: 30px;
-}
+
