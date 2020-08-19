@@ -70,7 +70,7 @@ public class UtilisateurMgr {
 
 	public static String verifUtilisateur(Utilisateur utilisateur) {
 		StringBuilder erreur = new StringBuilder();
-		// TEST données saisie
+		// TEST donnï¿½es saisie
 
 		// Pseudo
 		if (utilisateur.getPseudo() == null || (!(StringUtils.isAlphanumeric(utilisateur.getPseudo())))
@@ -94,9 +94,9 @@ public class UtilisateurMgr {
 			erreur.append("EmailNonValide");
 		}
 
-		// Test si Pseudo et Email déjà  présent
+		// Test si Pseudo et Email dï¿½jï¿½ prï¿½sent
 
-		// Récuperation de la liste des utilisateurs
+		// Rï¿½cuperation de la liste des utilisateurs
 		List<Utilisateur> listUtilisateur = new ArrayList<Utilisateur>();
 		try {
 			listUtilisateur = UtilisateurMgr.getListUtilisateur();
@@ -115,7 +115,7 @@ public class UtilisateurMgr {
 			}
 		}
 
-		// Téléphone
+		// Tï¿½lï¿½phone
 		if (!(StringUtils.isNumeric(utilisateur.getTelephone())) || (!(utilisateur.getTelephone().length() == 10))) {
 			erreur.append("Telephone");
 
@@ -139,8 +139,7 @@ public class UtilisateurMgr {
 		if (utilisateur.getMotDePasse() == null) {
 			erreur.append("MotDePasseIdentique");
 
-		} else if ((PasswordValidator.isLegalPassword(utilisateur.getMotDePasse()))
-				|| (utilisateur.getMotDePasse().length() < 8)) {
+		} else if (!(PasswordValidator.isLegalPassword(utilisateur.getMotDePasse()))) {
 			erreur.append("MotDePasseVerif");
 		}
 

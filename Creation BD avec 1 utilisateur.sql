@@ -41,8 +41,8 @@ CREATE TABLE ARTICLES_VENDUS (
     no_article                    INTEGER IDENTITY(1,1) NOT NULL,
     nom_article                   VARCHAR(30) NOT NULL,
     description                   VARCHAR(300) NOT NULL,
-	date_debut_encheres           DATE NOT NULL,
-    date_fin_encheres             DATE NOT NULL,
+	date_debut_encheres           DATETIME NOT NULL,
+    date_fin_encheres             DATETIME NOT NULL,
     prix_initial                  INTEGER,
     prix_vente                    INTEGER,
     no_utilisateur                INTEGER NOT NULL,
@@ -103,4 +103,7 @@ ON DELETE NO ACTION
 
 INSERT INTO UTILISATEURS VALUES ('CocoCaliendo44','Caliendo','Julien','jcaliendo@campus-eni.fr','0123456789','1 boulevard TeslaLover','44000','NANTES','Pa$$w0rd',0,1);
 
-
+INSERT INTO CATEGORIES VALUES ('Informatique');
+INSERT INTO CATEGORIES VALUES('Ameublement');
+INSERT INTO CATEGORIES VALUES('Vetements');
+INSERT INTO CATEGORIES VALUES ('Sport & Loisirs');
