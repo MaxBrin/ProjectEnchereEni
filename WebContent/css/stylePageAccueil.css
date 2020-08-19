@@ -1,0 +1,30 @@
+@charset "ISO-8859-1";
+
+
+.navigation {
+	display: flex;
+	
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	margin: 20px;
+}
+
+a:hover {
+	color: #797a7e;
+}
+
+form {
+	display: grid;
+	text-align: center;
+}
+
+.labelFiltre {
+	margin: 15px;
+}
+
+.formulaire {
+	display: flex;
+}

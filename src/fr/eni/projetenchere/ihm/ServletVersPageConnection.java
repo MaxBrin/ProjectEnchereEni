@@ -55,7 +55,7 @@ public class ServletVersPageConnection extends HttpServlet {
 			if (utilisateur.getEmail().equals(identifiant) || utilisateur.getPseudo().equals(identifiant)) {
 				if (utilisateur.getMotDePasse().equals(mdp)) {
 					HttpSession session = request.getSession();
-					session.setAttribute("Utilisateur", utilisateur);
+					session.setAttribute("utilisateur", utilisateur);
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 					rd.forward(request, response);
 				}
