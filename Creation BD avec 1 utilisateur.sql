@@ -102,3 +102,5 @@ ON DELETE NO ACTION
     ON UPDATE no action 
 
 INSERT INTO UTILISATEURS VALUES ('CocoCaliendo44','Caliendo','Julien','jcaliendo@campus-eni.fr','0123456789','1 boulevard TeslaLover','44000','NANTES','Pa$$w0rd',0,1);
+
+DELETE FROM UTILISATEURS;
