@@ -52,6 +52,19 @@ public class Articles implements Serializable {
 		this.noCategorie = noCategorie;
 	}
 
+	public Articles(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere,
+			LocalDateTime finEnchere, int prixInitial, int noUtilisateur, int noCategorie) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.debutEnchere = debutEnchere;
+		this.finEnchere = finEnchere;
+		this.prixInitial = prixInitial;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+	}
+
 	// Getter Setters
 	public int getNoArticle() {
 		return noArticle;

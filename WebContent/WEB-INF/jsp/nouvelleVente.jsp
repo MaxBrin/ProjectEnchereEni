@@ -25,10 +25,10 @@
 			
 			<label for="categorie">Catégorie</label>
 			<select id="categorie" name="categorie">
-				<option>Informatique</option>
-				<option>Ameublement</option>
-				<option>Vêtements</option>
-				<option>Sport & Loisirs</option>
+				<option value="1">Informatique</option>
+				<option value="2">Ameublement</option>
+				<option value="3">Vêtements</option>
+				<option value="4">Sport & Loisirs</option>
 			</select>
 			
 			<p>Photo de l'article : </p> <a href=""></a>

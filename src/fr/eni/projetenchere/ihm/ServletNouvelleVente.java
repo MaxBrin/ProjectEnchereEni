@@ -1,6 +1,10 @@
 package fr.eni.projetenchere.ihm;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,6 +36,21 @@ public class ServletNouvelleVente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		String nom = request.getParameter("nomArticle");
+		String description = request.getParameter("description");
+		String categorie = request.getParameter("categorie");
+		String miseAPrix = request.getParameter("miseAPrix");
+		try {
+			LocalDateTime debutEnchere = LocalDateTime.of(LocalDate.parse(request.getParameter("debutEnchere")),
+					LocalTime.now());
+			LocalDateTime finEnchere = LocalDateTime.of(LocalDate.parse(request.getParameter("finEnchere")),
+					LocalTime.now());
+		} catch (DateTimeParseException e) {
+			// TODO MESSAGE ERREUR DATE
+		}
+		// TODO VERIF DONNEES
+
 	}
 
 }
