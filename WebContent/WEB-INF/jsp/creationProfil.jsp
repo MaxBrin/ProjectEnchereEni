@@ -61,7 +61,9 @@
 
 			<c:otherwise>
 
-				<c:set var="erreur" value="${listErreur }" />
+				<c:set var="erreur" value="${listErreur}" />
+				
+				
 				<label for="pseudo">Pseudo</label>
 				<c:choose>
 					<c:when test="${fn:contains(erreur,'Pseudo') }">
@@ -184,12 +186,7 @@
 				</c:choose>
 			</c:otherwise>
 		</c:choose>
-		<p id="erreurMdpInvalide">
-			<c:if test="${messageErreur != null}">
-					${messageErreur}
-			</c:if>
-
-		</p>
+		
 		<h4>
 			<c:if test="${fn:contains(erreur,'PseudoNonValide') }">
 			Le pseudo n'est pas valide.<br>
