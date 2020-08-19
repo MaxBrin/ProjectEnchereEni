@@ -71,6 +71,7 @@ public class ServletVersCreationCompte extends HttpServlet {
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
+			System.out.println(utilisateur.getNoUtilisateur());
 			HttpSession session = request.getSession();
 
 			session.setAttribute("utilisateur", utilisateur);

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -20,7 +21,7 @@
 			<input type="password" name="motDePasse" id="motDePasse">
 			
 			<button type="submit">Connexion</button>
-			
+			<c:if test="${erreurAuthentification!=null }">${erreurAuthentification }</c:if>
 			<p>Se souvenir de moi</p>
 			<input type="checkbox" name="seSouvenir">
 			

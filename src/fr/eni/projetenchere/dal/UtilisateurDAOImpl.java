@@ -40,6 +40,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			if (rs.next()) {
 				utilisateur.setNoUtilisateur(rs.getInt(1));
 			}
+
 		} catch (SQLException e) {
 			throw new DALException("Erreur insertUtilisateur", e);
 		}
