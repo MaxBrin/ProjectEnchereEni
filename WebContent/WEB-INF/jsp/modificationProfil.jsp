@@ -18,39 +18,39 @@
 			
 		<div class="colonnes">
 			<div class="colonneA">
-			<label for="identifiant">Pseudo</label>
-			<input type="text" name="pseudo" id="identifiant">
+			<label for="pseudo">Pseudo</label>
+			<input type="text" name="pseudo" value="${utilisateur.pseudo}" id="pseudo">
 			
-			<label for="identifiant">Nom</label>
-			<input type="text" name="nom" id="identifiant">
+			<label for="nom">Nom</label>
+			<input type="text" name="nom" id="nom">
 			
-			<label for="identifiant">Prénom</label>
-			<input type="text" name="prenom" id="identifiant">
+			<label for="prenom">Prénom</label>
+			<input type="text" name="prenom" id="prenom">
 			
-			<label for="identifiant">Email</label>
-			<input type="text" name="email" id="identifiant">
+			<label for="email">Email</label>
+			<input type="text" name="email" id="email">
 			
-			<label for="identifiant">Téléphone</label>
-			<input type="text" name="telephone" id="identifiant">
+			<label for="telephone">Téléphone</label>
+			<input type="text" name="telephone" id="telephone">
 			</div>
 			
 			<div class="colonneB">
-			<label for="identifiant">Rue</label>
-			<input type="text" name="rue" id="identifiant">
+			<label for="rue">Rue</label>
+			<input type="text" name="rue" id="rue">
 			
-			<label for="identifiant">Code postal</label>
-			<input type="text" name="codePostal" id="identifiant">
+			<label for="codePostal">Code postal</label>
+			<input type="text" name="codePostal" id="codePostal">
 			
-			<label for="identifiant">Ville</label>
-			<input type="text" name="ville" id="identifiant">
+			<label for="ville">Ville</label>
+			<input type="text" name="ville" id="ville">
 			
-			<label for="identifiant">Mot de passe actuel</label>
-			<input type="text" name="ancienMotDePasse" id="identifiant">
+			<label for="ancienMotDePasse">Mot de passe actuel</label>
+			<input type="text" name="ancienMotDePasse" id="ancienMotDePasse">
 			
-			<label for="identifiant">Nouveau mot de passe </label>
-			<input type="text" name="nouveauMotDePasse" id="identifiant">
+			<label for="nouveauMotDePasse">Nouveau mot de passe </label>
+			<input type="text" name="nouveauMotDePasse" id="nouveauMotDePasse">
 			
-			<label for="identifiant">Confirmation</label>
+			<label for="confirmerNouveauMotDePasse">Confirmation</label>
 			<input type="password" name="confirmerNouveauMotDePasse" id="confirmerNouveauMotDePasse">
 			
 			<p id="erreurNouveauMdpInvalide"><c:if test="${messageErreur != null}">
@@ -59,7 +59,9 @@
 			</div>
 		</div>
 			
-			<h2>Crédit</h2>
+			
+			<label for="credit">Crédit</label>
+			${utilisateur.credit}
 			
 			<button type="submit">Enregistrer</button>
 			
