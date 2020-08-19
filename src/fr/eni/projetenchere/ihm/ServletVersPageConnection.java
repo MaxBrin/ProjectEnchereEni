@@ -58,11 +58,17 @@ public class ServletVersPageConnection extends HttpServlet {
 					session.setAttribute("utilisateur", utilisateur);
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 					rd.forward(request, response);
+				} else {
+					messageErreur = "Le mot de passe est incorrect. ";
+					request.setAttribute("erreurAuthentification", messageErreur);
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnection.jsp");
+					rd.forward(request, response);
 				}
-
 			} else {
-				messageErreur = "L'identifiant ou le mot de passe est incorrect";
+				messageErreur = "L'identifiant est inconnue. ";
 				request.setAttribute("erreurAuthentification", messageErreur);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnection.jsp");
+				rd.forward(request, response);
 			}
 		}
 
