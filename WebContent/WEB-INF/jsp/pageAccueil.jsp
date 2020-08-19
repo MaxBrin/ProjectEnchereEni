@@ -31,9 +31,9 @@
 		<br>
 		<a href="/ProjectEnchereEni/NouvelleVente">Vendre un article</a>
 		<br>
-		<a href="/ProjectEnchereEni/CreationCompte">Mon profil</a><br>
+		<a href="/ProjectEnchereEni/ModificationProfil">Mon profil</a><br>
 		<br>
-		<a href="Deconnexion">Déconnexion</a>
+		<a href="/ProjectEnchereEni/Deconnexion">Déconnexion</a>
 	<div class="navigation">
 		</c:otherwise>
 		

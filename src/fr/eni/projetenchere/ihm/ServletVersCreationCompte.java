@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projetenchere.bll.BLLException;
 import fr.eni.projetenchere.bll.UtilisateurMgr;
@@ -70,10 +71,14 @@ public class ServletVersCreationCompte extends HttpServlet {
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
-			request.setAttribute("utilisateur", utilisateur);
+			System.out.println(utilisateur.getNoUtilisateur());
+			HttpSession session = request.getSession();
+
+			session.setAttribute("utilisateur", utilisateur);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 			rd.forward(request, response);
 		} else {
+			request.setAttribute("utilisateur", utilisateur);
 			request.setAttribute("listErreur", erreur);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/creationProfil.jsp");
 			rd.forward(request, response);

@@ -16,7 +16,7 @@
 		
 		<h1>Nouvelle Vente</h1>
 		
-		<form method="post" action="">
+		<form method="post" action="NouvelleVente">
 			<label for="nomArticle">Article</label>
 			<input type="text" name="nomArticle" id="nomArticle">
 			

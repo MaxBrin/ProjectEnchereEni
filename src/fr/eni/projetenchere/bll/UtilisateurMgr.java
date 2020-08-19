@@ -25,6 +25,7 @@ public class UtilisateurMgr {
 	public static void ajoutUtilisateur(Utilisateur utilisateur) throws BLLException {
 		try {
 			utilisateurDAO.insertUtilisateur(utilisateur);
+			System.out.println(utilisateur.getNoUtilisateur());
 
 		} catch (DALException e) {
 			throw new BLLException("Erreur ajoutUtilisateur", e);
@@ -138,7 +139,7 @@ public class UtilisateurMgr {
 		if (utilisateur.getMotDePasse() == null) {
 			erreur.append("MotDePasseIdentique");
 
-		} else if (!(PasswordValidator.isLegalPassword(utilisateur.getMotDePasse()))
+		} else if ((PasswordValidator.isLegalPassword(utilisateur.getMotDePasse()))
 				|| (utilisateur.getMotDePasse().length() < 8)) {
 			erreur.append("MotDePasseVerif");
 		}
