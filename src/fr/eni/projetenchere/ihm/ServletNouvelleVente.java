@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.projetenchere.bll.ArticlesMgr;
 import fr.eni.projetenchere.bll.BLLException;
+import fr.eni.projetenchere.bll.UtilisateurMgr;
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
 import fr.eni.projetenchere.bo.Utilisateur;
@@ -35,6 +36,16 @@ public class ServletNouvelleVente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
+		Utilisateur utilisateur = new Utilisateur();
+		try {
+			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("utilisateur", utilisateur);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente.jsp");
 		rd.forward(request, response);
 	}
@@ -46,11 +57,11 @@ public class ServletNouvelleVente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Récupération de l'utilisateur dans la session et de son id
+		// Rï¿½cupï¿½ration de l'utilisateur dans la session et de son id
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 
-		// Je récupère la liste des Articles en bdd
+		// Je rï¿½cupï¿½re la liste des Articles en bdd
 		List<Article> listeArticles = new ArrayList<>();
 		try {
 			listeArticles = ArticlesMgr.getListArticles();
@@ -59,7 +70,7 @@ public class ServletNouvelleVente extends HttpServlet {
 			e1.printStackTrace();
 		}
 
-		// Récupération des saisies de l'utilisateur sur l'artcile
+		// Rï¿½cupï¿½ration des saisies de l'utilisateur sur l'artcile
 		String nom = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
 		String categorieSaisie = request.getParameter("categorie");

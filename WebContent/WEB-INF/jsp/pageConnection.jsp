@@ -20,7 +20,7 @@
 	</head>
 	
 	<body>
-	
+		<jsp:include page="/WEB-INF/jsp/enTete.jsp"/>
 		<form action="Connexion" method="post">
 			
 			<label for="identifiant">Identifiant</label>

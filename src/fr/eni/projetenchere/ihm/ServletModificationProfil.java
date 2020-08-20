@@ -31,7 +31,14 @@ public class ServletModificationProfil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		HttpSession session = request.getSession();
+		int noUtilisateur = (int) session.getAttribute("utilisateur");
+		try {
+			request.setAttribute("utilisateur", UtilisateurMgr.getUtilisateur(noUtilisateur));
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modificationProfil.jsp");
 		rd.forward(request, response);
 	}
@@ -45,9 +52,16 @@ public class ServletModificationProfil extends HttpServlet {
 
 		// Je recup�re l'utilisateur de la session
 		HttpSession session = request.getSession();
-		Utilisateur uS = (Utilisateur) session.getAttribute("utilisateur");
+		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
+
 		Utilisateur utilisateur = new Utilisateur();
-		utilisateur.setNoUtilisateur(uS.getNoUtilisateur());
+		try {
+			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
+		} catch (BLLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Utilisateur utilisateurModifie = new Utilisateur();
 		// Je r�cup�re les donn�es saisie par l'utilisateur
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
@@ -62,32 +76,32 @@ public class ServletModificationProfil extends HttpServlet {
 		String nouveauMotDePasse = request.getParameter("nouveauMotDePasse");
 		String confirmationNouveauMdp = request.getParameter("confirmerNouveauMotDePasse");
 
-		// on d�finit les nouveaux renseignements
-		utilisateur.setPseudo(pseudo);
-		utilisateur.setNom(nom);
-		utilisateur.setPrenom(prenom);
-		utilisateur.setEmail(email);
-		utilisateur.setTelephone(telephone);
-		utilisateur.setRue(rue);
-		utilisateur.setCodePostal(codePostal);
-		utilisateur.setVille(ville);
-		utilisateur.setCredit(uS.getCredit());
-		utilisateur.setAdministrateur(uS.isAdministrateur());
+		// on définit les nouveaux renseignements
 
-		if (uS.getMotDePasse().equals(motDePasseActuel)) {
-			utilisateur.setMotDePasse(uS.getMotDePasse());
+		utilisateurModifie.setPseudo(pseudo);
+		utilisateurModifie.setNom(nom);
+		utilisateurModifie.setPrenom(prenom);
+		utilisateurModifie.setEmail(email);
+		utilisateurModifie.setTelephone(telephone);
+		utilisateurModifie.setRue(rue);
+		utilisateurModifie.setCodePostal(codePostal);
+		utilisateurModifie.setVille(ville);
+		utilisateurModifie.setCredit(utilisateur.getCredit());
+		utilisateurModifie.setAdministrateur(utilisateur.isAdministrateur());
 
+		if (utilisateur.getMotDePasse().equals(motDePasseActuel)) {
+			utilisateurModifie.setMotDePasse(motDePasseActuel);
 			// Si nouveauMdp ET confirmationMdp ne sont pas nuls
 			if (!("".equals(nouveauMotDePasse) && "".equals(confirmationNouveauMdp))) {
 
 				if (nouveauMotDePasse.equals(confirmationNouveauMdp)) {
-					utilisateur.setMotDePasse(nouveauMotDePasse);
+					utilisateurModifie.setMotDePasse(nouveauMotDePasse);
 				} else {
 
 					// On lui envoie une erreur
 					String messageErreur = "Le nouveau mot de Passe et la confirmation ne sont pas identiques";
 					request.setAttribute("message", messageErreur);
-					request.setAttribute("utilisateur", utilisateur);
+					request.setAttribute("utilisateur", utilisateurModifie);
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modificationProfil.jsp");
 					rd.forward(request, response);
 
@@ -95,25 +109,25 @@ public class ServletModificationProfil extends HttpServlet {
 			}
 
 			String erreur = UtilisateurMgr.verifUtilisateur(utilisateur);
-			// Si le nouveau pseudo saisi existe deja dans la bdd
+			// Si le nouveau pseudo saisi existe déjà dans la bd
 			if (erreur.contains("PseudoPresent")) {
 
-				if (!(uS.getPseudo().equals(utilisateur.getPseudo()))) {
-					String messageErreur = "Le pseudo est d�j� utlis� .";
+				if (!(utilisateur.getPseudo().equals(utilisateurModifie.getPseudo()))) {
+					String messageErreur = "Le pseudo est déjà utlisé .";
 					request.setAttribute("message", messageErreur);
-					request.setAttribute("utilisateur", utilisateur);
+					request.setAttribute("utilisateur", utilisateurModifie);
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modificationProfil.jsp");
 					rd.forward(request, response);
 				} else {
 					erreur = erreur.replace("PseudoPresent", "");
 				}
 			}
-
+			// Si le nouveau email existe déjà dans la bd
 			if (erreur.contains("EmailPresent")) {
-				if (!(uS.getEmail().equals(utilisateur.getEmail()))) {
-					String messageErreur = "L'email est d�j� utlis� .";
+				if (!(utilisateur.getEmail().equals(utilisateurModifie.getEmail()))) {
+					String messageErreur = "L'email est déjà utlisé .";
 					request.setAttribute("message", messageErreur);
-					request.setAttribute("utilisateur", utilisateur);
+					request.setAttribute("utilisateur", utilisateurModifie);
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modificationProfil.jsp");
 					rd.forward(request, response);
 				} else {
@@ -122,7 +136,7 @@ public class ServletModificationProfil extends HttpServlet {
 			}
 
 			if (erreur.isEmpty()) {
-
+				utilisateur = utilisateurModifie;
 				try {
 					UtilisateurMgr.modificationUtilisateur(utilisateur);
 				} catch (BLLException e) {
@@ -143,7 +157,7 @@ public class ServletModificationProfil extends HttpServlet {
 		} else {
 			// On lui envoie une erreur de mot de passe non valide
 			String messageErreur = "Mot de passe incorrect";
-			request.setAttribute("utilisateur", utilisateur);
+			request.setAttribute("utilisateur", utilisateurModifie);
 			request.setAttribute("message", messageErreur);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modificationProfil.jsp");
 			rd.forward(request, response);
