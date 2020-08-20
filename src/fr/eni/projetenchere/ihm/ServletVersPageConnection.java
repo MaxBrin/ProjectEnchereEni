@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.projetenchere.bll.ArticlesMgr;
 import fr.eni.projetenchere.bll.BLLException;
 import fr.eni.projetenchere.bll.UtilisateurMgr;
+import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Utilisateur;
 
 /**
@@ -57,8 +59,17 @@ public class ServletVersPageConnection extends HttpServlet {
 				identifiantPresent = true;
 
 				if (utilisateur.getMotDePasse().equals(mdp)) {
+					
 					HttpSession session = request.getSession();
 					session.setAttribute("utilisateur", utilisateur);
+					List<Article> articles = new ArrayList<>();
+					try {
+						articles = ArticlesMgr.getListArticles();
+					} catch (BLLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					request.setAttribute("listeArticle", articles);
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 					rd.forward(request, response);
 				} else {

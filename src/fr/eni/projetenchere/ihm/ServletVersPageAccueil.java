@@ -40,7 +40,6 @@ public class ServletVersPageAccueil extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(articles);
 		request.setAttribute("listeArticle", articles);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		rd.forward(request, response);
