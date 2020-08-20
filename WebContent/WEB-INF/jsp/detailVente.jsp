@@ -11,10 +11,6 @@
 
 
 
-
-
-	
-
 	<div>
 		<h2>Détail vente</h2>
 	</div>

@@ -1,10 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="ISO-8859-1">
+	<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/styleNouvelleVente.css">
+	
+		<meta charset="utf-8">
+	
 		<title>Nouvelle vente</title>
+		
 	</head>
 	
 	
@@ -18,54 +23,83 @@
 		<div id="image">
 		</div>
 		
-		
+	<div>
 		<h1>Nouvelle Vente</h1>
+	</div>	
+		
+	<div class="article">
 		
 		<form method="post" action="NouvelleVente">
-			<label for="nomArticle">Article</label>
+		<div>
+			<label for="nomArticle">Article : </label>
 			<input type="text" name="nomArticle" id="nomArticle">
-			
-			<label for="description">Description</label>
-			<textarea rows="5" cols="15" id="description" name="description"></textarea>
-			
-			<label for="categorie">Catégorie</label>
+		</div>
+		<br>
+		<div>
+			<label for="description" class="labeldescription">Description :</label>
+			<textarea rows="5" cols="15" id="description" name="description" class="inputdescription"></textarea>
+		</div>	
+		<br><br><br><br><br>
+		<div>
+			<label for="categorie">CatÃ©gorie</label>
 			<select id="categorie" name="categorie">
 				<option value="1">Informatique</option>
 				<option value="2">Ameublement</option>
-				<option value="3">Vêtements</option>
+				<option value="3">VÃªtements</option>
 				<option value="4">Sport & Loisirs</option>
 			</select>
-			
+		</div>
+		<br>
+		<div>	
 			<p>Photo de l'article : </p> <a href=""></a>
 			
-			<label for="miseAPrix">Mise à prix</label>
-			<input type="number" name="miseAPrix" step="1" min="0">
-			
-			<label for="debutEnchere">Début de l'enchère</label>
-			<input type="date" name="debutEnchere" id="debutEnchere">
-			
-			<label for="finEnchere">Fin de l'enchère</label>
+		<div>
+			<label for="miseAPrix">Mise Ã  prix </label>
+			<input type="number" class="inputMiseAPrix" name="miseAPrix" step="1" min="0" >
+		</div>
+		<br>
+		<div>
+			<label for="debutEnchere">DÃ©but de l'enchÃ¨re </label>
+			<input type="date"  name="debutEnchere" id="debutEnchere">
+		</div>
+		<br>
+		<div>
+			<label for="finEnchere">Fin de l'enchÃ¨re</label>
 			<input type="date" name="finEnchere" id="finEnchere">
-			
+		</div>	
+		<br>
+		<div class="Retrait">
 			<fieldset>
+			
+			
 				<legend>Retrait</legend>
-				
-				<label for="rue">Rue</label>
+			
+			<br>
+			<div>	
+				<label for="rue">Rue :</label>
 				<input type="text" id="rue" name="rue" value="${utilisateur.rue}">
-				
-				<label for="codePostal">Code postal</label>
+			</div>
+			<br>
+			<div>	
+				<label for="codePostal">Code postal :</label>
 				<input type="text" id="codePostal" name="codePostal" value="${utilisateur.codePostal}">
-				
-				<label for="ville">Ville</label>
+			</div>
+			<br>
+			<div>	
+				<label for="ville">Ville :</label>
 				<input type="text" id="ville" name="ville" value="${utilisateur.ville}">
-			
+			</div>
 			</fieldset>
-			
+		</div>
+		<br>
+		<div>
 			<button type="submit">Enregister</button>
+		
 			<a href="">Annuler</a>
+		</div>
 			
 		</form>
-		
+	</div>	
 		
 		
 		
