@@ -41,6 +41,15 @@ public interface ArticleDAO {
 	List<Article> selectByNoUtilisateur(int noUtilisateur) throws DALException;
 
 	/**
+	 * Methode pour avoir la liste des articles d'une catégorie
+	 * 
+	 * @param noCategorie
+	 * @return
+	 * @throws DALException
+	 */
+	List<Article> selectByNoCategorie(int noCategorie) throws DALException;
+
+	/**
 	 * Methode pour effacer un article dans la BD
 	 * 
 	 * @param noArticle

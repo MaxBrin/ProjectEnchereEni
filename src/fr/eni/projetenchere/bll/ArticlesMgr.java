@@ -93,6 +93,24 @@ public class ArticlesMgr {
 	}
 
 	/**
+	 * Méthode pour récupérer la liste des articles d'une catégorie gràce à son
+	 * numéro
+	 * 
+	 * @param noCategorie
+	 * @return
+	 * @throws BLLException
+	 */
+	public static List<Article> getListArticlesByNoCategorie(int noCategorie) throws BLLException {
+		List<Article> listArticles = new ArrayList<>();
+		try {
+			listArticles = articleDAO.selectByNoCategorie(noCategorie);
+		} catch (DALException e) {
+			throw new BLLException("Erreur getListArticlesByNoUtilisateur", e);
+		}
+		return listArticles;
+	}
+
+	/**
 	 * Méthode pour récupérer un article gràce à son noArticle
 	 * 
 	 * @param noArticle

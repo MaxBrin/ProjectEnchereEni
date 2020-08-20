@@ -62,7 +62,7 @@ public class ServletVersCreationCompte extends HttpServlet {
 			}
 			HttpSession session = request.getSession();
 
-			session.setAttribute("utilisateur", utilisateur);
+			session.setAttribute("utilisateur", utilisateur.getNoUtilisateur());
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 			rd.forward(request, response);
 		} else {
