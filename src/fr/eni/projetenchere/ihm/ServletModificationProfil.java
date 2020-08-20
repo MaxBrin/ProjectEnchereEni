@@ -39,12 +39,12 @@ public class ServletModificationProfil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Je recupère l'utilisateur de la session
+		// Je recupï¿½re l'utilisateur de la session
 		HttpSession session = request.getSession();
 		Utilisateur uS = (Utilisateur) session.getAttribute("utilisateur");
 		Utilisateur utilisateur = new Utilisateur();
 		utilisateur.setNoUtilisateur(uS.getNoUtilisateur());
-		// Je récupère les données saisie par l'utilisateur
+		// Je rï¿½cupï¿½re les donnï¿½es saisie par l'utilisateur
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -58,7 +58,7 @@ public class ServletModificationProfil extends HttpServlet {
 		String nouveauMotDePasse = request.getParameter("nouveauMotDePasse");
 		String confirmationNouveauMdp = request.getParameter("confirmerNouveauMotDePasse");
 
-		// on définit les nouveaux renseignements
+		// on dï¿½finit les nouveaux renseignements
 		utilisateur.setPseudo(pseudo);
 		utilisateur.setNom(nom);
 		utilisateur.setPrenom(prenom);
@@ -67,6 +67,8 @@ public class ServletModificationProfil extends HttpServlet {
 		utilisateur.setRue(rue);
 		utilisateur.setCodePostal(codePostal);
 		utilisateur.setVille(ville);
+		utilisateur.setCredit(uS.getCredit());
+		utilisateur.setAdministrateur(uS.isAdministrateur());
 
 		if (uS.getMotDePasse().equals(motDePasseActuel)) {
 			utilisateur.setMotDePasse(uS.getMotDePasse());
@@ -93,7 +95,7 @@ public class ServletModificationProfil extends HttpServlet {
 			if (erreur.contains("PseudoPresent")) {
 
 				if (!(uS.getPseudo().equals(utilisateur.getPseudo()))) {
-					String messageErreur = "Le pseudo est déjà utlisé .";
+					String messageErreur = "Le pseudo est dï¿½jï¿½ utlisï¿½ .";
 					request.setAttribute("message", messageErreur);
 					request.setAttribute("utilisateur", utilisateur);
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modificationProfil.jsp");
@@ -105,7 +107,7 @@ public class ServletModificationProfil extends HttpServlet {
 
 			if (erreur.contains("EmailPresent")) {
 				if (!(uS.getEmail().equals(utilisateur.getEmail()))) {
-					String messageErreur = "L'email est déjà utlisé .";
+					String messageErreur = "L'email est dï¿½jï¿½ utlisï¿½ .";
 					request.setAttribute("message", messageErreur);
 					request.setAttribute("utilisateur", utilisateur);
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modificationProfil.jsp");

@@ -53,7 +53,7 @@ public class Article implements Serializable {
 	}
 
 	public Article(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere,
-			LocalDateTime finEnchere, int prixInitial, Utilisateur noUtilisateur, Categorie categorie) {
+			LocalDateTime finEnchere, int prixInitial, Utilisateur utilisateur, Categorie categorie) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -136,6 +136,13 @@ public class Article implements Serializable {
 
 	public void setNoCategorie(Categorie categorie) {
 		this.categorie = categorie;
+	}
+
+	@Override
+	public String toString() {
+		return "Article [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
+				+ ", debutEnchere=" + debutEnchere + ", finEnchere=" + finEnchere + ", prixInitial=" + prixInitial
+				+ ", prixVente=" + prixVente + ", utilisateur=" + utilisateur + ", categorie=" + categorie + "]";
 	}
 
 }

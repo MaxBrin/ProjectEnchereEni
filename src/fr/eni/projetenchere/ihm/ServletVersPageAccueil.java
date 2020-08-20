@@ -1,6 +1,8 @@
 package fr.eni.projetenchere.ihm;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import fr.eni.projetenchere.bll.ArticlesMgr;
+import fr.eni.projetenchere.bll.BLLException;
+import fr.eni.projetenchere.bo.Article;
 
 /**
  * Servlet implementation class Accueil
@@ -27,7 +33,15 @@ public class ServletVersPageAccueil extends HttpServlet {
 		if ("mesVentes".equals(choix)) {
 			request.setAttribute("choixAchat", "ventes");
 		}
-
+		List<Article> articles = new ArrayList<>();
+		try {
+			articles = ArticlesMgr.getListArticles();
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(articles);
+		request.setAttribute("listeArticle", articles);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		rd.forward(request, response);
 	}

@@ -43,7 +43,7 @@ CREATE TABLE ARTICLES_VENDUS (
     description                   VARCHAR(300) NOT NULL,
 	date_debut_encheres           DATETIME NOT NULL,
     date_fin_encheres             DATETIME NOT NULL,
-    prix_initial                  INTEGER,
+    prix_initial                  INTEGER NOT NULL,
     prix_vente                    INTEGER,
     no_utilisateur                INTEGER NOT NULL,
     no_categorie                  INTEGER NOT NULL
@@ -102,8 +102,13 @@ ON DELETE NO ACTION
     ON UPDATE no action 
 
 INSERT INTO UTILISATEURS VALUES ('CocoCaliendo44','Caliendo','Julien','jcaliendo@campus-eni.fr','0123456789','1 boulevard TeslaLover','44000','NANTES','Pa$$w0rd',0,1);
+INSERT INTO UTILISATEURS VALUES ('Max','Brin','Maxime','maxime.brin2020@campus-eni.fr','0123456789','10 rue du calvaire','85530','LA BRUFFIERE','Pa$$w0rd',100,0);
 
 INSERT INTO CATEGORIES VALUES ('Informatique');
 INSERT INTO CATEGORIES VALUES('Ameublement');
 INSERT INTO CATEGORIES VALUES('Vetements');
 INSERT INTO CATEGORIES VALUES ('Sport & Loisirs');
+
+INSERT INTO ARTICLES_VENDUS VALUES('PC Gamer','Super Pc qui défonce','20200618 10:34:09 AM','20200820 10:34:09 AM',200,null,2,1)
+INSERT INTO ARTICLES_VENDUS VALUES('PC Gamer','Super Pc qui défonce','20200618 10:34:09 AM','20200820 10:34:09 AM',200,null,2,1)
+INSERT INTO ARTICLES_VENDUS VALUES('PC Gamer','Super Pc qui défonce','20200618 10:34:09 AM','20200820 10:34:09 AM',200,null,1,1)
