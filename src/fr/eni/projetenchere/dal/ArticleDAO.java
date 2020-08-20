@@ -2,7 +2,7 @@ package fr.eni.projetenchere.dal;
 
 import java.util.List;
 
-import fr.eni.projetenchere.bo.Articles;
+import fr.eni.projetenchere.bo.Article;
 
 public interface ArticleDAO {
 
@@ -12,7 +12,7 @@ public interface ArticleDAO {
 	 * @param article
 	 * @throws DALException
 	 */
-	void insertArticle(Articles article) throws DALException;
+	void insertArticle(Article article) throws DALException;
 
 	/**
 	 * Méthode pour avoir la liste de tout les articles
@@ -20,7 +20,7 @@ public interface ArticleDAO {
 	 * @return
 	 * @throws DALException
 	 */
-	List<Articles> selectAllArticle() throws DALException;
+	List<Article> selectAllArticle() throws DALException;
 
 	/**
 	 * Méthode pour avoir un article
@@ -29,7 +29,7 @@ public interface ArticleDAO {
 	 * @return
 	 * @throws DALException
 	 */
-	Articles selectById(int noArticle) throws DALException;
+	Article selectById(int noArticle) throws DALException;
 
 	/**
 	 * Methode pour avoir la liste des articles d'un utilisateur
@@ -38,7 +38,7 @@ public interface ArticleDAO {
 	 * @return
 	 * @throws DALException
 	 */
-	List<Articles> selectByNoUtilisateur(int noUtilisateur) throws DALException;
+	List<Article> selectByNoUtilisateur(int noUtilisateur) throws DALException;
 
 	/**
 	 * Methode pour effacer un article dans la BD
@@ -54,6 +54,6 @@ public interface ArticleDAO {
 	 * @param article
 	 * @throws DALException
 	 */
-	void updateArticle(Articles article) throws DALException;
+	void updateArticle(Article article) throws DALException;
 
 }

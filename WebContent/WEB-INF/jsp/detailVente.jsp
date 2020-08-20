@@ -10,7 +10,11 @@
 <body>
 
 	<div>
-		<h1>Détail vente</h1>
+		<h1>ENI-Enchères</h1>
+	</div>
+
+	<div>
+		<h2>Détail vente</h2>
 	</div>
 	
 	<div>	
@@ -46,9 +50,10 @@
 	</div>
 		
 	<div>
-		<p>Ma proposition :</p>
+		<label for="proposition">Ma proposition :</label>
+		<input type="number" id="proposition" name="proposition" min="5" max="500" step="5">
+		<button type="submit">Enchérir</button>
 	</div>
-
 
 </body>
 </html>

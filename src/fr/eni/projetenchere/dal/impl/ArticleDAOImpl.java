@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.projetenchere.bo.Articles;
+import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.dal.ArticleDAO;
 import fr.eni.projetenchere.dal.DALException;
 
@@ -27,7 +27,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 			+ "date_fin_encheres=?,prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=? WHERE no_article=? ";
 
 	@Override
-	public void insertArticle(Articles article) throws DALException {
+	public void insertArticle(Article article) throws DALException {
 		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(INSERT,
 				Statement.RETURN_GENERATED_KEYS)) {
 			pStmt.setString(1, article.getNomArticle());
@@ -50,12 +50,12 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 
 	@Override
-	public List<Articles> selectAllArticle() throws DALException {
-		List<Articles> listArticles = new ArrayList<>();
+	public List<Article> selectAllArticle() throws DALException {
+		List<Article> listArticles = new ArrayList<>();
 		try (Statement stmt = ConnectionProvider.getConnection().createStatement()) {
 			ResultSet rs = stmt.executeQuery(SELECTALL);
 			while (rs.next()) {
-				Articles article = new Articles(rs.getInt("no_article"), rs.getString("nom_article"),
+				Article article = new Article(rs.getInt("no_article"), rs.getString("nom_article"),
 						rs.getString("description"), rs.getTimestamp("date_debut_encheres").toLocalDateTime(),
 						rs.getTimestamp("date_fin_encheres").toLocalDateTime(), rs.getInt("prix_initial"),
 						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"));
@@ -68,13 +68,13 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 
 	@Override
-	public Articles selectById(int noArticle) throws DALException {
-		Articles article = null;
+	public Article selectById(int noArticle) throws DALException {
+		Article article = null;
 		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(SELECTBYID)) {
 			pStmt.setInt(1, noArticle);
 			ResultSet rs = pStmt.executeQuery();
 			if (rs.next()) {
-				article = new Articles(rs.getInt("no_article"), rs.getString("nom_article"),
+				article = new Article(rs.getInt("no_article"), rs.getString("nom_article"),
 						rs.getString("description"), rs.getTimestamp("date_debut_encheres").toLocalDateTime(),
 						rs.getTimestamp("date_fin_encheres").toLocalDateTime(), rs.getInt("prix_initial"),
 						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"));
@@ -87,13 +87,13 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 
 	@Override
-	public List<Articles> selectByNoUtilisateur(int noUtilisateur) throws DALException {
-		List<Articles> listArticles = new ArrayList<>();
+	public List<Article> selectByNoUtilisateur(int noUtilisateur) throws DALException {
+		List<Article> listArticles = new ArrayList<>();
 		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(SELECTBY_NOUTILISATEUR)) {
 			pStmt.setInt(1, noUtilisateur);
 			ResultSet rs = pStmt.executeQuery();
 			while (rs.next()) {
-				Articles article = new Articles(rs.getInt("no_article"), rs.getString("nom_article"),
+				Article article = new Article(rs.getInt("no_article"), rs.getString("nom_article"),
 						rs.getString("description"), rs.getTimestamp("date_debut_encheres").toLocalDateTime(),
 						rs.getTimestamp("date_fin_encheres").toLocalDateTime(), rs.getInt("prix_initial"),
 						rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"));
@@ -118,7 +118,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 
 	@Override
-	public void updateArticle(Articles article) throws DALException {
+	public void updateArticle(Article article) throws DALException {
 		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(UPDATE)) {
 			pStmt.setString(1, article.getNomArticle());
 			pStmt.setString(2, article.getDescription());
