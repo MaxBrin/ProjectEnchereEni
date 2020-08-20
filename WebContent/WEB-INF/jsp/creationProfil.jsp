@@ -13,7 +13,7 @@
 </head>
 
 <body>
-
+	
 	<h1>Mon profil</h1>
 
 	<form action="${pageContext.request.contextPath }/CreationCompte" method="post">
