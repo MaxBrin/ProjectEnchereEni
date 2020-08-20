@@ -32,7 +32,7 @@ public class ServletModificationProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		int noUtilisateur = (int) session.getAttribute("utilisateur");
+		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
 		try {
 			request.setAttribute("utilisateur", UtilisateurMgr.getUtilisateur(noUtilisateur));
 		} catch (BLLException e) {

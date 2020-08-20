@@ -47,7 +47,6 @@ public class ServletVersPageConnection extends HttpServlet {
 		List<Utilisateur> listeUtilisateur = new ArrayList<Utilisateur>();
 		try {
 			listeUtilisateur = UtilisateurMgr.getListUtilisateur();
-			System.out.println(listeUtilisateur);
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,7 +60,7 @@ public class ServletVersPageConnection extends HttpServlet {
 				if (utilisateur.getMotDePasse().equals(mdp)) {
 
 					HttpSession session = request.getSession();
-					session.setAttribute("utilisateur", utilisateur.getNoUtilisateur());
+					session.setAttribute("noUtilisateur", utilisateur.getNoUtilisateur());
 					List<Article> articles = new ArrayList<>();
 					try {
 						articles = ArticlesMgr.getListArticles();
