@@ -3,7 +3,7 @@ package fr.eni.projetenchere.bo;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Articles implements Serializable {
+public class Article implements Serializable {
 	/**
 	 * 
 	 */
@@ -17,16 +17,16 @@ public class Articles implements Serializable {
 	private LocalDateTime finEnchere;
 	private int prixInitial;
 	private int prixVente;
-	private int noUtilisateur;
-	private int noCategorie;
+	private Utilisateur utilisateur;
+	private Categorie categorie;
 
 	// Constructeurs
-	public Articles() {
+	public Article() {
 		super();
 	}
 
-	public Articles(String nomArticle, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
-			int prixInitial, int prixVente, int noUtilisateur, int noCategorie) {
+	public Article(String nomArticle, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
+			int prixInitial, int prixVente, Utilisateur utilisateur, Categorie categorie) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -34,12 +34,12 @@ public class Articles implements Serializable {
 		this.finEnchere = finEnchere;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
-		this.noUtilisateur = noUtilisateur;
-		this.noCategorie = noCategorie;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
 	}
 
-	public Articles(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere,
-			LocalDateTime finEnchere, int prixInitial, int prixVente, int noUtilisateur, int noCategorie) {
+	public Article(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere,
+			LocalDateTime finEnchere, int prixInitial, int prixVente, Utilisateur utilisateur, Categorie categorie) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -48,12 +48,12 @@ public class Articles implements Serializable {
 		this.finEnchere = finEnchere;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
-		this.noUtilisateur = noUtilisateur;
-		this.noCategorie = noCategorie;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
 	}
 
-	public Articles(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere,
-			LocalDateTime finEnchere, int prixInitial, int noUtilisateur, int noCategorie) {
+	public Article(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere,
+			LocalDateTime finEnchere, int prixInitial, Utilisateur noUtilisateur, Categorie categorie) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -61,8 +61,8 @@ public class Articles implements Serializable {
 		this.debutEnchere = debutEnchere;
 		this.finEnchere = finEnchere;
 		this.prixInitial = prixInitial;
-		this.noUtilisateur = noUtilisateur;
-		this.noCategorie = noCategorie;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
 	}
 
 	// Getter Setters
@@ -122,24 +122,20 @@ public class Articles implements Serializable {
 		this.prixVente = prixVente;
 	}
 
-	public int getNoUtilisateur() {
-		return noUtilisateur;
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
 
-	public void setNoUtilisateur(int noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
-	public int getNoCategorie() {
-		return noCategorie;
+	public Categorie getCategorie() {
+		return categorie;
 	}
 
-	public void setNoCategorie(int noCategorie) {
-		this.noCategorie = noCategorie;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setNoCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 }

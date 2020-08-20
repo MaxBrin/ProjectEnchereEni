@@ -3,7 +3,7 @@ package fr.eni.projetenchere.bll;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.projetenchere.bo.Articles;
+import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.dal.ArticleDAO;
 import fr.eni.projetenchere.dal.DALException;
 import fr.eni.projetenchere.dal.DAOFactory;
@@ -16,12 +16,12 @@ public class ArticlesMgr {
 	}
 
 	/**
-	 * MÈthode pour ajouter un article
+	 * M√©thode pour ajouter un article
 	 * 
 	 * @param article
 	 * @throws BLLException
 	 */
-	public void ajoutArticle(Articles article) throws BLLException {
+	public static void ajoutArticle(Article article) throws BLLException {
 		try {
 			articleDAO.insertArticle(article);
 
@@ -31,12 +31,12 @@ public class ArticlesMgr {
 	}
 
 	/**
-	 * MÈthode pour modifier un article
+	 * M√©thode pour modifier un article
 	 * 
 	 * @param article
 	 * @throws BLLException
 	 */
-	public void modifierArticle(Articles article) throws BLLException {
+	public static void modifierArticle(Article article) throws BLLException {
 		try {
 			articleDAO.updateArticle(article);
 		} catch (DALException e) {
@@ -45,12 +45,12 @@ public class ArticlesMgr {
 	}
 
 	/**
-	 * MÈthode pour effacer un article
+	 * M√©thode pour effacer un article
 	 * 
 	 * @param noArticle
 	 * @throws BLLException
 	 */
-	public void effacerArticle(int noArticle) throws BLLException {
+	public static void effacerArticle(int noArticle) throws BLLException {
 		try {
 			articleDAO.deleteArticle(noArticle);
 		} catch (DALException e) {
@@ -59,13 +59,13 @@ public class ArticlesMgr {
 	}
 
 	/**
-	 * MÈthode pour rÈcupÈrer la liste de tout les articles
+	 * M√©thode pour r√©cup√©rer la liste de tout les articles
 	 * 
 	 * @return
 	 * @throws BLLException
 	 */
-	public List<Articles> getListArticles() throws BLLException {
-		List<Articles> listArticles = new ArrayList<>();
+	public static List<Article> getListArticles() throws BLLException {
+		List<Article> listArticles = new ArrayList<>();
 		try {
 			listArticles = articleDAO.selectAllArticle();
 		} catch (DALException e) {
@@ -75,15 +75,15 @@ public class ArticlesMgr {
 	}
 
 	/**
-	 * MÈthode pour rÈcupÈrer la liste des articles d'un utilisateur gr‚ce ‡ son
-	 * numÈro
+	 * M√©thode pour r√©cup√©rer la liste des articles d'un utilisateur gr√†ce √† son
+	 * num√©ro
 	 * 
 	 * @param noUtilisateur
 	 * @return
 	 * @throws BLLException
 	 */
-	public List<Articles> getListArticlesByNoUtilisateur(int noUtilisateur) throws BLLException {
-		List<Articles> listArticles = new ArrayList<>();
+	public static List<Article> getListArticlesByNoUtilisateur(int noUtilisateur) throws BLLException {
+		List<Article> listArticles = new ArrayList<>();
 		try {
 			listArticles = articleDAO.selectByNoUtilisateur(noUtilisateur);
 		} catch (DALException e) {
@@ -93,14 +93,14 @@ public class ArticlesMgr {
 	}
 
 	/**
-	 * MÈthode pour rÈcupÈrer un article gr‚ce ‡ son noArticle
+	 * M√©thode pour r√©cup√©rer un article gr√†ce √† son noArticle
 	 * 
 	 * @param noArticle
 	 * @return
 	 * @throws BLLException
 	 */
-	public Articles getArticle(int noArticle) throws BLLException {
-		Articles article = null;
+	public static Article getArticle(int noArticle) throws BLLException {
+		Article article = null;
 		try {
 			article = articleDAO.selectById(noArticle);
 		} catch (DALException e) {

@@ -1,6 +1,7 @@
 package fr.eni.projetenchere.dal;
 
 import fr.eni.projetenchere.dal.impl.ArticleDAOImpl;
+import fr.eni.projetenchere.dal.impl.CategorieDAOImpl;
 import fr.eni.projetenchere.dal.impl.UtilisateurDAOImpl;
 
 public class DAOFactory {
@@ -11,5 +12,9 @@ public class DAOFactory {
 
 	public static ArticleDAO getArticleDAO() {
 		return new ArticleDAOImpl();
+	}
+
+	public static CategorieDAO getCategorieDAO() {
+		return new CategorieDAOImpl();
 	}
 }
