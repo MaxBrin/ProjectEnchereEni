@@ -7,7 +7,7 @@ import fr.eni.projetenchere.bo.Article;
 public interface ArticleDAO {
 
 	/**
-	 * Methode pour insérer un article
+	 * Methode pour insï¿½rer un article
 	 * 
 	 * @param article
 	 * @throws DALException
@@ -15,7 +15,7 @@ public interface ArticleDAO {
 	void insertArticle(Article article) throws DALException;
 
 	/**
-	 * Méthode pour avoir la liste de tout les articles
+	 * Mï¿½thode pour avoir la liste de tout les articles
 	 * 
 	 * @return
 	 * @throws DALException
@@ -23,7 +23,7 @@ public interface ArticleDAO {
 	List<Article> selectAllArticle() throws DALException;
 
 	/**
-	 * Méthode pour avoir un article
+	 * Mï¿½thode pour avoir un article
 	 * 
 	 * @param noArticle
 	 * @return
@@ -49,7 +49,7 @@ public interface ArticleDAO {
 	void deleteArticle(int noArticle) throws DALException;
 
 	/**
-	 * Méthode pour mettre à jour un article
+	 * Mï¿½thode pour mettre ï¿½ jour un article
 	 * 
 	 * @param article
 	 * @throws DALException

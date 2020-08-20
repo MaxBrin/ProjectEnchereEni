@@ -16,12 +16,12 @@ public class ArticlesMgr {
 	}
 
 	/**
-	 * MÈthode pour ajouter un article
+	 * M√©thode pour ajouter un article
 	 * 
 	 * @param article
 	 * @throws BLLException
 	 */
-	public void ajoutArticle(Article article) throws BLLException {
+	public static void ajoutArticle(Article article) throws BLLException {
 		try {
 			articleDAO.insertArticle(article);
 
@@ -31,12 +31,12 @@ public class ArticlesMgr {
 	}
 
 	/**
-	 * MÈthode pour modifier un article
+	 * M√©thode pour modifier un article
 	 * 
 	 * @param article
 	 * @throws BLLException
 	 */
-	public void modifierArticle(Article article) throws BLLException {
+	public static void modifierArticle(Article article) throws BLLException {
 		try {
 			articleDAO.updateArticle(article);
 		} catch (DALException e) {
@@ -45,12 +45,12 @@ public class ArticlesMgr {
 	}
 
 	/**
-	 * MÈthode pour effacer un article
+	 * M√©thode pour effacer un article
 	 * 
 	 * @param noArticle
 	 * @throws BLLException
 	 */
-	public void effacerArticle(int noArticle) throws BLLException {
+	public static void effacerArticle(int noArticle) throws BLLException {
 		try {
 			articleDAO.deleteArticle(noArticle);
 		} catch (DALException e) {
@@ -59,12 +59,12 @@ public class ArticlesMgr {
 	}
 
 	/**
-	 * MÈthode pour rÈcupÈrer la liste de tout les articles
+	 * M√©thode pour r√©cup√©rer la liste de tout les articles
 	 * 
 	 * @return
 	 * @throws BLLException
 	 */
-	public List<Article> getListArticles() throws BLLException {
+	public static List<Article> getListArticles() throws BLLException {
 		List<Article> listArticles = new ArrayList<>();
 		try {
 			listArticles = articleDAO.selectAllArticle();
@@ -75,14 +75,14 @@ public class ArticlesMgr {
 	}
 
 	/**
-	 * MÈthode pour rÈcupÈrer la liste des articles d'un utilisateur gr‚ce ‡ son
-	 * numÈro
+	 * M√©thode pour r√©cup√©rer la liste des articles d'un utilisateur gr√†ce √† son
+	 * num√©ro
 	 * 
 	 * @param noUtilisateur
 	 * @return
 	 * @throws BLLException
 	 */
-	public List<Article> getListArticlesByNoUtilisateur(int noUtilisateur) throws BLLException {
+	public static List<Article> getListArticlesByNoUtilisateur(int noUtilisateur) throws BLLException {
 		List<Article> listArticles = new ArrayList<>();
 		try {
 			listArticles = articleDAO.selectByNoUtilisateur(noUtilisateur);
@@ -93,13 +93,13 @@ public class ArticlesMgr {
 	}
 
 	/**
-	 * MÈthode pour rÈcupÈrer un article gr‚ce ‡ son noArticle
+	 * M√©thode pour r√©cup√©rer un article gr√†ce √† son noArticle
 	 * 
 	 * @param noArticle
 	 * @return
 	 * @throws BLLException
 	 */
-	public Article getArticle(int noArticle) throws BLLException {
+	public static Article getArticle(int noArticle) throws BLLException {
 		Article article = null;
 		try {
 			article = articleDAO.selectById(noArticle);
