@@ -3,7 +3,7 @@ package fr.eni.projetenchere.bll;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.projetenchere.bo.Articles;
+import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.dal.ArticleDAO;
 import fr.eni.projetenchere.dal.DALException;
 import fr.eni.projetenchere.dal.DAOFactory;
@@ -21,7 +21,7 @@ public class ArticlesMgr {
 	 * @param article
 	 * @throws BLLException
 	 */
-	public void ajoutArticle(Articles article) throws BLLException {
+	public void ajoutArticle(Article article) throws BLLException {
 		try {
 			articleDAO.insertArticle(article);
 
@@ -36,7 +36,7 @@ public class ArticlesMgr {
 	 * @param article
 	 * @throws BLLException
 	 */
-	public void modifierArticle(Articles article) throws BLLException {
+	public void modifierArticle(Article article) throws BLLException {
 		try {
 			articleDAO.updateArticle(article);
 		} catch (DALException e) {
@@ -64,8 +64,8 @@ public class ArticlesMgr {
 	 * @return
 	 * @throws BLLException
 	 */
-	public List<Articles> getListArticles() throws BLLException {
-		List<Articles> listArticles = new ArrayList<>();
+	public List<Article> getListArticles() throws BLLException {
+		List<Article> listArticles = new ArrayList<>();
 		try {
 			listArticles = articleDAO.selectAllArticle();
 		} catch (DALException e) {
@@ -82,8 +82,8 @@ public class ArticlesMgr {
 	 * @return
 	 * @throws BLLException
 	 */
-	public List<Articles> getListArticlesByNoUtilisateur(int noUtilisateur) throws BLLException {
-		List<Articles> listArticles = new ArrayList<>();
+	public List<Article> getListArticlesByNoUtilisateur(int noUtilisateur) throws BLLException {
+		List<Article> listArticles = new ArrayList<>();
 		try {
 			listArticles = articleDAO.selectByNoUtilisateur(noUtilisateur);
 		} catch (DALException e) {
@@ -99,8 +99,8 @@ public class ArticlesMgr {
 	 * @return
 	 * @throws BLLException
 	 */
-	public Articles getArticle(int noArticle) throws BLLException {
-		Articles article = null;
+	public Article getArticle(int noArticle) throws BLLException {
+		Article article = null;
 		try {
 			article = articleDAO.selectById(noArticle);
 		} catch (DALException e) {

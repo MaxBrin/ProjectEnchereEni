@@ -3,7 +3,7 @@ package fr.eni.projetenchere.bo;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Articles implements Serializable {
+public class Article implements Serializable {
 	/**
 	 * 
 	 */
@@ -21,11 +21,11 @@ public class Articles implements Serializable {
 	private int noCategorie;
 
 	// Constructeurs
-	public Articles() {
+	public Article() {
 		super();
 	}
 
-	public Articles(String nomArticle, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
+	public Article(String nomArticle, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
 			int prixInitial, int prixVente, int noUtilisateur, int noCategorie) {
 		super();
 		this.nomArticle = nomArticle;
@@ -38,7 +38,7 @@ public class Articles implements Serializable {
 		this.noCategorie = noCategorie;
 	}
 
-	public Articles(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere,
+	public Article(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere,
 			LocalDateTime finEnchere, int prixInitial, int prixVente, int noUtilisateur, int noCategorie) {
 		super();
 		this.noArticle = noArticle;
@@ -52,7 +52,7 @@ public class Articles implements Serializable {
 		this.noCategorie = noCategorie;
 	}
 
-	public Articles(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere,
+	public Article(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere,
 			LocalDateTime finEnchere, int prixInitial, int noUtilisateur, int noCategorie) {
 		super();
 		this.noArticle = noArticle;

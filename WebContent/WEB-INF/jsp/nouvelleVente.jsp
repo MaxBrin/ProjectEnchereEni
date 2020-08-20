@@ -39,7 +39,7 @@
 			<label for="debutEnchere">Début de l'enchère</label>
 			<input type="date" name="debutEnchere" id="debutEnchere">
 			
-			<label for="finEnchere">Début de l'enchère</label>
+			<label for="finEnchere">Fin de l'enchère</label>
 			<input type="date" name="finEnchere" id="finEnchere">
 			
 			<fieldset>
