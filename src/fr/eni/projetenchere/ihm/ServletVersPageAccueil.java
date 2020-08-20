@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.projetenchere.bll.ArticlesMgr;
 import fr.eni.projetenchere.bll.BLLException;
+import fr.eni.projetenchere.bll.CategorieMgr;
 import fr.eni.projetenchere.bo.Article;
+import fr.eni.projetenchere.bo.Categorie;
 
 /**
  * Servlet implementation class Accueil
@@ -41,6 +43,15 @@ public class ServletVersPageAccueil extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("listeArticle", articles);
+
+		List<Categorie> listeCategories = new ArrayList<>();
+		try {
+			listeCategories = CategorieMgr.getListCategorie();
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("listeCategories", listeCategories);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		rd.forward(request, response);
 	}

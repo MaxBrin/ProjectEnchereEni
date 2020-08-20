@@ -9,8 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Liste des enchères</title>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/stylePageAccueil.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/stylePageAccueil.css">
 <link
 	href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
 	rel="stylesheet">
@@ -49,18 +48,20 @@
 		<h1 id="titre">LISTE DES ENCHERES</h1>
 		<div class="formulaire">
 			<form action="">
-				<label for="filtre" class="labelFiltre">Filtres</label> <input
-					type="texte" placeholder="Ex : voiture, console" id="filtre">
+				<label for="filtre" class="labelFiltre">Filtres</label>
+				 <input type="texte" placeholder="Ex : voiture, console" id="filtre">
 
 				<p>Catégorie :</p>
 
 				<select name="categorie" id="categorie">
-					<option value="Informatique" name="categorie">Informatique</option>
-					<option value="Ammeublement" name="categorie">Ameublement</option>
-					<option value="Vêtement" name="categorie">Vêtement</option>
-					<option value="Sport & Loisirs" name="categorie">Sport &
-						Loisirs</option>
+					
+					<option value="0" name="toutesCategories">Toutes</option>
+					
+					<c:forEach var="categorie" items="${listeCategories}">
+					<option value="${categorie.noCategorie}" name="${categorie.libelle}">${categorie.libelle}</option>
+					</c:forEach>
 				</select>
+				
 				<c:if test="${(utilisateur != null)}">
 					<div>
 						<a href="<%=request.getContextPath()%>/Accueil?choix=achat">Achats</a><br>
