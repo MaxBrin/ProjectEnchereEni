@@ -24,6 +24,7 @@
 </head>
 
 <body>
+	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp"/>
 	<div class="logoPlusNavigation">
 		<p class="logo">ENI-ENCHERES</p>
 		<c:choose>

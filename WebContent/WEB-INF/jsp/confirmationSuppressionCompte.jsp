@@ -7,7 +7,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		
+		<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp"/>
 		<p>Votre compte a bien été supprimé</p>()
 	</body>
 </html>

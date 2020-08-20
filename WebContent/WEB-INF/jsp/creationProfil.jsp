@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	
+	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp"/>
 	<h1>Mon profil</h1>
 
 	<form action="${pageContext.request.contextPath }/CreationCompte" method="post">

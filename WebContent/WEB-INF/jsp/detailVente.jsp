@@ -8,7 +8,7 @@
 </head>
 
 <body>
-
+	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp"/>
 
 
 	<div>
