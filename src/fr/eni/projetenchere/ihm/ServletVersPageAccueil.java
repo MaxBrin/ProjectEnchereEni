@@ -23,6 +23,17 @@ import fr.eni.projetenchere.bo.Categorie;
 @WebServlet("/Accueil")
 public class ServletVersPageAccueil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static List<Categorie> listeCategories = new ArrayList<>();
+
+	@Override
+	public void init() throws ServletException {
+		try {
+			listeCategories = CategorieMgr.getListCategorie();
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
+		super.init();
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -43,12 +54,6 @@ public class ServletVersPageAccueil extends HttpServlet {
 		}
 		request.setAttribute("listeArticlesAAfficher", articles);
 
-		List<Categorie> listeCategories = new ArrayList<>();
-		try {
-			listeCategories = CategorieMgr.getListCategorie();
-		} catch (BLLException e) {
-			e.printStackTrace();
-		}
 		request.setAttribute("listeCategories", listeCategories);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		rd.forward(request, response);
@@ -78,8 +83,10 @@ public class ServletVersPageAccueil extends HttpServlet {
 			}
 		}
 
+		request.setAttribute("listeCategories", listeCategories);
 		request.setAttribute("listeArticlesAAfficher", listeAAfficher);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
+		rd.forward(request, response);
 
 	}
 

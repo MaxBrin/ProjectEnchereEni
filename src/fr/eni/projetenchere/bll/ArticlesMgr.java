@@ -105,7 +105,7 @@ public class ArticlesMgr {
 		try {
 			listArticles = articleDAO.selectByNoCategorie(noCategorie);
 		} catch (DALException e) {
-			throw new BLLException("Erreur getListArticlesByNoUtilisateur", e);
+			throw new BLLException("Erreur getListArticlesByNoCategorie", e);
 		}
 		return listArticles;
 	}
