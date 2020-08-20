@@ -26,6 +26,18 @@ public class Article implements Serializable {
 	}
 
 	public Article(String nomArticle, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
+			int prixInitial, Utilisateur utilisateur, Categorie categorie) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.debutEnchere = debutEnchere;
+		this.finEnchere = finEnchere;
+		this.prixInitial = prixInitial;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
+	}
+
+	public Article(String nomArticle, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
 			int prixInitial, int prixVente, Utilisateur utilisateur, Categorie categorie) {
 		super();
 		this.nomArticle = nomArticle;
