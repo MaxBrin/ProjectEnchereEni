@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,10 +7,33 @@
  <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-<title>En-t�te Bootstrap</title>
+<title>En-tête Bootstrap</title>
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/Accueil">ENI-Enchères</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item ">
+        <a class="nav-link" href="/ProjectEnchereEni/CreationCompte">Enchères </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/ProjectEnchereEni/NouvelleVente">Vendre un article</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/ProjectEnchereEni/ModificationProfil">Mon profil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/ProjectEnchereEni/Deconnexion">Déconnexion</a>
+      </li>
+      
+    </ul>
+  </div>
+</nav>
 
 
 <!-- Optional JavaScript -->

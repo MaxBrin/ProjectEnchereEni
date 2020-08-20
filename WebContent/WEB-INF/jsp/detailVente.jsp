@@ -13,11 +13,7 @@
 
 
 
-	<div>
-		<a href="${pageContext.request.contextPath }/Accueil">ENI-Enchères</a>
-		
-		
-	</div>
+	
 
 	<div>
 		<h2>Détail vente</h2>

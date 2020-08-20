@@ -29,7 +29,7 @@
 </head>
 
 <body>
-
+	<jsp:include page="/WEB-INF/jsp/enTete.jsp"></jsp:include>
 	<h1>Mon profil</h1>
 
 	<form action="${pageContext.request.contextPath}/ModificationProfil"
