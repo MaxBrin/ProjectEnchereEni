@@ -114,7 +114,7 @@
 					<div class="card-body">
 						<!--  Nom de l'article avec un lien vers detail de l'article -->
 						<h5 class="card-title">
-							<a href="">${article.nomArticle }</a>
+							<a href="<%=request.getContextPath()%>/DetailVente">${article.nomArticle }</a>
 						</h5>
 						<!--  prix de l'article -->
 						<h6 class="card-subtitle mb-2 text-muted">Prix :
@@ -132,8 +132,6 @@
 						<p class="card-text">
 							Vendeur : <a href="" class="card-link">${article.utilisateur.pseudo }</a>
 						</p>
-
-
 					</div>
 				</div>
 			</c:forEach>
