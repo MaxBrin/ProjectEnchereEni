@@ -18,7 +18,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private static final String UPDATE = "UPDATE UTILISATEURS SET pseudo=?,nom=?,prenom=?,email=?"
 			+ ",telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?"
 			+ ",administrateur=? WHERE no_utilisateur = ?";
-	private static final String DELETE = "DELETE FROM UTILISATEUR WHERE no_utilisateur=?";
+	private static final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 	private static final String SELECTBYID = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal"
 			+ ",ville,mot_de_passe,credit,administrateur FROM UTILISATEURS WHERE no_utilisateur =?";
 
