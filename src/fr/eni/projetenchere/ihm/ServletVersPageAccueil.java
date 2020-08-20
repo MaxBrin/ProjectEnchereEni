@@ -41,7 +41,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("listeArticle", articles);
+		request.setAttribute("listeArticlesAAfficher", articles);
 
 		List<Categorie> listeCategories = new ArrayList<>();
 		try {
@@ -57,11 +57,11 @@ public class ServletVersPageAccueil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Récupération de la valeur du select
+		// Rï¿½cupï¿½ration de la valeur du select
 		String choixCategorie = request.getParameter("categorie");
 		int noCategorie = Integer.parseInt(choixCategorie);
 
-		// Création de la liste à renvoyer pour l'afficher
+		// Crï¿½ation de la liste ï¿½ renvoyer pour l'afficher
 		List<Article> listeAAfficher = new ArrayList<>();
 
 		if ("0".equals(choixCategorie)) {

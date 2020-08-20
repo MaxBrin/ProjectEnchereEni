@@ -16,35 +16,13 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-	crossorigin="anonymous">
+
 
 </head>
 
 <body>
 	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp"/>
-	<div class="logoPlusNavigation">
-		<p class="logo">ENI-ENCHERES</p>
-		<c:choose>
-			<c:when test="${utilisateur == null }">
-				<div class="navigation">
-					<a href="/ProjectEnchereEni/CreationCompte" class="">S'inscrire</a>
-					<a href="/ProjectEnchereEni/Connexion">Se connecter</a>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div class="navigation">
-					<a href="/ProjectEnchereEni/CreationCompte">Enchères</a><br> <a
-						href="/ProjectEnchereEni/NouvelleVente">Vendre un article</a> <a
-						href="/ProjectEnchereEni/ModificationProfil">Mon profil</a><br>
-					<a href="/ProjectEnchereEni/Deconnexion">Déconnexion</a>
-				</div>
-			</c:otherwise>
-		</c:choose>
-	</div>
-
+	
 	<div class="corps">
 		<h1 id="titre">LISTE DES ENCHERES</h1>
 		<div class="formulaire">
@@ -63,14 +41,14 @@
 					</c:forEach>
 				</select>
 				
-				<c:if test="${(utilisateur != null)}">
+				<c:if test="${(noUtilisateur != null)}">
 					<div>
 						<a href="<%=request.getContextPath()%>/Accueil?choix=achat">Achats</a><br>
 						<a href="<%=request.getContextPath()%>/Accueil?choix=mesVentes">Mes
 							ventes</a><br>
 					</div>
 				</c:if>
-				<c:if test="${(utilisateur != null) && (choixAchat == null) }">
+				<c:if test="${(noUtilisateur != null) && (choixAchat == null) }">
 					<%--Si l'utilisateur est connecté et qu'il n'a pas encore fait de choix --%>
 					<div>
 						<input type="checkbox" name="encheresOuvertes" disabled="disabled">Enchères
@@ -87,7 +65,7 @@
 							disabled="disabled">Ventes terminées<br>
 					</div>
 				</c:if>
-				<c:if test="${(choixAchat eq 'achat') and (utilisateur != null)}">
+				<c:if test="${(choixAchat eq 'achat') and (noUtilisateur != null)}">
 					<div>
 						<input type="checkbox" name="encheresOuvertes">Enchères
 						ouvertes<br> <input type="checkbox" name="mesEncheres">Mes
@@ -106,7 +84,7 @@
 							disabled="disabled">Ventes terminées<br>
 					</div>
 				</c:if>
-				<c:if test="${(choixAchat == 'ventes') && (utilisateur != null) }">
+				<c:if test="${(choixAchat == 'ventes') && (noUtilisateur != null) }">
 					<div>
 						<input type="checkbox" name="encheresOuvertes" disabled="disabled">Enchères
 						ouvertes<br> <input type="checkbox" name="mesEncheres"
@@ -161,17 +139,7 @@
 			</c:forEach>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-		crossorigin="anonymous"></script>
+	
 
 </body>
 </html>
