@@ -133,7 +133,6 @@ public class ServletModificationProfil extends HttpServlet {
 				try {
 					articles = ArticlesMgr.getListArticles();
 				} catch (BLLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				request.setAttribute("listeArticle", articles);

@@ -41,7 +41,6 @@ public class ServletTestConnection extends HttpServlet {
 			UtilisateurMgr.ajoutUtilisateur(utilisateurTampon2);
 			System.out.println(UtilisateurMgr.getListUtilisateur());
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

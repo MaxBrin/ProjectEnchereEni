@@ -47,7 +47,7 @@
 	<div class="corps">
 		<h1 id="titre">LISTE DES ENCHERES</h1>
 		<div class="formulaire">
-			<form action="">
+			<form action="${pageContext.request.contextPath }/Accueil" method="post">
 				<label for="filtre" class="labelFiltre">Filtres</label>
 				 <input type="texte" placeholder="Ex : voiture, console" id="filtre">
 
@@ -129,7 +129,7 @@
 
 		<div id="affichageEncheres">
 			<!--  Affichage de la liste des articles -->
-			<c:forEach var="article" items="${listeArticle }">
+			<c:forEach var="article" items="${listeArticlesAAfficher }">
 				<!-- Affichage d'article en vente -->
 				<div class="card" style="width: 18rem;">
 					<div class="card-body">

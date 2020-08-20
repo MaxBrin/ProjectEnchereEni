@@ -55,7 +55,6 @@ public class ServletNouvelleVente extends HttpServlet {
 		try {
 			listeArticles = ArticlesMgr.getListArticles();
 		} catch (BLLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 

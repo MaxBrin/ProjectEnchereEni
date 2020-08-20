@@ -39,7 +39,6 @@ public class ServletVersPageAccueil extends HttpServlet {
 		try {
 			articles = ArticlesMgr.getListArticles();
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("listeArticle", articles);
@@ -48,7 +47,6 @@ public class ServletVersPageAccueil extends HttpServlet {
 		try {
 			listeCategories = CategorieMgr.getListCategorie();
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("listeCategories", listeCategories);
@@ -58,6 +56,30 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		// Récupération de la valeur du select
+		String choixCategorie = request.getParameter("categorie");
+		int noCategorie = Integer.parseInt(choixCategorie);
+
+		// Création de la liste à renvoyer pour l'afficher
+		List<Article> listeAAfficher = new ArrayList<>();
+
+		if ("0".equals(choixCategorie)) {
+			try {
+				listeAAfficher = ArticlesMgr.getListArticles();
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				listeAAfficher = ArticlesMgr.getListArticlesByNoCategorie(noCategorie);
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		request.setAttribute("listeArticlesAAfficher", listeAAfficher);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 
 	}
 
