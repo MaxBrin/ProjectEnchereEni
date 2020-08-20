@@ -48,7 +48,6 @@ public class ServletVersPageConnection extends HttpServlet {
 		try {
 			listeUtilisateur = UtilisateurMgr.getListUtilisateur();
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String messageErreur = "";
@@ -65,7 +64,6 @@ public class ServletVersPageConnection extends HttpServlet {
 					try {
 						articles = ArticlesMgr.getListArticles();
 					} catch (BLLException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					request.setAttribute("listeArticle", articles);

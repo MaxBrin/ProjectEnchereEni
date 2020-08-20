@@ -114,7 +114,7 @@
 					<div class="card-body">
 						<!--  Nom de l'article avec un lien vers detail de l'article -->
 						<h5 class="card-title">
-							<a href="<%=request.getContextPath()%>/DetailVente">${article.nomArticle }</a>
+							<a href="<%=request.getContextPath()%>/DetailVente?idArticle=${article.noArticle}">${article.nomArticle }</a>
 						</h5>
 						<!--  prix de l'article -->
 						<h6 class="card-subtitle mb-2 text-muted">Prix :

@@ -16,35 +16,37 @@
 	</div>
 	
 	<div>	
-		<p>Nom article :</p>
+		<p>Nom article : ${article.nom}</p>
 	</div>
 	
 	<div>
-		<p>Description :</p>
+		<p>Description : ${article.description}</p>
 	</div>
 	
 	<div>
-		<p>Catégorie :</p>
+		<p>Catégorie : ${article.categorie}</p>
 	</div>
 	
 	<div>
-		<p>Meilleure offre :</p>
+		<%//TODO: meilleur offre %>
+		<p>Meilleure offre : </p>
 	</div>
 	
 	<div>
-		<p>Mise à prix :</p>
+		<p>Mise à prix : ${article.prixInitial}</p>
 	</div>
 	
 	<div>
-		<p>Fin de l'enchère :</p>
+		<p>Fin de l'enchère : ${article.finEnchere}</p>
 	</div>
 	
 	<div>
-		<p>Retrait :</p>
+		<p>Retrait : ${utilisateur.rue}, ${utilisateur.codePostal}, ${utilisateur.ville}</p>
 	</div>
 	
 	<div>
-		<p>Vendeur :</p>
+		<%//TODO: vendeur%>
+		<p>Vendeur : ${utilisateur.pseudo}</p>
 	</div>
 		
 	<div>

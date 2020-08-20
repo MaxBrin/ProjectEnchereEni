@@ -42,7 +42,6 @@ public class ServletNouvelleVente extends HttpServlet {
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("utilisateur", utilisateur);
@@ -100,6 +99,13 @@ public class ServletNouvelleVente extends HttpServlet {
 		// TODO VERIF DONNEES
 		Article article = new Article(nom, description, debutEnchere, finEnchere, miseAPrix, utilisateur, categorie);
 		listeArticles.add(article);
+
+		try {
+			ArticlesMgr.ajoutArticle(article);
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

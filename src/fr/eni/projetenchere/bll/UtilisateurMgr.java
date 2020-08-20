@@ -101,7 +101,6 @@ public class UtilisateurMgr {
 		try {
 			listUtilisateur = UtilisateurMgr.getListUtilisateur();
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// Vérification dans cette liste pour voir si le pseudo ou l'email est déjà

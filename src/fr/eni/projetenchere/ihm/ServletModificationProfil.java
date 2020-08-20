@@ -36,7 +36,6 @@ public class ServletModificationProfil extends HttpServlet {
 		try {
 			request.setAttribute("utilisateur", UtilisateurMgr.getUtilisateur(noUtilisateur));
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modificationProfil.jsp");
@@ -58,7 +57,6 @@ public class ServletModificationProfil extends HttpServlet {
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 		} catch (BLLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		Utilisateur utilisateurModifie = new Utilisateur();
