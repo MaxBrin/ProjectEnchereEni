@@ -11,7 +11,7 @@ import fr.eni.projetenchere.dal.CategorieDAO;
 import fr.eni.projetenchere.dal.DALException;
 
 public class CategorieDAOImpl implements CategorieDAO {
-	private static final String SELECTALL = "SELECT no_categorie,libelle FROM CATEGORIE";
+	private static final String SELECTALL = "SELECT no_categorie,libelle FROM CATEGORIES";
 
 	@Override
 	public List<Categorie> selectALL() throws DALException {

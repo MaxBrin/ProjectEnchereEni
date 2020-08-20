@@ -27,6 +27,11 @@ public class ArticleDAOImpl implements ArticleDAO {
 			+ "pseudo,nom,prenom,email,telephone,rue,code_postal" + ",ville,mot_de_passe,credit,administrateur,libelle"
 			+ "FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur"
 			+ " JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE no_utilisateur=?";
+	private static final String SELECTBY_NOCATEGORIE = "SELECT no_article,nom_article,description,date_debut_encheres,"
+			+ "date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,"
+			+ "pseudo,nom,prenom,email,telephone,rue,code_postal" + ",ville,mot_de_passe,credit,administrateur,libelle"
+			+ "FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur"
+			+ " JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE no_categorie=?";
 	private static final String DELETE = "DELETE FROM ARTICLES_VENDUS WHERE no_utilisateur =?";
 	private static final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?,description=?,date_debut_encheres=?,"
 			+ "date_fin_encheres=?,prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=? WHERE no_article=? ";
@@ -104,8 +109,33 @@ public class ArticleDAOImpl implements ArticleDAO {
 	@Override
 	public List<Article> selectByNoUtilisateur(int noUtilisateur) throws DALException {
 		List<Article> listArticles = new ArrayList<>();
-		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(SELECTBY_NOUTILISATEUR)) {
+		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(SELECTBY_NOCATEGORIE)) {
 			pStmt.setInt(1, noUtilisateur);
+			ResultSet rs = pStmt.executeQuery();
+			while (rs.next()) {
+				Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"),
+						rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
+						rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
+						rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
+				Categorie categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
+				Article article = new Article(rs.getInt("no_article"), rs.getString("nom_article"),
+						rs.getString("description"), rs.getTimestamp("date_debut_encheres").toLocalDateTime(),
+						rs.getTimestamp("date_fin_encheres").toLocalDateTime(), rs.getInt("prix_initial"),
+						rs.getInt("prix_vente"), utilisateur, categorie);
+				listArticles.add(article);
+			}
+
+		} catch (SQLException e) {
+			throw new DALException("Erreur selectByNoUtilisateur", e);
+		}
+		return listArticles;
+	}
+
+	@Override
+	public List<Article> selectByNoCategorie(int noCategorie) throws DALException {
+		List<Article> listArticles = new ArrayList<>();
+		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(SELECTBY_NOUTILISATEUR)) {
+			pStmt.setInt(1, noCategorie);
 			ResultSet rs = pStmt.executeQuery();
 			while (rs.next()) {
 				Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"),

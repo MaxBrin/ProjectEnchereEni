@@ -59,9 +59,9 @@ public class ServletVersPageConnection extends HttpServlet {
 				identifiantPresent = true;
 
 				if (utilisateur.getMotDePasse().equals(mdp)) {
-					
+
 					HttpSession session = request.getSession();
-					session.setAttribute("utilisateur", utilisateur);
+					session.setAttribute("utilisateur", utilisateur.getNoUtilisateur());
 					List<Article> articles = new ArrayList<>();
 					try {
 						articles = ArticlesMgr.getListArticles();
