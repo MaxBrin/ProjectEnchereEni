@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import fr.eni.projetenchere.bll.ArticlesMgr;
+import fr.eni.projetenchere.bll.BLLException;
+import fr.eni.projetenchere.bo.Article;
+import fr.eni.projetenchere.bo.Categorie;
+import fr.eni.projetenchere.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletNouvelleVente
@@ -37,20 +46,50 @@ public class ServletNouvelleVente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// Récupération de l'utilisateur dans la session et de son id
+		HttpSession session = request.getSession();
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+
+		// Je récupère la liste des Articles en bdd
+		List<Article> listeArticles = new ArrayList<>();
+		try {
+			listeArticles = ArticlesMgr.getListArticles();
+		} catch (BLLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		// Récupération des saisies de l'utilisateur sur l'artcile
 		String nom = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
-		String categorie = request.getParameter("categorie");
-		String miseAPrix = request.getParameter("miseAPrix");
+		String categorieSaisie = request.getParameter("categorie");
+		String miseAPrixSaisie = request.getParameter("miseAPrix");
+
+		// Declaration de variables
+		LocalDateTime debutEnchere = null;
+		LocalDateTime finEnchere = null;
+		int noCategorie = 0;
+		int miseAPrix = 0;
+
+		// Creation de l'objet Categorie
+		Categorie categorie = new Categorie(noCategorie, categorieSaisie);
+
 		try {
-			LocalDateTime debutEnchere = LocalDateTime.of(LocalDate.parse(request.getParameter("debutEnchere")),
-					LocalTime.now());
-			LocalDateTime finEnchere = LocalDateTime.of(LocalDate.parse(request.getParameter("finEnchere")),
-					LocalTime.now());
+			noCategorie = Integer.parseInt(categorieSaisie);
+			miseAPrix = Integer.parseInt(miseAPrixSaisie);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			debutEnchere = LocalDateTime.of(LocalDate.parse(request.getParameter("debutEnchere")), LocalTime.now());
+			finEnchere = LocalDateTime.of(LocalDate.parse(request.getParameter("finEnchere")), LocalTime.now());
 		} catch (DateTimeParseException e) {
 			// TODO MESSAGE ERREUR DATE
 		}
 		// TODO VERIF DONNEES
-
+		Article article = new Article(nom, description, debutEnchere, finEnchere, miseAPrix, utilisateur, categorie);
+		listeArticles.add(article);
 	}
 
 }
