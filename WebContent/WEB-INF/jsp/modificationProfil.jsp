@@ -5,26 +5,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/style.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/stylePageAccueil.css">
-<link
-	href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
-	rel="stylesheet">
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-	crossorigin="anonymous">
-
-<title>Mon profil</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/styleModificationProfil.css">
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">	
+	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+		crossorigin="anonymous">
+	
+	<title>Mon profil</title>
 
 </head>
 
@@ -36,41 +30,41 @@
 		method="post">
 
 		<div class="colonnes">
+			<div class="labelsA">
+				<label for="pseudo">Pseudo</label><br>
+				<label for="prenom">Prénom</label><br>
+				<label for="telephone">Téléphone</label><br>
+				<label for="codePostal">Code postal</label><br>
+				<label for="ancienMotDePasse">Mot de passe actuel</label><br>
+				<label for="nouveauMotDePasse">Nouveau mot de passe </label><br>
+			</div>
+				
 			<div class="colonneA">
-				<label for="pseudo">Pseudo</label> <input type="text" name="pseudo"
-					value="${utilisateur.pseudo}" id="pseudo"> <label for="nom">Nom</label>
-				<input type="text" name="nom" value="${utilisateur.nom}" id="nom">
-
-				<label for="prenom">Prénom</label> <input type="text" name="prenom"
-					value="${utilisateur.prenom}" id="prenom"> <label
-					for="email">Email</label> <input type="text" name="email"
-					value="${utilisateur.email}" id="email"> <label
-					for="telephone">Téléphone</label> <input type="text"
-					name="telephone" value="${utilisateur.telephone}" id="telephone">
+				<input type="text" name="pseudo" value="${utilisateur.pseudo}" id="pseudo"><br> 
+				<input type="text" name="prenom" value="${utilisateur.prenom}" id="prenom"><br> 
+				<input type="text" name="telephone" value="${utilisateur.telephone}" id="telephone"><br>
+				<input type="text" name="codePostal" value="${utilisateur.codePostal}" id="codePostal"><br>
+				<input type="password" name="ancienMotDePasse" id="ancienMotDePasse"><br>
+				<input type="password" name="nouveauMotDePasse" id="nouveauMotDePasse"><br>
 			</div>
 
+			<div class="labelsB">
+				<label for="nom">Nom</label><br>
+				<label for="email">Email</label><br>
+				<label for="rue">Rue</label><br>
+				<label for="ville">Ville</label><br>
+				<label for="confirmerNouveauMotDePasse">Confirmation</label><br>
+			</div>
 			<div class="colonneB">
-				<label for="rue">Rue</label> <input type="text" name="rue"
-					value="${utilisateur.rue}" id="rue"> <label
-					for="codePostal">Code postal</label> <input type="text"
-					name="codePostal" value="${utilisateur.codePostal}" id="codePostal">
-
-				<label for="ville">Ville</label> <input type="text" name="ville"
-					value="${utilisateur.ville}" id="ville"> <label
-					for="ancienMotDePasse">Mot de passe actuel</label> <input
-					type="password" name="ancienMotDePasse" id="ancienMotDePasse">
-
-				<label for="nouveauMotDePasse">Nouveau mot de passe </label> <input
-					type="password" name="nouveauMotDePasse" id="nouveauMotDePasse">
-
-				<label for="confirmerNouveauMotDePasse">Confirmation</label> <input
-					type="password" name="confirmerNouveauMotDePasse"
-					id="confirmerNouveauMotDePasse">
-
-
+				<input type="text" name="nom" value="${utilisateur.nom}" id="nom"><br>
+				<input type="text" name="email" value="${utilisateur.email}" id="email"><br>
+				<input type="text" name="rue" value="${utilisateur.rue}" id="rue"> <br>
+				<input type="text" name="ville" value="${utilisateur.ville}" id="ville"> <br>
+				<input type="password" name="confirmerNouveauMotDePasse" id="confirmerNouveauMotDePasse"><br>
 			</div>
 		</div>
 
+		
 		<p>
 			<label for="credit">Crédit </label>${utilisateur.credit}
 		</p>
@@ -87,8 +81,6 @@
 		data-target="#Suppression">Supprimer le compte</button>
 
 	<!-- Modal -->
-
-
 
 	<div class="modal fade" id="Suppression" tabindex="-1" aria-labelledby="SuppresionLabel" aria-hidden="true">
 		<div class="modal-dialog">

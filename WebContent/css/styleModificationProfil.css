@@ -1,0 +1,65 @@
+@charset "ISO-8859-1";
+
+/******General********/
+
+body {
+	background-color: #dddddd;
+}
+
+p {
+	font-family: Raleway, sans-serif;
+}
+
+h1 {
+	font-family: Raleway, sans-serif;
+}
+
+label {
+	font-family: Raleway, sans-serif;
+}
+
+input {
+	font-family: Raleway, sans-serif;
+}
+
+
+
+/**************formulaire*********/
+form {
+	margin: 150px;
+}
+
+.colonnes {
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr 2fr;
+	grid-auto-rows: auto;
+	margin-bottom: 30px;
+	margin : auto;
+}
+
+.labelsA {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+.colonneA {
+	grid-column: 2;
+	grid-row: 1;
+
+}
+
+.labelsB {
+	grid-column: 3;
+	grid-row: 1;
+	
+}
+
+.colonneB {
+	grid-column: 4;
+	grid-row: 1;
+	
+}
+
+input {
+	margin: 5px;
+}
