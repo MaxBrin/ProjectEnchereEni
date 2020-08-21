@@ -45,7 +45,7 @@
 	</div>
 	
 	<div>
-		<%//TODO: vendeur%>
+		
 		<p>Vendeur : ${utilisateur.pseudo}</p>
 	</div>
 		

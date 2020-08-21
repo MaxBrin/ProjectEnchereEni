@@ -12,6 +12,7 @@
 	crossorigin="anonymous">
 
 <title>En-tête Bootstrap</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/Fragment/enTete.css">
 </head>
 <body>
 
