@@ -45,7 +45,7 @@ public class ServletModificationProfil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
 		// Je recup�re l'utilisateur de la session
 		HttpSession session = request.getSession();
 		int noUtilisateur = (int) session.getAttribute("noUtilisateur");

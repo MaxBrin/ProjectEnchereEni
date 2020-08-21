@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/Erreur.css">
 <title>Mon profil</title>
@@ -26,11 +26,11 @@
 				<c:choose>
 					<c:when test="${fn:contains(erreur,'Pseudo') }">
 						<input type="text" name="pseudo" id="erreur"
-							value=${utilisateur.pseudo }>
+							value="${utilisateur.pseudo }">
 					</c:when>
 					<c:otherwise>
 						<input type="text" name="pseudo" id="pseudo"
-							value=${utilisateur.pseudo }>
+							value="${utilisateur.pseudo }">
 					</c:otherwise>
 				</c:choose>
 
@@ -39,22 +39,22 @@
 				<c:choose>
 					<c:when test="${fn:contains(erreur,'Nom') }">
 						<input type="text" name="nom" id="erreur"
-							value=${utilisateur.nom }>
+							value="${utilisateur.nom }">
 					</c:when>
 					<c:otherwise>
-						<input type="text" name="nom" id="nom" value=${utilisateur.nom }>
+						<input type="text" name="nom" id="nom" value="${utilisateur.nom }">
 					</c:otherwise>
 				</c:choose>
 
-				<label for="prenom">Prénom</label>
+				<label for="prenom">PrÃ©nom</label>
 				<c:choose>
 					<c:when test="${fn:contains(erreur,'Prenom') }">
 						<input type="text" name="prenom" id="erreur"
-							value=${utilisateur.prenom }>
+							value="${utilisateur.prenom }">
 					</c:when>
 					<c:otherwise>
 						<input type="text" name="prenom" id="prenom"
-							value=${utilisateur.prenom }>
+							value="${utilisateur.prenom }">
 					</c:otherwise>
 				</c:choose>
 
@@ -63,23 +63,23 @@
 				<c:choose>
 					<c:when test="${fn:contains(erreur,'Email') }">
 						<input type="text" name="email" id="erreur"
-							value=${utilisateur.email }>
+							value="${utilisateur.email }">
 					</c:when>
 					<c:otherwise>
 						<input type="text" name="email" id="email"
-							value=${utilisateur.email }>
+							value="${utilisateur.email }">
 					</c:otherwise>
 				</c:choose>
 
-				<label for="telephone">Téléphone</label>
+				<label for="telephone">TÃ©lÃ©phone</label>
 				<c:choose>
 					<c:when test="${fn:contains(erreur,'Telephone') }">
 						<input type="text" name="telephone" id="erreur"
-							value=${utilisateur.telephone }>
+							value="${utilisateur.telephone }">
 					</c:when>
 					<c:otherwise>
 						<input type="text" name="telephone" id="telephone"
-							value=${utilisateur.telephone }>
+							value="${utilisateur.telephone }">
 					</c:otherwise>
 				</c:choose>
 
@@ -87,10 +87,10 @@
 				<c:choose>
 					<c:when test="${fn:contains(erreur,'Rue') }">
 						<input type="text" name="rue" id="erreur"
-							value=${utilisateur.rue }>
+							value="${utilisateur.rue }">
 					</c:when>
 					<c:otherwise>
-						<input type="text" name="rue" id="rue" value=${utilisateur.rue }>
+						<input type="text" name="rue" id="rue" value="${utilisateur.rue }">
 					</c:otherwise>
 				</c:choose>
 
@@ -100,11 +100,11 @@
 				<c:choose>
 					<c:when test="${fn:contains(erreur,'CodePostal') }">
 						<input type="text" name="codePostal" id="erreur"
-							value=${utilisateur.codePostal }>
+							value="${utilisateur.codePostal }">
 					</c:when>
 					<c:otherwise>
 						<input type="text" name="codePostal" id="codePostal"
-							value=${utilisateur.codePostal }>
+							value="${utilisateur.codePostal }">
 					</c:otherwise>
 				</c:choose>
 
@@ -112,11 +112,11 @@
 				<c:choose>
 					<c:when test="${fn:contains(erreur,'Ville') }">
 						<input type="text" name="ville" id="erreur"
-							value=${utilisateur.ville }>
+							value="${utilisateur.ville }"/>>
 					</c:when>
 					<c:otherwise>
 						<input type="text" name="ville" id="ville"
-							value=${utilisateur.ville }>
+							value="${utilisateur.ville}"/>>
 					</c:otherwise>
 				</c:choose>
 
@@ -126,7 +126,7 @@
 					<c:when test="${fn:contains(erreur,'MotDePasse') }">
 						<label for="motDePasse">Mot de passe</label>
 						<input type="password" name="motDePasse" id="erreur"
-							value=${utilisateur.motDePasse }>
+							value="${utilisateur.motDePasse }">
 
 						<label for="confirmerMotDePasse">Confirmer</label>
 						<input type="password" name="confirmerMotDePasse" id="erreur">
@@ -135,7 +135,7 @@
 					<c:otherwise>
 						<label for="motDePasse">Mot de passe</label>
 						<input type="password" name="motDePasse" id="motDePasse"
-							value=${utilisateur.motDePasse }>
+							value="${utilisateur.motDePasse }">
 
 						<label for="confirmerMotDePasse">Confirmer</label>
 						<input type="password" name="confirmerMotDePasse"
@@ -149,15 +149,15 @@
 			</c:if>
 			
 			<c:if test="${fn:contains(erreur,'PseudoPresent') }">
-			Le pseudo doit être renseigné.<br>
+			Le pseudo doit Ãªtre renseignÃ©.<br>
 			</c:if>
 			
 			<c:if test="${fn:contains(erreur,'Nom') }">
-			Le nom doit être renseigné<br>
+			Le nom doit Ãªtre renseignÃ©<br>
 			</c:if>
 			
 			<c:if test="${fn:contains(erreur,'Prenom') }">
-			Le prénom doit être renseigné<br>
+			Le prÃ©nom doit Ãªtre renseignÃ©<br>
 			</c:if>
 			
 			<c:if test="${fn:contains(erreur,'EmailNonValide') }">
@@ -165,15 +165,15 @@
 			</c:if>
 			
 			<c:if test="${fn:contains(erreur,'EmailPresent') }">
-			L'email est déjà présent<br>
+			L'email est dÃ©jÃ  prÃ©sent<br>
 			</c:if>
 			
 			<c:if test="${fn:contains(erreur,'Telephone') }">
-			Le numéro de téléphone n'est pas valide<br>
+			Le numÃ©ro de tÃ©lÃ©phone n'est pas valide<br>
 			</c:if>
 			
 			<c:if test="${fn:contains(erreur,'Rue') }">
-			La rue doit être renseigné<br>
+			La rue doit Ãªtre renseignÃ©<br>
 			</c:if>
 			
 			<c:if test="${fn:contains(erreur,'CodePostal') }">
@@ -181,7 +181,7 @@
 			</c:if>
 			
 			<c:if test="${fn:contains(erreur,'Ville') }">
-			La ville doit être renseigné<br>
+			La ville doit Ãªtre renseignÃ©<br>
 			</c:if>
 			
 			<c:if test="${fn:contains(erreur,'MotDePasseIdentique') }">
@@ -189,7 +189,7 @@
 			</c:if>
 			
 			<c:if test="${fn:contains(erreur,'MotDePasseVerif') }">
-			Le mot de passe n'est pas valide. Il doit contenir au moins une majuscule,une minuscule,un caractère spéciaux et un chiffre<br>
+			Le mot de passe n'est pas valide. Il doit contenir au moins une majuscule,une minuscule,un caractÃ¨re spÃ©ciaux et un chiffre<br>
 			</c:if>
 
 

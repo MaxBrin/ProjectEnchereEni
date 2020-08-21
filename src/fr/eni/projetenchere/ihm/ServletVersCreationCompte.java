@@ -38,6 +38,7 @@ public class ServletVersCreationCompte extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -47,6 +48,7 @@ public class ServletVersCreationCompte extends HttpServlet {
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
+		System.out.println(ville);
 		String motDePasse = request.getParameter("motDePasse");
 		String confirmationMdp = request.getParameter("confirmerMotDePasse");
 		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
@@ -64,11 +66,13 @@ public class ServletVersCreationCompte extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("noUtilisateur", utilisateur.getNoUtilisateur());
 			request = Chargement.chargementList(request);
+
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 			rd.forward(request, response);
 		} else {
 			request.setAttribute("utilisateur", utilisateur);
 			request.setAttribute("listErreur", erreur);
+			System.out.println(utilisateur);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/creationProfil.jsp");
 			rd.forward(request, response);
 		}
