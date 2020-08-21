@@ -149,7 +149,6 @@ public class ArticlesMgr {
 		if ((article.getUtilisateur().getVille()).equals("")) {
 			sb.append("Veuillez saisir une ville");
 		}
-
 		return sb;
 	}
 

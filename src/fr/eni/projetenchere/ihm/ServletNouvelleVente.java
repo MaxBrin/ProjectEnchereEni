@@ -57,7 +57,7 @@ public class ServletNouvelleVente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		// R�cup�ration de l'utilisateur dans la session et de son id
+		// Récupération de l'utilisateur dans la session et de son id
 		HttpSession session = request.getSession();
 		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
 
@@ -103,16 +103,18 @@ public class ServletNouvelleVente extends HttpServlet {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 			categorie = CategorieMgr.getCategorie(noCategorie);
 		} catch (BLLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		Article article = new Article(nom, description, debutEnchere, finEnchere, miseAPrix, utilisateur, categorie);
-		listeArticles.add(article);
 
-		try {
-			ArticlesMgr.ajoutArticle(article);
-		} catch (BLLException e) {
-			e.printStackTrace();
+		StringBuilder sb = ArticlesMgr.verifierVente(article);
+		if (sb.equals("")) {
+			listeArticles.add(article);
+			try {
+				ArticlesMgr.ajoutArticle(article);
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
