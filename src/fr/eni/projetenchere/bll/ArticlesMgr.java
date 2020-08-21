@@ -127,4 +127,30 @@ public class ArticlesMgr {
 		return article;
 	}
 
+	// Méthode pour vérifier si une nouvelle vente est conforme
+
+	public static StringBuilder verifierVente(Article article) {
+		StringBuilder sb = new StringBuilder();
+		if (article.getNomArticle().equals("")) {
+			sb.append("Nom d'article obligatoire");
+		}
+		if (article.getPrixInitial() == 0) {
+			sb.append("Le prix de départ ne peut pas être égal à zero");
+		}
+		if (article.getFinEnchere().isBefore(article.getDebutEnchere())) {
+			sb.append("La date de fin d'enchère doit être située après celle de début d'enchère");
+		}
+		if ((article.getUtilisateur().getRue()).equals("")) {
+			sb.append("Veuillez aisir un numero et une rue");
+		}
+		if ((article.getUtilisateur().getCodePostal()).equals("")) {
+			sb.append("Veuillez saisir un code postal");
+		}
+		if ((article.getUtilisateur().getVille()).equals("")) {
+			sb.append("Veuillez saisir une ville");
+		}
+
+		return sb;
+	}
+
 }

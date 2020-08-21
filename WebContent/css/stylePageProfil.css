@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+
+#colonnes {
+	display: flex;
+}
+#pseudo {
+	width: auto;
+}
