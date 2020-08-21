@@ -36,7 +36,7 @@
 	<th>
 		<div class="marge">
 			<label for="pseudo">Pseudo :</label>
-			<input type="text" name="pseudo" id="${fn:contains(erreur,'Pseudo')?'erreur':'pseudo' }"
+			<input type="text" name="pseudo" class="${fn:contains(erreur,'Pseudo')?'erreur':'pseudo' }"
 			value="${utilisateur.pseudo }">
 		</div>	
 	</th>
@@ -45,7 +45,7 @@
 	<th>
 		<div class="marge">
 			<label for="nom">Nom</label> 
-			<input type="text" name="nom" id="${fn:contains(erreur,'Nom')?'erreur':'nom'}"
+			<input type="text" name="nom" class="${fn:contains(erreur,'Nom')?'erreur':'nom'}"
 			value="${utilisateur.nom }" required="required">
 		</div>
 	</th>
@@ -56,7 +56,7 @@
 	<th>
 		<div class="marge">
 			<label for="prenom">Prénom :</label>
-			<input type="text" name="prenom" id="${fn:contains(erreur,'Prenom')?'erreur': 'prenom' }"
+			<input type="text" name="prenom" class="${fn:contains(erreur,'Prenom')?'erreur': 'prenom' }"
 					value="${utilisateur.prenom }" required="required">
 		</div>
 	</th>
@@ -65,7 +65,7 @@
 	<th>
 		<div class="marge">
 			<label for="email">Email :</label>
-			<input type="text" name="email" id="${fn:contains(erreur,'Email')?'erreur':'email' }"
+			<input type="text" name="email" class="${fn:contains(erreur,'Email')?'erreur':'email' }"
 					value="${utilisateur.email }" required="required">
 		</div>
 	</th>	
@@ -76,7 +76,7 @@
 	<th>
 	<div class="marge">	
 		<label for="telephone">Téléphone : </label>
-		<input type="text" name="telephone" id="${fn:contains(erreur,'Telephone')?'erreur' : 'telephone' }"
+		<input type="text" name="telephone" class="${fn:contains(erreur,'Telephone')?'erreur' : 'telephone' }"
 		value="${utilisateur.telephone }">
 	</div>
 	</th>
@@ -85,7 +85,7 @@
 	<th>
 	<div class="marge">
 		<label for="rue">Rue :</label>
-		<input type="text" name="rue" id="${fn:contains(erreur,'Rue')?'erreur':'rue'}"
+		<input type="text" name="rue" class="${fn:contains(erreur,'Rue')?'erreur':'rue'}"
 		value="${utilisateur.rue }">
 	</div>
 	</th>
@@ -96,7 +96,7 @@
 	<th>
 	<div class="marge">
 		<label for="codePostal">Code postal :</label>
-		<input type="text" name="codePostal" id="${fn:contains(erreur,'CodePostal')? 'erreur' :'codePostal' }"
+		<input type="text" name="codePostal" class="${fn:contains(erreur,'CodePostal')? 'erreur' :'codePostal' }"
 		value="${utilisateur.codePostal }">
 		
 	</div>
@@ -106,7 +106,7 @@
 	<th>
 	<div class="marge">
 		<label for="ville">Ville :</label>
-		<input type="text" name="ville" id="${fn:contains(erreur,'Ville')?'erreur':'ville' }"
+		<input type="text" name="ville" class="${fn:contains(erreur,'Ville')?'erreur':'ville' }"
 		value="${utilisateur.ville }" />
 	</div>
 	</th>
@@ -116,7 +116,7 @@
 	<!--  MOT DE PASSE -->
 	<th>
 		<label for="motDePasse">Mot de passe :</label>
-		<input type="password" name="motDePasse" id="${fn:contains(erreur,'MotDePasse')?'erreur':'motDePasse' }"
+		<input type="password" name="motDePasse" class="${fn:contains(erreur,'MotDePasse')?'erreur':'motDePasse' }"
 					value="${utilisateur.motDePasse }" >
 	</th>
 	<th>
