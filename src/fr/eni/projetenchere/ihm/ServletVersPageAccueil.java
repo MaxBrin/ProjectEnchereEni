@@ -42,61 +42,79 @@ public class ServletVersPageAccueil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-//*********************************Traitement bouton select***********************************************
+//*********************************Traitement bouton select**********************************************
 
-		// R�cup�ration de la valeur du select
+		// Récupération et transformation en int de la valeur du select
 		String choixCategorie = request.getParameter("categorie");
 		int noCategorie = Integer.parseInt(choixCategorie);
-
-		// Cr�ation de la liste � renvoyer pour l'afficher
 		List<Article> listeAAfficher = new ArrayList<>();
+		listeAAfficher = trierArticleParCategorie(noCategorie);
 
-		if ("0".equals(choixCategorie)) {
+//************Affichage articles en fonction de la recherche par nom en mode déconnexion*****************
+
+		// Je récupère la saisie de l'utilisateur
+		String rechercheUtilisateur = request.getParameter("rechercherArticle").toUpperCase();
+		String rechercheUtilisateurARenvoyer = request.getParameter("rechercherArticle");
+		// Je crée le tableau avec chaque mot de la recherche
+		List<Article> listeArticlesAAfficher = null;
+
+		if (rechercheUtilisateur.trim().length() == 0) {
+			listeArticlesAAfficher = listeAAfficher;
+		} else {
+			listeArticlesAAfficher = trierArticleParRechercheNom(rechercheUtilisateur, listeAAfficher);
+		}
+
+//**************************************************************************************		
+		// Envoie des informations
+		request = Chargement.chargementList(request);
+		request.setAttribute("listeArticlesAAfficher", listeArticlesAAfficher);
+		request.setAttribute("saisieUtilisateur", rechercheUtilisateurARenvoyer);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
+		rd.forward(request, response);
+
+	}
+
+//*****Méthode qui  renvoie une liste d'article en fonction du int de la catégorie***************************
+	public List<Article> trierArticleParCategorie(int categorie) {
+		List<Article> listeARetourner = new ArrayList<>();
+		if (0 == categorie) {
 			try {
-				listeAAfficher = ArticlesMgr.getListArticles();
+				listeARetourner = ArticlesMgr.getListArticles();
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
 		} else {
 			try {
-				listeAAfficher = ArticlesMgr.getListArticlesByNoCategorie(noCategorie);
+				listeARetourner = ArticlesMgr.getListArticlesByNoCategorie(categorie);
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
 		}
+		return listeARetourner;
+	}
 
-//******************************Affichage articles en fonction de la recherche par nom en mode d�connexion**********************************************
+//***********Méthode qui retourne la liste d'articles a afficher en fonction de la recherche par nom***********************************	
+	public List<Article> trierArticleParRechercheNom(String saisieUtilisateur, List<Article> listeArticle) {
 
-		// Je r�cup�re la saisie de l'utilisateur
-		String rechercheUtilisateur = request.getParameter("rechercherArticle").toUpperCase();
-		// Je cr�e le tableau avec chaque mot de la recherche
-		String[] listeMotsRecherche = rechercheUtilisateur.split(" ");
+		String[] listeMotsRecherche = saisieUtilisateur.split(" ");
+		List<Article> listeARetourner = new ArrayList<>();
+		List<Article> listeArticlesBdd = null;
 
-		List<Article> listeArticleFiltreeParNom = new ArrayList<>();
-		if (rechercheUtilisateur.trim().length() == 0) {
-			listeArticleFiltreeParNom = listeAAfficher;
-		}
+		// Pour chaque mot de la recherche utlisateur
 		for (String mot : listeMotsRecherche) {
-			for (Article article : listeAAfficher) {
+			// Pour chaque article trié apres le select
+			for (Article article : listeArticle) {
 				String nomArticle = article.getNomArticle().toUpperCase();
 				String[] motsDansNomArticle = nomArticle.split(" ");
 				for (String motDansNom : motsDansNomArticle) {
 					if (motDansNom.contains(mot)) {
-						listeArticleFiltreeParNom.add(article);
-
+						listeARetourner.add(article);
 					}
 				}
 			}
 		}
 
-//**************************************************************************************		
-		// Envoie des informations
-
-		request = Chargement.chargementList(request);
-		request.setAttribute("listeArticlesAAfficher", listeArticleFiltreeParNom);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
-		rd.forward(request, response);
-
+		return listeARetourner;
 	}
 
 }

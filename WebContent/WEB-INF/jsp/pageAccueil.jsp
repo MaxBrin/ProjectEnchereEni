@@ -28,7 +28,7 @@
 		<div class="formulaire">
 			<form action="${pageContext.request.contextPath }/Accueil" method="post">
 				<label for="filtre" class="labelFiltre">Filtres</label>
-				 <input type="texte" placeholder="Ex : voiture, console" id="filtre" name="rechercherArticle">
+				 <input type="texte" placeholder="Ex : voiture, console" id="filtre" name="rechercherArticle" value="${saisieUtilisateur}">
 
 				<p>Catégorie :</p>
 
@@ -108,6 +108,7 @@
 
 		<div id="affichageEncheres">
 			<!--  Affichage de la liste des articles -->
+			
 			<c:forEach var="article" items="${listeArticlesAAfficher }">
 				<!-- Affichage d'article en vente -->
 				<div class="card" style="width: 18rem;">
