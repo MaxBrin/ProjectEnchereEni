@@ -103,7 +103,6 @@ public class ServletNouvelleVente extends HttpServlet {
 		try {
 			ArticlesMgr.ajoutArticle(article);
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
