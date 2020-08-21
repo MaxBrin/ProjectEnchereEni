@@ -22,31 +22,23 @@
 
 		<c:set var="erreur" value="${listErreur}" />
 
-
+		<!--  PSEUDO  -->
 		<label for="pseudo">Pseudo</label>
-		<c:choose>
-			<c:when test="${fn:contains(erreur,'Pseudo') }">
-				<input type="text" name="pseudo" id="erreur"
+		<input type="text" name="pseudo" id="${fn:contains(erreur,'Pseudo')?'erreur':'pseudo' }"
 					value="${utilisateur.pseudo }">
-			</c:when>
-			<c:otherwise>
-				<input type="text" name="pseudo" id="pseudo"
-					value="${utilisateur.pseudo }">
-			</c:otherwise>
-		</c:choose>
-
-		<!--  NOM -->
+	
+		<!--  NOM  -->
 		<label for="nom">Nom</label>
 		<input type="text" name="nom"
 			id="${fn:contains(erreur,'Nom')?'erreur':'nom'}"
 			value="${utilisateur.nom }" required="required"> 
 			
-		<!--  PRENOM -->
+		<!--  PRENOM  -->
 		<label for="prenom">Prénom</label>
 		<input type="text" name="prenom" id="${fn:contains(erreur,'Prenom')?'erreur': 'prenom' }"
 					value="${utilisateur.prenom }" required="required">
 			
-		<!--  EMAIL-->
+		<!--  EMAIL  -->
 		<label for="email">Email</label>
 		<input type="text" name="email" id="${fn:contains(erreur,'Email')?'erreur':'email' }"
 					value="${utilisateur.email }" required="required">

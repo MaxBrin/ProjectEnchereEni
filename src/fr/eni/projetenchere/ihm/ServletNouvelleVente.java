@@ -89,7 +89,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-
+		// Récupération des dates de l'enchère
 		try {
 			debutEnchere = LocalDateTime.of(LocalDate.parse(request.getParameter("debutEnchere")), LocalTime.now());
 			finEnchere = LocalDateTime.of(LocalDate.parse(request.getParameter("finEnchere")), LocalTime.now());
