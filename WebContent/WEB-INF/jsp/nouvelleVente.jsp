@@ -5,21 +5,20 @@
 	<head>
 	
 	
-	<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/Fragment/enTete.css">
+	
 		<meta charset="utf-8">
 	
 		<title>Nouvelle vente</title>
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/css/styleNouvelleVente.css">
 	</head>
 	
-	
+<div class="backgroundBody">	
 	<body>
 		<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp"/>
 	
 	
 	
-	
+
 		
 		<div id="image">
 		</div>
@@ -105,4 +104,5 @@
 		
 		
 	</body>
+</div>	
 </html>
