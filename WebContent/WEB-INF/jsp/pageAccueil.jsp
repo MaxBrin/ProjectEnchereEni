@@ -28,7 +28,7 @@
 		<div class="formulaire">
 			<form action="${pageContext.request.contextPath }/Accueil" method="post">
 				<label for="filtre" class="labelFiltre">Filtres</label>
-				 <input type="texte" placeholder="Ex : voiture, console" id="filtre">
+				 <input type="texte" placeholder="Ex : voiture, console" id="filtre" name="rechercherArticle">
 
 				<p>Catégorie :</p>
 

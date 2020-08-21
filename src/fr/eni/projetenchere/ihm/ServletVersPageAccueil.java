@@ -42,11 +42,13 @@ public class ServletVersPageAccueil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Rï¿½cupï¿½ration de la valeur du select
+//*********************************Traitement bouton select***********************************************
+
+		// Récupération de la valeur du select
 		String choixCategorie = request.getParameter("categorie");
 		int noCategorie = Integer.parseInt(choixCategorie);
 
-		// Crï¿½ation de la liste ï¿½ renvoyer pour l'afficher
+		// Création de la liste à renvoyer pour l'afficher
 		List<Article> listeAAfficher = new ArrayList<>();
 
 		if ("0".equals(choixCategorie)) {
@@ -62,6 +64,40 @@ public class ServletVersPageAccueil extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+
+//******************************Affichage articles en fonction de la recherche par nom en mode déconnexion**********************************************
+
+		// Initialisation et récupération de la liste de tous les articles de la bdd
+		List<Article> listeArticle = new ArrayList<>();
+		try {
+			listeArticle = ArticlesMgr.getListArticles();
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
+
+		// Je récupère la saisie de l'utilisateur
+		String rechercheUtilisateur = request.getParameter("rechercherArticle").toUpperCase();
+		// Je crée le tableau avec chaque mot de la recherche
+		String[] listeMotsRecherche = rechercheUtilisateur.split(" ");
+
+		List<Article> listeArticleFiltreeParNom = new ArrayList<>();
+
+		for (String mot : listeMotsRecherche) {
+			for (Article article : listeArticle) {
+				String nomArticle = article.getNomArticle().toUpperCase();
+				String[] motsDansNomArticle = nomArticle.split(" ");
+				for (String motDansNom : motsDansNomArticle) {
+					if (motDansNom.equals(mot)) {
+						listeArticleFiltreeParNom.add(article);
+						break;
+					}
+				}
+			}
+		}
+
+//**************************************************************************************		
+		// Envoie des informations
+		request.setAttribute("listeArticlesFiltreeParNom", listeArticleFiltreeParNom);
 		request = Chargement.chargementList(request);
 		request.setAttribute("listeArticlesAAfficher", listeAAfficher);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
