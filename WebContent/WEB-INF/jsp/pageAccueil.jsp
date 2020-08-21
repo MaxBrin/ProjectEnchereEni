@@ -7,7 +7,7 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Liste des enchères</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/stylePageAccueil.css">
 <link

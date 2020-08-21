@@ -6,7 +6,7 @@
 	<link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/styleNouvelleVente.css">
 	
-		<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	
 		<title>Nouvelle vente</title>
 		
