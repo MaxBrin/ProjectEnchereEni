@@ -5,21 +5,20 @@
 	<head>
 	
 	
-	<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/Fragment/enTete.css">
+	
 		<meta charset="utf-8">
 	
 		<title>Nouvelle vente</title>
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/css/styleNouvelleVente.css">
 	</head>
 	
-	
+<div class="fond">	
 	<body>
 		<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp"/>
 	
 	
 	
-	
+
 		
 		<div id="image">
 		</div>
@@ -88,7 +87,9 @@
 			<br>
 			<div>	
 				<label for="ville">Ville :</label>
-				<input type="text" id="ville" name="ville" value="${utilisateur.ville}" required="required">
+				
+					<input type="text" id="ville" name="ville" value="${utilisateur.ville}" required="required">
+				
 			</div>
 			</fieldset>
 		</div>
@@ -105,4 +106,5 @@
 		
 		
 	</body>
+</div>	
 </html>

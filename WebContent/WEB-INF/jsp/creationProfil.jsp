@@ -10,108 +10,123 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/Erreur.css">
 <title>Mon profil</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/styleCreationProfil.css">
+
 </head>
+<div class="fond">
+
 
 <body>
 	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp" />
+
+
 	<h1>Mon profil</h1>
 
 	<form action="${pageContext.request.contextPath }/CreationCompte"
 		method="post">
 
-
+		<!--  Initialisation Message Erreur  -->
 		<c:set var="erreur" value="${listErreur}" />
+<br>
+<table>
+<tr>	
+	<!--   Modification de l'id de l'input s'il y'a un message d'erreur qui permet de mettre des bordure en rouge -->
+	
+	<!--  PSEUDO  -->
+	<th>
+		<div class="marge">
+			<label for="pseudo">Pseudo :</label>
+			<input type="text" name="pseudo" id="${fn:contains(erreur,'Pseudo')?'erreur':'pseudo' }"
+			value="${utilisateur.pseudo }">
+		</div>	
+	</th>
+	
+	<!--  NOM  -->
+	<th>
+		<div class="marge">
+			<label for="nom">Nom</label> 
+			<input type="text" name="nom" id="${fn:contains(erreur,'Nom')?'erreur':'nom'}"
+			value="${utilisateur.nom }" required="required">
+		</div>
+	</th>
+</tr>
 
-
-		<label for="pseudo">Pseudo</label>
-		<c:choose>
-			<c:when test="${fn:contains(erreur,'Pseudo') }">
-				<input type="text" name="pseudo" id="erreur"
-					value="${utilisateur.pseudo }">
-			</c:when>
-			<c:otherwise>
-				<input type="text" name="pseudo" id="pseudo"
-					value="${utilisateur.pseudo }">
-			</c:otherwise>
-		</c:choose>
-
-		<!--  NOM -->
-		<label for="nom">Nom</label>
-		<input type="text" name="nom"
-			id="${fn:contains(erreur,'Nom')?'erreur':'nom'}"
-			value="${utilisateur.nom }" required="required"> 
-			
-		<!--  PRENOM -->
-		<label for="prenom">Prénom</label>
-		<input type="text" name="prenom" id="${fn:contains(erreur,'Prenom')?'erreur': 'prenom' }"
+<tr>	
+	<!--  PRENOM  -->	
+	<th>
+		<div class="marge">
+			<label for="prenom">Prénom :</label>
+			<input type="text" name="prenom" id="${fn:contains(erreur,'Prenom')?'erreur': 'prenom' }"
 					value="${utilisateur.prenom }" required="required">
+		</div>
+	</th>
 			
-		<!--  EMAIL-->
-		<label for="email">Email</label>
-		<input type="text" name="email" id="${fn:contains(erreur,'Email')?'erreur':'email' }"
+	<!--  EMAIL  -->
+	<th>
+		<div class="marge">
+			<label for="email">Email :</label>
+			<input type="text" name="email" id="${fn:contains(erreur,'Email')?'erreur':'email' }"
 					value="${utilisateur.email }" required="required">
+		</div>
+	</th>	
+</tr>
+
+<tr>
+	<!--  TELEPHONE  -->	
+	<th>
+	<div class="marge">	
+		<label for="telephone">Téléphone : </label>
+		<input type="text" name="telephone" id="${fn:contains(erreur,'Telephone')?'erreur' : 'telephone' }"
+		value="${utilisateur.telephone }">
+	</div>
+	</th>
+	
+	<!--  RUE  -->	
+	<th>
+	<div class="marge">
+		<label for="rue">Rue :</label>
+		<input type="text" name="rue" id="${fn:contains(erreur,'Rue')?'erreur':'rue'}"
+		value="${utilisateur.rue }">
+	</div>
+	</th>
+</tr>
+
+<tr>
+	<!--  CODE POSTAL  -->	
+	<th>
+	<div class="marge">
+		<label for="codePostal">Code postal :</label>
+		<input type="text" name="codePostal" id="${fn:contains(erreur,'CodePostal')? 'erreur' :'codePostal' }"
+		value="${utilisateur.codePostal }">
 		
-		
-		<label for="telephone">Téléphone</label>
-		<c:choose>
-			<c:when test="${fn:contains(erreur,'Telephone') }">
-				<input type="text" name="telephone" id="erreur"
-					value="${utilisateur.telephone }">
-			</c:when>
-			<c:otherwise>
-				<input type="text" name="telephone" id="telephone"
-					value="${utilisateur.telephone }">
-			</c:otherwise>
-		</c:choose>
+	</div>
+	</th>
 
-		<label for="rue">Rue</label>
-		<c:choose>
-			<c:when test="${fn:contains(erreur,'Rue') }">
-				<input type="text" name="rue" id="erreur"
-					value="${utilisateur.rue }">
-			</c:when>
-			<c:otherwise>
-				<input type="text" name="rue" id="rue" value="${utilisateur.rue }">
-			</c:otherwise>
-		</c:choose>
+	<!--  VILLE  -->	
+	<th>
+	<div class="marge">
+		<label for="ville">Ville :</label>
+		<input type="text" name="ville" id="${fn:contains(erreur,'Ville')?'erreur':'ville' }"
+		value="${utilisateur.ville }" />
+	</div>
+	</th>
+</tr>
 
-
-
-		<label for="codePostal">Code postal</label>
-		<c:choose>
-			<c:when test="${fn:contains(erreur,'CodePostal') }">
-				<input type="text" name="codePostal" id="erreur"
-					value="${utilisateur.codePostal }">
-			</c:when>
-			<c:otherwise>
-				<input type="text" name="codePostal" id="codePostal"
-					value="${utilisateur.codePostal }">
-			</c:otherwise>
-		</c:choose>
-
-		<label for="ville">Ville</label>
-		<c:choose>
-			<c:when test="${fn:contains(erreur,'Ville') }">
-				<input type="text" name="ville" id="erreur"
-					value="${utilisateur.ville }" />>
-					</c:when>
-			<c:otherwise>
-				<input type="text" name="ville" id="ville"
-					value="${utilisateur.ville}" />>
-					</c:otherwise>
-		</c:choose>
-
-
-
-		<!--  MOT DE PASSE -->
-		<label for="motDePasse">Mot de passe</label>
+<tr>
+	<!--  MOT DE PASSE -->
+	<th>
+		<label for="motDePasse">Mot de passe :</label>
 		<input type="password" name="motDePasse" id="${fn:contains(erreur,'MotDePasse')?'erreur':'motDePasse' }"
-					value="${utilisateur.motDePasse }" pattern="^(?=\\S*[a-z])(?=\\S*[A-Z])(?=\\S*\\d)(?=\\S*[^\\w\\s])\\S{8,}$">
+					value="${utilisateur.motDePasse }" >
+	</th>
+	<th>
+		<label for="confirmerMotDePasse">Confirmation :</label>
+		<input type="password" name="confirmerMotDePasse" id="motDePasse" >
+	</th>	
+</tr>
 
-		<label for="confirmerMotDePasse">Confirmer</label>
-		<input type="password" name="confirmerMotDePasse" id="motDePasse" pattern="^(?=\\S*[a-z])(?=\\S*[A-Z])(?=\\S*\\d)(?=\\S*[^\\w\\s])\\S{8,}$">
-			
 
+</table>
 		<h4>
 			<c:if test="${fn:contains(erreur,'PseudoNonValide') }">
 			Le pseudo n'est pas valide.<br>
@@ -163,11 +178,12 @@
 
 
 		</h4>
-
+	
 		<button type="submit">Enregistrer</button>
 		<a href="/ProjectEnchereEni/Accueil">Annuler</a>
 
 
 	</form>
 </body>
+</div>
 </html>

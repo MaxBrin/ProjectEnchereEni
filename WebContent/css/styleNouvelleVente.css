@@ -1,5 +1,10 @@
 @charset "utf-8";
 
+
+.fond{
+	background-color : #dddddd;
+}
+
 body{
 	padding : 20px;
 	background-color : #dddddd;
@@ -28,6 +33,7 @@ input {
 .inputMiseAPrix{
 	width: 70px;
 	
+	
 }
 
 .labeldescription{
@@ -40,9 +46,13 @@ input {
 }
 
 
+h1{
+	text-align: center;
+}
 
-
-
+.form{
+	padding : 100%;
+}
 
 
 
