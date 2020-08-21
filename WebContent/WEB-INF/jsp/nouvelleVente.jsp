@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/css/styleNouvelleVente.css">
 	</head>
 	
-<div class="backgroundBody">	
+<div class="fond">	
 	<body>
 		<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp"/>
 	
@@ -87,7 +87,9 @@
 			<br>
 			<div>	
 				<label for="ville">Ville :</label>
-				<input type="text" id="ville" name="ville" value="${utilisateur.ville}" required="required">
+				
+					<input type="text" id="ville" name="ville" value="${utilisateur.ville}" required="required">
+				
 			</div>
 			</fieldset>
 		</div>
