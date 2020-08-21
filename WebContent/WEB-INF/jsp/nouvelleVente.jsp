@@ -33,17 +33,17 @@
 		<form method="post" action="NouvelleVente">
 		<div>
 			<label for="nomArticle">Article : </label>
-			<input type="text" name="nomArticle" id="nomArticle">
+			<input type="text" name="nomArticle" id="nomArticle" required="required">
 		</div>
 		<br>
 		<div>
 			<label for="description" class="labeldescription">Description :</label>
-			<textarea rows="5" cols="15" id="description" name="description" class="inputdescription"></textarea>
+			<textarea rows="5" cols="15" id="description" name="description" class="inputdescription" required="required" ></textarea>
 		</div>	
 		<br><br><br><br><br>
 		<div>
 			<label for="categorie">Catégorie</label>
-			<select id="categorie" name="categorie">
+			<select id="categorie" name="categorie" required="required">
 				<option value="1">Informatique</option>
 				<option value="2">Ameublement</option>
 				<option value="3">Vêtements</option>
@@ -56,17 +56,17 @@
 			
 		<div>
 			<label for="miseAPrix">Mise à prix </label>
-			<input type="number" class="inputMiseAPrix" name="miseAPrix" step="1" min="0" >
+			<input type="number" class="inputMiseAPrix" name="miseAPrix" step="1" min="0" required="required" >
 		</div>
 		<br>
 		<div>
 			<label for="debutEnchere">Début de l'enchère </label>
-			<input type="date"  name="debutEnchere" id="debutEnchere">
+			<input type="date"  name="debutEnchere" id="debutEnchere" required="required">
 		</div>
 		<br>
 		<div>
 			<label for="finEnchere">Fin de l'enchère</label>
-			<input type="date" name="finEnchere" id="finEnchere">
+			<input type="date" name="finEnchere" id="finEnchere" required="required">
 		</div>	
 		<br>
 		<div class="Retrait">
@@ -78,17 +78,17 @@
 			<br>
 			<div>	
 				<label for="rue">Rue :</label>
-				<input type="text" id="rue" name="rue" value="${utilisateur.rue}">
+				<input type="text" id="rue" name="rue" value="${utilisateur.rue}" required="required">
 			</div>
 			<br>
 			<div>	
 				<label for="codePostal">Code postal :</label>
-				<input type="text" id="codePostal" name="codePostal" value="${utilisateur.codePostal}">
+				<input type="text" id="codePostal" name="codePostal" value="${utilisateur.codePostal}" required="required">
 			</div>
 			<br>
 			<div>	
 				<label for="ville">Ville :</label>
-				<input type="text" id="ville" name="ville" value="${utilisateur.ville}">
+				<input type="text" id="ville" name="ville" value="${utilisateur.ville}" required="required">
 			</div>
 			</fieldset>
 		</div>

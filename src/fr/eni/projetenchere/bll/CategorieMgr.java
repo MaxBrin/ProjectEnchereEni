@@ -23,4 +23,14 @@ public class CategorieMgr {
 		}
 		return listCategorie;
 	}
+
+	public static Categorie getCategorie(int noCategorie) throws BLLException {
+		Categorie categorie = new Categorie();
+		try {
+			categorie = categorieDAO.selectByNoCategorie(noCategorie);
+		} catch (DALException e) {
+			throw new BLLException("Erreur getCategorie", e);
+		}
+		return categorie;
+	}
 }

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.projetenchere.bll.ArticlesMgr;
 import fr.eni.projetenchere.bll.BLLException;
+import fr.eni.projetenchere.bll.CategorieMgr;
 import fr.eni.projetenchere.bll.UtilisateurMgr;
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
@@ -55,10 +56,10 @@ public class ServletNouvelleVente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
 		// R�cup�ration de l'utilisateur dans la session et de son id
 		HttpSession session = request.getSession();
-		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
 
 		// Je r�cup�re la liste des Articles en bdd
 		List<Article> listeArticles = new ArrayList<>();
@@ -81,7 +82,6 @@ public class ServletNouvelleVente extends HttpServlet {
 		int miseAPrix = 0;
 
 		// Creation de l'objet Categorie
-		Categorie categorie = new Categorie(noCategorie, categorieSaisie);
 
 		try {
 			noCategorie = Integer.parseInt(categorieSaisie);
@@ -97,6 +97,15 @@ public class ServletNouvelleVente extends HttpServlet {
 			// TODO MESSAGE ERREUR DATE
 		}
 		// TODO VERIF DONNEES
+		Utilisateur utilisateur = new Utilisateur();
+		Categorie categorie = new Categorie();
+		try {
+			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
+			categorie = CategorieMgr.getCategorie(noCategorie);
+		} catch (BLLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		Article article = new Article(nom, description, debutEnchere, finEnchere, miseAPrix, utilisateur, categorie);
 		listeArticles.add(article);
 
@@ -105,6 +114,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 }
