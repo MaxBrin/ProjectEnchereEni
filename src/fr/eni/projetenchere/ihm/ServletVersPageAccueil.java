@@ -44,11 +44,11 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 //*********************************Traitement bouton select***********************************************
 
-		// Récupération de la valeur du select
+		// Rï¿½cupï¿½ration de la valeur du select
 		String choixCategorie = request.getParameter("categorie");
 		int noCategorie = Integer.parseInt(choixCategorie);
 
-		// Création de la liste à renvoyer pour l'afficher
+		// Crï¿½ation de la liste ï¿½ renvoyer pour l'afficher
 		List<Article> listeAAfficher = new ArrayList<>();
 
 		if ("0".equals(choixCategorie)) {
@@ -65,31 +65,25 @@ public class ServletVersPageAccueil extends HttpServlet {
 			}
 		}
 
-//******************************Affichage articles en fonction de la recherche par nom en mode déconnexion**********************************************
+//******************************Affichage articles en fonction de la recherche par nom en mode dï¿½connexion**********************************************
 
-		// Initialisation et récupération de la liste de tous les articles de la bdd
-		List<Article> listeArticle = new ArrayList<>();
-		try {
-			listeArticle = ArticlesMgr.getListArticles();
-		} catch (BLLException e) {
-			e.printStackTrace();
-		}
-
-		// Je récupère la saisie de l'utilisateur
+		// Je rï¿½cupï¿½re la saisie de l'utilisateur
 		String rechercheUtilisateur = request.getParameter("rechercherArticle").toUpperCase();
-		// Je crée le tableau avec chaque mot de la recherche
+		// Je crï¿½e le tableau avec chaque mot de la recherche
 		String[] listeMotsRecherche = rechercheUtilisateur.split(" ");
 
 		List<Article> listeArticleFiltreeParNom = new ArrayList<>();
-
+		if (rechercheUtilisateur.trim().length() == 0) {
+			listeArticleFiltreeParNom = listeAAfficher;
+		}
 		for (String mot : listeMotsRecherche) {
-			for (Article article : listeArticle) {
+			for (Article article : listeAAfficher) {
 				String nomArticle = article.getNomArticle().toUpperCase();
 				String[] motsDansNomArticle = nomArticle.split(" ");
 				for (String motDansNom : motsDansNomArticle) {
-					if (motDansNom.equals(mot)) {
+					if (motDansNom.contains(mot)) {
 						listeArticleFiltreeParNom.add(article);
-						break;
+
 					}
 				}
 			}
@@ -97,9 +91,9 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 //**************************************************************************************		
 		// Envoie des informations
-		request.setAttribute("listeArticlesFiltreeParNom", listeArticleFiltreeParNom);
+
 		request = Chargement.chargementList(request);
-		request.setAttribute("listeArticlesAAfficher", listeAAfficher);
+		request.setAttribute("listeArticlesAAfficher", listeArticleFiltreeParNom);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		rd.forward(request, response);
 
