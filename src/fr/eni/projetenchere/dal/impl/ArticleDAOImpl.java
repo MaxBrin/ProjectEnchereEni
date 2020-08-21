@@ -15,7 +15,7 @@ import fr.eni.projetenchere.dal.ArticleDAO;
 import fr.eni.projetenchere.dal.DALException;
 
 public class ArticleDAOImpl implements ArticleDAO {
-	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS VALUES (?,?,?,?,?,?,?,?)";
+	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS VALUES (?,?,?,?,?,null,?,?)";
 	private static final String SELECTALL = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie";
 	private static final String SELECTBYID = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE no_article=?";
 	private static final String SELECTBY_NOUTILISATEUR = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE a.no_utilisateur=?";
@@ -33,9 +33,9 @@ public class ArticleDAOImpl implements ArticleDAO {
 			pStmt.setTimestamp(3, Timestamp.valueOf(article.getDebutEnchere()));
 			pStmt.setTimestamp(4, Timestamp.valueOf(article.getFinEnchere()));
 			pStmt.setInt(5, article.getPrixInitial());
-			pStmt.setInt(6, article.getPrixVente());
-			pStmt.setInt(7, article.getUtilisateur().getNoUtilisateur());
-			pStmt.setInt(8, article.getCategorie().getNoCategorie());
+
+			pStmt.setInt(6, article.getUtilisateur().getNoUtilisateur());
+			pStmt.setInt(7, article.getCategorie().getNoCategorie());
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if (rs.next()) {

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +17,8 @@
 		<h2>Détail vente</h2>
 	</div>
 	
-	<div>	
-		<p>Nom article : ${article.nom}</p>
+		<div>	
+		<p>Nom article : ${article.nomArticle}</p>
 	</div>
 	
 	<div>
@@ -24,7 +26,7 @@
 	</div>
 	
 	<div>
-		<p>Catégorie : ${article.categorie}</p>
+		<p>Catégorie : ${article.categorie.libelle}</p>
 	</div>
 	
 	<div>
@@ -37,11 +39,17 @@
 	</div>
 	
 	<div>
-		<p>Fin de l'enchère : ${article.finEnchere}</p>
+		<p>Fin de l'enchère : <fmt:parseDate value="${article.finEnchere}"
+								pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" type="both" />
+							<fmt:formatDate value="${parsedDate }" dateStyle="long"
+								timeStyle="medium" type="both" /></p>
 	</div>
 	
 	<div>
-		<p>Retrait : ${utilisateur.rue}, ${utilisateur.codePostal}, ${utilisateur.ville}</p>
+		<p>Retrait : <br>
+			Rue : ${utilisateur.rue}<br>00
+			Code Postal : ${utilisateur.codePostal}<br>
+			Ville : ${utilisateur.ville}<br></p>
 	</div>
 	
 	<div>
@@ -51,7 +59,7 @@
 		
 	<div>
 		<label for="proposition">Ma proposition :</label>
-		<input type="number" id="proposition" name="proposition" min="0" max="500" step="5">
+		<input type="number" id="proposition" name="proposition" min="0" max="500" step="5" >
 		<button type="submit">Enchérir</button>
 	</div>
 

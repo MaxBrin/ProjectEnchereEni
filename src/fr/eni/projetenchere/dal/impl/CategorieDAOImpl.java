@@ -1,5 +1,6 @@
 package fr.eni.projetenchere.dal.impl;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,7 @@ import fr.eni.projetenchere.dal.DALException;
 
 public class CategorieDAOImpl implements CategorieDAO {
 	private static final String SELECTALL = "SELECT no_categorie,libelle FROM CATEGORIES";
+	private static final String SELECTBYNOCATEGORIE = "SELECT no_categorie,libelle FROM CATEGORIES WHERE no_categorie =?";
 
 	@Override
 	public List<Categorie> selectALL() throws DALException {
@@ -28,4 +30,20 @@ public class CategorieDAOImpl implements CategorieDAO {
 		}
 		return categories;
 	}
+
+	@Override
+	public Categorie selectByNoCategorie(int noCategorie) throws DALException {
+		Categorie categorie = new Categorie();
+		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(SELECTBYNOCATEGORIE)) {
+			pStmt.setInt(1, noCategorie);
+			ResultSet rs = pStmt.executeQuery();
+			if (rs.next()) {
+				categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
+			}
+		} catch (SQLException e) {
+			throw new DALException("Erreur selectByNoCategorie ", e);
+		}
+		return categorie;
+	}
+
 }
