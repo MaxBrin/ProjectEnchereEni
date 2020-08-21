@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import fr.eni.projetenchere.bll.BLLException;
 import fr.eni.projetenchere.bll.UtilisateurMgr;
 import fr.eni.projetenchere.bo.Utilisateur;
+import fr.eni.projetenchere.ihm.modele.Chargement;
 
 /**
  * Servlet implementation class CreationCompte
@@ -61,8 +62,8 @@ public class ServletVersCreationCompte extends HttpServlet {
 				e.printStackTrace();
 			}
 			HttpSession session = request.getSession();
-
-			session.setAttribute("utilisateur", utilisateur.getNoUtilisateur());
+			session.setAttribute("noUtilisateur", utilisateur.getNoUtilisateur());
+			request = Chargement.chargementList(request);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 			rd.forward(request, response);
 		} else {

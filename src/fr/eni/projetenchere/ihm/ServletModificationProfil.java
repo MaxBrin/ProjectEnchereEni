@@ -1,8 +1,6 @@
 package fr.eni.projetenchere.ihm;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,11 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eni.projetenchere.bll.ArticlesMgr;
 import fr.eni.projetenchere.bll.BLLException;
 import fr.eni.projetenchere.bll.UtilisateurMgr;
-import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Utilisateur;
+import fr.eni.projetenchere.ihm.modele.Chargement;
 
 /**
  * Servlet implementation class ServletModificationProfil
@@ -141,13 +138,7 @@ public class ServletModificationProfil extends HttpServlet {
 					e.printStackTrace();
 				}
 				session.setAttribute("utilisateur", utilisateur);
-				List<Article> articles = new ArrayList<>();
-				try {
-					articles = ArticlesMgr.getListArticles();
-				} catch (BLLException e) {
-					e.printStackTrace();
-				}
-				request.setAttribute("listeArticle", articles);
+				request = Chargement.chargementList(request);
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 				rd.forward(request, response);
 			}

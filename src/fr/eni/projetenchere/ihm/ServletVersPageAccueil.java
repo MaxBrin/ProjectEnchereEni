@@ -13,9 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.projetenchere.bll.ArticlesMgr;
 import fr.eni.projetenchere.bll.BLLException;
-import fr.eni.projetenchere.bll.CategorieMgr;
 import fr.eni.projetenchere.bo.Article;
-import fr.eni.projetenchere.bo.Categorie;
+import fr.eni.projetenchere.ihm.modele.Chargement;
 
 /**
  * Servlet implementation class Accueil
@@ -23,17 +22,6 @@ import fr.eni.projetenchere.bo.Categorie;
 @WebServlet("/Accueil")
 public class ServletVersPageAccueil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static List<Categorie> listeCategories = new ArrayList<>();
-
-	@Override
-	public void init() throws ServletException {
-		try {
-			listeCategories = CategorieMgr.getListCategorie();
-		} catch (BLLException e) {
-			e.printStackTrace();
-		}
-		super.init();
-	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -46,15 +34,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 		if ("mesVentes".equals(choix)) {
 			request.setAttribute("choixAchat", "ventes");
 		}
-		List<Article> articles = new ArrayList<>();
-		try {
-			articles = ArticlesMgr.getListArticles();
-		} catch (BLLException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("listeArticlesAAfficher", articles);
-
-		request.setAttribute("listeCategories", listeCategories);
+		request = Chargement.chargementList(request);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		rd.forward(request, response);
 	}
@@ -82,8 +62,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
-		request.setAttribute("listeCategories", listeCategories);
+		request = Chargement.chargementList(request);
 		request.setAttribute("listeArticlesAAfficher", listeAAfficher);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		rd.forward(request, response);
