@@ -38,5 +38,6 @@
 	<classpathentry kind="lib" path="C:/Users/lpinot2020/Desktop/apache-tomcat-8.5.57/lib/tomcat-util-scan.jar"/>
 	<classpathentry kind="lib" path="C:/Users/lpinot2020/Desktop/apache-tomcat-8.5.57/lib/tomcat-websocket.jar"/>
 	<classpathentry kind="lib" path="C:/Users/lpinot2020/Desktop/apache-tomcat-8.5.57/lib/websocket-api.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/jsp/affichageProfil.jsp"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

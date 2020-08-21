@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/styleNouvelleVente.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/styleNouvelleVente.css">
 	
 		<meta charset="utf-8">
 	
