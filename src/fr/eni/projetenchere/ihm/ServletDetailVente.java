@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.projetenchere.bll.ArticlesMgr;
 import fr.eni.projetenchere.bll.BLLException;
+import fr.eni.projetenchere.bll.UtilisateurMgr;
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Utilisateur;
 
@@ -29,17 +30,26 @@ public class ServletDetailVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Récupération de l'utilisateur dans la session
-		Utilisateur utilisateur = null;
-		HttpSession session = request.getSession();
-		utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		// Rï¿½cupï¿½ration de l'utilisateur dans la session
 
-		// Recuperation du paramètre idArticle
+		HttpSession session = request.getSession();
+		Integer noUtilisateur = (Integer) session.getAttribute("noUtilisateur");
+		Utilisateur utilisateur = new Utilisateur();
+		if (!(noUtilisateur == null)) {
+			try {
+				utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
+			} catch (BLLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+		// Recuperation du paramï¿½tre idArticle
 		String noArticle = request.getParameter("idArticle");
 		int noIdArticle = Integer.parseInt(noArticle);
-		Article article = null;
+		Article article = new Article();
 
-		// Récuperation de l'article a partir de son id
+		// Rï¿½cuperation de l'article a partir de son id
 		try {
 			// TODO:at fr.eni.projetenchere.bll.ArticlesMgr.getArticle(ArticlesMgr.java:125)
 			article = ArticlesMgr.getArticle(noIdArticle);
@@ -47,7 +57,7 @@ public class ServletDetailVente extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// Envoie du paramètre article et de l'utilisateur
+		// Envoie du paramï¿½tre article et de l'utilisateur
 		request.setAttribute("article", article);
 		request.setAttribute("utilisateur", utilisateur);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp");
