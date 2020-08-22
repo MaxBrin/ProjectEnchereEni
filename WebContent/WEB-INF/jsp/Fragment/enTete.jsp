@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -12,12 +14,14 @@
 	crossorigin="anonymous">
 
 <title>En-tête Bootstrap</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/Fragment/enTete.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/Fragment/enTete.css">
 </head>
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="${pageContext.request.contextPath }/Accueil">ENI-Enchères</a>
+		<a class="navbar-brand"
+			href="${pageContext.request.contextPath }/Accueil">ENI-Enchères</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -27,8 +31,8 @@
 			<ul class="navbar-nav ml-auto">
 				<c:choose>
 					<c:when test="${noUtilisateur != null }">
-						<li class="nav-item "><a class="nav-link"
-							href="">Enchères </a></li>
+						<li class="nav-item "><a class="nav-link" href="">Enchères
+						</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/ProjectEnchereEni/NouvelleVente">Vendre un article</a></li>
 						<li class="nav-item"><a class="nav-link"

@@ -31,129 +31,129 @@
 
 		<form action="${pageContext.request.contextPath}/ModificationProfil"
 			method="post">
-			<div class="row">
-				<div class="col-lg-12">
+			<div class="row mx-auto">
+				<div class="mx-auto" style="width: 200px;">
 					<h1>Mon Profil</h1>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-2">
+				<div class="col-md-2">
 					<label for="pseudo">Pseudo</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Pseudo"
-							aria-label="Pseudo" value="${utilisateur.pseudo}">
+							aria-label="Pseudo" name="pseudo" value="${utilisateur.pseudo}" required="required">
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-md-2">
 					<label for="nom">Nom</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Nom"
-							aria-label="Nom" value="${utilisateur.nom}" id="nom">
+							aria-label="Nom" name="nom" value="${utilisateur.nom}" id="nom" required="required">
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-2">
+				<div class="col-md-2">
 					<label for="prenom">Prénom</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Prénom"
-							aria-label="prenom" value="${utilisateur.prenom}">
+							aria-label="prenom" name="prenom" value="${utilisateur.prenom}" required="required">
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-md-2">
 					<label for="email">Email</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Email"
-							aria-label="email" value="${utilisateur.email}">
+							aria-label="email" name="email" value="${utilisateur.email}" required="required">
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-2">
+				<div class="col-md-2">
 					<label for="telephone">Téléphone</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Téléphone"
-							aria-label="telephone" value="${utilisateur.telephone}">
+							aria-label="telephone" name="telephone" value="${utilisateur.telephone}" required="required">
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-md-2">
 					<label for="rue">Rue</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Rue"
-							aria-label="rue" value="${utilisateur.rue}">
+							aria-label="rue" name="rue" value="${utilisateur.rue}" required="required">
 					</div>
 				</div>
 			</div>
-				<div class="row">
-				<div class="col-sm-2">
-					<label for="telephone">Code postal</label>
+			<div class="row">
+				<div class="col-md-2">
+					<label for="codePostal">Code postal</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Code postal"
-							aria-label="telephone" value="${utilisateur.codePostal}">
+							aria-label="codePostal" name="codePostal" value="${utilisateur.codePostal}" required="required">
 					</div>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-md-2">
 					<label for="ville">Ville</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Ville"
-							aria-label="ville" value="${utilisateur.ville}">
+							aria-label="ville" name="ville" value="${utilisateur.ville}" required="required">
 					</div>
 				</div>
 			</div>
-			<div class="labelsA">
-
-					for="codePostal">Code postal</label><br> <label
-					for="ancienMotDePasse">Mot de passe actuel</label><br> <label
-					for="nouveauMotDePasse">Nouveau mot de passe </label><br>
-			</div>
-
-			<div class="inputA">
-
-				<input type="text" name="telephone" value="${utilisateur.telephone}"
-					id="telephone"><br> <input type="text"
-					name="codePostal" value="${utilisateur.codePostal}" id="codePostal"><br>
-				<input type="password" name="ancienMotDePasse" id="ancienMotDePasse"><br>
-				<input type="password" name="nouveauMotDePasse"
-					id="nouveauMotDePasse"><br>
-			</div>
-
-
-			<div class="colonneB">
-				<div class="labelsB">
-					<label for="confirmerNouveauMotDePasse">Confirmation</label><br>
+			<div class="row">
+				<div class="col-md-2">
+					<label for="ancienMotDePasse">Mot de passe actuel</label>
 				</div>
-				<div class="inputB">
-					<br> <input type="text" name="ville"
-						value="${utilisateur.ville}" id="ville"> <br> <input
-						type="password" name="confirmerNouveauMotDePasse"
-						id="confirmerNouveauMotDePasse"><br>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="password" class="form-control" 
+							aria-label="ancienMotDePasse" name="ancienMotDePasse" required="required">
+					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-2">
+					<label for="nouveauMotDePasse">Nouveau mot de passe</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="password" class="form-control" 
+							aria-label="nouveauMotDePasse" name="nouveauMotDePasse">
+					</div>
+				</div>
+				<div class="col-md-2">
+					<label for="confirmerNouveauMotDePasse">Confirmation Mot de Passe</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="password" class="form-control" 
+							aria-label="confirmerNouveauMotDePasse" name="confirmerNouveauMotDePasse">
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-2">
+					<label for="credit">Crédit : </label><c:out value=" ${utilisateur.credit}"/>
+				</div>
+			</div>
 
-
-			<p>
-				<label for="credit">Crédit : </label>${utilisateur.credit}
-			</p>
-
-			<c:if test="${message != null}">
-				<p>${message}</p>
-			</c:if>
 			<button type="button" class="btn btn-primary" type="submit">Enregistrer</button>
 			<!-- Button trigger modal -->
 			<button type="button" class="btn btn-secondary" data-toggle="modal"
