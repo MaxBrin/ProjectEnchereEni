@@ -57,6 +57,7 @@ public class ServletVersCreationCompte extends HttpServlet {
 			utilisateur.setMotDePasse(null);
 		}
 		String erreur = UtilisateurMgr.verifUtilisateur(utilisateur);
+		RequestDispatcher rd;
 		if (erreur.isEmpty()) {
 			try {
 				UtilisateurMgr.ajoutUtilisateur(utilisateur);
@@ -67,16 +68,15 @@ public class ServletVersCreationCompte extends HttpServlet {
 			session.setAttribute("noUtilisateur", utilisateur.getNoUtilisateur());
 			request = Chargement.chargementList(request);
 
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
-			rd.forward(request, response);
+			rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
+
 		} else {
 			request.setAttribute("utilisateur", utilisateur);
 			request.setAttribute("listErreur", erreur);
 			System.out.println(utilisateur);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/creationProfil.jsp");
-			rd.forward(request, response);
+			rd = request.getRequestDispatcher("/WEB-INF/jsp/creationProfil.jsp");
 		}
-
+		rd.forward(request, response);
 	}
 
 }

@@ -39,7 +39,6 @@ public class ServletDetailVente extends HttpServlet {
 			try {
 				utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 			} catch (BLLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}

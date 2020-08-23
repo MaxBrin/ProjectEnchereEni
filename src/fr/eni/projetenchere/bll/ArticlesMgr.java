@@ -3,6 +3,8 @@ package fr.eni.projetenchere.bll;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.dal.ArticleDAO;
 import fr.eni.projetenchere.dal.DALException;
@@ -127,29 +129,30 @@ public class ArticlesMgr {
 		return article;
 	}
 
-	// Méthode pour vérifier si une nouvelle vente est conforme
+	// Méthode pour vérifier si les saisie de l'utilisateur permettent de créer une
+	// nouvelle vente
 
-	public static StringBuilder verifierVente(Article article) {
-		StringBuilder sb = new StringBuilder();
-		if (article.getNomArticle().equals("")) {
-			sb.append("Nom d'article obligatoire");
+	public static String verifierVenteArticle(Article article, String rue, String codePostal, String ville) {
+		StringBuilder erreur = new StringBuilder();
+		if (article.getNomArticle().trim().equals("") || article.getNomArticle() == null) {
+			erreur.append("nomArticle");
 		}
 		if (article.getPrixInitial() == 0) {
-			sb.append("Le prix de départ ne peut pas être égal à zero");
+			erreur.append("prixInitial");
 		}
 		if (article.getFinEnchere().isBefore(article.getDebutEnchere())) {
-			sb.append("La date de fin d'enchère doit être située après celle de début d'enchère");
+			erreur.append("datesEnchères");
 		}
-		if ((article.getUtilisateur().getRue()).equals("")) {
-			sb.append("Veuillez aisir un numero et une rue");
+		if (rue.trim().equals("")) {
+			erreur.append("rue");
 		}
-		if ((article.getUtilisateur().getCodePostal()).equals("")) {
-			sb.append("Veuillez saisir un code postal");
+		if (codePostal.trim().equals("") || !(StringUtils.isNumeric(codePostal))) {
+			erreur.append("codePostal");
 		}
-		if ((article.getUtilisateur().getVille()).equals("")) {
-			sb.append("Veuillez saisir une ville");
+		if (ville.trim().equals("")) {
+			erreur.append("ville");
 		}
-		return sb;
+		return erreur.toString();
 	}
 
 }
