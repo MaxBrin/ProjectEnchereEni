@@ -50,7 +50,6 @@ public class ServletDetailVente extends HttpServlet {
 
 		// R�cuperation de l'article a partir de son id
 		try {
-			// TODO:at fr.eni.projetenchere.bll.ArticlesMgr.getArticle(ArticlesMgr.java:125)
 			article = ArticlesMgr.getArticle(noIdArticle);
 		} catch (BLLException e) {
 			e.printStackTrace();

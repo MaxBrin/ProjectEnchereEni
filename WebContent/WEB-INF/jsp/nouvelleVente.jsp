@@ -38,7 +38,9 @@
 		
 		<div>
 			<label for="nomArticle">Article : </label>
+
 			<input type="text" name="nomArticle" id="nomArticle" required="required" value="${nomArticle}">
+
 		</div>
 		<br>
 		<div>
