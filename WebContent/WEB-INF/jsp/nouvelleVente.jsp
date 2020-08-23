@@ -38,7 +38,7 @@
 		
 		<div>
 			<label for="nomArticle">Article : </label>
-			<input type="text" name="nomArticle" id="nomArticle" class="${fn:contains( }"required="required">
+			<input type="text" name="nomArticle" id="nomArticle" "required="required">
 		</div>
 		<br>
 		<div>

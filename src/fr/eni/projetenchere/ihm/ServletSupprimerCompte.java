@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.projetenchere.bll.BLLException;
 import fr.eni.projetenchere.bll.UtilisateurMgr;
-import fr.eni.projetenchere.bo.Utilisateur;
 import fr.eni.projetenchere.ihm.modele.Chargement;
 
 /**
@@ -29,9 +28,11 @@ public class ServletSupprimerCompte extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
+
 		try {
-			UtilisateurMgr.effacerUtilisateur(utilisateur.getNoUtilisateur());
+			// TODO Effacer Données Utilisateur avant d'effacer Utilisateur
+			UtilisateurMgr.effacerUtilisateur(noUtilisateur);
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
