@@ -1,6 +1,7 @@
 package fr.eni.projetenchere.bll;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -132,27 +133,28 @@ public class ArticlesMgr {
 	// Méthode pour vérifier si les saisie de l'utilisateur permettent de créer une
 	// nouvelle vente
 
-	public static String verifierVenteArticle(Article article, String rue, String codePostal, String ville) {
-		StringBuilder erreur = new StringBuilder();
+	public static HashMap<String, String> verifierVenteArticle(Article article, String rue, String codePostal,
+			String ville) {
+		HashMap<String, String> erreurs = new HashMap<String, String>();
 		if (article.getNomArticle().trim().equals("") || article.getNomArticle() == null) {
-			erreur.append("nomArticle");
+			erreurs.put("nomArticle", "Nom de l'article invalide. ");
 		}
 		if (article.getPrixInitial() == 0) {
-			erreur.append("prixInitial");
+			erreurs.put("prixInitial", "Le prix initial de vente ne peut pas être égal à zero. ");
 		}
 		if (article.getFinEnchere().isBefore(article.getDebutEnchere())) {
-			erreur.append("datesEnchères");
+			erreurs.put("datesEnchères", "Dates d'enchères invalides");
 		}
 		if (rue.trim().equals("")) {
-			erreur.append("rue");
+			erreurs.put("rue", "Adresse invalide");
 		}
 		if (codePostal.trim().equals("") || !(StringUtils.isNumeric(codePostal))) {
-			erreur.append("codePostal");
+			erreurs.put("codePostal", "Adresse invalide");
 		}
 		if (ville.trim().equals("")) {
-			erreur.append("ville");
+			erreurs.put("ville", "Adresse invalide");
 		}
-		return erreur.toString();
+		return erreurs;
 	}
 
 }

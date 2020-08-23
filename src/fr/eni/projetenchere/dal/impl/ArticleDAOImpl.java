@@ -33,7 +33,6 @@ public class ArticleDAOImpl implements ArticleDAO {
 			pStmt.setTimestamp(3, Timestamp.valueOf(article.getDebutEnchere()));
 			pStmt.setTimestamp(4, Timestamp.valueOf(article.getFinEnchere()));
 			pStmt.setInt(5, article.getPrixInitial());
-
 			pStmt.setInt(6, article.getUtilisateur().getNoUtilisateur());
 			pStmt.setInt(7, article.getCategorie().getNoCategorie());
 			pStmt.executeUpdate();

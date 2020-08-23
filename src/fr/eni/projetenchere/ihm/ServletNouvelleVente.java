@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,12 +40,15 @@ public class ServletNouvelleVente extends HttpServlet {
 		HttpSession session = request.getSession();
 		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
 		Utilisateur utilisateur = new Utilisateur();
+		List<Categorie> listeCategorie = null;
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
+			listeCategorie = CategorieMgr.getListCategorie();
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
 		request.setAttribute("utilisateur", utilisateur);
+		request.setAttribute("listeCategories", listeCategorie);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente.jsp");
 		rd.forward(request, response);
 	}
@@ -70,9 +75,13 @@ public class ServletNouvelleVente extends HttpServlet {
 		// Declaration de variables
 		LocalDateTime debutEnchere = null;
 		LocalDateTime finEnchere = null;
-		int noCategorie = 0;
 		int miseAPrix = 0;
-
+		List<Categorie> listeCategorie = null;
+		try {
+			listeCategorie = CategorieMgr.getListCategorie();
+		} catch (BLLException e1) {
+			e1.printStackTrace();
+		}
 		// Récupération des saisies de l'utilisateur sur l'article et l'adresse
 		String nom = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
@@ -91,39 +100,41 @@ public class ServletNouvelleVente extends HttpServlet {
 
 		// Tentative de transformation des Strings en int
 		try {
-			noCategorie = Integer.parseInt(categorieSaisie);
 			miseAPrix = Integer.parseInt(miseAPrixSaisie);
 		} catch (Exception e) {
 			// TODO MESSAGE ERREUR CATEGORIE / MISE A PRIX
 		}
 
 		// Creation de la Categorie
-		Categorie categorie = null;
-		try {
-			categorie = CategorieMgr.getCategorie(noCategorie);
-		} catch (BLLException e2) {
-			e2.printStackTrace();
-		}
+		Categorie categorie = new Categorie(categorieSaisie);
 
 		// Creation de l'article à partir des données récupérées et ajout dans la liste
 		// des Articles
 		Article article = new Article(nom, description, debutEnchere, finEnchere, miseAPrix, utilisateur, categorie);
 		// Vérification de la validité des données saisies avant de valider l'article
-		String erreur = ArticlesMgr.verifierVenteArticle(article, rue, codePostal, ville);
-		if (erreur.isEmpty()) {
+		HashMap<String, String> erreurs = ArticlesMgr.verifierVenteArticle(article, rue, codePostal, ville);
+		RequestDispatcher rd;
+		if (erreurs.isEmpty()) {
 			try {
+				// TODO:ajouterEnchere en bdd
 				ArticlesMgr.ajoutArticle(article);
-
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
-
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
-			rd.forward(request, response);
+			rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		} else {
-			request.setAttribute("listeErreur", erreur);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente");
+			request.setAttribute("listeCategories", listeCategorie);
+			request.setAttribute("listeErreur", erreurs);
+			request.setAttribute("nomArticle", nom);
+			request.setAttribute("description", description);
+			request.setAttribute("categorieSaisie", categorieSaisie);
+			request.setAttribute("miseAPrix", miseAPrixSaisie);
+			request.setAttribute("utilisateur", utilisateur);
+			request.setAttribute("noUtilisateur", noUtilisateur);
+
+			rd = request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente.jsp");
 		}
+		rd.forward(request, response);
 
 	}
 

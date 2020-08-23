@@ -38,21 +38,20 @@
 		
 		<div>
 			<label for="nomArticle">Article : </label>
-			<input type="text" name="nomArticle" id="nomArticle" class="${fn:contains( }"required="required">
+			<input type="text" name="nomArticle" id="nomArticle" required="required" value="${nomArticle}">
 		</div>
 		<br>
 		<div>
 			<label for="description" class="labeldescription">Description :</label>
-			<textarea rows="5" cols="15" id="description" name="description" class="inputdescription" required="required" ></textarea>
+			<textarea rows="5" cols="15" id="description" name="description" class="inputdescription">${description}</textarea>
 		</div>	
 		<br><br><br><br><br>
 		<div>
 			<label for="categorie">Catégorie</label>
 			<select id="categorie" name="categorie" required="required">
-				<option value="1">Informatique</option>
-				<option value="2">Ameublement</option>
-				<option value="3">Vêtements</option>
-				<option value="4">Sport & Loisirs</option>
+			<c:forEach var="categorieDeLaListe" items="${listeCategories}">
+				<option value="${categorieDeLaListe.libelle}" ${(categorieSaisie == categorieDeLaListe.libelle)?'selected':''}>${categorieDeLaListe.libelle}</option>
+			</c:forEach>
 			</select>
 		</div>
 		<br>
@@ -61,7 +60,7 @@
 			
 		<div>
 			<label for="miseAPrix">Mise à prix </label>
-			<input type="number" class="inputMiseAPrix" name="miseAPrix" step="1" min="1" required="required" >
+			<input type="number" class="inputMiseAPrix" name="miseAPrix" step="1" min="1" required="required" value="${miseAPrix}">
 		</div>
 		<br>
 		<div>
@@ -100,6 +99,11 @@
 			</fieldset>
 		</div>
 		<br>
+		<c:forEach var="messageErreur" items="${listeErreur.values()}">
+		<p>${messageErreur}</p>
+		</c:forEach>
+		
+		
 		<div>
 			<button type="submit">Enregister</button>
 		

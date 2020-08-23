@@ -36,7 +36,7 @@
 						<li class="nav-item"><a class="nav-link"
 							href="/ProjectEnchereEni/NouvelleVente">Vendre un article</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/ProjectEnchereEni/ModificationProfil">Mon profil</a></li>
+							href="/ProjectEnchereEni/ModificationProfil?utilisateurTitulaire=${noUtilisateur}">Mon profil</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/ProjectEnchereEni/Deconnexion">Déconnexion</a></li>
 					</c:when>
