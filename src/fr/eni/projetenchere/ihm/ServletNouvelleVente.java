@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,15 +40,14 @@ public class ServletNouvelleVente extends HttpServlet {
 		HttpSession session = request.getSession();
 		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
 		Utilisateur utilisateur = new Utilisateur();
-		List<Categorie> listeCategorie = null;
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
-			listeCategorie = CategorieMgr.getListCategorie();
 		} catch (BLLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		request = Chargement.chargementListCategorie(request);
 		request.setAttribute("utilisateur", utilisateur);
-		request.setAttribute("listeCategories", listeCategorie);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente.jsp");
 		rd.forward(request, response);
 	}
@@ -125,16 +123,11 @@ public class ServletNouvelleVente extends HttpServlet {
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
-			Chargement.chargementList(request);
+			request = Chargement.chargementListArticle(request);
+			request = Chargement.chargementListCategorie(request);
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		} else {
-			List<Categorie> listeCategorie = null;
-			try {
-				listeCategorie = CategorieMgr.getListCategorie();
-			} catch (BLLException e1) {
-				e1.printStackTrace();
-			}
-			request.setAttribute("listeCategories", listeCategorie);
+			request = Chargement.chargementListCategorie(request);
 			request.setAttribute("listeErreur", erreurs);
 			request.setAttribute("nomArticle", nom);
 			request.setAttribute("description", description);

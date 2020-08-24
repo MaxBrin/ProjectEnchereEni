@@ -27,7 +27,8 @@ public class ServletDeconnexion extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		request = Chargement.chargementList(request);
+		request = Chargement.chargementListArticle(request);
+		request = Chargement.chargementListCategorie(request);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		rd.forward(request, response);
 	}
