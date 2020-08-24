@@ -1,6 +1,7 @@
 package fr.eni.projetenchere.bll;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -92,37 +93,33 @@ public class UtilisateurMgr {
 	}
 
 	/**
-	 * Méthode pour vérifier les données de l'utilisateur
+	 * Méthode pour vérifier si les saisie de l'utilisateur permettent de créer une
+	 * nouvelle vente
 	 * 
 	 * @param utilisateur
 	 * @return
 	 */
-	public static String verifUtilisateur(Utilisateur utilisateur) {
-		StringBuilder erreur = new StringBuilder();
-		// TEST données saisie
-
-		// Pseudo
+	public static HashMap<String, String> verifierUtilisateur(Utilisateur utilisateur) {
+		HashMap<String, String> erreurs = new HashMap<String, String>();
+		// Pseudo : utilisation d'une librairie pour vérifier qu'il est Alphanumeric
 		if (utilisateur.getPseudo() == null || (!(StringUtils.isAlphanumeric(utilisateur.getPseudo())))
 				|| utilisateur.getPseudo().trim().equals("")) {
-			erreur.append("PseudoNonValide");
+			erreurs.put("pseudoNonValide", "Le pseudo n'est pas valide. ");
 		}
-
 		// Nom
 		if (utilisateur.getNom() == null || utilisateur.getNom().trim().equals("")) {
-			erreur.append("Nom");
+			erreurs.put("nom", "Le nom doit être renseigné. ");
 		}
-
 		// Prenom
 		if (utilisateur.getPrenom() == null || utilisateur.getPrenom().trim().equals("")) {
-			erreur.append("Prenom");
+			erreurs.put("prenom", "Le prénom doit être renseigné.");
 		}
-
-		// Email
+		// Email : Utilisation d'une librairie pour vérifier que l'email est
+		// valide(exemple@exemple.com)
 		EmailValidator validator = EmailValidator.getInstance();
 		if (!(validator.isValid(utilisateur.getEmail()))) {
-			erreur.append("EmailNonValide");
+			erreurs.put("emailNonValide", "L'email n'est pas valide.");
 		}
-
 		// Test si Pseudo et Email déjà présent
 
 		// Récuperation de la liste des utilisateurs
@@ -136,42 +133,40 @@ public class UtilisateurMgr {
 		// présent
 		for (Utilisateur utilisateurBD : listUtilisateur) {
 			if (utilisateurBD.getPseudo().equals(utilisateur.getPseudo())) {
-				erreur.append("PseudoPresent");
+				erreurs.put("pseudoPresent", "Le pseudo est déjà présent.");
 			}
 			if (utilisateurBD.getEmail().equals(utilisateur.getEmail())) {
-				erreur.append("EmailPresent");
+				erreurs.put("emailPresent", "L'email est déjà présent.");
 			}
 		}
-
 		// Téléphone
 		if (!(StringUtils.isNumeric(utilisateur.getTelephone())) || (!(utilisateur.getTelephone().length() == 10))) {
-			erreur.append("Telephone");
+			erreurs.put("telephone", "Le numéro de téléphone n'est pas valide");
 
 		}
-
 		// Rue
 		if (utilisateur.getRue() == null || utilisateur.getRue().trim().equals("")) {
-			erreur.append("Rue");
+			erreurs.put("rue", "La rue doit être renseigné.");
 		}
 
 		// CodePostal
 		if (!(StringUtils.isNumeric(utilisateur.getCodePostal())) || (!(utilisateur.getCodePostal().length() == 5))) {
-			erreur.append("CodePostal");
+			erreurs.put("codePostal", "Le code postal doit être renseigné.");
 		}
 
 		// Ville
 		if (utilisateur.getVille() == null || utilisateur.getVille().trim().equals("")) {
-			erreur.append("Ville");
+			erreurs.put("ville", "La ville doit être renseigné.");
 		}
 		// Test si les mot de passe ne sont pas identiquent
 		if (utilisateur.getMotDePasse() == null) {
-			erreur.append("MotDePasseNonIdentique");
+			erreurs.put("MotDePasseNonIdentique", "Les mots de passe ne sont pas identiques");
 
 		} else if (!(PasswordValidator.isLegalPassword(utilisateur.getMotDePasse()))) {
-			erreur.append("MotDePasseVerif");
+			erreurs.put("MotDePasseVerif", "Le mot de passe n'est pas valide.");
 		}
 
-		return erreur.toString();
+		return erreurs;
 	}
 
 }

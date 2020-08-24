@@ -1,7 +1,6 @@
 package fr.eni.projetenchere.ihm;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,17 +29,14 @@ public class ServletVisualiserProfil extends HttpServlet {
 		// Récupération du vendeur
 		int noVendeur = Integer.parseInt(request.getParameter("utilisateurVendeur"));
 		// Initialisation des variables
-		List<Utilisateur> listeUtilisateur = null;
 		Utilisateur utilisateurAAfficher = null;
 		// Récupération de la liste des utilisateurs et de l'utilisateur titulaire du
 		// compte
 		try {
-			listeUtilisateur = UtilisateurMgr.getListUtilisateur();
 			utilisateurAAfficher = UtilisateurMgr.getUtilisateur(noVendeur);
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-
 		request.setAttribute("utilisateurAAfficher", utilisateurAAfficher);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/affichageProfil.jsp");
 		rd.forward(request, response);
