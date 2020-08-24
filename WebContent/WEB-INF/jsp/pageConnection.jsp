@@ -35,28 +35,55 @@
 			</div>
 		</div>
 		
+		<br>
+		
+		<div class="row mx-auto">
 		
 		 <form action="Connexion" method="post">
-		<div class="col-md-4"></div>
+		<div class="col-sd-3"></div>
 		
 			
-			<label for="identifiant">Identifiant</label>
-			<input type="text" name="identifiant" id="identifiant">
+			<div class="row mx-auto">
+				<div class="col-md-4">
+					<label for="filtre" class="labelFiltre">Identifiant</label>
+				</div>
+				<div class="col-sm-8">
+					<input type="text" class="form-control"
+						placeholder="" aria-label="labelFiltre"
+						name="identifiant">
+				</div>
+			</div>
 			
-			<label for="motDePasse">Mot de passe</label>
-			<input type="password" name="motDePasse" id="motDePasse">
+			<br>
 			
-			<button type="submit" class="btn btn-secondary btn-lg">Connexion</button>
-			<c:if test="${erreurAuthentification!=null }">${erreurAuthentification }</c:if>
-			<p>Se souvenir de moi</p>
-			<input type="checkbox" name="seSouvenir">
+			<div class="row mx-auto">
+				<div class="col-md-4">
+					<label for="filtre" class="labelFiltre">Mot de passe</label>
+				 </div>
+				<div class="col-sm-8">
+					<input type="password" class="form-control"
+						placeholder="" aria-label="labelFiltre"
+						name="motDePasse">
+				</div>
+			</div>
+			
+			<br>	
+						
+			<div class="col-md-10">
+			<input type="checkbox" name="encheresOuvertes" disabled="disabled">Se souvenir de moi<br>
+			</div>
+			
 			
 			<a href="">Mot de passe oublié</a>
 			
-		
+			<br><br>
+			
+			<button type="submit" class="btn btn-secondary btn-lg">Connexion</button>
+			<c:if test="${erreurAuthentification!=null }">${erreurAuthentification }</c:if>
+			
 				
 		</form>
-	
+	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

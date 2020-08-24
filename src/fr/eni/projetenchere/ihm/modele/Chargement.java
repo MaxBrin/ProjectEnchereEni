@@ -12,20 +12,38 @@ import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
 
 public class Chargement {
-
-	public static HttpServletRequest chargementList(HttpServletRequest request) {
+	/**
+	 * Méthode pour mettre en attribut de request la liste d'article
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public static HttpServletRequest chargementListArticle(HttpServletRequest request) {
 		List<Article> articles = new ArrayList<>();
-		List<Categorie> listeCategories = new ArrayList<>();
 		try {
 			articles = ArticlesMgr.getListArticles();
-			listeCategories = CategorieMgr.getListCategorie();
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
 		request.setAttribute("listeArticlesAAfficher", articles);
-		request.setAttribute("listeCategories", listeCategories);
-
 		return request;
 
+	}
+
+	/**
+	 * Méthode pour mettre ne attribut de request la liste de catégorie
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public static HttpServletRequest chargementListCategorie(HttpServletRequest request) {
+		List<Categorie> listeCategories = new ArrayList<>();
+		try {
+			listeCategories = CategorieMgr.getListCategorie();
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("listeCategories", listeCategories);
+		return request;
 	}
 }

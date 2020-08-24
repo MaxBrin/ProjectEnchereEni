@@ -1,6 +1,7 @@
 package fr.eni.projetenchere.ihm;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,8 +26,6 @@ public class ServletVersCreationCompte extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Utilisateur utilisateur = new Utilisateur("", "", "", "", "", "", "", "", "", 0, false);
-		String erreur = "";
-		request.setAttribute("listErreur", erreur);
 		request.setAttribute("utilisateur", utilisateur);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/creationProfil.jsp");
 		rd.forward(request, response);
@@ -56,9 +55,9 @@ public class ServletVersCreationCompte extends HttpServlet {
 		if (!(motDePasse.equals(confirmationMdp))) {
 			utilisateur.setMotDePasse(null);
 		}
-		String erreur = UtilisateurMgr.verifUtilisateur(utilisateur);
+		HashMap<String, String> erreurs = UtilisateurMgr.verifierUtilisateur(utilisateur);
 		RequestDispatcher rd;
-		if (erreur.isEmpty()) {
+		if (erreurs.isEmpty()) {
 			try {
 				UtilisateurMgr.ajoutUtilisateur(utilisateur);
 			} catch (BLLException e) {
@@ -66,13 +65,13 @@ public class ServletVersCreationCompte extends HttpServlet {
 			}
 			HttpSession session = request.getSession();
 			session.setAttribute("noUtilisateur", utilisateur.getNoUtilisateur());
-			request = Chargement.chargementList(request);
-
+			request = Chargement.chargementListArticle(request);
+			request = Chargement.chargementListCategorie(request);
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 
 		} else {
 			request.setAttribute("utilisateur", utilisateur);
-			request.setAttribute("listErreur", erreur);
+			request.setAttribute("listErreur", erreurs);
 			System.out.println(utilisateur);
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/creationProfil.jsp");
 		}
