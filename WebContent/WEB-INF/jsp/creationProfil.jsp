@@ -79,92 +79,116 @@
 			</div>
 
 			<!--  NOM  -->
-			<th>
-				<div class="marge">
-					<label for="nom">Nom</label> <input type="text" name="nom"
-						class="${fn:contains(erreur,'Nom')?'erreur':'nom'}"
-						value="${utilisateur.nom }" required="required">
+			<div class="row">
+			<div class="col-md-2">
+					<label for="email">Nom</label>
 				</div>
-			</th>
-			</tr>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text"
+							class="form-control ${fn:contains(erreur,'Nom')?'border border-danger':'border border-secondary' }"
+							placeholder="Nom" aria-label="nom" name="nom"
+							value="${utilisateur.nom}" required="required">
+					</div>
+				</div>
+			
 
-			<tr>
 				<!--  PRENOM  -->
-				<th>
-					<div class="marge">
-						<label for="prenom">Prénom :</label> <input type="text"
-							name="prenom"
-							class="${fn:contains(erreur,'Prenom')?'erreur': 'prenom' }"
-							value="${utilisateur.prenom }" required="required">
+				<div class="col-md-2">
+					<label for="email">Prénom</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text"
+							class="form-control ${fn:contains(erreur,'Prénom')?'border border-danger':'border border-secondary' }"
+							placeholder="prenom" aria-label="prenom" name="prenom"
+							value="${utilisateur.prenom}" required="required">
 					</div>
-				</th>
+				</div>
+			</div>	
+				
 
-				<!--  EMAIL  -->
-				<th>
-					<div class="marge">
-						<label for="email">Email :</label> <input type="text" name="email"
-							class="${fn:contains(erreur,'Email')?'erreur':'email' }"
-							value="${utilisateur.email }" required="required">
-					</div>
-				</th>
-			</tr>
-
-			<tr>
 				<!--  TELEPHONE  -->
-				<th>
-					<div class="marge">
-						<label for="telephone">Téléphone : </label> <input type="text"
-							name="telephone"
-							class="${fn:contains(erreur,'Telephone')?'erreur' : 'telephone' }"
-							value="${utilisateur.telephone }">
+				
+				<div class="row">
+			<div class="col-md-2">
+					<label for="telephone">Téléphone</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text"
+							class="form-control ${fn:contains(erreur,'Téléphone')?'border border-danger':'border border-secondary' }"
+							placeholder="Téléphone" aria-label="telephone" name="telephone"
+							value="${utilisateur.telephone}" required="required">
 					</div>
-				</th>
+				</div>
+				
 
 				<!--  RUE  -->
-				<th>
-					<div class="marge">
-						<label for="rue">Rue :</label> <input type="text" name="rue"
-							class="${fn:contains(erreur,'Rue')?'erreur':'rue'}"
-							value="${utilisateur.rue }">
+				
+				<div class="col-md-2">
+					<label for="email">Rue</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text"
+							class="form-control ${fn:contains(erreur,'Rue')?'border border-danger':'border border-secondary' }"
+							placeholder="rue" aria-label="rue" name="rue"
+							value="${utilisateur.rue}" required="required">
 					</div>
-				</th>
-			</tr>
-
-			<tr>
+				</div>
+			</div>
+				
+			
 				<!--  CODE POSTAL  -->
-				<th>
-					<div class="marge">
-						<label for="codePostal">Code postal :</label> <input type="text"
-							name="codePostal"
-							class="${fn:contains(erreur,'CodePostal')? 'erreur' :'codePostal' }"
-							value="${utilisateur.codePostal }">
-
+				
+					<div class="row">
+				<div class="col-md-2">
+					<label for="codePostal">Code postal</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text"
+							class="form-control ${fn:contains(erreur,'Code postal')?'border border-danger':'border border-secondary' }"
+							placeholder="Code postal" aria-label="codePostal" name="codePostal"
+							value="${utilisateur.codePostal}" required="required">
 					</div>
-				</th>
+				</div>
+				
+
 
 				<!--  VILLE  -->
-				<th>
-					<div class="marge">
-						<label for="ville">Ville :</label> <input type="text" name="ville"
-							class="${fn:contains(erreur,'Ville')?'erreur':'ville' }"
-							value="${utilisateur.ville }" />
+				
+				<div class="col-md-2">
+					<label for="ville">Ville</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text"
+							class="form-control ${fn:contains(erreur,'Ville')?'border border-danger':'border border-secondary' }"
+							placeholder="ville" aria-label="ville" name="ville"
+							value="${utilisateur.ville}" required="required">
 					</div>
-				</th>
-			</tr>
+				</div>
+			</div>
+				
 
-			<tr>
 				<!--  MOT DE PASSE -->
-				<th><label for="motDePasse">Mot de passe :</label> <input
-					type="password" name="motDePasse"
-					class="${fn:contains(erreur,'MotDePasse')?'erreur':'motDePasse' }"
-					value="${utilisateur.motDePasse }"></th>
-				<th><label for="confirmerMotDePasse">Confirmation :</label> <input
-					type="password" name="confirmerMotDePasse" id="motDePasse">
-				</th>
-			</tr>
-
-
-			</table>
+				
+						<div class="row">
+			<div class="col-md-2">
+					<label for="motDePasse">Mot de passe</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="password"
+							class="form-control ${fn:contains(erreur,'Mot de passe')?'border border-danger':'border border-secondary' }"
+							placeholder="Mot de passe" aria-label="motDePasse" name="motDePasse"
+							value="${utilisateur.motDePasse}" required="required">
+					</div>
+				</div>
+	</table>
+			
 			<h4>
 
 
@@ -210,9 +234,28 @@
 
 
 			</h4>
-
-			<button type="submit">Enregistrer</button>
+			
+			
+			<div class="row">
+				<div class="col-md-2">
+					<button type="submit" class="btn btn-secondary btn-lg">Enregistrer</button>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<a href="/ProjectEnchereEni/Accueil">Annuler</a>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			<!--  <div class="row">
+			<div class="col-md-2">
+				<button type="submit" class="btn btn-secondary btn-lg">Enregistrer</button>
+			</div>
 			<a href="/ProjectEnchereEni/Accueil">Annuler</a>
+			</div>-->
+			
 		</form>
 	</div>
 </body>
