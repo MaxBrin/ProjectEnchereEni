@@ -39,152 +39,245 @@
 				</div>
 			</div>
 			<br> <br>
-
-
+			<!--  Initialisation de la liste d'erreur dans une variable -->
+			<c:set var="erreurs" value="${listeErreur }" />
 			<div class="row">
 
 				<!--  PSEUDO  -->
-				<div class="col-md-2">
+				<div class="col-sm-2">
 					<label for="pseudo">Pseudo</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Pseudo"
-							aria-label="Pseudo" name="pseudo" value="${utilisateur.pseudo}"
-							required="required">
+						<input type="text"
+							class="form-control ${erreurs.containsKey('pseudoNonValide')||erreurs.containsKey('pseudoPresent')?'border border-danger':'border border-secondary' }"
+							placeholder="Pseudo" aria-label="Pseudo" name="pseudo"
+							value="${utilisateur.pseudo}" required="required">
 					</div>
 				</div>
 
 				<!--  EMAIL  -->
-				<div class="col-md-2">
+				<div class="col-sm-2">
 					<label for="email">Email</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Email"
-							aria-label="email" name="email" value="${utilisateur.email}"
-							required="required">
+						<input type="text"
+							class="form-control ${erreurs.containsKey('emailNonValide')||erreurs.containsKey('emailPresent')?'border border-danger':'border border-secondary' }"
+							placeholder="Email" aria-label="email" name="email"
+							value="${utilisateur.email}" required="required">
 					</div>
 				</div>
 			</div>
+			<!--  Afficher message d'erreurs -->
+			<div class="row">
+				<div class="col-sm-6">
+					<c:if test="${erreurs.containsKey('pseudoNonValide') }">
+						<p class="text-danger">${erreurs.get('pseudoNonValide')}</p>
+					</c:if>
 
+					<c:if test="${erreurs.containsKey('pseudoPresent')}">
+						<p class="text-danger">${erreurs.get('pseudoPresent')}</p>
+					</c:if>
+				</div>
+				<div class="col-sm-6">
+					<c:if test="${erreurs.containsKey('emailNonValide') }">
+						<p class="text-danger">${erreurs.get('emailNonValide')}</p>
+					</c:if>
+
+					<c:if test="${erreurs.containsKey('emailPresent')}">
+						<p class="text-danger">${erreurs.get('emailPresent')}</p>
+					</c:if>
+				</div>
+			</div>
 			<div class="row">
 
 				<!--  NOM  -->
-				<div class="col-md-2">
+				<div class="col-sm-2">
 					<label for="nom">Nom</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Nom"
-							aria-label="Nom" name="nom" value="${utilisateur.nom}" id="nom"
-							required="required">
+						<input type="text"
+							class="form-control ${erreurs.containsKey('nom')?'border border-danger':'border border-secondary' }"
+							placeholder="Nom" aria-label="Nom" name="nom"
+							value="${utilisateur.nom}" id="nom" required="required">
 					</div>
 				</div>
 
 				<!--  PRENOM  -->
-				<div class="col-md-2">
+				<div class="col-sm-2">
 					<label for="prenom">Prénom</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Prénom"
-							aria-label="prenom" name="prenom" value="${utilisateur.prenom}"
-							required="required">
+						<input type="text"
+							class="form-control ${erreurs.containsKey('prenom')?'border border-danger':'border border-secondary' }"
+							placeholder="Prénom" aria-label="prenom" name="prenom"
+							value="${utilisateur.prenom}" required="required">
 					</div>
 				</div>
 
 			</div>
-			<div class="row">
 
+			<!--  Afficher message d'erreurs -->
+			<div class="row">
+				<div class="col-sm-6">
+					<c:if test="${erreurs.containsKey('nom')}">
+						<p class="text-danger">${erreurs.get('nom')}</p>
+					</c:if>
+				</div>
+				<div class="col-sm-6">
+					<c:if test="${erreurs.containsKey('prenom')}">
+						<p class="text-danger">${erreurs.get('prenom')}</p>
+					</c:if>
+				</div>
+			</div>
+
+			<div class="row">
 				<!--  TELEPHONE  -->
-				<div class="col-md-2">
+				<div class="col-sm-2">
 					<label for="telephone">Téléphone</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Téléphone"
-							aria-label="telephone" name="telephone"
+						<input type="text"
+							class="form-control ${erreurs.containsKey('telephone')?'border border-danger':'border border-secondary' }"
+							placeholder="Téléphone" aria-label="telephone" name="telephone"
 							value="${utilisateur.telephone}" required="required">
 					</div>
 				</div>
 
 				<!--  RUE  -->
-				<div class="col-md-2">
+				<div class="col-sm-2">
 					<label for="rue">Rue</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Rue"
-							aria-label="rue" name="rue" value="${utilisateur.rue}"
-							required="required">
+						<input type="text"
+							class="form-control ${erreurs.containsKey('rue')?'border border-danger':'border border-secondary' }"
+							placeholder="Rue" aria-label="rue" name="rue"
+							value="${utilisateur.rue}" required="required">
 					</div>
 				</div>
 			</div>
-
-			<!--  CODE POSTAL  -->
+			<!--  Afficher message d'erreurs -->
 			<div class="row">
-				<div class="col-md-2">
+				<div class="col-sm-6">
+					<c:if test="${erreurs.containsKey('telephone')}">
+						<p class="text-danger">${erreurs.get('telephone')}</p>
+					</c:if>
+				</div>
+				<div class="col-sm-6">
+					<c:if test="${erreurs.containsKey('rue')}">
+						<p class="text-danger">${erreurs.get('rue')}</p>
+					</c:if>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<!--  CODE POSTAL  -->
+				<div class="col-sm-2">
 					<label for="codePostal">Code postal</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Code postal"
-							aria-label="codePostal" name="codePostal"
-							value="${utilisateur.codePostal}" required="required">
+						<input type="text"
+							class="form-control ${erreurs.containsKey('codePostal')?'border border-danger':'border border-secondary' }"
+							placeholder="Code postal" aria-label="codePostal"
+							name="codePostal" value="${utilisateur.codePostal}"
+							required="required">
 					</div>
 				</div>
 
 				<!--  VILLE  -->
-				<div class="col-md-2">
+				<div class="col-sm-2">
 					<label for="ville">Ville</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Ville"
-							aria-label="ville" name="ville" value="${utilisateur.ville}"
-							required="required">
+						<input type="text"
+							class="form-control ${erreurs.containsKey('ville')?'border border-danger':'border border-secondary' }"
+							placeholder="Ville" aria-label="ville" name="ville"
+							value="${utilisateur.ville}" required="required">
 					</div>
 				</div>
 			</div>
+			<!--  Afficher message d'erreurs -->
 			<div class="row">
-
+				<div class="col-sm-6">
+					<c:if test="${erreurs.containsKey('codePostal')}">
+						<p class="text-danger">${erreurs.get('codePostal')}</p>
+					</c:if>
+				</div>
+				<div class="col-sm-6">
+					<c:if test="${erreurs.containsKey('ville')}">
+						<p class="text-danger">${erreurs.get('ville')}</p>
+					</c:if>
+				</div>
+			</div>
+			
+			<div class="row">
 				<!--  MOT DE PASSE ACTUEL  -->
-				<div class="col-md-2">
+				<div class="col-sm-2">
 					<label for="ancienMotDePasse">Mot de passe actuel</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="password" class="form-control"
+						<input type="password"
+							class="form-control ${erreurs.containsKey('MotDePasseNonValide')?'border border-danger':'border border-secondary' }"
 							aria-label="ancienMotDePasse" name="ancienMotDePasse"
 							required="required">
 					</div>
 				</div>
 			</div>
+			
+			<!--  Afficher message d'erreurs -->
+			<div class="row">
+				<div class="col-sm-6">
+					<c:if test="${erreurs.containsKey('MotDePasseNonValide')}">
+						<p class="text-danger">${erreurs.get('MotDePasseNonValide')}</p>
+					</c:if>
+				</div>
+			</div>
+			
 			<div class="row">
 
 				<!--  NOUVEAU MOT DE PASSE  -->
-				<div class="col-md-2">
+				<div class="col-sm-2">
 					<label for="nouveauMotDePasse">Nouveau mot de passe</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="password" class="form-control"
-							aria-label="nouveauMotDePasse" name="nouveauMotDePasse">
+						<input type="password"
+							class="form-control ${erreurs.containsKey('MotDePasseDifferent')?'border border-danger':'border border-secondary' }"
+							aria-label="nouveauMotDePasse" name="nouveauMotDePasse"
+							pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$">
 					</div>
 				</div>
 
 				<!--  CONFIRMATION DU MOT DE PASSE  -->
-				<div class="col-md-2">
+				<div class="col-sm-2">
 					<label for="confirmerNouveauMotDePasse">Confirmation Mot de
 						Passe</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="password" class="form-control"
+						<input type="password"
+							class="form-control ${erreurs.containsKey('MotDePasseDifferent')?'border border-danger':'border border-secondary' }"
 							aria-label="confirmerNouveauMotDePasse"
-							name="confirmerNouveauMotDePasse">
+							name="confirmerNouveauMotDePasse"
+							pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$">
 					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-6">
+					<c:if test="${erreurs.containsKey('MotDePasseDifferent')}">
+						<p class="text-danger">${erreurs.get('MotDePasseDifferent')}</p>
+					</c:if>
 				</div>
 			</div>
 
@@ -199,7 +292,7 @@
 			<div class="row mx-auto">
 				<div class="mx-auto">
 					<!--  BUTTONS MODIFIER ET SUPPRIMER  -->
-					<button type="button" class="btn btn-primary" type="submit">Enregistrer</button>
+					<button class="btn btn-primary" type="submit">Enregistrer</button>
 					<!-- Button trigger modal -->
 					<button type="button" class="btn btn-secondary" data-toggle="modal"
 						data-target="#Suppression">Supprimer le compte</button>
