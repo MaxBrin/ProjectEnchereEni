@@ -21,108 +21,184 @@
 
 <body>
 	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp" />
+	<div class="container">
+		<!--   AFFICHAGE TITRE  -->
 
+		<div class="row mx-auto">
+			<div class="mx-auto" style="width: 500px;">
+				<h1>Nouvelle Vente</h1>
+			</div>
+		</div>
 
-
-
-
-	<div id="image"></div>
-
-	<div>
-		<h1>Nouvelle Vente</h1>
-	</div>
-
-	<div class="article">
 
 		<form method="post" action="NouvelleVente">
 			<!--  Initialisation Message Erreur  -->
 			<c:set var="erreur" value="${listeErreur}" />
 
-			<div>
-				<label for="nomArticle">Article : </label> <input type="text"
-					name="nomArticle" id="nomArticle" required="required"
-					value="${nomArticle}">
+			<!--  NOM ARTICLE  -->
+			<div class="row mx-auto">
+				<div class="col-md-2">
+					<label for="nomArticle">Article :</label>
+				</div>
+				<div class="col-sm-6">
+					<div class="input-group mb-3">
+						<input type="text"
+							class="form-control ${erreur.containsKey('nomArticle')?'border border-danger':'border border-secondary' }"
+							placeholder="Nom de l'article à vendre" aria-label="nomArticle"
+							name="nomArticle" value="${article.nomArticle}"
+							required="required">
+					</div>
+				</div>
+			</div>
 
+			<!--  DESCRIPTION ARTICLE  -->
+			<div class="row mx-auto">
+				<div class="col-md-2">
+					<label for="description">Description :</label>
+				</div>
+				<div class="col-sm-6">
+					<div class="input-group mb-3">
+						<textarea rows="5" cols="15"
+							class="form-control"
+							placeholder="Description" aria-label="description"
+							name="description">${article.description}</textarea>
+					</div>
+				</div>
 			</div>
-			<br>
-			<div>
-				<label for="description" class="labeldescription">Description
-					:</label>
-				<textarea rows="5" cols="15" id="description" name="description"
-					class="inputdescription">${description}</textarea>
+
+			<!-- CATEGORIE -->
+			<div class="row mx-auto">
+				<div class="col-md-2">
+					<label for="categorie">Catégorie</label>
+				</div>
+				<div class="col-sm-2">
+					<div class="input-group mb-3">
+						<select class="form-control" aria-label="categorie"
+							name="categorie" required="required">
+							<c:forEach var="categorieDeLaListe" items="${listeCategories}">
+								<option value="${categorieDeLaListe.noCategorie}"
+									${(categorieSaisie == categorieDeLaListe.noCategorie)?'selected':''}>${categorieDeLaListe.libelle}</option>
+							</c:forEach>
+
+						</select>
+					</div>
+				</div>
 			</div>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<div>
-				<label for="categorie">Catégorie</label> <select id="categorie"
-					name="categorie" required="required">
-					<c:forEach var="categorieDeLaListe" items="${listeCategories}">
-						<option value="${categorieDeLaListe.libelle}"
-							${(categorieSaisie == categorieDeLaListe.libelle)?'selected':''}>${categorieDeLaListe.libelle}</option>
-					</c:forEach>
-				</select>
-			</div>
-			<br>
-			<div>
-				<p>Photo de l'article :</p>
+
+			<!-- PHOTO -->
+			<div class="row mx-auto">
+				<div class="col-md-2">
+					<label for="photo">Photo de l'article</label>
+				</div>
 				<a href=""></a>
-
-				<div>
-					<label for="miseAPrix">Mise à prix </label> <input type="number"
-						class="inputMiseAPrix" name="miseAPrix" step="1" min="1"
-						required="required" value="${miseAPrix}">
+			</div>
+			<br>
+			<!-- MISE A PRIX -->
+			<div class="row mx-auto">
+				<div class="col-md-2">
+					<label for="miseAPrix">Mise à prix </label>
 				</div>
-				<br>
-				<div>
-					<label for="debutEnchere">Début de l'enchère </label> <input
-						type="date" name="debutEnchere" id="debutEnchere"
-						required="required">
+				<div class="col-sm-2">
+					<input type="number" aria-label="miseAPrix"
+						class="form-control ${fn:contains(erreur,'prixInitial')?'border border-danger':'border border-secondary' }"
+						name="miseAPrix" step="1" min="1" required="required" placeholder="Entrez votre prix"
+						value="${article.miseAPrix}">
 				</div>
-				<br>
-				<div>
-					<label for="finEnchere">Fin de l'enchère</label> <input type="date"
-						name="finEnchere" id="finEnchere" required="required">
+			</div>
+			<br>
+			<!-- DEBUT DE L'ENCHERE -->
+			<div class="row mx-auto">
+				<div class="col-md-2">
+					<label for="debutEnchere">Début de l'enchère :</label>
 				</div>
-				<br>
-				<div class="Retrait">
-					<fieldset>
+				<div class="col-sm-3">
+					<input type="date" aria-label="debutEnchere"
+						class="form-control ${erreur.containsKey('datesEncheres')?'border border-danger':'border border-secondary' }"
+						name="debutEnchere" required="required"
+						value="${article.debutEnchere}">
+				</div>
+			</div>
+			<br>
 
+			<!-- FIN DE L'ENCHERE -->
+			<div class="row mx-auto">
+				<div class="col-md-2">
+					<label for="finEnchere">Fin de l'enchère :</label>
+				</div>
+				<div class="col-sm-3">
+					<input type="date" aria-label="finEnchere"
+						class="form-control ${erreur.containsKey('datesEncheres')?'border border-danger':'border border-secondary' }"
+						name="finEnchere" required="required"
+						value="${article.finEnchere}">
+				</div>
+			</div>
+			<br>
 
-						<legend>Retrait</legend>
+			<!--   RETRAIT  -->
+			<fieldset>
+				<legend>Retrait</legend>
 
-						<br>
-						<div>
-							<label for="rue">Rue :</label> <input type="text" id="rue"
-								name="rue" value="${utilisateur.rue}" required="required">
+				<!--   RUE  -->
+				<div class="row mx-auto">
+					<div class="col-md-2">
+						<label for="rue">Rue :</label>
+					</div>
+					<div class="col-sm-4">
+						<div class="input-group mb-3">
+							<input
+								class="form-control ${erreur.containsKey('rue')?'border border-danger':'border border-secondary' }"
+								placeholder="Rue" aria-label="rue" name="rue"
+								value="${utilisateur.rue }">
 						</div>
-						<br>
-						<div>
-							<label for="codePostal">Code postal :</label> <input type="text"
-								id="codePostal" name="codePostal"
-								value="${utilisateur.codePostal}" required="required">
-						</div>
-						<br>
-						<div>
-							<label for="ville">Ville :</label> <input type="text" id="ville"
-								name="ville" value="${utilisateur.ville}" required="required">
-
-						</div>
-					</fieldset>
+					</div>
 				</div>
-				<br>
-				<c:forEach var="messageErreur" items="${listeErreur.values()}">
-					<p>${messageErreur}</p>
-				</c:forEach>
 
-
-				<div>
-					<button type="submit">Enregister</button>
-
-					<a href="">Annuler</a>
+				<!--   CODE POSTAL  -->
+				<div class="row mx-auto">
+					<div class="col-md-2">
+						<label for="codePostal">Code postal :</label>
+					</div>
+					<div class="col-sm-4">
+						<div class="input-group mb-3">
+							<input
+								class="form-control ${erreur.containsKey('codePostal')?'border border-danger':'border border-secondary' }"
+								placeholder="Code Postal" aria-label="codePostal"
+								name="codePostal" value="${utilisateur.codePostal }">
+						</div>
+					</div>
 				</div>
+			
+				<!--   VILLE  -->
+				<div class="row mx-auto">
+					<div class="col-md-2">
+						<label for="ville">Ville :</label>
+					</div>
+					<div class="col-sm-4">
+						<div class="input-group mb-3">
+							<input
+								class="form-control ${erreur.containsKey('ville')?'border border-danger':'border border-secondary' }"
+								placeholder="Ville" aria-label="ville" name="ville"
+								value="${utilisateur.ville }">
+						</div>
+					</div>
+				</div>
+
+
+			</fieldset>
+
+			<br>
+			<c:forEach var="messageErreur" items="${listeErreur.values()}">
+				<p>${messageErreur}</p>
+			</c:forEach>
+
+
+			<div class="row mx-auto">
+				<div class="mx-auto">
+					<button type="submit" class="btn btn-primary">Enregister</button>
+
+					<a href="${pageContext.request.contextPath }/Accueil" class="btn btn-secondary">Annuler</a>
+				</div>
+			</div>
 		</form>
 	</div>
 

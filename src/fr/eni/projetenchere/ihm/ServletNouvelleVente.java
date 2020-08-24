@@ -23,6 +23,7 @@ import fr.eni.projetenchere.bll.UtilisateurMgr;
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
 import fr.eni.projetenchere.bo.Utilisateur;
+import fr.eni.projetenchere.ihm.modele.Chargement;
 
 /**
  * Servlet implementation class ServletNouvelleVente
@@ -76,16 +77,12 @@ public class ServletNouvelleVente extends HttpServlet {
 		LocalDateTime debutEnchere = null;
 		LocalDateTime finEnchere = null;
 		int miseAPrix = 0;
-		List<Categorie> listeCategorie = null;
-		try {
-			listeCategorie = CategorieMgr.getListCategorie();
-		} catch (BLLException e1) {
-			e1.printStackTrace();
-		}
+		int categorieSaisie = 0;
+
 		// Récupération des saisies de l'utilisateur sur l'article et l'adresse
 		String nom = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
-		String categorieSaisie = request.getParameter("categorie");
+
 		String miseAPrixSaisie = request.getParameter("miseAPrix");
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("codePostal");
@@ -100,13 +97,20 @@ public class ServletNouvelleVente extends HttpServlet {
 
 		// Tentative de transformation des Strings en int
 		try {
+			categorieSaisie = Integer.parseInt(request.getParameter("categorie"));
 			miseAPrix = Integer.parseInt(miseAPrixSaisie);
 		} catch (Exception e) {
 			// TODO MESSAGE ERREUR CATEGORIE / MISE A PRIX
 		}
 
 		// Creation de la Categorie
-		Categorie categorie = new Categorie(categorieSaisie);
+		Categorie categorie = new Categorie();
+		try {
+			categorie = CategorieMgr.getCategorie(categorieSaisie);
+		} catch (BLLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		// Creation de l'article à partir des données récupérées et ajout dans la liste
 		// des Articles
@@ -114,7 +118,6 @@ public class ServletNouvelleVente extends HttpServlet {
 		// Vérification de la validité des données saisies avant de valider l'article
 		HashMap<String, String> erreurs = ArticlesMgr.verifierVenteArticle(article, rue, codePostal, ville);
 		RequestDispatcher rd;
-		System.out.println(article);
 		if (erreurs.isEmpty()) {
 			try {
 				// TODO:ajouterEnchere en bdd
@@ -122,8 +125,15 @@ public class ServletNouvelleVente extends HttpServlet {
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
+			Chargement.chargementList(request);
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		} else {
+			List<Categorie> listeCategorie = null;
+			try {
+				listeCategorie = CategorieMgr.getListCategorie();
+			} catch (BLLException e1) {
+				e1.printStackTrace();
+			}
 			request.setAttribute("listeCategories", listeCategorie);
 			request.setAttribute("listeErreur", erreurs);
 			request.setAttribute("nomArticle", nom);
