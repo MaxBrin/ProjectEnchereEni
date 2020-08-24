@@ -60,7 +60,7 @@
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="email"
-							class="form-control ${erreurs.containsKey('email')?'border border-danger':'border border-secondary' }"
+							class="form-control ${erreurs.containsKey('emailNonValide') ||erreurs.containsKey('emailPresent')?'border border-danger':'border border-secondary' }"
 							placeholder="Email" aria-label="email" name="email"
 							value="${utilisateur.email}" required="required">
 					</div>
