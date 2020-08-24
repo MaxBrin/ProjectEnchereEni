@@ -114,6 +114,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		// Vérification de la validité des données saisies avant de valider l'article
 		HashMap<String, String> erreurs = ArticlesMgr.verifierVenteArticle(article, rue, codePostal, ville);
 		RequestDispatcher rd;
+		System.out.println(article);
 		if (erreurs.isEmpty()) {
 			try {
 				// TODO:ajouterEnchere en bdd
