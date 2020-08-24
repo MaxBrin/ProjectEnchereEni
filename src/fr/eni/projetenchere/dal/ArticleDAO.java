@@ -15,12 +15,14 @@ public interface ArticleDAO {
 	void insertArticle(Article article) throws DALException;
 
 	/**
-	 * M�thode pour avoir la liste de tout les articles
+	 * Méthode pour avoir la liste de tout les articles valides à afficher. La date
+	 * de début doit être inférieur à maintenant et La date de fin doit être
+	 * supérieur à maintenant
 	 * 
 	 * @return
 	 * @throws DALException
 	 */
-	List<Article> selectAllArticle() throws DALException;
+	List<Article> selectAllArticleNonConnecte() throws DALException;
 
 	/**
 	 * M�thode pour avoir un article

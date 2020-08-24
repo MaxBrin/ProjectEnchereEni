@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,11 @@ import fr.eni.projetenchere.dal.DALException;
 
 public class ArticleDAOImpl implements ArticleDAO {
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS VALUES (?,?,?,?,?,null,?,?)";
-	private static final String SELECTALL = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie";
+	private static final String SELECTALL_NONCONNECTE = "SELECT no_article,nom_article,description,date_debut_encheres,"
+			+ "date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,"
+			+ "pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,"
+			+ "libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur "
+			+ "JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE date_fin_encheres>? AND  date_debut_encheres<?";
 	private static final String SELECTBYID = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE no_article=?";
 	private static final String SELECTBY_NOUTILISATEUR = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE a.no_utilisateur=?";
 	private static final String SELECTBY_NOCATEGORIE = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE c.no_categorie=?";
@@ -47,10 +52,13 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 
 	@Override
-	public List<Article> selectAllArticle() throws DALException {
+	public List<Article> selectAllArticleNonConnecte() throws DALException {
 		List<Article> listArticles = new ArrayList<>();
-		try (Statement stmt = ConnectionProvider.getConnection().createStatement()) {
-			ResultSet rs = stmt.executeQuery(SELECTALL);
+		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(SELECTALL_NONCONNECTE)) {
+			pStmt.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+			pStmt.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+
+			ResultSet rs = pStmt.executeQuery();
 			while (rs.next()) {
 				Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"),
 						rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),

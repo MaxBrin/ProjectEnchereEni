@@ -21,7 +21,7 @@ public class Chargement {
 	public static HttpServletRequest chargementListArticle(HttpServletRequest request) {
 		List<Article> articles = new ArrayList<>();
 		try {
-			articles = ArticlesMgr.getListArticles();
+			articles = ArticlesMgr.getListArticlesNonConnecte();
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}

@@ -68,10 +68,10 @@ public class ArticlesMgr {
 	 * @return
 	 * @throws BLLException
 	 */
-	public static List<Article> getListArticles() throws BLLException {
+	public static List<Article> getListArticlesNonConnecte() throws BLLException {
 		List<Article> listArticles = new ArrayList<>();
 		try {
-			listArticles = articleDAO.selectAllArticle();
+			listArticles = articleDAO.selectAllArticleNonConnecte();
 		} catch (DALException e) {
 			throw new BLLException("Erreur getListArticles", e);
 		}
