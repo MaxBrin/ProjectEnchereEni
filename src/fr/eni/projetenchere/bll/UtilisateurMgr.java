@@ -12,16 +12,18 @@ import fr.eni.projetenchere.dal.DAOFactory;
 import fr.eni.projetenchere.dal.UtilisateurDAO;
 
 public class UtilisateurMgr {
-
+	// Chargement implémentation utilisateur DAO
 	private static UtilisateurDAO utilisateurDAO;
 	static {
 		utilisateurDAO = DAOFactory.getUtilisateurDAO();
 	}
 
-	public UtilisateurMgr() {
-
-	}
-
+	/**
+	 * Méthode pour ajouter un utilisateur
+	 * 
+	 * @param utilisateur
+	 * @throws BLLException
+	 */
 	public static void ajoutUtilisateur(Utilisateur utilisateur) throws BLLException {
 		try {
 			utilisateurDAO.insertUtilisateur(utilisateur);
@@ -32,6 +34,12 @@ public class UtilisateurMgr {
 		}
 	}
 
+	/**
+	 * Méthode pour récuperer la liste de tout les utilisateurs
+	 * 
+	 * @return
+	 * @throws BLLException
+	 */
 	public static List<Utilisateur> getListUtilisateur() throws BLLException {
 		List<Utilisateur> listUtilisateur = new ArrayList<Utilisateur>();
 		try {
@@ -42,6 +50,12 @@ public class UtilisateurMgr {
 		return listUtilisateur;
 	}
 
+	/**
+	 * Méthode pour mettre à jour un utilisateur
+	 * 
+	 * @param utlisateur
+	 * @throws BLLException
+	 */
 	public static void modificationUtilisateur(Utilisateur utlisateur) throws BLLException {
 		try {
 			utilisateurDAO.updateUtilisateur(utlisateur);
@@ -50,6 +64,12 @@ public class UtilisateurMgr {
 		}
 	}
 
+	/**
+	 * Méthode pour effacer un utilisateur
+	 * 
+	 * @param noUtilisateur
+	 * @throws BLLException
+	 */
 	public static void effacerUtilisateur(int noUtilisateur) throws BLLException {
 		try {
 			utilisateurDAO.deleteUtilisateur(noUtilisateur);
@@ -58,6 +78,9 @@ public class UtilisateurMgr {
 		}
 	}
 
+	/**
+	 * Methode pour récuperer un utilisateur en fonction de son numéro
+	 */
 	public static Utilisateur getUtilisateur(int noUtilisateur) throws BLLException {
 		Utilisateur utilisateur;
 		try {
@@ -68,6 +91,12 @@ public class UtilisateurMgr {
 		return utilisateur;
 	}
 
+	/**
+	 * Méthode pour vérifier les données de l'utilisateur
+	 * 
+	 * @param utilisateur
+	 * @return
+	 */
 	public static String verifUtilisateur(Utilisateur utilisateur) {
 		StringBuilder erreur = new StringBuilder();
 		// TEST données saisie

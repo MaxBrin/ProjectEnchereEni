@@ -18,9 +18,11 @@ import javax.servlet.http.HttpSession;
 import fr.eni.projetenchere.bll.ArticlesMgr;
 import fr.eni.projetenchere.bll.BLLException;
 import fr.eni.projetenchere.bll.CategorieMgr;
+import fr.eni.projetenchere.bll.RetraitMgr;
 import fr.eni.projetenchere.bll.UtilisateurMgr;
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
+import fr.eni.projetenchere.bo.Retrait;
 import fr.eni.projetenchere.bo.Utilisateur;
 import fr.eni.projetenchere.ihm.modele.Chargement;
 
@@ -117,9 +119,15 @@ public class ServletNouvelleVente extends HttpServlet {
 		HashMap<String, String> erreurs = ArticlesMgr.verifierVenteArticle(article, rue, codePostal, ville);
 		RequestDispatcher rd;
 		if (erreurs.isEmpty()) {
+
 			try {
-				// TODO:ajouterEnchere en bdd
 				ArticlesMgr.ajoutArticle(article);
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
+			Retrait retrait = new Retrait(article.getNoArticle(), rue, codePostal, ville);
+			try {
+				RetraitMgr.ajouterRetrait(retrait);
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}

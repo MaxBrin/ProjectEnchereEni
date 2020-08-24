@@ -12,6 +12,7 @@ import fr.eni.projetenchere.dal.DALException;
 import fr.eni.projetenchere.dal.DAOFactory;
 
 public class ArticlesMgr {
+	// Chargement implémentation article DAO
 	private static ArticleDAO articleDAO;
 
 	static {

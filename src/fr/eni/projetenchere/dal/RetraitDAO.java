@@ -12,11 +12,19 @@ public interface RetraitDAO {
 	void insertRetrait(Retrait retrait) throws DALException;
 
 	/**
-	 * Méthode pour récuper le retrait
+	 * Méthode pour récuper le retrait d'un article en fonction
 	 * 
 	 * @param noRetrait
 	 * @return
 	 * @throws DALException
 	 */
-	Retrait selectByNoRetrait(int noArticle) throws DALException;
+	Retrait selectByNoArticle(int noArticle) throws DALException;
+
+	/**
+	 * Méthode pour effacer un retrait de la BD
+	 * 
+	 * @param retrait
+	 * @throws DALException
+	 */
+	void deleteRetrait(Retrait retrait) throws DALException;
 }
