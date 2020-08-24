@@ -31,7 +31,9 @@ public class ServletVisualiserProfil extends HttpServlet {
 		HttpSession session = request.getSession();
 		// Récupération du vendeur ou de l'utilisateur tituliaire du compte
 		String pseudoVendeur = request.getParameter("utilisateurVendeur");
-//		int idUtilisateurTitulaire = Integer.parseInt(session.getAttribute("noUtilisateur"));
+		System.out.println(pseudoVendeur);
+		// int idUtilisateurTitulaire =
+		// Integer.parseInt(session.getAttribute("noUtilisateur"));
 		// Initialisation des variables
 		List<Utilisateur> listeUtilisateur = null;
 		Utilisateur utilisateurAAfficher = null;
