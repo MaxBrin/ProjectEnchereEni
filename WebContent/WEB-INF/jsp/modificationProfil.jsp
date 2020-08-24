@@ -17,11 +17,8 @@
 	href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
 	rel="stylesheet">
 <!-- Bootstrap CSS -->
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
 
 
 <title>Mon profil</title>
@@ -35,71 +32,97 @@
 
 		<form action="${pageContext.request.contextPath}/ModificationProfil"
 			method="post">
+			<!--  TITRE  -->
 			<div class="row mx-auto">
 				<div class="mx-auto" style="width: 200px;">
 					<h1>Mon Profil</h1>
 				</div>
 			</div>
+			<br> <br>
+
+
 			<div class="row">
+
+				<!--  PSEUDO  -->
 				<div class="col-md-2">
 					<label for="pseudo">Pseudo</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Pseudo"
-							aria-label="Pseudo" name="pseudo" value="${utilisateur.pseudo}" required="required">
+							aria-label="Pseudo" name="pseudo" value="${utilisateur.pseudo}"
+							required="required">
 					</div>
 				</div>
-				<div class="col-md-2">
-					<label for="nom">Nom</label>
-				</div>
-				<div class="col-sm-4">
-					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Nom"
-							aria-label="Nom" name="nom" value="${utilisateur.nom}" id="nom" required="required">
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-2">
-					<label for="prenom">Prénom</label>
-				</div>
-				<div class="col-sm-4">
-					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Prénom"
-							aria-label="prenom" name="prenom" value="${utilisateur.prenom}" required="required">
-					</div>
-				</div>
+
+				<!--  EMAIL  -->
 				<div class="col-md-2">
 					<label for="email">Email</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Email"
-							aria-label="email" name="email" value="${utilisateur.email}" required="required">
+							aria-label="email" name="email" value="${utilisateur.email}"
+							required="required">
 					</div>
 				</div>
 			</div>
+
 			<div class="row">
+
+				<!--  NOM  -->
+				<div class="col-md-2">
+					<label for="nom">Nom</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Nom"
+							aria-label="Nom" name="nom" value="${utilisateur.nom}" id="nom"
+							required="required">
+					</div>
+				</div>
+
+				<!--  PRENOM  -->
+				<div class="col-md-2">
+					<label for="prenom">Prénom</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Prénom"
+							aria-label="prenom" name="prenom" value="${utilisateur.prenom}"
+							required="required">
+					</div>
+				</div>
+
+			</div>
+			<div class="row">
+
+				<!--  TELEPHONE  -->
 				<div class="col-md-2">
 					<label for="telephone">Téléphone</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Téléphone"
-							aria-label="telephone" name="telephone" value="${utilisateur.telephone}" required="required">
+							aria-label="telephone" name="telephone"
+							value="${utilisateur.telephone}" required="required">
 					</div>
 				</div>
+
+				<!--  RUE  -->
 				<div class="col-md-2">
 					<label for="rue">Rue</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Rue"
-							aria-label="rue" name="rue" value="${utilisateur.rue}" required="required">
+							aria-label="rue" name="rue" value="${utilisateur.rue}"
+							required="required">
 					</div>
 				</div>
 			</div>
+
+			<!--  CODE POSTAL  -->
 			<div class="row">
 				<div class="col-md-2">
 					<label for="codePostal">Code postal</label>
@@ -107,64 +130,84 @@
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Code postal"
-							aria-label="codePostal" name="codePostal" value="${utilisateur.codePostal}" required="required">
+							aria-label="codePostal" name="codePostal"
+							value="${utilisateur.codePostal}" required="required">
 					</div>
 				</div>
+
+				<!--  VILLE  -->
 				<div class="col-md-2">
 					<label for="ville">Ville</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Ville"
-							aria-label="ville" name="ville" value="${utilisateur.ville}" required="required">
+							aria-label="ville" name="ville" value="${utilisateur.ville}"
+							required="required">
 					</div>
 				</div>
 			</div>
 			<div class="row">
+
+				<!--  MOT DE PASSE ACTUEL  -->
 				<div class="col-md-2">
 					<label for="ancienMotDePasse">Mot de passe actuel</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="password" class="form-control" 
-							aria-label="ancienMotDePasse" name="ancienMotDePasse" required="required">
+						<input type="password" class="form-control"
+							aria-label="ancienMotDePasse" name="ancienMotDePasse"
+							required="required">
 					</div>
 				</div>
 			</div>
 			<div class="row">
+
+				<!--  NOUVEAU MOT DE PASSE  -->
 				<div class="col-md-2">
 					<label for="nouveauMotDePasse">Nouveau mot de passe</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="password" class="form-control" 
+						<input type="password" class="form-control"
 							aria-label="nouveauMotDePasse" name="nouveauMotDePasse">
 					</div>
 				</div>
+
+				<!--  CONFIRMATION DU MOT DE PASSE  -->
 				<div class="col-md-2">
-					<label for="confirmerNouveauMotDePasse">Confirmation Mot de Passe</label>
+					<label for="confirmerNouveauMotDePasse">Confirmation Mot de
+						Passe</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="password" class="form-control" 
-							aria-label="confirmerNouveauMotDePasse" name="confirmerNouveauMotDePasse">
+						<input type="password" class="form-control"
+							aria-label="confirmerNouveauMotDePasse"
+							name="confirmerNouveauMotDePasse">
 					</div>
 				</div>
 			</div>
-			
+
+			<!--  CREDIT RESTANT  -->
 			<div class="row">
 				<div class="col-sm-2">
-					<label for="credit">Crédit : </label><c:out value=" ${utilisateur.credit}"/>
+					<label for="credit">Crédit restant : </label>
+					<c:out value=" ${utilisateur.credit}" />
 				</div>
 			</div>
 
-			<button type="button" class="btn btn-primary" type="submit">Enregistrer</button>
-			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-secondary" data-toggle="modal"
-				data-target="#Suppression">Supprimer le compte</button>
-
+			<div class="row mx-auto">
+				<div class="mx-auto">
+					<!--  BUTTONS MODIFIER ET SUPPRIMER  -->
+					<button type="button" class="btn btn-primary" type="submit">Enregistrer</button>
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-secondary" data-toggle="modal"
+						data-target="#Suppression">Supprimer le compte</button>
+				</div>
+			</div>
 		</form>
 
+		<!-- Modal pour la supression du profil -->
 		<!-- Modal -->
 
 		<div class="modal fade" id="Suppression" tabindex="-1"
@@ -209,9 +252,7 @@
 		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
 		crossorigin="anonymous"></script>
 	<script
-		src="${pageContext.request.contextPath }/bootstrap/4.5.2/js/bootstrap.min.js"
-		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-		crossorigin="anonymous"></script>
+		src="${pageContext.request.contextPath }/bootstrap/4.5.2/js/bootstrap.js"></script>
 
 </body>
 </html>
