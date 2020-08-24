@@ -71,9 +71,11 @@
 					</div>
 				</div>
 			</div>
-		
 	</c:if>
-
+	
+	<c:if test="${utilisateurVendeur != null}">
+		<a href="${pageContext.request.contextPath }/ModificationProfil">Modifier</a>
+	</c:if>
 	
 </body>
 </html>
