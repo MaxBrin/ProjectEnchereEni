@@ -12,55 +12,158 @@
 <body>
 	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp"/>
 
+	
+	
+			<div class="row mx-auto">
+					<div class="mx-auto" style="width: 600px; margin-bottom: 50px; margin-top: 50px; margin-left: 300px;">
+						<h1 style="width: 600px; padding-left: 130px;">Détail vente</h1>
+					</div>
+			</div>
+	
+	
+	<div class="row">
+				<div class="col-md-2" style="margin-left: 260px;">
+					<label for="pseudo">Nom article</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Pseudo"
+							aria-label="Pseudo" name="pseudo" value="${article.nomArticle}" readonly="readonly">
+					</div>
+				</div>
+	</div>
+	
+		<div class="row">
+				<div class="col-md-2" style="margin-left: 260px;">
+					<label for="pseudo">Description</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Pseudo"
+							aria-label="Pseudo" name="pseudo" value="${article.description}" readonly="readonly">
+					</div>
+				</div>
+		</div>
+	
+	<div class="row">
+				<div class="col-md-2" style="margin-left: 260px;">
+					<label for="pseudo">Catégorie</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Pseudo"
+							aria-label="Pseudo" name="pseudo" value="${article.categorie.libelle}" readonly="readonly">
+					</div>
+				</div>
+		</div>
+	
+	
+	<div class="row">
+				<div class="col-md-2" style="margin-left: 260px;">
+					<label for="pseudo">Meilleure offre</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control"
+							aria-label="Pseudo" name="pseudo" value="" readonly="readonly">
+					</div>
+				</div>
+		</div>
+	
+	<div class="row">
+				<div class="col-md-2" style="margin-left: 260px;">
+					<label for="pseudo">Mise à prix</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Pseudo"
+							aria-label="Pseudo" name="pseudo" value="${article.prixInitial}" readonly="readonly">
+					</div>
+				</div>
+	</div>
 
-	<div>
-		<h2>Détail vente</h2>
-	</div>
-	
-		<div>	
-		<p>Nom article : ${article.nomArticle}</p>
-	</div>
-	
-	<div>
-		<p>Description : ${article.description}</p>
-	</div>
-	
-	<div>
-		<p>Catégorie : ${article.categorie.libelle}</p>
-	</div>
-	
-	<div>
-		<%//TODO: meilleur offre %>
-		<p>Meilleure offre : </p>
-	</div>
-	
-	<div>
-		<p>Mise à prix : ${article.prixInitial}</p>
-	</div>
-	
-	<div>
-		<p>Fin de l'enchère : <fmt:parseDate value="${article.finEnchere}"
+	<div class="row">
+				<div class="col-md-2" style="margin-left: 260px;">
+					<label for="pseudo">Fin de l'enchère</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="Pseudo"
+							aria-label="Pseudo" name="pseudo" value="<fmt:parseDate value="${article.finEnchere}"
 								pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" type="both" />
 							<fmt:formatDate value="${parsedDate }" dateStyle="long"
-								timeStyle="medium" type="both" /></p>
+								timeStyle="medium" type="both" /> "readonly="readonly">
+					</div>
+				</div>
+	</div>
+
+
+
+	<div class="row">
+				<div class="col-md-2" style="margin-left: 260px;">
+					<label for="pseudo">Retrait</label>
+				</div>
+			
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control"
+							aria-label="Pseudo" name="pseudo" value="${utilisateur.rue}" readonly="readonly">
+					</div>
+				</div>
 	</div>
 	
-	<div>
-		<p>Retrait : <br>
-			Rue : ${utilisateur.rue}<br>00
-			Code Postal : ${utilisateur.codePostal}<br>
-			Ville : ${utilisateur.ville}<br></p>
+	
+	
+	
+		<div class="row">
+				<div class="col-md-2" style="margin-left: 260px;">
+					<label for="pseudo"></label>
+				</div>
+			
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control"
+							aria-label="Pseudo" name="pseudo" value="${utilisateur.codePostal}" readonly="readonly">
+					</div>
+				</div>
+	</div>
+
+
+		<div class="row">
+				<div class="col-md-2" style="margin-left: 260px;">
+					<label for="pseudo"></label>
+				</div>
+			
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control"
+							aria-label="Pseudo" name="pseudo" value="${utilisateur.ville}" readonly="readonly">
+					</div>
+				</div>
+	</div>
+
+	<div class="row">
+				<div class="col-md-2" style="margin-left: 260px;">
+					<label for="pseudo">Vendeur</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" 
+							aria-label="Pseudo" name="pseudo" value="${utilisateur.pseudo}" readonly="readonly">
+					</div>
+				</div>
 	</div>
 	
-	<div>
-		
-		<p>Vendeur : ${utilisateur.pseudo}</p>
-	</div>
-		
-	<div>
-		<label for="proposition">Ma proposition :</label>
-		<input type="number" id="proposition" name="proposition" min="0" max="500" step="5" >
-		<button type="submit">Enchérir</button>
+		<div class="row">
+				<div class="col-md-2" style="margin-left: 260px;">
+					<label for="pseudo">Ma proposition</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="number" id="proposition" name="proposition" min="0" max="500" step="5" >
+						<button type="submit">Enchérir</button>
+					</div>
+				</div>
 	</div>
 
 </body>
