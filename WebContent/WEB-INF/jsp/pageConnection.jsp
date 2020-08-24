@@ -11,7 +11,7 @@
 
 
 		
-		<title>Insert title here</title>
+		<title>Connexion</title>
 		
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/stylePageAccueil.css">
@@ -28,6 +28,14 @@
 	
 	<body>
 		<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp"/>
+		
+		<div class="row mx-auto">
+			<div class="mx-auto" style="width: 500px;">
+				<h1>LISTE DES ENCHERES</h1>
+			</div>
+		</div>
+		
+		
 		 <form action="Connexion" method="post">
 		<div class="col-md-4"></div>
 		
