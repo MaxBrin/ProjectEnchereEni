@@ -25,15 +25,16 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String choix = request.getParameter("choix");
 
+		// Récupération valeur bouton radio
+		String choix = request.getParameter("choix");
 		if ("achat".equals(choix)) {
 			request.setAttribute("choixAchat", "achat");
 		}
-
 		if ("mesVentes".equals(choix)) {
 			request.setAttribute("choixAchat", "ventes");
 		}
+		// Récupération des listes Articles et Catégories
 		request = Chargement.chargementListArticle(request);
 		request = Chargement.chargementListCategorie(request);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
@@ -65,6 +66,9 @@ public class ServletVersPageAccueil extends HttpServlet {
 			listeArticlesAAfficher = trierArticleParRechercheNom(rechercheUtilisateur, listeAAfficher);
 		}
 
+//************************Traitement des checkbox pour mes ventes**************************
+		// Récuperationndes données
+		if((request.getAttribute("ventesEnCours")) != null
 //**************************************************************************************		
 		// Envoie des informations
 		request = Chargement.chargementListArticle(request);

@@ -23,36 +23,36 @@
 	
 	<div class="row">
 				<div class="col-md-2" style="margin-left: 260px;">
-					<label for="pseudo">Nom article</label>
+					<label for="nomArticle">Nom article</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Pseudo"
-							aria-label="Pseudo" name="pseudo" value="${article.nomArticle}" readonly="readonly">
+						<input type="text" class="form-control" placeholder="nomArticle"
+							aria-label="nomArticle" name="nomArticle" value="${article.nomArticle}" readonly="readonly">
 					</div>
 				</div>
 	</div>
 	
 		<div class="row">
 				<div class="col-md-2" style="margin-left: 260px;">
-					<label for="pseudo">Description</label>
+					<label for="description">Description</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Pseudo"
-							aria-label="Pseudo" name="pseudo" value="${article.description}" readonly="readonly">
+						<input type="text" class="form-control" placeholder="description"
+							aria-label="description" name="description" value="${article.description}" readonly="readonly">
 					</div>
 				</div>
 		</div>
 	
 	<div class="row">
 				<div class="col-md-2" style="margin-left: 260px;">
-					<label for="pseudo">Catégorie</label>
+					<label for="categorie">Catégorie</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Pseudo"
-							aria-label="Pseudo" name="pseudo" value="${article.categorie.libelle}" readonly="readonly">
+						<input type="text" class="form-control" placeholder="categorie"
+							aria-label="categorie" name="categorie" value="${article.categorie.libelle}" readonly="readonly">
 					</div>
 				</div>
 		</div>
@@ -60,36 +60,37 @@
 	
 	<div class="row">
 				<div class="col-md-2" style="margin-left: 260px;">
-					<label for="pseudo">Meilleure offre</label>
+					<label for="meilleurOffre">Meilleure offre</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control"
-							aria-label="Pseudo" name="pseudo" value="" readonly="readonly">
+							aria-label="meilleurOffre" name="meilleurOffre" value="" readonly="readonly">
 					</div>
 				</div>
 		</div>
 	
 	<div class="row">
 				<div class="col-md-2" style="margin-left: 260px;">
-					<label for="pseudo">Mise à prix</label>
+					<label for="miseAprix">Mise à prix</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Pseudo"
-							aria-label="Pseudo" name="pseudo" value="${article.prixInitial}" readonly="readonly">
+						<input type="text" class="form-control" placeholder="miseAprix"
+							aria-label="miseAprix" name="miseAprix" value="${article.prixInitial}" readonly="readonly">
 					</div>
 				</div>
 	</div>
 
 	<div class="row">
 				<div class="col-md-2" style="margin-left: 260px;">
-					<label for="pseudo">Fin de l'enchère</label>
+					<label for="finEnchere">Fin de l'enchère</label>
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Pseudo"
-							aria-label="Pseudo" name="pseudo" value="<fmt:parseDate value="${article.finEnchere}"
+				
+						<input type="text" class="form-control"
+							aria-label="finEnchere" name="finEnchere" value="<fmt:parseDate value="${article.finEnchere}"
 								pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" type="both" />
 							<fmt:formatDate value="${parsedDate }" dateStyle="long"
 								timeStyle="medium" type="both" /> "readonly="readonly">
@@ -160,7 +161,7 @@
 				</div>
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
-						<input type="number" id="proposition" name="proposition" min="0" max="500" step="5" >
+						<input type="number" id="proposition" name="proposition" min="1" max="500" step="1" placeholder="Enchérissez" style="width: 150px;">
 						<button type="submit">Enchérir</button>
 					</div>
 				</div>

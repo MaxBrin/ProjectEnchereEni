@@ -93,21 +93,18 @@
 				</c:if>
 				<c:if test="${(choixAchat eq 'achat') and (noUtilisateur != null)}">
 					<div>
-						<input type="checkbox" name="encheresOuvertes">Enchères
-						ouvertes<br> <input type="checkbox" name="mesEncheres">Mes
-						enchères<br> <input type="checkbox" name="encheresRemportees">Mes
-						enchères remportées<br>
+						<input type="checkbox" name="encheresOuvertes">Enchères ouvertes<br> 
+						<input type="checkbox" name="mesEncheres">Mes enchères<br> 
+						<input type="checkbox" name="encheresRemportees">Mes enchères remportées<br>
 					</div>
 
 					<br>
 					<br>
 
 					<div>
-						<input type="checkbox" name="ventesEnCours" disabled="disabled">Mes
-						ventes en cours<br> <input type="checkbox"
-							name="ventesNonDebutess" disabled="disabled">Ventes non
-						débutées<br> <input type="checkbox" name="ventesTerminees"
-							disabled="disabled">Ventes terminées<br>
+						<input type="checkbox" name="ventesEnCours" disabled="disabled">Mes ventes en cours<br> 
+						<input type="checkbox" name="ventesNonDebutess" disabled="disabled">Ventes non débutées<br>
+						<input type="checkbox" name="ventesTerminees" disabled="disabled">Ventes terminées<br>
 					</div>
 				</c:if>
 				<c:if test="${(choixAchat == 'ventes') && (noUtilisateur != null) }">
