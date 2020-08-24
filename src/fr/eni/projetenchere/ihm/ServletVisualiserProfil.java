@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import fr.eni.projetenchere.bll.BLLException;
 import fr.eni.projetenchere.bll.UtilisateurMgr;
@@ -28,36 +27,21 @@ public class ServletVisualiserProfil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		// Récupération du vendeur ou de l'utilisateur tituliaire du compte
-		String pseudoVendeur = request.getParameter("utilisateurVendeur");
-		System.out.println(pseudoVendeur);
-		// int idUtilisateurTitulaire =
-		// Integer.parseInt(session.getAttribute("noUtilisateur"));
+		// Récupération du vendeur
+		int noVendeur = Integer.parseInt(request.getParameter("utilisateurVendeur"));
 		// Initialisation des variables
 		List<Utilisateur> listeUtilisateur = null;
 		Utilisateur utilisateurAAfficher = null;
-		Utilisateur utilisateurTitulaire = null;
-
 		// Récupération de la liste des utilisateurs et de l'utilisateur titulaire du
 		// compte
 		try {
 			listeUtilisateur = UtilisateurMgr.getListUtilisateur();
-			// utilisateurTitulaire = UtilisateurMgr.getUtilisateur(idUtilisateurTitulaire);
+			utilisateurAAfficher = UtilisateurMgr.getUtilisateur(noVendeur);
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-		// Récupération de l'utlisateur vendeur dans la liste en bdd à partir de son
-		// pseudo
-		for (Utilisateur user : listeUtilisateur) {
-			if (user.getPseudo().equals(pseudoVendeur)) {
-				utilisateurAAfficher = user;
-			}
-		}
-		System.out.println(utilisateurTitulaire);
-		System.out.println(utilisateurAAfficher);
-		request.setAttribute("utilisateurTitulaire", utilisateurTitulaire);
-		request.setAttribute("utilisateurVendeur", utilisateurAAfficher);
+
+		request.setAttribute("utilisateurAAfficher", utilisateurAAfficher);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/affichageProfil.jsp");
 		rd.forward(request, response);
 	}
