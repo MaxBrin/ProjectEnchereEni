@@ -141,11 +141,11 @@
 
 
 
-	<div class="row">
+	<div class="row   justify-content-center">
 		<!--  Affichage de la liste des articles -->
 		<c:forEach var="article" items="${listeArticlesAAfficher }">
 
-			<div class="col-md-3 col-sm-4 col-xs-6">
+			<div class="col-lg-3 col-md-6">
 				<!-- Affichage d'article en vente -->
 				<div class="card" style="width: 18rem;">
 					<img src="..." class="card-img-top" alt="...">
