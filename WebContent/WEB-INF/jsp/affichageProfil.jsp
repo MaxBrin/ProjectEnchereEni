@@ -21,10 +21,10 @@
 	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp"/>
 
 	<!-- L'utlisateur consulte le profil d'un autre vendeur -->
-	<c:if test="${utilisateurVendeur != null}">
+	
 			<div class="row mx-auto">
-				<div class="mx-auto" style="width: 250px; margin-bottom: 50px; margin-top: 50px">
-					<h1>Profil de ${utilisateurVendeur.pseudo}</h1>
+				<div class="mx-auto" style="width: 600px; margin-bottom: 50px; margin-top: 50px; margin-left: 300px;">
+					<h1 style="width: 600px;">Profil de ${utilisateurAAfficher.pseudo}</h1>
 				</div>
 			</div>
 			
@@ -35,7 +35,7 @@
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Pseudo"
-							aria-label="Pseudo" name="pseudo" value="${utilisateurVendeur.pseudo}" readonly="readonly">
+							aria-label="Pseudo" name="pseudo" value="${utilisateurAAfficher.pseudo}" readonly="readonly">
 					</div>
 				</div>
 			</div>
@@ -47,7 +47,7 @@
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Pseudo"
-							aria-label="Pseudo" name="pseudo" value="${utilisateurVendeur.prenom}" readonly="readonly">
+							aria-label="Pseudo" name="pseudo" value="${utilisateurAAfficher.prenom}" readonly="readonly">
 					</div>
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Pseudo"
-							aria-label="Pseudo" name="pseudo" value="${utilisateurVendeur.codePostal}" readonly="readonly">
+							aria-label="Pseudo" name="pseudo" value="${utilisateurAAfficher.codePostal}" readonly="readonly">
 					</div>
 				</div>
 			</div>
@@ -71,14 +71,16 @@
 				<div class="col-sm-4">
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="Pseudo"
-							aria-label="Pseudo" name="pseudo" value="${utilisateurVendeur.ville}" readonly="readonly">
+							aria-label="Pseudo" name="pseudo" value="${utilisateurAAfficher.ville}" readonly="readonly">
 					</div>
 				</div>
 			</div>
-	</c:if>
 	
-	<c:if test="${utilisateurVendeur != null}">
-		<a href="${pageContext.request.contextPath }/ModificationProfil">Modifier</a>
+	<c:if test="${utilisateurAAfficher.noUtilisateur == noUtilisateur}">
+	<div class="row mx-auto">
+			<a href="${pageContext.request.contextPath }/ModificationProfil"
+			class="btn btn-secondary btn-sm" style="width: 100px;">Modifier</a><br>
+	</div>	
 	</c:if>
 	
 </body>
