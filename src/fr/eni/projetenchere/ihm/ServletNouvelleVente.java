@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,10 +18,13 @@ import javax.servlet.http.HttpSession;
 import fr.eni.projetenchere.bll.ArticlesMgr;
 import fr.eni.projetenchere.bll.BLLException;
 import fr.eni.projetenchere.bll.CategorieMgr;
+import fr.eni.projetenchere.bll.RetraitMgr;
 import fr.eni.projetenchere.bll.UtilisateurMgr;
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
+import fr.eni.projetenchere.bo.Retrait;
 import fr.eni.projetenchere.bo.Utilisateur;
+import fr.eni.projetenchere.ihm.modele.Chargement;
 
 /**
  * Servlet implementation class ServletNouvelleVente
@@ -40,15 +42,14 @@ public class ServletNouvelleVente extends HttpServlet {
 		HttpSession session = request.getSession();
 		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
 		Utilisateur utilisateur = new Utilisateur();
-		List<Categorie> listeCategorie = null;
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
-			listeCategorie = CategorieMgr.getListCategorie();
 		} catch (BLLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		request = Chargement.chargementListCategorie(request);
 		request.setAttribute("utilisateur", utilisateur);
-		request.setAttribute("listeCategories", listeCategorie);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente.jsp");
 		rd.forward(request, response);
 	}
@@ -76,16 +77,12 @@ public class ServletNouvelleVente extends HttpServlet {
 		LocalDateTime debutEnchere = null;
 		LocalDateTime finEnchere = null;
 		int miseAPrix = 0;
-		List<Categorie> listeCategorie = null;
-		try {
-			listeCategorie = CategorieMgr.getListCategorie();
-		} catch (BLLException e1) {
-			e1.printStackTrace();
-		}
+		int categorieSaisie = 0;
+
 		// Récupération des saisies de l'utilisateur sur l'article et l'adresse
 		String nom = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
-		String categorieSaisie = request.getParameter("categorie");
+
 		String miseAPrixSaisie = request.getParameter("miseAPrix");
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("codePostal");
@@ -100,13 +97,20 @@ public class ServletNouvelleVente extends HttpServlet {
 
 		// Tentative de transformation des Strings en int
 		try {
+			categorieSaisie = Integer.parseInt(request.getParameter("categorie"));
 			miseAPrix = Integer.parseInt(miseAPrixSaisie);
 		} catch (Exception e) {
 			// TODO MESSAGE ERREUR CATEGORIE / MISE A PRIX
 		}
 
 		// Creation de la Categorie
-		Categorie categorie = new Categorie(categorieSaisie);
+		Categorie categorie = new Categorie();
+		try {
+			categorie = CategorieMgr.getCategorie(categorieSaisie);
+		} catch (BLLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		// Creation de l'article à partir des données récupérées et ajout dans la liste
 		// des Articles
@@ -114,17 +118,24 @@ public class ServletNouvelleVente extends HttpServlet {
 		// Vérification de la validité des données saisies avant de valider l'article
 		HashMap<String, String> erreurs = ArticlesMgr.verifierVenteArticle(article, rue, codePostal, ville);
 		RequestDispatcher rd;
-		System.out.println(article);
 		if (erreurs.isEmpty()) {
+
 			try {
-				// TODO:ajouterEnchere en bdd
 				ArticlesMgr.ajoutArticle(article);
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
+			Retrait retrait = new Retrait(article.getNoArticle(), rue, codePostal, ville);
+			try {
+				RetraitMgr.ajouterRetrait(retrait);
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
+			request = Chargement.chargementListArticle(request);
+			request = Chargement.chargementListCategorie(request);
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		} else {
-			request.setAttribute("listeCategories", listeCategorie);
+			request = Chargement.chargementListCategorie(request);
 			request.setAttribute("listeErreur", erreurs);
 			request.setAttribute("nomArticle", nom);
 			request.setAttribute("description", description);

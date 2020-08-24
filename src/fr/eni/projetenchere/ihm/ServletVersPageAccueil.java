@@ -34,7 +34,8 @@ public class ServletVersPageAccueil extends HttpServlet {
 		if ("mesVentes".equals(choix)) {
 			request.setAttribute("choixAchat", "ventes");
 		}
-		request = Chargement.chargementList(request);
+		request = Chargement.chargementListArticle(request);
+		request = Chargement.chargementListCategorie(request);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		rd.forward(request, response);
 	}
@@ -66,7 +67,8 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 //**************************************************************************************		
 		// Envoie des informations
-		request = Chargement.chargementList(request);
+		request = Chargement.chargementListArticle(request);
+		request = Chargement.chargementListCategorie(request);
 		request.setAttribute("listeArticlesAAfficher", listeArticlesAAfficher);
 		request.setAttribute("saisieUtilisateur", rechercheUtilisateurARenvoyer);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");

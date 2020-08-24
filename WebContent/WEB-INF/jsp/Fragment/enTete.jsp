@@ -60,8 +60,7 @@
 		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
 		crossorigin="anonymous"></script>
 	<script
-		src="${pageContext.request.contextPath }/bootstrap/4.5.2/js/bootstrap.min.js"
-		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-		crossorigin="anonymous"></script>
+		src="${pageContext.request.contextPath }/bootstrap/4.5.2/js/bootstrap.js"
+		></script>
 </body>
 </html>

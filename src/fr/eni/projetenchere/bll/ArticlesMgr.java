@@ -12,6 +12,7 @@ import fr.eni.projetenchere.dal.DALException;
 import fr.eni.projetenchere.dal.DAOFactory;
 
 public class ArticlesMgr {
+	// Chargement implémentation article DAO
 	private static ArticleDAO articleDAO;
 
 	static {
@@ -143,7 +144,7 @@ public class ArticlesMgr {
 			erreurs.put("prixInitial", "Le prix initial de vente ne peut pas être égal à zero. ");
 		}
 		if (article.getFinEnchere().isBefore(article.getDebutEnchere())) {
-			erreurs.put("datesEnchères", "Dates d'enchères invalides");
+			erreurs.put("datesEncheres", "Dates d'enchères invalides");
 		}
 		if (rue.trim().equals("")) {
 			erreurs.put("rue", "Adresse invalide");

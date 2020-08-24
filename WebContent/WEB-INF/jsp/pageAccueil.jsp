@@ -166,7 +166,7 @@
 						</p>
 						<!--  Liens vers le profil du vendeur de l'article -->
 						<p class="card-text">
-							Vendeur : <a href="${pageContext.request.contextPath }/VisualiserProfil?utilisateurVendeur=${article.utilisateur.pseudo}" class="card-link">${article.utilisateur.pseudo }</a>
+							Vendeur : <a href="${pageContext.request.contextPath }/VisualiserProfil?utilisateurVendeur=${article.utilisateur.noUtilisateur}" class="card-link">${article.utilisateur.pseudo }</a>
 						</p>
 					</div>
 				</div>
