@@ -17,7 +17,9 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
 	rel="stylesheet">
-
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
 
 
 <title>Mon profil</title>
