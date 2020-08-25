@@ -2,6 +2,7 @@ package fr.eni.projetenchere.dal;
 
 import fr.eni.projetenchere.dal.impl.ArticleDAOImpl;
 import fr.eni.projetenchere.dal.impl.CategorieDAOImpl;
+import fr.eni.projetenchere.dal.impl.EnchereDAOImpl;
 import fr.eni.projetenchere.dal.impl.RetraitDAOImpl;
 import fr.eni.projetenchere.dal.impl.UtilisateurDAOImpl;
 
@@ -21,5 +22,9 @@ public class DAOFactory {
 
 	public static RetraitDAO getRetraitDAO() {
 		return new RetraitDAOImpl();
+	}
+
+	public static EnchereDAO getEnchereDAO() {
+		return new EnchereDAOImpl();
 	}
 }

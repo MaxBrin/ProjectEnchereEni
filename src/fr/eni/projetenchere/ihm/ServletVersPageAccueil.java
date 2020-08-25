@@ -81,7 +81,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 		List<Article> listeARetourner = new ArrayList<>();
 		if (0 == categorie) {
 			try {
-				listeARetourner = ArticlesMgr.getListArticles();
+				listeARetourner = ArticlesMgr.getListArticlesNonConnecte();
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
