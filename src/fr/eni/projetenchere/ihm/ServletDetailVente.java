@@ -62,7 +62,7 @@ public class ServletDetailVente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Integer noUtilisateur = (Integer) session.getAttribute("noUtilisateur");
+		int noUtilisateur = (Integer) session.getAttribute("noUtilisateur");
 		int noArticle = Integer.parseInt(request.getParameter("noArticle"));
 
 		Utilisateur acheteur = null;
@@ -71,7 +71,6 @@ public class ServletDetailVente extends HttpServlet {
 			acheteur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 			articleEnVente = ArticlesMgr.getArticle(noArticle);
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

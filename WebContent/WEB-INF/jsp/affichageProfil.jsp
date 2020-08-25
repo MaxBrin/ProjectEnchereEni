@@ -7,11 +7,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Affichage profil</title>
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/bootstrap/4.5.2/css/bootstrap.min.css"
-	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-	crossorigin="anonymous">
+	
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/stylePageAccueil.css">
 	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">

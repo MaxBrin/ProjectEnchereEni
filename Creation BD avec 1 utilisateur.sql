@@ -116,3 +116,6 @@ INSERT INTO ARTICLES_VENDUS VALUES('PC Gamer','Super Pc qui défonce','20200618 1
 INSERT INTO RETRAITS VALUES (3,'1 boulevard TeslaLover','44000','NANTES');
 INSERT INTO RETRAITS VALUES (1,'10 rue du calvaire','85530','LA BRUFFIERE');
 INSERT INTO RETRAITS VALUES (2,'10 rue du calvaire','85530','LA BRUFFIERE');
+
+SELECT * FROM CATEGORIES WHERE libelle like '%Sport%'
+SELECT * FROM CATEGORIES WHERE libelle like '%Informatique%' and libelle like '%Sport%';
