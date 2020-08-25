@@ -7,8 +7,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!-- CSS -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/Erreur.css">
+	href="${pageContext.request.contextPath }/Fragment/StyleCommun.css">
+	
 <title>Mon profil</title>
 
 </head>
@@ -23,7 +26,7 @@
 				<h1>Mon Profil</h1>
 			</div>
 		</div>
-		<br> <br>
+		s
 
 		<form action="${pageContext.request.contextPath }/CreationCompte"
 			method="post">
@@ -244,7 +247,8 @@
 			<div class="row mx-auto">
 				<div class="mx-auto">
 					<button type="submit" class="btn btn-primary">Enregistrer</button>
-					<a href="${pageContext.request.contextPath }/Accueil" class="btn btn-secondary">Annuler</a>
+					<a href="${pageContext.request.contextPath }/Accueil"
+						class="btn btn-secondary">Annuler</a>
 				</div>
 			</div>
 		</form>

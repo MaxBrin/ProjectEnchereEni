@@ -9,7 +9,9 @@
 <!--  CSS  -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/Fragment/enTete.css">
-	
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/Fragment/StyleCommun.css">
+
 <!-- Bootstrap CSS -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,7 +40,8 @@
 						<li class="nav-item"><a class="nav-link"
 							href="/ProjectEnchereEni/NouvelleVente">Vendre un article</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/ProjectEnchereEni/ModificationProfil?utilisateurTitulaire=${noUtilisateur}">Mon profil</a></li>
+							href="/ProjectEnchereEni/ModificationProfil?utilisateurTitulaire=${noUtilisateur}">Mon
+								profil</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/ProjectEnchereEni/Deconnexion">Déconnexion</a></li>
 					</c:when>
@@ -64,7 +67,6 @@
 		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
 		crossorigin="anonymous"></script>
 	<script
-		src="${pageContext.request.contextPath }/bootstrap/4.5.2/js/bootstrap.js"
-		></script>
+		src="${pageContext.request.contextPath }/bootstrap/4.5.2/js/bootstrap.js"></script>
 </body>
 </html>

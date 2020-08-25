@@ -6,6 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!-- CSS -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/Fragment/StyleCommun.css">
+
+
 <title>Détail vente</title>
 </head>
 
@@ -15,9 +21,8 @@
 
 	<!--  TITRE  -->
 	<div class="row mx-auto">
-		<div class="mx-auto"
-			style="width: 600px; margin-bottom: 50px; margin-top: 50px; margin-left: 300px;">
-			<h1 style="width: 600px; padding-left: 130px;">Détail vente</h1>
+		<div class="mx-auto">
+			<h1>Détail vente</h1>
 		</div>
 	</div>
 
