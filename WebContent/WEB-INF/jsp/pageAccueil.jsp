@@ -55,11 +55,11 @@
 				<div class="col-md-4">
 					<select class="custom-select" id="categorie" name="categorie">
 						<!--  Valeur par default pour filtrer avec toutes les catégories  -->
-						<option value="0" name="toutesCategories">Toutes</option>
+						<option value="0" >Toutes</option>
 						<!--  Affichage des catégories en fonction de la liste dans la BD  -->
 						<c:forEach var="categorie" items="${listeCategories}">
 							<option value="${categorie.noCategorie}"
-								name="${categorie.libelle}">${categorie.libelle}</option>
+								>${categorie.libelle}</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -68,9 +68,9 @@
 				<div class="col-md-2"></div>
 				<c:if test="${(noUtilisateur != null)}">
 					<div>
-						<a href="<%=request.getContextPath()%>/Accueil?choix=achat"
+						<a href="${pageContext.request.contextPath }/Accueil?choix=achat"
 							class="btn btn-secondary btn-sm">Achats</a><br> <a
-							href="<%=request.getContextPath()%>/Accueil?choix=mesVentes" class="btn btn-secondary btn-sm">Mes
+							href="${pageContext.request.contextPath }/Accueil?choix=mesVentes" class="btn btn-secondary btn-sm">Mes
 							ventes</a><br> 
 					</div>
 				</c:if>

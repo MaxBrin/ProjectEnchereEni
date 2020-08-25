@@ -63,7 +63,8 @@ public class ArticlesMgr {
 	}
 
 	/**
-	 * Méthode pour récupérer la liste de tout les articles
+	 * Méthode pour récupérer la liste de tout les articles de liste qui ont encore
+	 * une enchere
 	 * 
 	 * @return
 	 * @throws BLLException

@@ -13,7 +13,7 @@
 
 <title>En-tête Bootstrap</title>
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/Fragment/enTete.css">
+	href="${pageContext.request.contextPath }/Fragment/enTete.css">
 </head>
 <body>
 

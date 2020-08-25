@@ -13,7 +13,7 @@
 	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp" />
 
 
-
+	<!--  TITRE  -->
 	<div class="row mx-auto">
 		<div class="mx-auto"
 			style="width: 600px; margin-bottom: 50px; margin-top: 50px; margin-left: 300px;">
@@ -21,80 +21,80 @@
 		</div>
 	</div>
 
-
-	<div class="row">
-		<div class="col-md-2" style="margin-left: 260px;">
-			<label for="pseudo">Nom article</label>
+	<!--  NOM  -->
+	<div class="row mx-auto">
+		<div class="col-md-2 offset-sm-2">
+			<label for="nomArticle">Nom article</label>
 		</div>
 		<div class="col-sm-4">
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="Pseudo"
-					aria-label="Pseudo" name="pseudo" value="${article.nomArticle}"
-					readonly="readonly">
+				<input type="text" class="form-control" aria-label="nomArticle"
+					value="${article.nomArticle}" readonly="readonly">
 			</div>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-2" style="margin-left: 260px;">
-			<label for="pseudo">Description</label>
+	<!--  DESCRIPTION  -->
+	<div class="row mx-auto">
+		<div class="col-md-2 offset-sm-2">
+			<label for="description">Description</label>
 		</div>
 		<div class="col-sm-4">
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="Pseudo"
-					aria-label="Pseudo" name="pseudo" value="${article.description}"
-					readonly="readonly">
+				<input type="text" class="form-control" aria-label="description"
+					value="${article.description}" readonly="readonly">
 			</div>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-2" style="margin-left: 260px;">
-			<label for="pseudo">Catégorie</label>
+	<!--  CATEGORIE  -->
+	<div class="row mx-auto">
+		<div class="col-md-2 offset-sm-2">
+			<label for="categorie">Catégorie</label>
 		</div>
 		<div class="col-sm-4">
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="Pseudo"
-					aria-label="Pseudo" name="pseudo"
+				<input type="text" class="form-control" aria-label="categorie"
 					value="${article.categorie.libelle}" readonly="readonly">
 			</div>
 		</div>
 	</div>
 
-
-	<div class="row">
-		<div class="col-md-2" style="margin-left: 260px;">
-			<label for="pseudo">Meilleure offre</label>
+	<!--  MEILLEUR OFFRE  -->
+	<div class="row mx-auto">
+		<div class="col-md-2 offset-sm-2">
+			<label for="meilleureOffre">Meilleure offre</label>
 		</div>
 		<div class="col-sm-4">
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" aria-label="Pseudo"
-					name="pseudo" value="" readonly="readonly">
+				<input type="text" class="form-control" aria-label="meilleureOffre"
+					value="" readonly="readonly">
 			</div>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-2" style="margin-left: 260px;">
-			<label for="pseudo">Mise à prix</label>
+	<!--  MISE A PRIX  -->
+	<div class="row mx-auto">
+		<div class="col-md-2 offset-sm-2">
+			<label for="miseAPrix">Mise à prix</label>
 		</div>
 		<div class="col-sm-4">
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="Pseudo"
-					aria-label="Pseudo" name="pseudo" value="${article.prixInitial}"
-					readonly="readonly">
+				<input type="text" class="form-control" aria-label="miseAPrix"
+					value="${article.prixInitial}" readonly="readonly">
 			</div>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-2" style="margin-left: 260px;">
-			<label for="pseudo">Fin de l'enchère</label>
+	<!--  DATE DE FIN DE L'ENCHERE  -->
+	<div class="row mx-auto">
+		<div class="col-md-2 offset-sm-2">
+			<label for="finEnchere">Fin de l'enchère</label>
 		</div>
 		<div class="col-sm-4">
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="Pseudo"
-					aria-label="Pseudo" name="pseudo"
+				<!--   FORMATAGE DE LA DATE POUR FAIRE UN AFFICHAGE DANS CE STYLE 20 Aout 2020 10:30:25 -->
+				<input type="text" class="form-control" aria-label="finEnchere"
 					value="<fmt:parseDate value="${article.finEnchere}"
 								pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" type="both" />
 							<fmt:formatDate value="${parsedDate }" dateStyle="long"
@@ -105,55 +105,48 @@
 	</div>
 
 
-
-	<div class="row">
-		<div class="col-md-2" style="margin-left: 260px;">
+	<!--  AFFICHAGE DU RETRAIT DE L'ARTICLE  -->
+	<div class="row mx-auto">
+		<div class="col-md-2 offset-sm-2">
 			<label for="pseudo">Retrait</label>
 		</div>
-
+		<!--  RUE  -->
 		<div class="col-sm-4">
 			<div class="input-group mb-3">
 				<input type="text" class="form-control" aria-label="Pseudo"
-					name="pseudo" value="${utilisateur.rue}" readonly="readonly">
+					name="pseudo" value="${retrait.rue}" readonly="readonly">
 			</div>
 		</div>
 	</div>
 
+	<div class="row mx-auto">
 
-
-
-	<div class="row">
-		<div class="col-md-2" style="margin-left: 260px;">
-			<label for="pseudo"></label>
-		</div>
-
-		<div class="col-sm-4">
+		<!--  CODE POSTAL -->
+		<div class="col-sm-4 offset-sm-4">
 			<div class="input-group mb-3">
 				<input type="text" class="form-control" aria-label="Pseudo"
-					name="pseudo" value="${utilisateur.codePostal}" readonly="readonly">
+					name="pseudo" value="${retrait.codePostal}" readonly="readonly">
 			</div>
 		</div>
 	</div>
 
+	<div class="row mx-auto">
 
-	<div class="row">
-		<div class="col-md-2" style="margin-left: 260px;">
-			<label for="pseudo"></label>
-		</div>
-
-		<div class="col-sm-4">
+		<!--  VILLE  -->
+		<div class="col-sm-4 offset-sm-4">
 			<div class="input-group mb-3">
 				<input type="text" class="form-control" aria-label="Pseudo"
-					name="pseudo" value="${utilisateur.ville}" readonly="readonly">
+					name="pseudo" value="${retrait.ville}" readonly="readonly">
 			</div>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-2" style="margin-left: 260px;">
+	<!--  PSEUDO DU VENDEUR DE L'ARTICLE -->
+	<div class="row mx-auto">
+		<div class="col-md-2 offset-sm-2">
 			<label for="pseudo">Vendeur</label>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4 ">
 			<div class="input-group mb-3">
 				<input type="text" class="form-control" aria-label="Pseudo"
 					name="pseudo" value="${utilisateur.pseudo}" readonly="readonly">
@@ -161,23 +154,25 @@
 		</div>
 	</div>
 
-
+	<!--  FORMULAIRE POUR ENCHERIR  -->
 	<form action="${pageContext.request.contextPath }/DetailVente"
 		method="post">
 		<input type="hidden" name="noArticle" value="${article.noArticle }">
-		<div class="row">
-			<div class="col-md-2" style="margin-left: 260px;">
+		<div class="row mx-auto">
+			<div class="col-md-2 offset-sm-2">
 				<label for="pseudo">Ma proposition</label>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-md-4">
 				<div class="input-group mb-3">
 					<input type="number" id="proposition" name="proposition" min="0"
 						max="500" step="5">
-					<button type="submit">Enchérir</button>
+					<button type="submit" class="btn btn-primary">Enchérir</button>
 				</div>
 			</div>
 		</div>
 	</form>
+
+
 
 
 </body>
