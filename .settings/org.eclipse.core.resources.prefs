@@ -1,7 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/jsp/Fragment/enTete.jsp=UTF-8
 encoding//WebContent/WEB-INF/jsp/affichageProfil.jsp=UTF-8
-encoding//WebContent/WEB-INF/jsp/confirmationSuppressionCompte.jsp=UTF-8
 encoding//WebContent/WEB-INF/jsp/creationProfil.jsp=UTF-8
 encoding//WebContent/WEB-INF/jsp/detailVente.jsp=UTF-8
 encoding//WebContent/WEB-INF/jsp/modificationProfil.jsp=UTF-8

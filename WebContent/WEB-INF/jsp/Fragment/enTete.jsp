@@ -5,15 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!--  CSS  -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/Fragment/enTete.css">
+	
+<!-- Bootstrap CSS -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
 
 <title>En-tête Bootstrap</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/Fragment/enTete.css">
+
 </head>
 <body>
 
