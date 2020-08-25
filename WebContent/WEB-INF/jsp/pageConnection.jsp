@@ -14,10 +14,6 @@
 
 <title>Connexion</title>
 
-<link 
-	rel="stylesheet" href="${pageContext.request.contextPath }/css/style.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/stylePageAccueil.css">
 <link
 	href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
 	rel="stylesheet">
@@ -27,11 +23,14 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
+
+
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-	crossorigin="anonymous">
+	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
 
 
 </head>
@@ -39,6 +38,8 @@
 <body>
 	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp" />
 	<div class="container">
+	
+	
 		<div class="row mx-auto">
 			<div class="mx-auto" style="width: 500px;">
 				<h1>CONNEXION</h1>
@@ -47,55 +48,58 @@
 
 		<br>
 
-		
-
-			<form action="Connexion" method="post">
-				<div class="row ">
-				<div class="col-md-4"></div>
-
-
+				<form action="Connexion" method="post">
 			
-					
-					<div class="col-md-2">
-						<label for="filtre" class="labelFiltre">Identifiant</label>
+						<div class="row">
+					<div class="col-md-2" style="margin-left: 260px;">
+						<label for="identifiant">Identifiant</label>
 					</div>
-					
-					<div class="col-md-4">
-						<input type="text" class="form-control" placeholder=""
-							aria-label="labelFiltre" name="identifiant">
+					<div class="col-sm-4">
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" placeholder="Identifiant"
+								aria-label="Identifiant" name="identifiant" value="" >
+						</div>
 					</div>
 				</div>
-			</div>
 			
-				<br>
-
-				<div class="row justify-content-md-center">
-					<div class="row ">
-					<div class="col-mx-2">
-						<label for="filtre" class="labelFiltre">Mot de passe</label>
-					</div>
-					<div class="col-md-8">
-						<input type="password" class="form-control" placeholder=""
-							aria-label="labelFiltre" name="motDePasse">
-					</div>
-				</div>
-				</div>
-				<div class="row mx-auto">
 				
-				<div class="col-md-6 offset-md-3">
-				<input type="checkbox" name="encheresOuvertes" disabled="disabled">Se
+				
+				<div class="row">
+					<div class="col-md-2" style="margin-left: 260px;">
+						<label for="motDePasse">Mot de passe</label>
+					</div>
+					<div class="col-sm-4">
+						<div class="input-group mb-3">
+							<input type="password" class="form-control" placeholder="Mot De Passe"
+								aria-label="motDePasse" name="motDePasse" value="" >
+						</div>
+					</div>
+				</div>
+				
+					<br>
+				
+				<div class="row">
+					<div class="col-md-2" style="margin-left: 460px;">
+						<input type="checkbox" name="encheresOuvertes" disabled="disabled" > Se
 					souvenir de moi<br>
-				</div>
+					</div>
 				</div>
 
-				<a href="">Mot de passe oublié</a> <br>
+				<br>
+
+				<div class="row">
+					<div class="col-md-3" style="margin-left: 460px;">
+						<a href="">Mot de passe oublié</a> <br>
+					</div>
+				</div>
+				
 				<br>
 				
-				<div class="row mx-auto">
-				<div class="col-md-2">
-				<button type="submit" class="btn btn-secondary btn-lg">Connexion</button>
-				<c:if test="${erreurAuthentification!=null }">${erreurAuthentification }</c:if>
-</div>
+				<div class="row">
+					<div class="col-md-3" style="margin-left: 460px;">
+						<button type="submit" class="btn btn-secondary btn-lg" >Connexion</button><br>
+						<c:if test="${erreurAuthentification!=null }">${erreurAuthentification }</c:if>
+					</div>
 				</div>
 			</form>
 		</div>
