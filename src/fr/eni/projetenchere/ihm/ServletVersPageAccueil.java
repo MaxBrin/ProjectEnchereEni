@@ -44,7 +44,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-//*********************************Traitement bouton select**********************************************
+//*********************************Traitement bouton select Afficher par categorie**********************************************
 
 		// Récupération et transformation en int de la valeur du select
 		String choixCategorie = request.getParameter("categorie");
@@ -52,7 +52,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 		List<Article> listeAAfficher = new ArrayList<>();
 		listeAAfficher = trierArticleParCategorie(noCategorie);
 
-//************Affichage articles en fonction de la recherche par nom en mode déconnexion*****************
+//************Affichage articles en fonction de la recherche*****************
 
 		// Je récupère la saisie de l'utilisateur
 		String rechercheUtilisateur = request.getParameter("rechercherArticle").toUpperCase();
@@ -66,9 +66,17 @@ public class ServletVersPageAccueil extends HttpServlet {
 			listeArticlesAAfficher = trierArticleParRechercheNom(rechercheUtilisateur, listeAAfficher);
 		}
 
-//************************Traitement des checkbox pour mes ventes**************************
-		// Récuperationndes données
-		// if((request.getAttribute("ventesEnCours")) != null
+//************************Traitement des checkbox pour "mes ventes"**************************
+		// Récuperation des données
+//		HttpSession session = request.getSession();
+//		Integer noUtilisateur = (Integer) session.getAttribute("noUtilisateur");
+//		try {
+//			Utilisateur utilisateurSession = UtilisateurMgr.getUtilisateur(noUtilisateur);
+//		} catch (BLLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		if ((request.getAttribute("ventesEnCours")) != null)
 //**************************************************************************************		
 		// Envoie des informations
 		request = Chargement.chargementListArticle(request);

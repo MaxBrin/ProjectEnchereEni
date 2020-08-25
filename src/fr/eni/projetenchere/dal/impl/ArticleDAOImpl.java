@@ -14,6 +14,7 @@ import fr.eni.projetenchere.bo.Categorie;
 import fr.eni.projetenchere.bo.Utilisateur;
 import fr.eni.projetenchere.dal.ArticleDAO;
 import fr.eni.projetenchere.dal.DALException;
+import fr.eni.projetenchere.ihm.modele.Filtre;
 
 public class ArticleDAOImpl implements ArticleDAO {
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS VALUES (?,?,?,?,?,null,?,?)";
@@ -153,6 +154,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 
 	@Override
 	public void deleteArticle(int noArticle) throws DALException {
+
 		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(DELETE)) {
 			pStmt.setInt(1, noArticle);
 			pStmt.executeUpdate();
@@ -179,6 +181,59 @@ public class ArticleDAOImpl implements ArticleDAO {
 			throw new DALException("Erreur updateArticle", e);
 		}
 
+	}
+
+	protected String creationRequeteSql(Filtre filtre) {
+		StringBuilder sbRequete = new StringBuilder();
+		if (filtre != null) {
+			List<String> listeRequete = new ArrayList<String>();
+			String[] saisieUtilisateur = filtre.getSaisieUtilisateur();
+			if (saisieUtilisateur.length > 0) {
+				StringBuilder sb = new StringBuilder();
+				sb.append("(nom_article LIKE '%" + saisieUtilisateur[0] + "%' ");
+				for (int i = 1; i < saisieUtilisateur.length; i++) {
+					sb.append("Or nom_article LIKE '%" + saisieUtilisateur[i] + "%' ");
+				}
+				sb.append(")");
+				listeRequete.add(sb.toString());
+			}
+			if (filtre.getNoCategorie() != 0) {
+				listeRequete.add("no_categorie = " + filtre.getNoCategorie() + " ");
+			}
+			if (filtre.getNoUtilisateur() != 0) {
+				listeRequete.add("no_utilisateur = " + filtre.getNoUtilisateur() + " ");
+			}
+			List<String> choixUtilisateur = new ArrayList<>();
+			if (filtre.getChoixUtilisateur().contains("EnCours")) {
+				choixUtilisateur.add("date_debut_encheres < NOW() AND date_fin_encheres > NOW() ");
+			}
+			if (filtre.getChoixUtilisateur().contains("Fini")) {
+				choixUtilisateur.add("date_fin_encheres < NOW() ");
+			}
+			if (filtre.getChoixUtilisateur().contains("NonDisponible")) {
+				choixUtilisateur.add("date_debut_encheres > NOW() ");
+			}
+			StringBuilder choix = new StringBuilder();
+			if (!(choixUtilisateur.isEmpty())) {
+				choix.append("(");
+				choix.append(choixUtilisateur.get(0));
+				for (int i = 1; i < choixUtilisateur.size(); i++) {
+					choix.append(" OR ");
+					choix.append(choixUtilisateur.get(i));
+				}
+				choix.append(")");
+				listeRequete.add(choix.toString());
+			}
+			if (!(listeRequete.isEmpty())) {
+				sbRequete.append(" WHERE ");
+				sbRequete.append(listeRequete.get(0));
+				for (int i = 1; i < listeRequete.size(); i++) {
+					sbRequete.append(" AND ");
+					sbRequete.append(listeRequete.get(i));
+				}
+			}
+		}
+		return sbRequete.toString();
 	}
 
 }

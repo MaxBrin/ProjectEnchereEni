@@ -68,7 +68,6 @@ public class EnchereMgr {
 		try {
 			derniereEnchere = enchereDAO.selectBy_NoArticle(article.getNoArticle());
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (derniereEnchere != null && derniereEnchere.getMontantEnchere() < enchere.getMontantEnchere()) {

@@ -17,13 +17,13 @@
 	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp"/>
 
 	<!-- L'utlisateur consulte le profil d'un autre vendeur -->
-	
+			<!-- Titre  -->
 			<div class="row mx-auto">
 				<div class="mx-auto" style="width: 600px; margin-bottom: 50px; margin-top: 50px; margin-left: 300px;">
 					<h1 style="width: 600px;">Profil de ${utilisateurAAfficher.pseudo}</h1>
 				</div>
 			</div>
-			
+			<!-- PSEUDO -->
 			<div class="row">
 				<div class="col-md-2" style="margin-left: 260px;">
 					<label for="pseudo">Pseudo</label>
@@ -35,7 +35,7 @@
 					</div>
 				</div>
 			</div>
-			
+			<!-- PRENOM -->
 			<div class="row">
 				<div class="col-md-2" style="margin-left: 260px;">
 					<label for="pseudo">Prénom</label>
@@ -47,7 +47,7 @@
 					</div>
 				</div>
 			</div>
-			
+			<!-- CODE POSTAL -->
 			<div class="row">
 				<div class="col-md-2" style="margin-left: 260px;">
 					<label for="pseudo">Code Postal</label>
@@ -59,7 +59,7 @@
 					</div>
 				</div>
 			</div>
-			
+			<!-- VILLE -->
 			<div class="row">
 				<div class="col-md-2" style="margin-left: 260px;">
 					<label for="pseudo">Ville</label>
@@ -71,7 +71,7 @@
 					</div>
 				</div>
 			</div>
-	
+	<!-- Si l'utilisateur consulte son propre profil un bouton "modifier" s'affiche -->
 	<c:if test="${utilisateurAAfficher.noUtilisateur == noUtilisateur}">
 	<div class="row mx-auto">
 			<a href="${pageContext.request.contextPath }/ModificationProfil"

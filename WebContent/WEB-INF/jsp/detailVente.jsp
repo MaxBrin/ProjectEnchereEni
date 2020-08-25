@@ -160,7 +160,7 @@
 	</div>
 
 	<!--  FORMULAIRE POUR ENCHERIR  -->
-	<form action="${pageContext.request.contextPath }/DetailVente"
+	<form action="${pageContext.request.contextPath}/DetailVente"
 		method="post">
 		<input type="hidden" name="noArticle" value="${article.noArticle }">
 		<div class="row mx-auto">

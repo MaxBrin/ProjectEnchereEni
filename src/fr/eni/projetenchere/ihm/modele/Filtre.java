@@ -1,42 +1,36 @@
 package fr.eni.projetenchere.ihm.modele;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 public class Filtre {
-	private String filtreSaisie;
+
 	private int noCategorie;
-	private LocalDateTime dateDebut;
-	private LocalDateTime dateFin;
 	private int noUtilisateur;
+	private String[] saisieUtilisateur;
+	private List<String> choixUtilisateur;
 
-	public Filtre(String filtreSaisie, int noCategorie, LocalDateTime dateDebut, LocalDateTime dateFin,
-			int noUtilisateur) {
+	public Filtre(int noCategorie, int noUtilisateur, String[] saisieUtilisateur, List<String> choixUtilisateur) {
 		super();
-		this.filtreSaisie = filtreSaisie;
 		this.noCategorie = noCategorie;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
 		this.noUtilisateur = noUtilisateur;
-	}
-
-	public String getFiltreSaisie() {
-		return filtreSaisie;
+		this.saisieUtilisateur = saisieUtilisateur;
+		this.choixUtilisateur = choixUtilisateur;
 	}
 
 	public int getNoCategorie() {
 		return noCategorie;
 	}
 
-	public LocalDateTime getDateDebut() {
-		return dateDebut;
-	}
-
-	public LocalDateTime getDateFin() {
-		return dateFin;
-	}
-
 	public int getNoUtilisateur() {
 		return noUtilisateur;
+	}
+
+	public String[] getSaisieUtilisateur() {
+		return saisieUtilisateur;
+	}
+
+	public List<String> getChoixUtilisateur() {
+		return choixUtilisateur;
 	}
 
 }
