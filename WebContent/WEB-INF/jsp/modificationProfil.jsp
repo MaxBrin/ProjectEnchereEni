@@ -26,6 +26,7 @@
 </head>
 
 <body>
+	<!-- INCLUSION EN-TETE -->
 	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp" />
 	<div class="container">
 
@@ -324,7 +325,7 @@
 							<input type="password">
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">Annuler</button>
-							<button type="Submit" class="btn btn-danger"">Supprimer</button>
+							<button type="Submit" class="btn btn-danger">Supprimer</button>
 						</form>
 					</div>
 

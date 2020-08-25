@@ -13,7 +13,7 @@
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath}/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
 </head>
@@ -38,8 +38,6 @@
 
 
 			<!--   Modification de l'id de l'input s'il y'a un message d'erreur qui permet de mettre des bordure en rouge -->
-
-
 			<div class="row">
 				<!--  PSEUDO  -->
 				<div class="col-md-2">
