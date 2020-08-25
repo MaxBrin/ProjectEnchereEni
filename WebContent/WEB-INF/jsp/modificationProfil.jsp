@@ -6,19 +6,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Fonts -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
-	rel="stylesheet">
-<!-- Bootstrap CSS -->
+
+
+
+<!-- CSS -->
+
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
+	href="${pageContext.request.contextPath }/Fragment/StyleCommun.css">
 
 
 <title>Mon profil</title>
@@ -35,10 +30,12 @@
 			<!--  TITRE  -->
 			<div class="row mx-auto">
 				<div class="mx-auto" style="width: 200px;">
+					<div id="titre">
 					<h1>Mon Profil</h1>
+					</div>
 				</div>
 			</div>
-			<br> <br>
+			
 			<!--  Initialisation de la liste d'erreur dans une variable -->
 			<c:set var="erreurs" value="${listeErreur }" />
 			<div class="row">
@@ -332,20 +329,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-		crossorigin="anonymous"></script>
-	<script
-		src="${pageContext.request.contextPath }/bootstrap/4.5.2/js/bootstrap.js"></script>
 
 </body>
 </html>

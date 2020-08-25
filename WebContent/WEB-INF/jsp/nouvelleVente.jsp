@@ -50,6 +50,14 @@
 					</div>
 				</div>
 			</div>
+			<!--  AFFICHAGE DU MESSAGE D'ERREUR -->
+			<div class="row">
+				<div class="col-sm-6">
+					<c:if test="${erreur.containsKey('nomArticle') }">
+						<p class="text-danger">${erreur.get('nomArticle')}</p>
+					</c:if>
+				</div>
+			</div>
 
 			<!--  DESCRIPTION ARTICLE  -->
 			<div class="row mx-auto">
@@ -58,8 +66,7 @@
 				</div>
 				<div class="col-sm-6">
 					<div class="input-group mb-3">
-						<textarea rows="5" cols="15"
-							class="form-control"
+						<textarea rows="5" cols="15" class="form-control"
 							placeholder="Description" aria-label="description"
 							name="description">${article.description}</textarea>
 					</div>
@@ -101,8 +108,16 @@
 				<div class="col-sm-2">
 					<input type="number" aria-label="miseAPrix"
 						class="form-control ${fn:contains(erreur,'prixInitial')?'border border-danger':'border border-secondary' }"
-						name="miseAPrix" step="1" min="1" required="required" placeholder="Entrez votre prix"
-						value="${article.miseAPrix}">
+						name="miseAPrix" step="1" min="1" required="required"
+						placeholder="Entrez votre prix" value="${article.prixInitial}">
+				</div>
+			</div>
+			<!--  AFFICHAGE DU MESSAGE D'ERREUR -->
+			<div class="row">
+				<div class="col-sm-6">
+					<c:if test="${erreur.containsKey('prixInitial') }">
+						<p class="text-danger">${erreur.get('prixInitial')}</p>
+					</c:if>
 				</div>
 			</div>
 			<br>
@@ -118,6 +133,7 @@
 						value="${article.debutEnchere}">
 				</div>
 			</div>
+
 			<br>
 
 			<!-- FIN DE L'ENCHERE -->
@@ -130,6 +146,14 @@
 						class="form-control ${erreur.containsKey('datesEncheres')?'border border-danger':'border border-secondary' }"
 						name="finEnchere" required="required"
 						value="${article.finEnchere}">
+				</div>
+			</div>
+			<!--  AFFICHAGE DU MESSAGE D'ERREUR -->
+			<div class="row">
+				<div class="col-sm-6">
+					<c:if test="${erreur.containsKey('datesEncheres') }">
+						<p class="text-danger">${erreur.get('datesEncheres')}</p>
+					</c:if>
 				</div>
 			</div>
 			<br>
@@ -152,6 +176,14 @@
 						</div>
 					</div>
 				</div>
+				<!--  AFFICHAGE DU MESSAGE D'ERREUR -->
+				<div class="row">
+					<div class="col-sm-6">
+						<c:if test="${erreur.containsKey('rue') }">
+							<p class="text-danger">${erreur.get('rue')}</p>
+						</c:if>
+					</div>
+				</div>
 
 				<!--   CODE POSTAL  -->
 				<div class="row mx-auto">
@@ -167,7 +199,15 @@
 						</div>
 					</div>
 				</div>
-			
+				<!--  AFFICHAGE DU MESSAGE D'ERREUR -->
+				<div class="row">
+					<div class="col-sm-6">
+						<c:if test="${erreur.containsKey('codePostal') }">
+							<p class="text-danger">${erreur.get('codePostal')}</p>
+						</c:if>
+					</div>
+				</div>
+
 				<!--   VILLE  -->
 				<div class="row mx-auto">
 					<div class="col-md-2">
@@ -182,21 +222,28 @@
 						</div>
 					</div>
 				</div>
+				<!--  AFFICHAGE DU MESSAGE D'ERREUR -->
+				<div class="row">
+					<div class="col-sm-6">
+						<c:if test="${erreur.containsKey('ville') }">
+							<p class="text-danger">${erreur.get('ville')}</p>
+						</c:if>
+					</div>
+				</div>
 
 
 			</fieldset>
 
 			<br>
-			<c:forEach var="messageErreur" items="${listeErreur.values()}">
-				<p>${messageErreur}</p>
-			</c:forEach>
+
 
 
 			<div class="row mx-auto">
 				<div class="mx-auto">
 					<button type="submit" class="btn btn-primary">Enregister</button>
 
-					<a href="${pageContext.request.contextPath }/Accueil" class="btn btn-secondary">Annuler</a>
+					<a href="${pageContext.request.contextPath }/Accueil"
+						class="btn btn-secondary">Annuler</a>
 				</div>
 			</div>
 		</form>

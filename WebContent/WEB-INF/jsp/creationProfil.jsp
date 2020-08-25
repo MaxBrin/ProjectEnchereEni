@@ -7,15 +7,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!-- CSS -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/Erreur.css">
+	href="${pageContext.request.contextPath }/Fragment/StyleCommun.css">
+	
 <title>Mon profil</title>
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.min.css"
-	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-	crossorigin="anonymous">
 </head>
 
 
@@ -28,17 +26,16 @@
 				<h1>Mon Profil</h1>
 			</div>
 		</div>
-		<br> <br>
+		s
 
 		<form action="${pageContext.request.contextPath }/CreationCompte"
 			method="post">
 
-			<!--  Initialisation Message Erreur  -->
+			<!--  Initialisation du HasMap d'erreur -->
 			<c:set var="erreurs" value="${listErreur}" />
 
 
-			<!--   Modification de l'id de l'input s'il y'a un message d'erreur qui permet de mettre des bordure en rouge -->
-
+			<!--   Modification de la class de l'input s'il y'a une clé dans le HasMap des erreurs qui permet de mettre des bordure en rouge -->
 
 			<div class="row">
 				<!--  PSEUDO  -->
@@ -66,6 +63,8 @@
 					</div>
 				</div>
 			</div>
+
+			<!--  Affichage d'un message d'erreur contenu dans la HasMap en fonction de la clé -->
 			<div class="row">
 				<div class="col-sm-6">
 					<c:if test="${erreurs.containsKey('pseudoNonValide') }">
@@ -220,6 +219,7 @@
 					<label for="motDePasse">Mot de passe :</label>
 				</div>
 				<div class="col-sm-4">
+					<!--  Utilisation d'un pattern pour avoir un mot de passe avec au moins une majuscule, une miniscule, un chiffre, un caractère spéciaux compris dans (#?!@$%^&*-) et au moins 8 caractère -->
 					<div class="input-group mb-3">
 						<input type="password"
 							class="form-control ${erreurs.containsKey('MotDePasseNonValide') || erreurs.containsKey('MotDePasseNonIdentique')?'border border-danger':'border border-secondary' }"
@@ -247,7 +247,8 @@
 			<div class="row mx-auto">
 				<div class="mx-auto">
 					<button type="submit" class="btn btn-primary">Enregistrer</button>
-					<a href="/ProjectEnchereEni/Accueil" class="btn btn-secondary">Annuler</a>
+					<a href="${pageContext.request.contextPath }/Accueil"
+						class="btn btn-secondary">Annuler</a>
 				</div>
 			</div>
 		</form>

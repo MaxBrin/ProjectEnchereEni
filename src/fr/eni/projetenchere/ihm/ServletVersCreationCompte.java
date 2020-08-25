@@ -47,7 +47,7 @@ public class ServletVersCreationCompte extends HttpServlet {
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
-		System.out.println(ville);
+		ville = ville.toUpperCase();
 		String motDePasse = request.getParameter("motDePasse");
 		String confirmationMdp = request.getParameter("confirmerMotDePasse");
 		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,

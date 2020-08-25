@@ -1,6 +1,7 @@
 package fr.eni.projetenchere.dal.impl;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import fr.eni.projetenchere.bo.Retrait;
@@ -9,6 +10,7 @@ import fr.eni.projetenchere.dal.RetraitDAO;
 
 public class RetraitDAOImpl implements RetraitDAO {
 	private static final String INSERT = "INSERT INTO RETRAITS VALUES (?,?,?,?)";
+	private static final String SELECTBY_NOARTICLE = "SELECT no_article,rue,code_postal,ville FROM RETRAITS WHERE no_article =?";
 
 	@Override
 	public void insertRetrait(Retrait retrait) throws DALException {
@@ -26,8 +28,18 @@ public class RetraitDAOImpl implements RetraitDAO {
 
 	@Override
 	public Retrait selectByNoArticle(int noArticle) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		Retrait retrait = null;
+		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(SELECTBY_NOARTICLE)) {
+			pStmt.setInt(1, noArticle);
+			ResultSet rs = pStmt.executeQuery();
+			if (rs.next()) {
+				retrait = new Retrait(rs.getInt("no_article"), rs.getString("rue"), rs.getString("code_postal"),
+						rs.getString("ville"));
+			}
+		} catch (SQLException e) {
+			throw new DALException("Erreur selectByNoArticle", e);
+		}
+		return retrait;
 	}
 
 	@Override

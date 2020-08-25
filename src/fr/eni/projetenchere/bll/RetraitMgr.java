@@ -27,4 +27,22 @@ public class RetraitMgr {
 		}
 	}
 
+	/**
+	 * Méthode pour récupérer le retrait d'un article en fonction du numero
+	 * d'article
+	 * 
+	 * @param noArticle
+	 * @return
+	 * @throws BLLException
+	 */
+	public static Retrait getRetraitByNoArticle(int noArticle) throws BLLException {
+		Retrait retrait = null;
+		try {
+			retrait = retraitDAO.selectByNoArticle(noArticle);
+		} catch (DALException e) {
+			throw new BLLException("Erreur getRetraitByNoArticle", e);
+		}
+		return retrait;
+	}
+
 }

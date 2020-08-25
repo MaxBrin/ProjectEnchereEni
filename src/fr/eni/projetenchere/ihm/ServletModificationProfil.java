@@ -106,8 +106,9 @@ public class ServletModificationProfil extends HttpServlet {
 				}
 			}
 
-			erreurs = UtilisateurMgr.verifierUtilisateur(utilisateurModifie); // Si le nouveau
-																				// pseudo
+			erreurs = UtilisateurMgr.verifierUtilisateur(utilisateurModifie);
+			// Si le nouveau
+			// pseudo
 			// saisi existe déjà
 			// dans la bd
 			if (erreurs.containsKey("pseudoPresent")) {
