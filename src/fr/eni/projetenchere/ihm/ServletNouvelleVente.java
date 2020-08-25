@@ -136,11 +136,7 @@ public class ServletNouvelleVente extends HttpServlet {
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		} else {
 			request = Chargement.chargementListCategorie(request);
-			request.setAttribute("listeErreur", erreurs);
-			request.setAttribute("nomArticle", nom);
-			request.setAttribute("description", description);
-			request.setAttribute("categorieSaisie", categorieSaisie);
-			request.setAttribute("miseAPrix", miseAPrixSaisie);
+			request.setAttribute("article", article);
 			request.setAttribute("utilisateur", utilisateur);
 			request.setAttribute("noUtilisateur", noUtilisateur);
 

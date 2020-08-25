@@ -1,7 +1,7 @@
 package fr.eni.projetenchere.bo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Enchere implements Serializable {
 
@@ -10,8 +10,7 @@ public class Enchere implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int noEnchere;
-	// Date ou l'utilisateur rencheri sur un article
-	private Date dateEnchere;
+	private LocalDateTime dateEnchere;
 	private int montantEnchere;
 	private int noArticle;
 	private int noUtilisateur;
@@ -20,7 +19,7 @@ public class Enchere implements Serializable {
 		super();
 	}
 
-	public Enchere(Date dateEnchere, int montantEnchere, int noArticle, int noUtilisateur) {
+	public Enchere(LocalDateTime dateEnchere, int montantEnchere, int noArticle, int noUtilisateur) {
 		super();
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
@@ -28,7 +27,7 @@ public class Enchere implements Serializable {
 		this.noUtilisateur = noUtilisateur;
 	}
 
-	public Enchere(int noEnchere, Date dateEnchere, int montantEnchere, int noArticle, int noUtilisateur) {
+	public Enchere(int noEnchere, LocalDateTime dateEnchere, int montantEnchere, int noArticle, int noUtilisateur) {
 		super();
 		this.noEnchere = noEnchere;
 		this.dateEnchere = dateEnchere;
@@ -45,11 +44,11 @@ public class Enchere implements Serializable {
 		this.noEnchere = noEnchere;
 	}
 
-	public Date getDateEnchere() {
+	public LocalDateTime getDateEnchere() {
 		return dateEnchere;
 	}
 
-	public void setDateEnchere(Date dateEnchere) {
+	public void setDateEnchere(LocalDateTime dateEnchere) {
 		this.dateEnchere = dateEnchere;
 	}
 
