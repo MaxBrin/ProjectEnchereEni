@@ -144,8 +144,9 @@ public class ArticlesMgr {
 		if (article.getPrixInitial() == 0) {
 			erreurs.put("prixInitial", "Le prix initial de vente ne peut pas être égal à zero. ");
 		}
-		if (article.getFinEnchere().isBefore(article.getDebutEnchere())) {
-			erreurs.put("datesEncheres", "Dates d'enchères invalides");
+		if (article.getFinEnchere().isBefore(article.getDebutEnchere().plusDays(1).minusSeconds(1))) {
+			erreurs.put("datesEncheres",
+					"Dates d'enchères invalides. Il faut 1 jour entre le debut de l'enchère et la fin de l'enchère");
 		}
 		if (rue.trim().equals("")) {
 			erreurs.put("rue", "Adresse invalide");
