@@ -71,7 +71,6 @@ public class ServletDetailVente extends HttpServlet {
 			acheteur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 			articleEnVente = ArticlesMgr.getArticle(noArticle);
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

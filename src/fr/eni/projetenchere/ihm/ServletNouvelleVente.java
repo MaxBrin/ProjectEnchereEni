@@ -136,7 +136,6 @@ public class ServletNouvelleVente extends HttpServlet {
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		} else {
 			request = Chargement.chargementListCategorie(request);
-			System.out.println(erreurs);
 			request.setAttribute("listeErreur", erreurs);
 			request.setAttribute("article", article);
 			request.setAttribute("utilisateur", utilisateur);
