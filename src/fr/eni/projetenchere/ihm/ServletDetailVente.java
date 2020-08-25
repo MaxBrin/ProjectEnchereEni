@@ -37,6 +37,9 @@ public class ServletDetailVente extends HttpServlet {
 		// Recuperation du paramètre idArticle
 		String noArticle = request.getParameter("idArticle");
 		int noIdArticle = Integer.parseInt(noArticle);
+		
+		
+		//initialisation de variable
 		Article article = new Article();
 		Retrait retrait = new Retrait();
 
@@ -47,7 +50,7 @@ public class ServletDetailVente extends HttpServlet {
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-		// Envoie du paramètre article et de l'utilisateur
+		// Envoi du paramètre article et de l'utilisateur
 		request.setAttribute("retrait", retrait);
 		request.setAttribute("article", article);
 		request.setAttribute("utilisateur", article.getUtilisateur());
