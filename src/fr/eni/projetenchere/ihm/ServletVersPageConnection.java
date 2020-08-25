@@ -52,7 +52,7 @@ public class ServletVersPageConnection extends HttpServlet {
 		String messageErreur = "";
 		boolean identifiantPresent = false;
 		for (Utilisateur utilisateur : listeUtilisateur) {
-			if (utilisateur.getEmail().equals(identifiant) || utilisateur.getPseudo().equals(identifiant)) {
+			if ((utilisateur.getEmail().equals(identifiant) || utilisateur.getPseudo().equals(identifiant))) {
 				identifiantPresent = true;
 
 				if (utilisateur.getMotDePasse().equals(mdp)) {
