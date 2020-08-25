@@ -38,72 +38,96 @@
 <body>
 	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp" />
 	<div class="container">
-	
-	
+
+
 		<div class="row mx-auto">
-			<div class="mx-auto" style="width: 500px;">
+			<div class="mx-auto offset-sm-3" >
 				<h1>CONNEXION</h1>
 			</div>
 		</div>
 
 		<br>
+		<!--  Initialisation Message Erreur  -->
+		<c:set var="erreur" value="${listeErreurs}" />
+		
+		
+		<form action="Connexion" method="post">
 
-				<form action="Connexion" method="post">
-			
-						<div class="row">
-					<div class="col-md-2" style="margin-left: 260px;">
-						<label for="identifiant">Identifiant</label>
-					</div>
-					<div class="col-sm-4">
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" placeholder="Identifiant"
-								aria-label="Identifiant" name="identifiant" value="" >
-						</div>
+			<div class="row mx-auto">
+				<div class="col-md-2 offset-sm-3">
+					<label for="identifiant">Identifiant</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="text"
+							class="form-control ${erreur.containsKey('IdentifiantInvalide')?'border border-danger':'border border-secondary' }"
+							placeholder="Identifiant" aria-label="Identifiant"
+							name="identifiant" value="">
 					</div>
 				</div>
-			
-				
-				
-				<div class="row">
-					<div class="col-md-2" style="margin-left: 260px;">
-						<label for="motDePasse">Mot de passe</label>
-					</div>
-					<div class="col-sm-4">
-						<div class="input-group mb-3">
-							<input type="password" class="form-control" placeholder="Mot De Passe"
-								aria-label="motDePasse" name="motDePasse" value="" >
-						</div>
+			</div>
+			<!--  Afficher message d'erreurs -->
+			<div class="row mx-auto">
+				<div class="col-sm-6 offset-sm-3">
+					<c:if test="${erreur.containsKey('IdentifiantInvalide')}">
+						<p class="text-danger">${erreur.get('IdentifiantInvalide')}</p>
+					</c:if>
+				</div>
+			</div>
+
+
+
+			<div class="row mx-auto">
+				<div class="col-md-2 offset-sm-3">
+					<label for="motDePasse">Mot de passe</label>
+				</div>
+				<div class="col-sm-4">
+					<div class="input-group mb-3">
+						<input type="password"
+							class="form-control ${erreur.containsKey('motDePasseInvalide')?'border border-danger':'border border-secondary' }"
+							placeholder="Mot De Passe" aria-label="motDePasse"
+							name="motDePasse" value="">
 					</div>
 				</div>
-				
+			</div>
+			<!--  Afficher message d'erreurs -->
+			<div class="row mx-auto">
+				<div class="col-sm-6 offset-sm-3">
+					<c:if test="${erreur.containsKey('motDePasseInvalide')}">
+						<p class="text-danger">${erreur.get('motDePasseInvalide')}</p>
+					</c:if>
+				</div>
+			</div>
+
+			<br>
+
+			<div class="row">
+				<div class="col-md-2 offset-sm-5">
+					<input type="checkbox" name="encheresOuvertes" disabled="disabled">
+					Se souvenir de moi<br>
+				</div>
+			</div>
+
+			<br>
+
+			<div class="row">
+				<div class="col-md-3 offset-sm-5" >
+					<a href="">Mot de passe oublié</a> <br>
+				</div>
+			</div>
+
+			<br>
+
+			<div class="row">
+				<div class="col-md-3 offset-sm-5">
+					<button type="submit" class="btn btn-primary btn-lg">Connexion</button>
 					<br>
-				
-				<div class="row">
-					<div class="col-md-2" style="margin-left: 460px;">
-						<input type="checkbox" name="encheresOuvertes" disabled="disabled" > Se
-					souvenir de moi<br>
-					</div>
+					<c:if test="${erreurAuthentification!=null }">${erreurAuthentification }</c:if>
 				</div>
+			</div>
+		</form>
+	</div>
 
-				<br>
-
-				<div class="row">
-					<div class="col-md-3" style="margin-left: 460px;">
-						<a href="">Mot de passe oublié</a> <br>
-					</div>
-				</div>
-				
-				<br>
-				
-				<div class="row">
-					<div class="col-md-3" style="margin-left: 460px;">
-						<button type="submit" class="btn btn-secondary btn-lg" >Connexion</button><br>
-						<c:if test="${erreurAuthentification!=null }">${erreurAuthentification }</c:if>
-					</div>
-				</div>
-			</form>
-		</div>
-	
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

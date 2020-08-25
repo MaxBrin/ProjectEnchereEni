@@ -2,6 +2,7 @@ package fr.eni.projetenchere.ihm;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -49,33 +50,33 @@ public class ServletVersPageConnection extends HttpServlet {
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-		String messageErreur = "";
+		HashMap<String, String> erreurs = new HashMap<>();
 		boolean identifiantPresent = false;
 		for (Utilisateur utilisateur : listeUtilisateur) {
-			if(!identifiant.equals("") && !mdp.equals("")) {
-			if ((utilisateur.getEmail().equals(identifiant) || utilisateur.getPseudo().equals(identifiant))) {
-				identifiantPresent = true;
+			if (!identifiant.equals("")) {
+				if ((utilisateur.getEmail().equals(identifiant) || utilisateur.getPseudo().equals(identifiant))) {
+					identifiantPresent = true;
 
-				if (utilisateur.getMotDePasse().equals(mdp)) {
-					
-					HttpSession session = request.getSession();
-					session.setAttribute("noUtilisateur", utilisateur.getNoUtilisateur());
-					request = Chargement.chargementListArticle(request);
-					request = Chargement.chargementListCategorie(request);
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
-					rd.forward(request, response);
-				} else {
-					messageErreur = "Le mot de passe est incorrect. ";
-					request.setAttribute("erreurAuthentification", messageErreur);
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnection.jsp");
-					rd.forward(request, response);
+					if (utilisateur.getMotDePasse().equals(mdp)) {
+
+						HttpSession session = request.getSession();
+						session.setAttribute("noUtilisateur", utilisateur.getNoUtilisateur());
+						request = Chargement.chargementListArticle(request);
+						request = Chargement.chargementListCategorie(request);
+						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
+						rd.forward(request, response);
+					} else {
+						erreurs.put("motDePasseInvalide", "Le mot de passe est incorrect. ");
+						request.setAttribute("listeErreurs", erreurs);
+						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnection.jsp");
+						rd.forward(request, response);
+					}
 				}
 			}
 		}
-	}
 		if (!identifiantPresent) {
-			messageErreur = "L'identifiant est inconnu. ";
-			request.setAttribute("erreurAuthentification", messageErreur);
+			erreurs.put("IdentifiantInvalide", "L'identifiant est inconnu. ");
+			request.setAttribute("listeErreurs", erreurs);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnection.jsp");
 			rd.forward(request, response);
 		}
