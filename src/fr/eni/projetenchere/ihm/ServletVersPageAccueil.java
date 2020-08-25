@@ -68,7 +68,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 //************************Traitement des checkbox pour mes ventes**************************
 		// Récuperationndes données
-		if((request.getAttribute("ventesEnCours")) != null
+		// if((request.getAttribute("ventesEnCours")) != null
 //**************************************************************************************		
 		// Envoie des informations
 		request = Chargement.chargementListArticle(request);
