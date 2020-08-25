@@ -69,7 +69,8 @@
 				<c:if test="${(noUtilisateur != null)}">
 					<div>
 						<a href="<%=request.getContextPath()%>/Accueil?choix=achat"
-							class="btn btn-secondary btn-sm">Achats</a><br> <a
+							class="btn btn-secondary btn-sm">Achats</a><br> 
+						<a
 							href="<%=request.getContextPath()%>/Accueil?choix=mesVentes" class="btn btn-secondary btn-sm">Mes
 							ventes</a><br> 
 					</div>
