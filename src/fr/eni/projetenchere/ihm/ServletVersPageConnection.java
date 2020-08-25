@@ -52,11 +52,12 @@ public class ServletVersPageConnection extends HttpServlet {
 		String messageErreur = "";
 		boolean identifiantPresent = false;
 		for (Utilisateur utilisateur : listeUtilisateur) {
+			if(!identifiant.equals("") && !mdp.equals("")) {
 			if ((utilisateur.getEmail().equals(identifiant) || utilisateur.getPseudo().equals(identifiant))) {
 				identifiantPresent = true;
 
 				if (utilisateur.getMotDePasse().equals(mdp)) {
-
+					
 					HttpSession session = request.getSession();
 					session.setAttribute("noUtilisateur", utilisateur.getNoUtilisateur());
 					request = Chargement.chargementListArticle(request);
@@ -71,8 +72,9 @@ public class ServletVersPageConnection extends HttpServlet {
 				}
 			}
 		}
+	}
 		if (!identifiantPresent) {
-			messageErreur = "L'identifiant est inconnue. ";
+			messageErreur = "L'identifiant est inconnu. ";
 			request.setAttribute("erreurAuthentification", messageErreur);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnection.jsp");
 			rd.forward(request, response);
