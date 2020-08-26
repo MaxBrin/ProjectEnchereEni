@@ -1,5 +1,7 @@
 package fr.eni.projetenchere.ihm.modele;
 
+import java.util.Arrays;
+
 public class Filtre {
 
 	private int noCategorie;
@@ -21,7 +23,6 @@ public class Filtre {
 	}
 
 	public Filtre() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getNoCategorie() {
@@ -70,6 +71,13 @@ public class Filtre {
 
 	public void setNonDisponible(boolean nonDisponible) {
 		NonDisponible = nonDisponible;
+	}
+
+	@Override
+	public String toString() {
+		return "Filtre [noCategorie=" + noCategorie + ", noUtilisateur=" + noUtilisateur + ", saisieUtilisateur="
+				+ Arrays.toString(saisieUtilisateur) + ", EnCours=" + EnCours + ", Fini=" + Fini + ", NonDisponible="
+				+ NonDisponible + "]";
 	}
 
 }

@@ -70,7 +70,7 @@ public class EnchereMgr {
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		if (derniereEnchere != null && derniereEnchere.getMontantEnchere() > enchere.getMontantEnchere()) {
+		if (derniereEnchere != null && derniereEnchere.getMontantEnchere() >= enchere.getMontantEnchere()) {
 			valide = false;
 		}
 		return valide;

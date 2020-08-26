@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projetenchere.bll.ArticlesMgr;
 import fr.eni.projetenchere.bll.BLLException;
@@ -45,51 +46,68 @@ public class ServletVersPageAccueil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-//*********************************Traitement bouton select Afficher par categorie**********************************************
-
-		// Récupération et transformation en int de la valeur du select
-		String choixCategorie = request.getParameter("categorie");
-		int noCategorie = Integer.parseInt(choixCategorie);
-//		List<Article> listeAAfficher = new ArrayList<>();
-//		listeAAfficher = trierArticleParCategorie(noCategorie);
-
 //************Affichage articles en fonction de la recherche*****************
-
-		// Je récupère la saisie de l'utilisateur
+		// Récupération de l'id utilisateur
+		HttpSession session = request.getSession();
+		Integer noUtilisateur = (Integer) session.getAttribute("noUtilisateur");
+		// Récupération de la saisie de recherche par nom et transformation en tableau
+		// de String
 		String rechercheUtilisateur = request.getParameter("rechercherArticle").toUpperCase();
 		String rechercheUtilisateurARenvoyer = request.getParameter("rechercherArticle");
-		// Je crée le tableau avec chaque mot de la recherche
-		List<Article> listeArticlesAAfficher = new ArrayList<>();
+		String[] tabMotsRecherche = rechercheUtilisateur.split(" ");
+		// Récupération de la categorie
+		String categorie = request.getParameter("categorie");
+		Integer noCategorie = Integer.parseInt(categorie);
+		// Récupération des boutons radio
+		// String radioAchats = request.getParameter("achat");
+		String radioMesVentes = request.getParameter("mesVentes");
+		// Récupération des checkboxes
+		// String chkboxeEncheresOuvertes = request.getParameter("encheresOuvertes");
+		// String chkboxeMesEncheres = request.getParameter("mesEncheres");
+		// String chkboxeEncheresEmportees = request.getParameter("encheresRemportees");
+		String chkboxeMesVentesEnCours = request.getParameter("ventesEnCours");
+		String chkboxeMesVentesNonDebutees = request.getParameter("ventesNonDebutees");
+		System.out.println(chkboxeMesVentesNonDebutees);
+		String chkboxeVentesTerminees = request.getParameter("ventesTerminees");
+
+		// Creation du filtre
 		Filtre filtre = new Filtre();
+		// Récupération des article en bdd
+		List<Article> listeArticlesAAfficher = new ArrayList<>();
+		// Attribution des filtres "recherche par nom" et "categorie"
 		filtre.setNoCategorie(noCategorie);
 		filtre.setSaisieUtilisateur(rechercheUtilisateur.split(" "));
 		filtre.setEnCours(true);
+		// Si un utilisateur est connecté
+		if (noUtilisateur != null) {
+			// Conversion du noUtilisateur String -> int pour l'ajouter au filtre
+			int noUser = noUtilisateur;
+			filtre.setNoUtilisateur(noUser);
+			// Ajout des filtres en fonction des checkboxes
+			// Si la checkBox "Mes ventes en cours" est cochée
+			if (chkboxeMesVentesEnCours == null) {
+				filtre.setEnCours(false);
+			}
+
+			// Si la checkBox "Ventes non débutées" est cochée
+			if (chkboxeMesVentesNonDebutees != null) {
+				filtre.setNonDisponible(true);
+			}
+			// Si la checkBox "Ventes Terminees" est cochée
+			if (chkboxeVentesTerminees != null) {
+				filtre.setFini(true);
+			}
+
+		}
 		try {
+			// Filtrage de la liste
 			listeArticlesAAfficher = ArticlesMgr.getListArticleFiltre(filtre);
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		if (rechercheUtilisateur.trim().length() == 0) {
-//			listeArticlesAAfficher = listeAAfficher;
-//		} else {
-//			listeArticlesAAfficher = trierArticleParRechercheNom(rechercheUtilisateur, listeAAfficher);
-//		}
 
-//************************Traitement des checkbox pour "mes ventes"**************************
-		// Récuperation des données
-//		HttpSession session = request.getSession();
-//		Integer noUtilisateur = (Integer) session.getAttribute("noUtilisateur");
-//		try {
-//			Utilisateur utilisateurSession = UtilisateurMgr.getUtilisateur(noUtilisateur);
-//		} catch (BLLException e) {
-//			e.printStackTrace();
-//		}
-//
-//		if ((request.getAttribute("ventesEnCours")) != null)
 //**************************************************************************************		
 		// Envoie des informations
-
 		request = Chargement.chargementListCategorie(request);
 		request.setAttribute("listeArticlesAAfficher", listeArticlesAAfficher);
 		request.setAttribute("saisieUtilisateur", rechercheUtilisateurARenvoyer);
@@ -97,50 +115,5 @@ public class ServletVersPageAccueil extends HttpServlet {
 		rd.forward(request, response);
 
 	}
-
-////*****Méthode qui  renvoie une liste d'article en fonction du int de la catégorie***************************
-//	public List<Article> trierArticleParCategorie(int categorie) {
-//		List<Article> listeARetourner = new ArrayList<>();
-//		Filtre filtre = new Filtre();
-//		filtre.setNoCategorie(categorie);
-//		if (0 == categorie) {
-//			try {
-//				listeARetourner = ArticlesMgr.getListArticlesNonConnecte();
-//			} catch (BLLException e) {
-//				e.printStackTrace();
-//			}
-//		} else {
-//			try {
-//				listeARetourner = ArticlesMgr.getListArticlesByNoCategorie(categorie);
-//			} catch (BLLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return listeARetourner;
-//	}
-//
-////***********Méthode qui retourne la liste d'articles a afficher en fonction de la recherche par nom***********************************	
-//	public List<Article> trierArticleParRechercheNom(String saisieUtilisateur, List<Article> listeArticle) {
-//
-//		String[] listeMotsRecherche = saisieUtilisateur.split(" ");
-//		List<Article> listeARetourner = new ArrayList<>();
-//		List<Article> listeArticlesBdd = null;
-//
-//		// Pour chaque mot de la recherche utlisateur
-//		for (String mot : listeMotsRecherche) {
-//			// Pour chaque article trié apres le select
-//			for (Article article : listeArticle) {
-//				String nomArticle = article.getNomArticle().toUpperCase();
-//				String[] motsDansNomArticle = nomArticle.split(" ");
-//				for (String motDansNom : motsDansNomArticle) {
-//					if (motDansNom.contains(mot)) {
-//						listeARetourner.add(article);
-//					}
-//				}
-//			}
-//		}
-//
-//		return listeARetourner;
-//	}
 
 }
