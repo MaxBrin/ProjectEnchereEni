@@ -27,6 +27,8 @@ public class Chargement {
 		try {
 			articles = ArticlesMgr.getListArticleFiltre(filtre);
 		} catch (BLLException e) {
+			String erreurConnectionBD = "Nous sommes désolés mais nous rencontrons un problème de serveur actuellement. ";
+			request.setAttribute("ErreurBD", erreurConnectionBD);
 			e.printStackTrace();
 		}
 		request.setAttribute("listeArticlesAAfficher", articles);

@@ -97,7 +97,6 @@ public class ServletVersPageAccueil extends HttpServlet {
 			if (chkboxeVentesTerminees != null) {
 				filtre.setFini(true);
 			}
-			System.out.println(filtre);
 			try {
 				// Filtrage de la liste
 				listeArticlesAAfficher = ArticlesMgr.getListArticleFiltre(filtre);
@@ -114,15 +113,6 @@ public class ServletVersPageAccueil extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		rd.forward(request, response);
 
-	}
-
-//********************Méthode tester si une String est vide********************
-	protected static boolean estVide(String string) {
-		if ("".equals(string)) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 }
