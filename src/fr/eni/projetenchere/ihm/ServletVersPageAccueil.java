@@ -30,11 +30,11 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 		// Récupération valeur bouton radio
 		String choix = request.getParameter("choix");
-		
+
 		if ("annuler".equals(choix)) {
 			request.setAttribute("choixAchat", null);
 		}
-		
+
 		if ("achat".equals(choix)) {
 			request.setAttribute("choixAchat", "achat");
 		}
@@ -82,15 +82,30 @@ public class ServletVersPageAccueil extends HttpServlet {
 		filtre.setNoCategorie(noCategorie);
 		filtre.setSaisieUtilisateur(rechercheUtilisateur.split(" "));
 		filtre.setEnCours(true);
+
 		// Si un utilisateur est connecté
 		if (noUtilisateur != null) {
 			// Conversion du noUtilisateur String -> int pour l'ajouter au filtre
 			int noUser = noUtilisateur;
-			filtre.setNoUtilisateur(noUser);
+			// Récupération valeur bouton radio
+			String choix = request.getParameter("choix");
+			if ("annuler".equals(choix)) {
+				request.setAttribute("choixAchat", null);
+			}
+
+			if ("achat".equals(choix)) {
+				request.setAttribute("choixAchat", "achat");
+			}
+			if ("ventes".equals(choix)) {
+				request.setAttribute("choixAchat", "ventes");
+				filtre.setNoUtilisateur(noUser);
+				filtre.setEnCours(false);
+			}
+
 			// Ajout des filtres en fonction des checkboxes
 			// Si la checkBox "Mes ventes en cours" est cochée
-			if (chkboxeMesVentesEnCours == null) {
-				filtre.setEnCours(false);
+			if (chkboxeMesVentesEnCours != null) {
+				filtre.setEnCours(true);
 			}
 
 			// Si la checkBox "Ventes non débutées" est cochée
