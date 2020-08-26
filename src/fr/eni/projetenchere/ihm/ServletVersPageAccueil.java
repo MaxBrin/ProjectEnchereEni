@@ -108,7 +108,6 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 //**************************************************************************************		
 		// Envoie des informations
-
 		request = Chargement.chargementListCategorie(request);
 		request.setAttribute("listeArticlesAAfficher", listeArticlesAAfficher);
 		request.setAttribute("saisieUtilisateur", rechercheUtilisateurARenvoyer);

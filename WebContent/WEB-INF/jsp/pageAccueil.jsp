@@ -75,60 +75,25 @@
 								ventes</a><br> 
 						</div>
 					</c:if>
-					<!--Si l'utilisateur est connecté et qu'il n'a pas encore fait de choix -->
-					<c:if test="${(noUtilisateur != null) && (choixAchat == null) }">
-						
-						<!-- CHECKBOXES FILTRAGE  -->
-						<div>
-							<input type="checkbox" name="encheresOuvertes" disabled="disabled">Enchères ouvertes<br> 
-							<input type="checkbox" name="mesEncheres"
-								disabled="disabled">Mes enchères<br> <input
-								type="checkbox" name="encheresRemportees" disabled="disabled">Mes
-							enchères remportées<br>
-						</div>
-						<div>
-							<input type="checkbox" name="encheresRemportees" disabled="disabled">Mes
-							ventes en cours<br> <input type="checkbox"
-								name="ventesNonDebutess" disabled="disabled">Ventes non
-							débutées<br> <input type="checkbox" name="ventesTerminees"
-								disabled="disabled">Ventes terminées<br>
-						</div>
-					</c:if>
-					<!-- DESACTIVATION DES CHECKBOXES EN FONCTION DU CHOIX "ACHATS" OU "MES VENTES" -->
-					<!--  -->
+					<!-- AFFICHAGE DES CHECKBOXES EN FONCTION DU CHOIX "ACHATS" OU "MES VENTES" -->
 					<c:if test="${(choixAchat eq 'achat') and (noUtilisateur != null)}">
 						<div>
 							<input type="checkbox" name="encheresOuvertes">Enchères ouvertes<br> 
 							<input type="checkbox" name="mesEncheres">Mes enchères<br> 
 							<input type="checkbox" name="encheresRemportees">Mes enchères remportées<br>
 						</div>
-	
+					</c:if>	
 						<br>
 						<br>
-	
-						<div>
-							<input type="checkbox" name="ventesEnCours" disabled="disabled">Mes ventes en cours<br> 
-							<input type="checkbox" name="ventesNonDebutees" disabled="disabled">Ventes non débutées<br>
-							<input type="checkbox" name="ventesTerminees" disabled="disabled">Ventes terminées<br>
-						</div>
-					</c:if>
 					<c:if test="${(choixAchat == 'ventes') && (noUtilisateur != null) }">
 						<div>
-							<input type="checkbox" name="encheresOuvertes" disabled="disabled">Enchères
-							ouvertes<br> <input type="checkbox" name="mesEncheres"
-								disabled="disabled">Mes enchères<br> <input
-								type="checkbox" name="encheresRemportees" disabled="disabled">Mes
-							enchères remportées<br>
+							<input type="checkbox" name="ventesEnCours">Mes ventes en cours<br> 
+							<input type="checkbox" name="ventesNonDebutees">Ventes non débutées<br>
+							<input type="checkbox" name="ventesTerminees">Ventes terminées<br>
 						</div>
-						<br>
-						<br>
-						<div>
-							<input type="checkbox" name="ventesEnCours">Mes ventes en
-							cours<br> <input type="checkbox" name="ventesNonDebutees">Ventes
-							non débutées<br> <input type="checkbox"
-								name="ventesTerminees">Ventes terminées<br>
-						</div>
-					</c:if>
+					</c:if>					
+
+
 					<div class="col-md-4">
 						<button type="submit" class="btn btn-secondary btn-lg">Rechercher</button>
 						<br> <br>
