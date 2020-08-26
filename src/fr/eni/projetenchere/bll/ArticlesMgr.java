@@ -10,6 +10,7 @@ import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.dal.ArticleDAO;
 import fr.eni.projetenchere.dal.DALException;
 import fr.eni.projetenchere.dal.DAOFactory;
+import fr.eni.projetenchere.ihm.modele.Filtre;
 
 public class ArticlesMgr {
 	// Chargement implémentation article DAO
@@ -63,54 +64,17 @@ public class ArticlesMgr {
 	}
 
 	/**
-	 * Méthode pour récupérer la liste de tout les articles de liste qui ont encore
-	 * une enchere
+	 * Méthode pour récupérer la liste de tout les articles de liste selon le filtre
 	 * 
 	 * @return
 	 * @throws BLLException
 	 */
-	public static List<Article> getListArticlesNonConnecte() throws BLLException {
+	public static List<Article> getListArticleFiltre(Filtre filtre) throws BLLException {
 		List<Article> listArticles = new ArrayList<>();
 		try {
-			listArticles = articleDAO.selectAllArticleNonConnecte();
+			listArticles = articleDAO.selectAllArticle(filtre);
 		} catch (DALException e) {
 			throw new BLLException("Erreur getListArticles", e);
-		}
-		return listArticles;
-	}
-
-	/**
-	 * Méthode pour récupérer la liste des articles d'un utilisateur gràce à son
-	 * numéro
-	 * 
-	 * @param noUtilisateur
-	 * @return
-	 * @throws BLLException
-	 */
-	public static List<Article> getListArticlesByNoUtilisateur(int noUtilisateur) throws BLLException {
-		List<Article> listArticles = new ArrayList<>();
-		try {
-			listArticles = articleDAO.selectByNoUtilisateur(noUtilisateur);
-		} catch (DALException e) {
-			throw new BLLException("Erreur getListArticlesByNoUtilisateur", e);
-		}
-		return listArticles;
-	}
-
-	/**
-	 * Méthode pour récupérer la liste des articles d'une catégorie gràce à son
-	 * numéro
-	 * 
-	 * @param noCategorie
-	 * @return
-	 * @throws BLLException
-	 */
-	public static List<Article> getListArticlesByNoCategorie(int noCategorie) throws BLLException {
-		List<Article> listArticles = new ArrayList<>();
-		try {
-			listArticles = articleDAO.selectByNoCategorie(noCategorie);
-		} catch (DALException e) {
-			throw new BLLException("Erreur getListArticlesByNoCategorie", e);
 		}
 		return listArticles;
 	}

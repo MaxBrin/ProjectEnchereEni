@@ -3,6 +3,7 @@ package fr.eni.projetenchere.dal;
 import java.util.List;
 
 import fr.eni.projetenchere.bo.Article;
+import fr.eni.projetenchere.ihm.modele.Filtre;
 
 public interface ArticleDAO {
 
@@ -22,7 +23,7 @@ public interface ArticleDAO {
 	 * @return
 	 * @throws DALException
 	 */
-	List<Article> selectAllArticleNonConnecte() throws DALException;
+	List<Article> selectAllArticle(Filtre filtre) throws DALException;
 
 	/**
 	 * M�thode pour avoir un article
@@ -32,24 +33,6 @@ public interface ArticleDAO {
 	 * @throws DALException
 	 */
 	Article selectById(int noArticle) throws DALException;
-
-	/**
-	 * Methode pour avoir la liste des articles d'un utilisateur
-	 * 
-	 * @param noUtilisateur
-	 * @return
-	 * @throws DALException
-	 */
-	List<Article> selectByNoUtilisateur(int noUtilisateur) throws DALException;
-
-	/**
-	 * Methode pour avoir la liste des articles d'une catégorie
-	 * 
-	 * @param noCategorie
-	 * @return
-	 * @throws DALException
-	 */
-	List<Article> selectByNoCategorie(int noCategorie) throws DALException;
 
 	/**
 	 * Methode pour effacer un article dans la BD

@@ -12,11 +12,12 @@ public interface EnchereDAO {
 	void insertEnchere(Enchere enchere) throws DALException;
 
 	/**
-	 * Méthode pour récuperer une enchère en fonction du numéro d'article
+	 * Méthode pour récuperer la meilleur enchère en fonction du numéro d'article
 	 * 
 	 * @param noArticle
 	 * @return
 	 * @throws DALException
 	 */
-	Enchere selectBy_NoArticle(int noArticle) throws DALException;
+	Enchere selectBy_NoArticle_BestOffer(int noArticle) throws DALException;
+
 }
