@@ -61,7 +61,7 @@
 						<!--  Affichage des catégories en fonction de la liste dans la BD  -->
 						<c:forEach var="categorie" items="${listeCategories}">
 							<option value="${categorie.noCategorie}"
-								name="${categorie.libelle}">${categorie.libelle}</option>
+								name="${categorie.libelle}" ${(categorieSaisie == categorie.noCategorie)?'selected':''}>${categorie.libelle}</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -71,7 +71,7 @@
 				</div>
 			</div>
 
-
+			<!--  Bouton choix achats ou ventes -->
 			<c:if test="${(noUtilisateur != null)}">
 				<div class="row ">
 					<div class="col-md-1 offset-sm-2">
@@ -79,7 +79,7 @@
 						<a href="${pageContext.request.contextPath }/Accueil?choix=achat"
 							class="btn btn-secondary btn-sm">Achats</a>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-2 offset-sm-1">
 						<a
 							href="${pageContext.request.contextPath }/Accueil?choix=mesVentes"
 							class="btn btn-secondary btn-sm">Mes ventes</a>
@@ -90,10 +90,11 @@
 			
 			<!--  ACHAT -->
 			<c:if test="${(choixAchat eq 'achat') and (noUtilisateur != null)}">
+			<input type="hidden" value="achat" name="choix">
 				<div class="row ">
 					<div class="col-md-8 offset-sm-2">
 						<div>
-							<input type="checkbox" name="encheresOuvertes">Enchères
+							<input type="checkbox" name="encheresOuvertes" >Enchères
 							ouvertes<br> <input type="checkbox" name="mesEncheres">Mes
 							enchères<br> <input type="checkbox"
 								name="encheresRemportees">Mes enchères remportées<br>
@@ -104,8 +105,9 @@
 			
 			<!--  VENTES -->
 			<c:if test="${(choixAchat == 'ventes') && (noUtilisateur != null) }">
+			<input type="hidden" value="ventes" name="choix">
 				<div class="row ">
-					<div class="col-md-8 offset-sm-3">
+					<div class="col-md-8 offset-sm-4">
 						<input type="checkbox" name="ventesEnCours">Mes ventes en
 						cours<br> <input type="checkbox" name="ventesNonDebutees">Ventes
 						non débutées<br> <input type="checkbox"

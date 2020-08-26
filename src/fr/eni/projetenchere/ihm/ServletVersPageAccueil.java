@@ -30,6 +30,8 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 		// Récupération valeur bouton radio
 		String choix = request.getParameter("choix");
+
+		// Test en fonction du choix
 		if ("achat".equals(choix)) {
 			request.setAttribute("choixAchat", "achat");
 		}
@@ -54,7 +56,6 @@ public class ServletVersPageAccueil extends HttpServlet {
 		// de String
 		String rechercheUtilisateur = request.getParameter("rechercherArticle").toUpperCase();
 		String rechercheUtilisateurARenvoyer = request.getParameter("rechercherArticle");
-		String[] tabMotsRecherche = rechercheUtilisateur.split(" ");
 		// Récupération de la categorie
 		String categorie = request.getParameter("categorie");
 		Integer noCategorie = Integer.parseInt(categorie);
@@ -67,7 +68,6 @@ public class ServletVersPageAccueil extends HttpServlet {
 		// String chkboxeEncheresEmportees = request.getParameter("encheresRemportees");
 		String chkboxeMesVentesEnCours = request.getParameter("ventesEnCours");
 		String chkboxeMesVentesNonDebutees = request.getParameter("ventesNonDebutees");
-		System.out.println(chkboxeMesVentesNonDebutees);
 		String chkboxeVentesTerminees = request.getParameter("ventesTerminees");
 
 		// Creation du filtre
@@ -82,13 +82,24 @@ public class ServletVersPageAccueil extends HttpServlet {
 		if (noUtilisateur != null) {
 			// Conversion du noUtilisateur String -> int pour l'ajouter au filtre
 			int noUser = noUtilisateur;
-			filtre.setNoUtilisateur(noUser);
-			// Ajout des filtres en fonction des checkboxes
-			// Si la checkBox "Mes ventes en cours" est cochée
-			if (chkboxeMesVentesEnCours == null) {
+
+			String choix = request.getParameter("choix");
+			if ("achat".equals(choix)) {
+				request.setAttribute("choixAchat", "achat");
+			}
+			if ("ventes".equals(choix)) {
+				request.setAttribute("choixAchat", "ventes");
+				filtre.setNoUtilisateur(noUser);
 				filtre.setEnCours(false);
+			} else {
+				filtre.setEnCours(true);
 			}
 
+			// Ajout des filtres en fonction des checkboxes
+			// Si la checkBox "Mes ventes en cours" est cochée
+			if (chkboxeMesVentesEnCours != null) {
+				filtre.setEnCours(true);
+			}
 			// Si la checkBox "Ventes non débutées" est cochée
 			if (chkboxeMesVentesNonDebutees != null) {
 				filtre.setNonDisponible(true);
@@ -99,6 +110,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 			}
 
 		}
+
 		try {
 			// Filtrage de la liste
 			listeArticlesAAfficher = ArticlesMgr.getListArticleFiltre(filtre);
@@ -109,6 +121,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 //**************************************************************************************		
 		// Envoie des informations
 		request = Chargement.chargementListCategorie(request);
+		request.setAttribute("categorieSaisie", noCategorie);
 		request.setAttribute("listeArticlesAAfficher", listeArticlesAAfficher);
 		request.setAttribute("saisieUtilisateur", rechercheUtilisateurARenvoyer);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
