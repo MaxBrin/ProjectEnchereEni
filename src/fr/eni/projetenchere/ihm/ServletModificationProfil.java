@@ -29,13 +29,18 @@ public class ServletModificationProfil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//Recuperation du parametre noUtilisateur
 		HttpSession session = request.getSession();
 		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
+		
+		//Récupération de l'utilisateur par son noUtilisateur
 		try {
 			request.setAttribute("utilisateur", UtilisateurMgr.getUtilisateur(noUtilisateur));
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
+		
+		//Envoi de l'utilisateur à la JSP modificationProfil
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modificationProfil.jsp");
 		rd.forward(request, response);
 	}

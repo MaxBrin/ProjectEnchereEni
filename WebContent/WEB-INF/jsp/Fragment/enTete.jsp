@@ -38,18 +38,18 @@
 						<li class="nav-item "><a class="nav-link" href="">Enchères
 						</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/ProjectEnchereEni/NouvelleVente">Vendre un article</a></li>
+							href="${pageContext.request.contextPath }/NouvelleVente">Vendre un article</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/ProjectEnchereEni/ModificationProfil?utilisateurTitulaire=${noUtilisateur}">Mon
+							href="${pageContext.request.contextPath }/ModificationProfil?utilisateurTitulaire=${noUtilisateur}">Mon
 								profil</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/ProjectEnchereEni/Deconnexion">Déconnexion</a></li>
+							href="${pageContext.request.contextPath }/Deconnexion">Déconnexion</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="nav-item "><a class="nav-link"
-							href="/ProjectEnchereEni/CreationCompte" class="">S'inscrire</a></li>
+							href="${pageContext.request.contextPath }/CreationCompte" class="">S'inscrire</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/ProjectEnchereEni/Connexion">Se connecter</a></li>
+							href="${pageContext.request.contextPath }/Connexion">Se connecter</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>

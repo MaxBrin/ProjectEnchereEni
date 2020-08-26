@@ -20,7 +20,7 @@ public class EnchereMgr {
 	 * @param enchere
 	 * @throws BLLException
 	 */
-	public void ajouterEnchere(Enchere enchere) throws BLLException {
+	public static void ajouterEnchere(Enchere enchere) throws BLLException {
 		try {
 			enchereDAO.insertEnchere(enchere);
 		} catch (DALException e) {
@@ -29,18 +29,18 @@ public class EnchereMgr {
 	}
 
 	/**
-	 * Méthode pour récuperer la derniere enchere d'un article
+	 * Méthode pour récuperer la meilleur enchère d'un article
 	 * 
 	 * @param noArticle
 	 * @return
 	 * @throws BLLException
 	 */
-	public Enchere getEnchereByArticle(int noArticle) throws BLLException {
+	public static Enchere getEnchereByArticle_BestOffer(int noArticle) throws BLLException {
 		Enchere enchere = new Enchere();
 		try {
-			enchere = enchereDAO.selectBy_NoArticle(noArticle);
+			enchere = enchereDAO.selectBy_NoArticle_BestOffer(noArticle);
 		} catch (DALException e) {
-			throw new BLLException("Erreur getEnchereByArticle", e);
+			throw new BLLException("Erreur getEnchereByArticle_BestOffer", e);
 		}
 		return enchere;
 	}
@@ -66,11 +66,11 @@ public class EnchereMgr {
 		}
 		Enchere derniereEnchere = null;
 		try {
-			derniereEnchere = enchereDAO.selectBy_NoArticle(article.getNoArticle());
+			derniereEnchere = enchereDAO.selectBy_NoArticle_BestOffer(article.getNoArticle());
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		if (derniereEnchere != null && derniereEnchere.getMontantEnchere() < enchere.getMontantEnchere()) {
+		if (derniereEnchere != null && derniereEnchere.getMontantEnchere() > enchere.getMontantEnchere()) {
 			valide = false;
 		}
 		return valide;
