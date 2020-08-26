@@ -55,7 +55,6 @@ public class ArticleDAOImpl implements ArticleDAO {
 	public List<Article> selectAllArticle(Filtre filtre) throws DALException {
 		List<Article> listArticles = new ArrayList<>();
 		String requete = SELECTALL + creationRequeteSql(filtre);
-		System.out.println(requete);
 		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(requete)) {
 
 			ResultSet rs = pStmt.executeQuery();
@@ -134,20 +133,21 @@ public class ArticleDAOImpl implements ArticleDAO {
 
 	//creation de la requete sql
 	protected String creationRequeteSql(Filtre filtre) {
-		//construction de la chaine de caracteres
+		//construction de la requete sql
 		StringBuilder sbRequete = new StringBuilder();
-		//si le filtre est différent de null
+		//s'il n'ya pas de filtre
 		if (filtre != null) {
 			//creation d'une liste de string
 			List<String> listeRequete = new ArrayList<String>();
+			//creation tableau à partir des mots saisis dans la recherche utilisateur
 			String[] saisieUtilisateur = filtre.getSaisieUtilisateur();
-			//si la saisie de l'utilisateur est > à 0
+			//si l'utilisateur a fait une recherche par nom
 			if (saisieUtilisateur.length > 0) {
-				//création de la chine de caractères
+				//création de la chaine de caractères
 				StringBuilder sb = new StringBuilder();
-				//la saisie du premier nom commence par telle lettre et se termine par telle lettre
+				//Ajoute au Stringbuilder le premier mot de la saisie utilisateur
 				sb.append("(nom_article LIKE '%" + saisieUtilisateur[0] + "%' ");
-				//s'il existe un deuxième mot saisit par l'utilisateur, on l'ajoute au filtre
+				//s'il existe un deuxième mot saisit par l'utilisateur, on l'ajoute au Sb
 				for (int i = 1; i < saisieUtilisateur.length; i++) {
 					sb.append("Or nom_article LIKE '%" + saisieUtilisateur[i] + "%' ");
 				}
@@ -155,22 +155,28 @@ public class ArticleDAOImpl implements ArticleDAO {
 				//on ajoute la saisie/chaine de caracteres à la requete 
 				listeRequete.add(sb.toString());
 			}
-			//si le num catégorie est différent de 0
+			//si l'utilisateur a sélectionné une catégorie
 			if (filtre.getNoCategorie() != 0) {
-				//ajouter le numéro de catégorie au filtre
+				//ajouter le critère catégorie sélectionné au sb
 				listeRequete.add("c.no_categorie = " + filtre.getNoCategorie() + " ");
 			}
+			//Ajout de quel utilisateur a fait la demande
 			if (filtre.getNoUtilisateur() != 0) {
 				listeRequete.add("u.no_utilisateur = " + filtre.getNoUtilisateur() + " ");
 			}
+			//creation de la liste choixUtilisateur
 			List<String> choixUtilisateur = new ArrayList<>();
+			//si le filtre est vente en cours 
 			if (filtre.isEnCours()) {
+				//selectionner les ventes qui sont en cours
 				choixUtilisateur.add("date_debut_encheres < GETDATE() AND date_fin_encheres > GETDATE() ");
 			}
 			if (filtre.isFini()) {
+				//selectionner les ventes qui sont non débutées
 				choixUtilisateur.add("date_fin_encheres <= GETDATE() ");
 			}
 			if (filtre.isNonDisponible()) {
+				//selectionner les ventes qui sont terminées
 				choixUtilisateur.add("date_debut_encheres >= GETDATE() ");
 			}
 			StringBuilder choix = new StringBuilder();
