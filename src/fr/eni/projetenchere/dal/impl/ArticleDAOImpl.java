@@ -23,6 +23,8 @@ public class ArticleDAOImpl implements ArticleDAO {
 			+ "libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur "
 			+ "JOIN CATEGORIES c ON c.no_categorie=a.no_categorie ";
 	private static final String SELECTBYID = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE no_article=?";
+	private static final String SELECTBY_NOUTILISATEUR = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE a.no_utilisateur=?";
+	private static final String SELECTBY_NOCATEGORIE = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE c.no_categorie=?";
 	private static final String DELETE = "DELETE FROM ARTICLES_VENDUS WHERE no_utilisateur =?";
 	private static final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?,description=?,date_debut_encheres=?,"
 			+ "date_fin_encheres=?,prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=? WHERE no_article=? ";
@@ -129,34 +131,52 @@ public class ArticleDAOImpl implements ArticleDAO {
 
 	}
 
+	//creation de la requete sql
 	protected String creationRequeteSql(Filtre filtre) {
+		//construction de la requete sql
 		StringBuilder sbRequete = new StringBuilder();
+		//s'il n'ya pas de filtre
 		if (filtre != null) {
+			//creation d'une liste de string
 			List<String> listeRequete = new ArrayList<String>();
+			//creation tableau à partir des mots saisis dans la recherche utilisateur
 			String[] saisieUtilisateur = filtre.getSaisieUtilisateur();
+			//si l'utilisateur a fait une recherche par nom
 			if (saisieUtilisateur.length > 0) {
+				//création de la chaine de caractères
 				StringBuilder sb = new StringBuilder();
+				//Ajoute au Stringbuilder le premier mot de la saisie utilisateur
 				sb.append("(nom_article LIKE '%" + saisieUtilisateur[0] + "%' ");
+				//s'il existe un deuxième mot saisit par l'utilisateur, on l'ajoute au Sb
 				for (int i = 1; i < saisieUtilisateur.length; i++) {
 					sb.append("Or nom_article LIKE '%" + saisieUtilisateur[i] + "%' ");
 				}
 				sb.append(")");
+				//on ajoute la saisie/chaine de caracteres à la requete 
 				listeRequete.add(sb.toString());
 			}
+			//si l'utilisateur a sélectionné une catégorie
 			if (filtre.getNoCategorie() != 0) {
+				//ajouter le critère catégorie sélectionné au sb
 				listeRequete.add("c.no_categorie = " + filtre.getNoCategorie() + " ");
 			}
+			//Ajout de quel utilisateur a fait la demande
 			if (filtre.getNoUtilisateur() != 0) {
 				listeRequete.add("u.no_utilisateur = " + filtre.getNoUtilisateur() + " ");
 			}
+			//creation de la liste choixUtilisateur
 			List<String> choixUtilisateur = new ArrayList<>();
+			//si le filtre est vente en cours 
 			if (filtre.isEnCours()) {
+				//selectionner les ventes qui sont en cours
 				choixUtilisateur.add("date_debut_encheres < GETDATE() AND date_fin_encheres > GETDATE() ");
 			}
 			if (filtre.isFini()) {
+				//selectionner les ventes qui sont non débutées
 				choixUtilisateur.add("date_fin_encheres <= GETDATE() ");
 			}
 			if (filtre.isNonDisponible()) {
+				//selectionner les ventes qui sont terminées
 				choixUtilisateur.add("date_debut_encheres >= GETDATE() ");
 			}
 			StringBuilder choix = new StringBuilder();
