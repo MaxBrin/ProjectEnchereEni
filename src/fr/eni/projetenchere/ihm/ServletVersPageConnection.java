@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import fr.eni.projetenchere.bll.BLLException;
 import fr.eni.projetenchere.bll.UtilisateurMgr;
 import fr.eni.projetenchere.bo.Utilisateur;
@@ -58,7 +61,9 @@ public class ServletVersPageConnection extends HttpServlet {
 					identifiantPresent = true;
 
 					if (utilisateur.getMotDePasse().equals(mdp)) {
-
+						Logger monLogger = (Logger) LoggerFactory
+								.getLogger("fr.eni.projetenchere.ihm.ServletVersPageConnection");
+						monLogger.info("Connexion : " + utilisateur.getPseudo());
 						HttpSession session = request.getSession();
 						session.setAttribute("noUtilisateur", utilisateur.getNoUtilisateur());
 						request = Chargement.chargementListArticle(request);

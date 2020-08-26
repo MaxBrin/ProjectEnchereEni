@@ -1,0 +1,2 @@
+2020-08-26 17:11:08,341 INFO [http-nio-8081-exec-2] f.e.p.i.ServletVersPageConnection [ServletVersPageConnection.java:66] Connexion : Max
+2020-08-26 17:11:10,311 INFO [http-nio-8081-exec-9] f.e.ProjectEnchereEni [ServletDeconnexion.java:44] Deconnexion : Max
