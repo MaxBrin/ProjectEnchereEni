@@ -131,21 +131,32 @@ public class ArticleDAOImpl implements ArticleDAO {
 
 	}
 
+	//creation de la requete sql
 	protected String creationRequeteSql(Filtre filtre) {
+		//construction de la chaine de caracteres
 		StringBuilder sbRequete = new StringBuilder();
+		//si le filtre est différent de null
 		if (filtre != null) {
+			//creation d'une liste de string
 			List<String> listeRequete = new ArrayList<String>();
 			String[] saisieUtilisateur = filtre.getSaisieUtilisateur();
+			//si la saisie de l'utilisateur est > à 0
 			if (saisieUtilisateur.length > 0) {
+				//création de la chine de caractères
 				StringBuilder sb = new StringBuilder();
+				//la saisie du premier nom commence par telle lettre et se termine par telle lettre
 				sb.append("(nom_article LIKE '%" + saisieUtilisateur[0] + "%' ");
+				//s'il existe un deuxième mot saisit par l'utilisateur, on l'ajoute au filtre
 				for (int i = 1; i < saisieUtilisateur.length; i++) {
 					sb.append("Or nom_article LIKE '%" + saisieUtilisateur[i] + "%' ");
 				}
 				sb.append(")");
+				//on ajoute la saisie/chaine de caracteres à la requete 
 				listeRequete.add(sb.toString());
 			}
+			//si le num catégorie est différent de 0
 			if (filtre.getNoCategorie() != 0) {
+				//ajouter le numéro de catégorie au filtre
 				listeRequete.add("c.no_categorie = " + filtre.getNoCategorie() + " ");
 			}
 			if (filtre.getNoUtilisateur() != 0) {
