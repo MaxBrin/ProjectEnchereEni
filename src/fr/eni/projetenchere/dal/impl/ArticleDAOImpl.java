@@ -55,6 +55,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 	public List<Article> selectAllArticle(Filtre filtre) throws DALException {
 		List<Article> listArticles = new ArrayList<>();
 		String requete = SELECTALL + creationRequeteSql(filtre);
+		System.out.println(requete);
 		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(requete)) {
 
 			ResultSet rs = pStmt.executeQuery();

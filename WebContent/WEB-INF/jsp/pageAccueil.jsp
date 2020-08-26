@@ -87,7 +87,7 @@
 							enchères remportées<br>
 						</div>
 						<div>
-							<input type="checkbox" name="ventesEnCours" disabled="disabled">Mes
+							<input type="checkbox" name="encheresRemportees" disabled="disabled">Mes
 							ventes en cours<br> <input type="checkbox"
 								name="ventesNonDebutess" disabled="disabled">Ventes non
 							débutées<br> <input type="checkbox" name="ventesTerminees"
@@ -108,7 +108,7 @@
 	
 						<div>
 							<input type="checkbox" name="ventesEnCours" disabled="disabled">Mes ventes en cours<br> 
-							<input type="checkbox" name="ventesNonDebutess" disabled="disabled">Ventes non débutées<br>
+							<input type="checkbox" name="ventesNonDebutees" disabled="disabled">Ventes non débutées<br>
 							<input type="checkbox" name="ventesTerminees" disabled="disabled">Ventes terminées<br>
 						</div>
 					</c:if>
@@ -124,7 +124,7 @@
 						<br>
 						<div>
 							<input type="checkbox" name="ventesEnCours">Mes ventes en
-							cours<br> <input type="checkbox" name="ventesNonDebutess">Ventes
+							cours<br> <input type="checkbox" name="ventesNonDebutees">Ventes
 							non débutées<br> <input type="checkbox"
 								name="ventesTerminees">Ventes terminées<br>
 						</div>
