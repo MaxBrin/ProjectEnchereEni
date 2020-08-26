@@ -74,6 +74,7 @@ public class ServletDetailVente extends HttpServlet {
 		Utilisateur acheteur = null;
 		Article articleEnVente = null;
 		Retrait retraitArticleEnVente = null;
+		Enchere meilleurEnchere = null;
 		try {
 			acheteur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 			articleEnVente = ArticlesMgr.getArticle(noArticle);
@@ -97,6 +98,8 @@ public class ServletDetailVente extends HttpServlet {
 				deuxiemeMeilleurEnchere = EnchereMgr.getEnchereByArticle_BestOffer(articleEnVente.getNoArticle());
 				// Ajout de l'enchere actuelle dans la BD
 				EnchereMgr.ajouterEnchere(encherePropose);
+				// La meilleur enchere deviens l'enchere proposer
+				meilleurEnchere = encherePropose;
 				// Remboursement de l'utilisateur que si il y'a une deuxième meilleur enchère
 				if (deuxiemeMeilleurEnchere != null) {
 					// Récupération de l'utilisateur en fonction du numéro d'utilisateur dans
@@ -109,10 +112,13 @@ public class ServletDetailVente extends HttpServlet {
 					// Mise à jour de la bd avec les crédits modifier
 					UtilisateurMgr.modificationUtilisateur(utilisateurARembourser);
 				}
-				request.setAttribute("meilleurEnchere", encherePropose);
+				request.setAttribute("meilleurEnchere", meilleurEnchere);
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
+		} else {
+			String enchereInvalide = "L'enchère est invalide.";
+			request.setAttribute("Erreur", enchereInvalide);
 		}
 		request.setAttribute("meilleurEnchere", encherePropose);
 		request.setAttribute("retrait", retraitArticleEnVente);

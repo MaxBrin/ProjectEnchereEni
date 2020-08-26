@@ -177,6 +177,15 @@
 		</div>
 	</form>
 
+	<!--  AFFICHAGE MESSAGE D'ERREUR SI ENCHERE NON VALIDE -->
+	<c:if test="${Erreur!=null}">
+		<div class="row mx-auto">
+			<div class="col-md-2 offset-sm-4">
+				<h5 class="text-danger">${Erreur}</h5>
+			</div>
+		</div>
+	</c:if>
+
 
 
 
