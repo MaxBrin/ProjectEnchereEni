@@ -180,6 +180,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 				choixUtilisateur.add("date_debut_encheres >= GETDATE() ");
 			}
 			StringBuilder choix = new StringBuilder();
+			//si l'utilisateur n'a rien coché, 
 			if (!(choixUtilisateur.isEmpty())) {
 				choix.append("(");
 				choix.append(choixUtilisateur.get(0));
