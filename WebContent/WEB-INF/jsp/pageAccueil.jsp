@@ -84,6 +84,15 @@
 							href="${pageContext.request.contextPath }/Accueil?choix=mesVentes"
 							class="btn btn-secondary btn-sm">Mes ventes</a>
 					</div>
+						
+					<div class="col-md-2">
+						<a
+							href="${pageContext.request.contextPath }/Accueil?choix=annuler"
+							class="btn btn-secondary btn-sm">Annuler</a>
+					</div>	
+						
+	
+								
 				</div>
 			</c:if>
 			<!-- AFFICHAGE DES CHECKBOXES EN FONCTION DU CHOIX "ACHATS" OU "MES VENTES" -->

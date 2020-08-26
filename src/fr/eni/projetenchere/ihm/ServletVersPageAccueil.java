@@ -30,6 +30,11 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 		// Récupération valeur bouton radio
 		String choix = request.getParameter("choix");
+		
+		if ("annuler".equals(choix)) {
+			request.setAttribute("choixAchat", null);
+		}
+		
 		if ("achat".equals(choix)) {
 			request.setAttribute("choixAchat", "achat");
 		}
@@ -67,7 +72,6 @@ public class ServletVersPageAccueil extends HttpServlet {
 		// String chkboxeEncheresEmportees = request.getParameter("encheresRemportees");
 		String chkboxeMesVentesEnCours = request.getParameter("ventesEnCours");
 		String chkboxeMesVentesNonDebutees = request.getParameter("ventesNonDebutees");
-		System.out.println(chkboxeMesVentesNonDebutees);
 		String chkboxeVentesTerminees = request.getParameter("ventesTerminees");
 
 		// Creation du filtre
