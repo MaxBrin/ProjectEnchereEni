@@ -103,19 +103,18 @@ ON DELETE NO ACTION
 
 INSERT INTO UTILISATEURS VALUES ('CocoCaliendo44','Caliendo','Julien','jcaliendo@campus-eni.fr','0123456789','1 boulevard TeslaLover','44000','NANTES','Pa$$w0rd',0,1);
 INSERT INTO UTILISATEURS VALUES ('Max','Brin','Maxime','maxime.brin2020@campus-eni.fr','0123456789','10 rue du calvaire','85530','LA BRUFFIERE','Pa$$w0rd',100,0);
+INSERT INTO UTILISATEURS VALUES('adeline44','Avril','Adeline','adeline.avril2020@campus-eni.fr','0123456789','3 rue Mickeal Faraday','44800','SAINT HERBLAIN','Pa$$w0rd',100,0);
 
 INSERT INTO CATEGORIES VALUES ('Informatique');
 INSERT INTO CATEGORIES VALUES('Ameublement');
 INSERT INTO CATEGORIES VALUES('Vetements');
 INSERT INTO CATEGORIES VALUES ('Sport & Loisirs');
 
-INSERT INTO ARTICLES_VENDUS VALUES('PC Gamer','Super Pc qui défonce','20200618 10:34:09 AM','20200820 10:34:09 AM',200,null,2,1)
-INSERT INTO ARTICLES_VENDUS VALUES('PC Gamer','Super Pc qui défonce','20200617 8:34:09 AM','20201201 9:10:09 AM',200,null,2,1)
-INSERT INTO ARTICLES_VENDUS VALUES('PC Gamer','Super Pc qui défonce','20200618 10:25:09 AM','20200718 5:08:09 pM',200,null,1,1)
+INSERT INTO ARTICLES_VENDUS VALUES('PC Gamer','Super Pc qui défonce','20201201 10:34:09 AM','20210101 10:34:09 AM',10,null,2,1)
+INSERT INTO ARTICLES_VENDUS VALUES('PC Gamer','Super Pc qui défonce','20200101 8:34:09 AM','20201201 9:10:09 AM',10,null,2,1)
+INSERT INTO ARTICLES_VENDUS VALUES('PC Gamer','Super Pc qui défonce','20200101 10:25:09 AM','20200110 5:08:09 pM',10,null,3,1)
 
-INSERT INTO RETRAITS VALUES (3,'1 boulevard TeslaLover','44000','NANTES');
+INSERT INTO RETRAITS VALUES (3,'3 rue Mickeal Faradayr','44800','SAINT HERBLAIN');
 INSERT INTO RETRAITS VALUES (1,'10 rue du calvaire','85530','LA BRUFFIERE');
 INSERT INTO RETRAITS VALUES (2,'10 rue du calvaire','85530','LA BRUFFIERE');
 
-SELECT * FROM CATEGORIES WHERE libelle like '%Sport%'
-SELECT * FROM CATEGORIES WHERE libelle like '%Informatique%'  or libelle like '%Sport%';

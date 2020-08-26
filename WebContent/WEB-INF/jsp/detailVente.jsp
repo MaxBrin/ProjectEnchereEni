@@ -73,7 +73,7 @@
 		<div class="col-sm-4">
 			<div class="input-group mb-3">
 				<input type="text" class="form-control" aria-label="meilleureOffre"
-					value="" readonly="readonly">
+					value="${meilleurEnchere.montantEnchere }" readonly="readonly">
 			</div>
 		</div>
 	</div>

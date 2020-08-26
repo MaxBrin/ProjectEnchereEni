@@ -12,7 +12,7 @@ import fr.eni.projetenchere.dal.EnchereDAO;
 
 public class EnchereDAOImpl implements EnchereDAO {
 	private static final String INSERT = "INSERT INTO ENCHERES VALUES (?,?,?,?)";
-	private static final String SELECTBY_NOARTICLE = "SELECT no_enchere,date_enchere,montant_enchere,no_article,no_utilisateur FROM ENCHERES WHERE no_article=? ORDER BY date_enchere DESC";
+	private static final String SELECTBY_NOARTICLE = "SELECT no_enchere,date_enchere,montant_enchere,no_article,no_utilisateur FROM ENCHERES WHERE no_article=? ORDER BY montant_enchere DESC";
 
 	@Override
 	public void insertEnchere(Enchere enchere) throws DALException {
@@ -35,7 +35,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 	}
 
 	@Override
-	public Enchere selectBy_NoArticle(int noArticle) throws DALException {
+	public Enchere selectBy_NoArticle_BestOffer(int noArticle) throws DALException {
 		Enchere enchere = null;
 		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(SELECTBY_NOARTICLE)) {
 			pStmt.setInt(1, noArticle);
@@ -50,4 +50,5 @@ public class EnchereDAOImpl implements EnchereDAO {
 		}
 		return enchere;
 	}
+
 }
