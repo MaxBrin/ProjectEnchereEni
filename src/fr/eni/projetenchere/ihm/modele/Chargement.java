@@ -20,8 +20,12 @@ public class Chargement {
 	 */
 	public static HttpServletRequest chargementListArticle(HttpServletRequest request) {
 		List<Article> articles = new ArrayList<>();
+		Filtre filtre = new Filtre();
+		filtre.setEnCours(true);
+		String[] saisieVide = { "" };
+		filtre.setSaisieUtilisateur(saisieVide);
 		try {
-			articles = ArticlesMgr.getListArticlesNonConnecte();
+			articles = ArticlesMgr.getListArticleFiltre(filtre);
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}

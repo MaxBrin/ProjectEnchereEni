@@ -118,4 +118,4 @@ INSERT INTO RETRAITS VALUES (1,'10 rue du calvaire','85530','LA BRUFFIERE');
 INSERT INTO RETRAITS VALUES (2,'10 rue du calvaire','85530','LA BRUFFIERE');
 
 SELECT * FROM CATEGORIES WHERE libelle like '%Sport%'
-SELECT * FROM CATEGORIES WHERE libelle like '%Informatique%' and libelle like '%Sport%';
+SELECT * FROM CATEGORIES WHERE libelle like '%Informatique%'  or libelle like '%Sport%';

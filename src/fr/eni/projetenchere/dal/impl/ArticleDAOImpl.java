@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +17,11 @@ import fr.eni.projetenchere.ihm.modele.Filtre;
 
 public class ArticleDAOImpl implements ArticleDAO {
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS VALUES (?,?,?,?,?,null,?,?)";
-	private static final String SELECTALL_NONCONNECTE = "SELECT no_article,nom_article,description,date_debut_encheres,"
+	private static final String SELECTALL = "SELECT no_article,nom_article,description,date_debut_encheres,"
 			+ "date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,"
 			+ "pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,"
 			+ "libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur "
-			+ "JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE date_fin_encheres>? AND  date_debut_encheres<? AND pseudo<>''";
+			+ "JOIN CATEGORIES c ON c.no_categorie=a.no_categorie ";
 	private static final String SELECTBYID = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE no_article=?";
 	private static final String SELECTBY_NOUTILISATEUR = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE a.no_utilisateur=?";
 	private static final String SELECTBY_NOCATEGORIE = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE c.no_categorie=?";
@@ -53,11 +52,10 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 
 	@Override
-	public List<Article> selectAllArticleNonConnecte() throws DALException {
+	public List<Article> selectAllArticle(Filtre filtre) throws DALException {
 		List<Article> listArticles = new ArrayList<>();
-		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(SELECTALL_NONCONNECTE)) {
-			pStmt.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
-			pStmt.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+		String requete = SELECTALL + creationRequeteSql(filtre);
+		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(requete)) {
 
 			ResultSet rs = pStmt.executeQuery();
 			while (rs.next()) {
@@ -100,56 +98,6 @@ public class ArticleDAOImpl implements ArticleDAO {
 			throw new DALException("Erreur selectAllArticle", e);
 		}
 		return article;
-	}
-
-	@Override
-	public List<Article> selectByNoUtilisateur(int noUtilisateur) throws DALException {
-		List<Article> listArticles = new ArrayList<>();
-		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(SELECTBY_NOUTILISATEUR)) {
-			pStmt.setInt(1, noUtilisateur);
-			ResultSet rs = pStmt.executeQuery();
-			while (rs.next()) {
-				Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"),
-						rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
-						rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
-						rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
-				Categorie categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
-				Article article = new Article(rs.getInt("no_article"), rs.getString("nom_article"),
-						rs.getString("description"), rs.getTimestamp("date_debut_encheres").toLocalDateTime(),
-						rs.getTimestamp("date_fin_encheres").toLocalDateTime(), rs.getInt("prix_initial"),
-						rs.getInt("prix_vente"), utilisateur, categorie);
-				listArticles.add(article);
-			}
-
-		} catch (SQLException e) {
-			throw new DALException("Erreur selectByNoUtilisateur", e);
-		}
-		return listArticles;
-	}
-
-	@Override
-	public List<Article> selectByNoCategorie(int noCategorie) throws DALException {
-		List<Article> listArticles = new ArrayList<>();
-		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(SELECTBY_NOCATEGORIE)) {
-			pStmt.setInt(1, noCategorie);
-			ResultSet rs = pStmt.executeQuery();
-			while (rs.next()) {
-				Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"),
-						rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
-						rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
-						rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
-				Categorie categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
-				Article article = new Article(rs.getInt("no_article"), rs.getString("nom_article"),
-						rs.getString("description"), rs.getTimestamp("date_debut_encheres").toLocalDateTime(),
-						rs.getTimestamp("date_fin_encheres").toLocalDateTime(), rs.getInt("prix_initial"),
-						rs.getInt("prix_vente"), utilisateur, categorie);
-				listArticles.add(article);
-			}
-
-		} catch (SQLException e) {
-			throw new DALException("Erreur selectByNoCategorie", e);
-		}
-		return listArticles;
 	}
 
 	@Override
@@ -198,20 +146,20 @@ public class ArticleDAOImpl implements ArticleDAO {
 				listeRequete.add(sb.toString());
 			}
 			if (filtre.getNoCategorie() != 0) {
-				listeRequete.add("no_categorie = " + filtre.getNoCategorie() + " ");
+				listeRequete.add("c.no_categorie = " + filtre.getNoCategorie() + " ");
 			}
 			if (filtre.getNoUtilisateur() != 0) {
-				listeRequete.add("no_utilisateur = " + filtre.getNoUtilisateur() + " ");
+				listeRequete.add("u.no_utilisateur = " + filtre.getNoUtilisateur() + " ");
 			}
 			List<String> choixUtilisateur = new ArrayList<>();
-			if (filtre.getChoixUtilisateur().contains("EnCours")) {
-				choixUtilisateur.add("date_debut_encheres < NOW() AND date_fin_encheres > NOW() ");
+			if (filtre.isEnCours()) {
+				choixUtilisateur.add("date_debut_encheres < GETDATE() AND date_fin_encheres > GETDATE() ");
 			}
-			if (filtre.getChoixUtilisateur().contains("Fini")) {
-				choixUtilisateur.add("date_fin_encheres < NOW() ");
+			if (filtre.isFini()) {
+				choixUtilisateur.add("date_fin_encheres <= GETDATE() ");
 			}
-			if (filtre.getChoixUtilisateur().contains("NonDisponible")) {
-				choixUtilisateur.add("date_debut_encheres > NOW() ");
+			if (filtre.isNonDisponible()) {
+				choixUtilisateur.add("date_debut_encheres >= GETDATE() ");
 			}
 			StringBuilder choix = new StringBuilder();
 			if (!(choixUtilisateur.isEmpty())) {
