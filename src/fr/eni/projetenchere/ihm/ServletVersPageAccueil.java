@@ -97,12 +97,13 @@ public class ServletVersPageAccueil extends HttpServlet {
 			if (chkboxeVentesTerminees != null) {
 				filtre.setFini(true);
 			}
-			try {
-				// Filtrage de la liste
-				listeArticlesAAfficher = ArticlesMgr.getListArticleFiltre(filtre);
-			} catch (BLLException e) {
-				e.printStackTrace();
-			}
+
+		}
+		try {
+			// Filtrage de la liste
+			listeArticlesAAfficher = ArticlesMgr.getListArticleFiltre(filtre);
+		} catch (BLLException e) {
+			e.printStackTrace();
 		}
 
 //**************************************************************************************		

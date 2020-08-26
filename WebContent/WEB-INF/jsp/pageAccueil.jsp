@@ -65,173 +65,110 @@
 						</c:forEach>
 					</select>
 				</div>
-			</div>
-			<div class="row ">
-				<div class="col-md-2"></div>
-				<c:if test="${(noUtilisateur != null)}">
-					<div>
-						<a href="${pageContext.request.contextPath }/Accueil?choix=achat"
-							class="btn btn-secondary btn-sm">Achats</a><br> <a
-							href="${pageContext.request.contextPath }/Accueil?choix=mesVentes"
-							class="btn btn-secondary btn-sm">Mes ventes</a><br>
-					</div>
-				</c:if>
-				<!--Si l'utilisateur est connecté et qu'il n'a pas encore fait de choix -->
-				<c:if test="${(noUtilisateur != null) && (choixAchat == null) }">
-
-					<!-- CHECKBOXES FILTRAGE  -->
-					<div>
-						<input type="checkbox" name="encheresOuvertes" disabled="disabled">Enchères
-						ouvertes<br> <input type="checkbox" name="mesEncheres"
-							disabled="disabled">Mes enchères<br> <input
-							type="checkbox" name="encheresRemportees" disabled="disabled">Mes
-						enchères remportées<br>
-					</div>
-					<div>
-						<input type="checkbox" name="encheresRemportees"
-							disabled="disabled">Mes ventes en cours<br> <input
-							type="checkbox" name="ventesNonDebutess" disabled="disabled">Ventes
-						non débutées<br> <input type="checkbox"
-							name="ventesTerminees" disabled="disabled">Ventes
-						terminées<br>
-					</div>
-				</c:if>
-				<!-- DESACTIVATION DES CHECKBOXES EN FONCTION DU CHOIX "ACHATS" OU "MES VENTES" -->
-				<!--  -->
-				<c:if test="${(choixAchat eq 'achat') and (noUtilisateur != null)}">
-					<div>
-						<input type="checkbox" name="encheresOuvertes">Enchères
-						ouvertes<br> <input type="checkbox" name="mesEncheres">Mes
-						enchères<br> <input type="checkbox" name="encheresRemportees">Mes
-						enchères remportées<br>
-					</div>
-<<<<<<< HEAD
+				<div class="col-md-4 offset-sm-1">
+					<button type="submit" class="btn btn-secondary btn-lg">Rechercher</button>
+					<br> <br>
 				</div>
+			</div>
+
+
+			<c:if test="${(noUtilisateur != null)}">
 				<div class="row ">
-					<div class="col-md-2"></div>
-					<c:if test="${(noUtilisateur != null)}">
-						<div>
-							<a href="${pageContext.request.contextPath }/Accueil?choix=achat"
-								class="btn btn-secondary btn-sm">Achats</a><br> 
-							<a
-								href="${pageContext.request.contextPath }/Accueil?choix=mesVentes" class="btn btn-secondary btn-sm">Mes
-								ventes</a><br> 
-						</div>
-					</c:if>
-					<!-- AFFICHAGE DES CHECKBOXES EN FONCTION DU CHOIX "ACHATS" OU "MES VENTES" -->
-					<c:if test="${(choixAchat eq 'achat') and (noUtilisateur != null)}">
-						<div>
-							<input type="checkbox" name="encheresOuvertes">Enchères ouvertes<br> 
-							<input type="checkbox" name="mesEncheres">Mes enchères<br> 
-							<input type="checkbox" name="encheresRemportees">Mes enchères remportées<br>
-						</div>
-					</c:if>	
-						<br>
-						<br>
-					<c:if test="${(choixAchat == 'ventes') && (noUtilisateur != null) }">
-						<div>
-							<input type="checkbox" name="ventesEnCours">Mes ventes en cours<br> 
-							<input type="checkbox" name="ventesNonDebutees">Ventes non débutées<br>
-							<input type="checkbox" name="ventesTerminees">Ventes terminées<br>
-						</div>
-					</c:if>					
+					<div class="col-md-1 offset-sm-2">
 
-
-					<div class="col-md-4">
-						<button type="submit" class="btn btn-secondary btn-lg">Rechercher</button>
-						<br> <br>
-=======
-
-					<br>
-					<br>
-
-					<div>
-						<input type="checkbox" name="ventesEnCours" disabled="disabled">Mes
-						ventes en cours<br> <input type="checkbox"
-							name="ventesNonDebutees" disabled="disabled">Ventes non
-						débutées<br> <input type="checkbox" name="ventesTerminees"
-							disabled="disabled">Ventes terminées<br>
+						<a href="${pageContext.request.contextPath }/Accueil?choix=achat"
+							class="btn btn-secondary btn-sm">Achats</a>
 					</div>
-				</c:if>
-				<c:if test="${(choixAchat == 'ventes') && (noUtilisateur != null) }">
-					<div>
-						<input type="checkbox" name="encheresOuvertes" disabled="disabled">Enchères
-						ouvertes<br> <input type="checkbox" name="mesEncheres"
-							disabled="disabled">Mes enchères<br> <input
-							type="checkbox" name="encheresRemportees" disabled="disabled">Mes
-						enchères remportées<br>
->>>>>>> ac1f96ae0e1347b8cf4db47ec171d6e2963603d4
+					<div class="col-md-2">
+						<a
+							href="${pageContext.request.contextPath }/Accueil?choix=mesVentes"
+							class="btn btn-secondary btn-sm">Mes ventes</a>
 					</div>
-					<br>
-					<br>
-					<div>
+				</div>
+			</c:if>
+			<!-- AFFICHAGE DES CHECKBOXES EN FONCTION DU CHOIX "ACHATS" OU "MES VENTES" -->
+			
+			<!--  ACHAT -->
+			<c:if test="${(choixAchat eq 'achat') and (noUtilisateur != null)}">
+				<div class="row ">
+					<div class="col-md-8 offset-sm-2">
+						<div>
+							<input type="checkbox" name="encheresOuvertes">Enchères
+							ouvertes<br> <input type="checkbox" name="mesEncheres">Mes
+							enchères<br> <input type="checkbox"
+								name="encheresRemportees">Mes enchères remportées<br>
+						</div>
+					</div>
+				</div>
+			</c:if>
+			
+			<!--  VENTES -->
+			<c:if test="${(choixAchat == 'ventes') && (noUtilisateur != null) }">
+				<div class="row ">
+					<div class="col-md-8 offset-sm-3">
 						<input type="checkbox" name="ventesEnCours">Mes ventes en
 						cours<br> <input type="checkbox" name="ventesNonDebutees">Ventes
 						non débutées<br> <input type="checkbox"
 							name="ventesTerminees">Ventes terminées<br>
 					</div>
-				</c:if>
-				<div class="col-md-4">
-					<button type="submit" class="btn btn-secondary btn-lg">Rechercher</button>
-					<br> <br>
+				</div>
+			</c:if>
+		</form>
+
+		<c:if test="${ErreurBD!=null}">
+			<div class="row mx-auto">
+				<div class="mx-auto" style="width: 500px;">
+					<h3 class="text-danger ">${ErreurBD}</h3>
 				</div>
 			</div>
-		</form>
-	</div>
-	<c:if test="${ErreurBD!=null}">
-		<div class="row mx-auto">
-			<div class="mx-auto" style="width: 500px;">
-				<h3 class="text-danger ">${ErreurBD}</h3>
-			</div>
-		</div>
-	</c:if>
+		</c:if>
 
-	<div class="row   justify-content-center">
-		<!--  Affichage de la liste des articles -->
-		<c:forEach var="article" items="${listeArticlesAAfficher }">
+		<div class="row   justify-content-center">
+			<!--  Affichage de la liste des articles -->
+			<c:forEach var="article" items="${listeArticlesAAfficher }">
 
-			<div class="col-lg-3 col-md-6">
-				<!-- Affichage d'article en vente -->
-				<div class="card" style="width: 18rem;">
-					<img src="..." class="card-img-top" alt="...">
-					<div class="card-body">
-						<!--  Nom de l'article avec un lien vers detail de l'article -->
-						<h5 class="card-title">
-							<c:choose>
-								<c:when test="${noUtilisateur == null}">
+				<div class="col-lg-3 col-md-6">
+					<!-- Affichage d'article en vente -->
+					<div class="card" style="width: 18rem;">
+						<img src="..." class="card-img-top" alt="...">
+						<div class="card-body">
+							<!--  Nom de l'article avec un lien vers detail de l'article -->
+							<h5 class="card-title">
+								<c:choose>
+									<c:when test="${noUtilisateur == null}">
 										${article.nomArticle }
 									</c:when>
-								<c:otherwise>
-									<a
-										href="${pageContext.request.contextPath }/DetailVente?idArticle=${article.noArticle}">${article.nomArticle }</a>
-								</c:otherwise>
-							</c:choose>
+									<c:otherwise>
+										<a
+											href="${pageContext.request.contextPath }/DetailVente?idArticle=${article.noArticle}">${article.nomArticle }</a>
+									</c:otherwise>
+								</c:choose>
 
-						</h5>
-						<!--  prix de l'article -->
-						<h6 class="card-subtitle mb-2 text-muted">Prix :
-							${article.prixInitial}</h6>
-						<!--  Affichage de la date de fin d'enchere au format 01 janvier 2020 00:00:00 -->
-						<p class="card-text">
-							Fin de l'enchère :
-							<!--  Formatage de la date -->
-							<fmt:parseDate value="${article.finEnchere}"
-								pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" type="both" />
-							<fmt:formatDate value="${parsedDate }" dateStyle="long"
-								timeStyle="medium" type="both" />
-						</p>
-						<!--  Liens vers le profil du vendeur de l'article -->
-						<p class="card-text">
-							Vendeur : <a
-								href="${pageContext.request.contextPath }/VisualiserProfil?utilisateurVendeur=${article.utilisateur.noUtilisateur}"
-								class="card-link">${article.utilisateur.pseudo }</a>
-						</p>
+							</h5>
+							<!--  prix de l'article -->
+							<h6 class="card-subtitle mb-2 text-muted">Prix :
+								${article.prixInitial}</h6>
+							<!--  Affichage de la date de fin d'enchere au format 01 janvier 2020 00:00:00 -->
+							<p class="card-text">
+								Fin de l'enchère :
+								<!--  Formatage de la date -->
+								<fmt:parseDate value="${article.finEnchere}"
+									pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" type="both" />
+								<fmt:formatDate value="${parsedDate }" dateStyle="long"
+									timeStyle="medium" type="both" />
+							</p>
+							<!--  Liens vers le profil du vendeur de l'article -->
+							<p class="card-text">
+								Vendeur : <a
+									href="${pageContext.request.contextPath }/VisualiserProfil?utilisateurVendeur=${article.utilisateur.noUtilisateur}"
+									class="card-link">${article.utilisateur.pseudo }</a>
+							</p>
+						</div>
 					</div>
 				</div>
-			</div>
 
-		</c:forEach>
-	</div>
+			</c:forEach>
+		</div>
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
