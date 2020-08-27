@@ -27,7 +27,7 @@
 	</div>
 	<div class="row mx-auto">
 		<div class="mx-auto">
-			<img src="${pageContext.request.contextPath }/img/Photo PC.jpg"
+			<img src="${pageContext.request.contextPath }/img/Photo Objets.jpg"
 				class="rounded float-left img-thumbnail" width="400" height="400"
 				alt="Photo Article">
 		</div>

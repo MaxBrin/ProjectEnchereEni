@@ -22,9 +22,19 @@ public class ArticleDAOImpl implements ArticleDAO {
 			+ "pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,"
 			+ "libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur "
 			+ "JOIN CATEGORIES c ON c.no_categorie=a.no_categorie ";
-	private static final String SELECTBYID = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE no_article=?";
-	private static final String SELECTBY_NOUTILISATEUR = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE a.no_utilisateur=?";
-	private static final String SELECTBY_NOCATEGORIE = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE c.no_categorie=?";
+	private static final String SELECTBYID = "SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,"
+			+ "prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,"
+			+ "mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON "
+			+ "u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES "
+			+ "c ON c.no_categorie=a.no_categorie WHERE no_article=?";
+	private static final String SELECTBY_NOUTILISATEUR = "SELECT no_article,nom_article,description,date_debut_encheres,"
+			+ "date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,"
+			+ "rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON"
+			+ " u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE a.no_utilisateur=?";
+	private static final String SELECTBY_NOCATEGORIE = "SELECT no_article,nom_article,description,date_debut_encheres,"
+			+ "date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,"
+			+ "rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON "
+			+ "u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie WHERE c.no_categorie=?";
 	private static final String DELETE = "DELETE FROM ARTICLES_VENDUS WHERE no_utilisateur =?";
 	private static final String UPDATE = "UPDATE ARTICLES_VENDUS SET nom_article=?,description=?,date_debut_encheres=?,"
 			+ "date_fin_encheres=?,prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=? WHERE no_article=? ";
