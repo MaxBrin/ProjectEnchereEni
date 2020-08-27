@@ -11,11 +11,10 @@
 <meta charset="utf-8">
 
 <title>Nouvelle vente</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/Erreur.css">
 
-</head>
 <!-- Bootstrap CSS -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
 
@@ -28,7 +27,7 @@
 			<div class="mx-auto" style="width: 500px;">
 			<c:choose> 
 				<c:when test="${article == null}">
-					<h1>Nouvelle Vente</h1>
+					<h1 class="offset-sm-1">Nouvelle Vente</h1>
 				</c:when>
 				<c:otherwise>
 					<h1>Modifier Vente</h1>
@@ -44,7 +43,7 @@
 
 			<!--  NOM ARTICLE  -->
 			<div class="row mx-auto">
-				<div class="col-md-2">
+				<div class="col-md-2 offset-sm-1">
 					<label for="nomArticle">Article :</label>
 				</div>
 				<div class="col-sm-6">
@@ -59,7 +58,7 @@
 			</div>
 			<!--  AFFICHAGE DU MESSAGE D'ERREUR -->
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-6 offset-sm-1">
 					<c:if test="${erreur.containsKey('nomArticle') }">
 						<p class="text-danger">${erreur.get('nomArticle')}</p>
 					</c:if>
@@ -68,7 +67,7 @@
 
 			<!--  DESCRIPTION ARTICLE  -->
 			<div class="row mx-auto">
-				<div class="col-md-2">
+				<div class="col-md-2 offset-sm-1">
 					<label for="description">Description :</label>
 				</div>
 				<div class="col-sm-6">
@@ -82,7 +81,7 @@
 
 			<!-- CATEGORIE -->
 			<div class="row mx-auto">
-				<div class="col-md-2">
+				<div class="col-md-2 offset-sm-1">
 					<label for="categorie">Catégorie</label>
 				</div>
 				<div class="col-sm-2">
@@ -101,7 +100,7 @@
 
 			<!-- PHOTO -->
 			<div class="row mx-auto">
-				<div class="col-md-2">
+				<div class="col-md-2 offset-sm-1">
 					<label for="photo">Photo de l'article</label>
 				</div>
 				<a href=""></a>
@@ -109,7 +108,7 @@
 			<br>
 			<!-- MISE A PRIX -->
 			<div class="row mx-auto">
-				<div class="col-md-2">
+				<div class="col-md-2 offset-sm-1">
 					<label for="miseAPrix">Mise à prix </label>
 				</div>
 				<div class="col-sm-2">
@@ -121,7 +120,7 @@
 			</div>
 			<!--  AFFICHAGE DU MESSAGE D'ERREUR -->
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-6 offset-sm-1">
 					<c:if test="${erreur.containsKey('prixInitial') }">
 						<p class="text-danger">${erreur.get('prixInitial')}</p>
 					</c:if>
@@ -130,14 +129,14 @@
 			<br>
 			<!-- DEBUT DE L'ENCHERE -->
 			<div class="row mx-auto">
-				<div class="col-md-2">
+				<div class="col-md-2 offset-sm-1">
 					<label for="debutEnchere">Début de l'enchère :</label>
 				</div>
 				<div class="col-sm-3">
 					<input type="date" aria-label="debutEnchere"
 						class="form-control ${erreur.containsKey('datesEncheres')?'border border-danger':'border border-secondary' }"
 						name="debutEnchere" required="required"
-						value="${(ModificationArticle != null)?'debutEnchere':'article.debutEnchere'}">
+						value="${dateDebut}">
 				</div>
 			</div>
 
@@ -145,20 +144,19 @@
 
 			<!-- FIN DE L'ENCHERE -->
 			<div class="row mx-auto">
-				<div class="col-md-2">
+				<div class="col-md-2 offset-sm-1">
 					<label for="finEnchere">Fin de l'enchère :</label>
 				</div>
 				<div class="col-sm-3">
-				<c:set var="dateFin" value="${dateFin}"/>
 					<input type="date" aria-label="finEnchere"
 						class="form-control ${erreur.containsKey('datesEncheres')?'border border-danger':'border border-secondary' }"
 						name="finEnchere" required="required"
-						value="${ article.finEnchere}">
+						value="${ dateFin}">
 				</div>
 			</div>
 			<!--  AFFICHAGE DU MESSAGE D'ERREUR -->
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-6 offset-sm-1">
 					<c:if test="${erreur.containsKey('datesEncheres') }">
 						<p class="text-danger">${erreur.get('datesEncheres')}</p>
 					</c:if>
@@ -168,11 +166,11 @@
 
 			<!--   RETRAIT  -->
 			<fieldset>
-				<legend>Retrait</legend>
+				<legend class="offset-sm-1">Retrait</legend>
 
 				<!--   RUE  -->
 				<div class="row mx-auto">
-					<div class="col-md-2">
+					<div class="col-md-2 offset-sm-1">
 						<label for="rue">Rue :</label>
 					</div>
 					<div class="col-sm-4">
@@ -186,7 +184,7 @@
 				</div>
 				<!--  AFFICHAGE DU MESSAGE D'ERREUR -->
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-6 offset-sm-1">
 						<c:if test="${erreur.containsKey('rue') }">
 							<p class="text-danger">${erreur.get('rue')}</p>
 						</c:if>
@@ -195,7 +193,7 @@
 
 				<!--   CODE POSTAL  -->
 				<div class="row mx-auto">
-					<div class="col-md-2">
+					<div class="col-md-2 offset-sm-1">
 						<label for="codePostal">Code postal :</label>
 					</div>
 					<div class="col-sm-4">
@@ -209,7 +207,7 @@
 				</div>
 				<!--  AFFICHAGE DU MESSAGE D'ERREUR -->
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-6 offset-sm-1">
 						<c:if test="${erreur.containsKey('codePostal') }">
 							<p class="text-danger">${erreur.get('codePostal')}</p>
 						</c:if>
@@ -218,7 +216,7 @@
 
 				<!--   VILLE  -->
 				<div class="row mx-auto">
-					<div class="col-md-2">
+					<div class="col-md-2 offset-sm-1">
 						<label for="ville">Ville :</label>
 					</div>
 					<div class="col-sm-4">
@@ -232,7 +230,7 @@
 				</div>
 				<!--  AFFICHAGE DU MESSAGE D'ERREUR -->
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-6 offset-sm-1">
 						<c:if test="${erreur.containsKey('ville') }">
 							<p class="text-danger">${erreur.get('ville')}</p>
 						</c:if>
@@ -247,11 +245,11 @@
 
 
 			<div class="row mx-auto">
-				<div class="mx-auto">
+				<div class="mx-auto offset-sm-1">
 					<button type="submit" class="btn btn-primary">Enregister</button>
 
 					<a href="${pageContext.request.contextPath }/Accueil"
-						class="btn btn-secondary">Annuler</a>
+						class="btn btn-secondary ">Annuler</a>
 				</div>
 			</div>
 		</form>

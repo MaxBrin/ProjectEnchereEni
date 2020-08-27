@@ -67,13 +67,8 @@ public class ServletNouvelleVente extends HttpServlet {
 			}
 
 			request.setAttribute("article", article);
-			// Récupération et conversion des dates d'enchères LocalDateTime -> LocalTime
-//			LocalDateTime dateDebutEnchere = article.getDebutEnchere();
-//			LocalDateTime dateFinEnchere = article.getFinEnchere();
-//			LocalDate debutEnchere = dateDebutEnchere.toLocalDate();
-//			LocalDate finEnchere = dateFinEnchere.toLocalDate();
-//			request.setAttribute("dateDebut", debutEnchere);
-//			request.setAttribute("dateFin", finEnchere);
+			request.setAttribute("dateDebut", article.getDebutEnchere().toLocalDate());
+			request.setAttribute("dateFin", article.getFinEnchere().toLocalDate());
 		}
 		request = Chargement.chargementListCategorie(request, response);
 		request.setAttribute("utilisateur", utilisateur);
@@ -118,7 +113,7 @@ public class ServletNouvelleVente extends HttpServlet {
 			debutEnchere = LocalDateTime.of(LocalDate.parse(request.getParameter("debutEnchere")), LocalTime.now());
 			finEnchere = LocalDateTime.of(LocalDate.parse(request.getParameter("finEnchere")), LocalTime.now());
 		} catch (DateTimeParseException e) {
-			// TODO MESSAGE ERREUR DATE
+			e.printStackTrace();
 		}
 
 		// Tentative de transformation des Strings en int
@@ -126,7 +121,7 @@ public class ServletNouvelleVente extends HttpServlet {
 			categorieSaisie = Integer.parseInt(request.getParameter("categorie"));
 			miseAPrix = Integer.parseInt(miseAPrixSaisie);
 		} catch (Exception e) {
-			// TODO MESSAGE ERREUR CATEGORIE / MISE A PRIX
+			e.printStackTrace();
 		}
 
 		// Creation de la Categorie
@@ -134,6 +129,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		try {
 			categorie = CategorieMgr.getCategorie(categorieSaisie);
 		} catch (BLLException e2) {
+			// Si Erreur de connexion avec la base de donnée envoie sur une page l'indiquant
 			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e2.printStackTrace();
 		}
@@ -149,12 +145,15 @@ public class ServletNouvelleVente extends HttpServlet {
 			try {
 				ArticlesMgr.ajoutArticle(article);
 			} catch (BLLException e) {
+				request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 				e.printStackTrace();
 			}
 			Retrait retrait = new Retrait(article.getNoArticle(), rue, codePostal, ville);
 			try {
 				RetraitMgr.ajouterRetrait(retrait);
 			} catch (BLLException e) {
+				// Si Erreur de connexion avec la base de donnée envoie sur une page l'indiquant
+				request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 				e.printStackTrace();
 			}
 			request = Chargement.chargementListArticle(request, response);
@@ -164,8 +163,9 @@ public class ServletNouvelleVente extends HttpServlet {
 			request = Chargement.chargementListCategorie(request, response);
 			request.setAttribute("listeErreur", erreurs);
 			request.setAttribute("article", article);
+			request.setAttribute("dateFin", article.getDebutEnchere().toLocalDate());
+			request.setAttribute("dateDebut", article.getFinEnchere().toLocalDate());
 			request.setAttribute("utilisateur", utilisateur);
-
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente.jsp");
 		}
 		rd.forward(request, response);

@@ -10,10 +10,12 @@
 
 
 
-<!-- CSS -->
 
+<!-- Bootstrap CSS -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/Fragment/StyleCommun.css">
+	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
 
 
 <title>Mon profil</title>
@@ -251,7 +253,7 @@
 						<input type="password"
 							class="form-control ${erreurs.containsKey('MotDePasseDifferent')?'border border-danger':'border border-secondary' }"
 							aria-label="nouveauMotDePasse" name="nouveauMotDePasse"
-							pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$">
+							pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" onInvalid="setCustomValidity('Le mot de passe doit faire au moins 8 caracètre avec une majuscule,une minuscule,un caractère spécial et un chiffre.')">
 					</div>
 				</div>
 
@@ -266,7 +268,7 @@
 							class="form-control ${erreurs.containsKey('MotDePasseDifferent')?'border border-danger':'border border-secondary' }"
 							aria-label="confirmerNouveauMotDePasse"
 							name="confirmerNouveauMotDePasse"
-							pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$">
+							pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" onInvalid="setCustomValidity('Le mot de passe doit faire au moins 8 caracètre avec une majuscule,une minuscule,un caractère spécial et un chiffre.')">
 					</div>
 				</div>
 			</div>

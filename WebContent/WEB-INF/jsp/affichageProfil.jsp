@@ -8,15 +8,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Affichage profil</title>
 	
-<link
-	href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
-	rel="stylesheet">
+
+<!-- Bootstrap CSS -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
 

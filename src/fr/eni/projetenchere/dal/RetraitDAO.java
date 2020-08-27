@@ -20,11 +20,4 @@ public interface RetraitDAO {
 	 */
 	Retrait selectByNoArticle(int noArticle) throws DALException;
 
-	/**
-	 * Méthode pour effacer un retrait de la BD
-	 * 
-	 * @param retrait
-	 * @throws DALException
-	 */
-	void deleteRetrait(Retrait retrait) throws DALException;
 }

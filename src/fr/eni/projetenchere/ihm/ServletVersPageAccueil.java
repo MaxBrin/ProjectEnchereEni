@@ -44,9 +44,11 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 		if ("achat".equals(choix)) {
 			request.setAttribute("choixAchat", "achat");
+			request.setAttribute("ckEncheresOuvertesCheck", true);
 		}
 		if ("mesVentes".equals(choix)) {
 			request.setAttribute("choixAchat", "ventes");
+			request.setAttribute("ckMesVentesEnCoursCheck", true);
 			filtre.setNoUtilisateurVendeur(noUtilisateur);
 		}
 
@@ -94,6 +96,21 @@ public class ServletVersPageAccueil extends HttpServlet {
 		Parametre param = new Parametre(noUtilisateur, chkboxeEncheresOuvertes, chkboxeMesEncheres,
 				chkboxeEncheresEmportees, chkboxeMesVentesEnCours, chkboxeMesVentesNonDebutees, chkboxeVentesTerminees,
 				noCategorie, rechercheUtilisateur);
+		// Récupération valeur bouton radio
+		String choix = request.getParameter("choix");
+		if ("annuler".equals(choix)) {
+			request.setAttribute("choixAchat", null);
+		}
+
+		if ("achat".equals(choix)) {
+			request.setAttribute("choixAchat", "achat");
+			request.setAttribute("ckEncheresOuvertesCheck", true);
+		}
+		if ("ventes".equals(choix)) {
+			request.setAttribute("choixAchat", "ventes");
+			request.setAttribute("ckMesVentesEnCoursCheck", true);
+
+		}
 		// Creation du filtre
 		Filtre filtre = getFiltre(param, request);
 		// Récupération des article en bdd
@@ -124,19 +141,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 				}
 			}
 		}
-		// Récupération valeur bouton radio
-		String choix = request.getParameter("choix");
-		if ("annuler".equals(choix)) {
-			request.setAttribute("choixAchat", null);
-		}
 
-		if ("achat".equals(choix)) {
-			request.setAttribute("choixAchat", "achat");
-		}
-		if ("ventes".equals(choix)) {
-			request.setAttribute("choixAchat", "ventes");
-
-		}
 //**************************************************************************************		
 		// Envoie des informations
 		request = Chargement.chargementListCategorie(request, response);
@@ -173,36 +178,45 @@ public class ServletVersPageAccueil extends HttpServlet {
 			if (param.getChkboxeMesVentesEnCours() != null) {
 				filtre.setNoUtilisateurVendeur(noUser);
 				filtre.setEnCours(true);
+				request.setAttribute("ckMesVentesEnCoursCheck", true);
 			} else {
 				filtre.setEnCours(false);
+				request.setAttribute("ckMesVentesEnCoursCheck", false);
 			}
 
 			// Si la checkBox "Ventes non débutées" est cochée
 			if (param.getChkboxeMesVentesNonDebutees() != null) {
 				filtre.setNoUtilisateurVendeur(noUser);
 				filtre.setNonDisponible(true);
+				request.setAttribute("ckMesVentesNonDebuteesCheck", true);
 			}
 			// Si la checkBox "Ventes Terminees" est cochée
 			if (param.getChkboxeVentesTerminees() != null) {
 				filtre.setNoUtilisateurVendeur(noUser);
 				filtre.setFini(true);
+				request.setAttribute("ckVentesTermineesCheck", true);
 			}
 			// Ajout des filtres en fonction des checkboxes
 			// Si la checkBox "Encheres Ouvertes" est cochée
 			if (param.getChkboxeEncheresOuvertes() != null) {
 				filtre.setEnCours(true);
+				request.setAttribute("ckEncheresOuvertesCheck", true);
+			} else {
+				request.setAttribute("ckEncheresOuvertesCheck", false);
 			}
 
 			// Si la checkBox "Mes Enchères" est cochée
 			if (param.getChkboxeMesEncheres() != null) {
 				filtre.setNoUtilisateurAcheteur(noUser);
 				filtre.setAchat(true);
+				request.setAttribute("ckMesEncheresCheck", true);
 			}
 			// Si la checkBox "Mes Encheres Emportees" est cochée
 			if (param.getChkboxeEncheresEmportees() != null) {
 				filtre.setNoUtilisateurAcheteur(noUser);
 				filtre.setAchat(true);
 				filtre.setFini(true);
+				request.setAttribute("ckEncheresEmporteesCheck", true);
 			}
 
 		}

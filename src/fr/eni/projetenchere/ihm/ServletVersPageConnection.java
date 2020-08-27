@@ -34,7 +34,7 @@ public class ServletVersPageConnection extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnection.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp");
 		rd.forward(request, response);
 
 	}
@@ -45,8 +45,10 @@ public class ServletVersPageConnection extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Récupération des paramatres saisies par l'utilisateur
 		String identifiant = request.getParameter("identifiant");
 		String mdp = request.getParameter("motDePasse");
+		// Récupération de la liste des utilisateurs
 		List<Utilisateur> listeUtilisateur = new ArrayList<Utilisateur>();
 		try {
 			listeUtilisateur = UtilisateurMgr.getListUtilisateur();
@@ -54,35 +56,51 @@ public class ServletVersPageConnection extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
+		// HasMap utilisé pour afficher un message d'erreur
 		HashMap<String, String> erreurs = new HashMap<>();
+		// Initialisation d'un boolean pour la présence de l'identifiant
 		boolean identifiantPresent = false;
+		// Parcour de la liste des utilisateurs
 		for (Utilisateur utilisateur : listeUtilisateur) {
-			if (!identifiant.equals("")) {
-				if ((utilisateur.getEmail().equals(identifiant) || utilisateur.getPseudo().equals(identifiant))) {
-					identifiantPresent = true;
 
+			if (!identifiant.equals("")) {
+				// Vérifiaction si l'identifiant est le pseudo ou l'email
+				if ((utilisateur.getEmail().equals(identifiant) || utilisateur.getPseudo().equals(identifiant))) {
+					// Identifiant trouvé
+					identifiantPresent = true;
+					// Vérification du mot de passe
 					if (utilisateur.getMotDePasse().equals(mdp) && mdp.length() > 0) {
+						// Log de Connection
 						Logger monLogger = (Logger) LoggerFactory.getLogger("fr.eni.ProjectEnchereEni");
 						monLogger.info("Connexion : " + utilisateur.getPseudo());
+						// Création d'une session et stokage du numéro d'utilisateur dans la session
 						HttpSession session = request.getSession();
 						session.setAttribute("noUtilisateur", utilisateur.getNoUtilisateur());
+						// Chargement des listes à afficher sur la pages d'accueil
 						request = Chargement.chargementListArticle(request, response);
 						request = Chargement.chargementListCategorie(request, response);
+						// Envoie sur la page d'accueil après la connexion réussie
 						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 						rd.forward(request, response);
 					} else {
+						// Si le mot de passe est invalide stokage d'une clé et d'un message dans la
+						// HasMap
 						erreurs.put("motDePasseInvalide", "Le mot de passe est incorrect. ");
+						// Envoie de la HasMap à la page de connexion
 						request.setAttribute("listeErreurs", erreurs);
-						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnection.jsp");
+						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp");
 						rd.forward(request, response);
 					}
 				}
 			}
 		}
 		if (!identifiantPresent) {
+			// Si l'identifiant est inconnu stockage d'une clé et d'un message dans la
+			// HasMap
 			erreurs.put("IdentifiantInvalide", "L'identifiant est inconnu. ");
+			// Envoie de la HasMap à la page de connexion
 			request.setAttribute("listeErreurs", erreurs);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnection.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp");
 			rd.forward(request, response);
 		}
 

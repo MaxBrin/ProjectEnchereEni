@@ -10,18 +10,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Liste des enchères</title>
 
-<link
-	href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
-	rel="stylesheet">
+
+
+<!-- Bootstrap CSS -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
-
 </head>
 
 
@@ -31,54 +26,56 @@
 	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp" />
 	<div class="container">
 		<div class="row mx-auto">
-			<div class="mx-auto offset-sm-3" >
+			<div class="mx-auto offset-sm-3">
 				<h1>Liste des Enchères</h1>
 			</div>
 		</div>
 
 		<form action="${pageContext.request.contextPath}/Accueil"
 			method="post">
-			<!-- RECHERCHE ARTICLE PAR NOM -->
 			<div class="row mx-auto">
-				<div class="col-md-2 offset-sm-3">
-					<label for="filtre" class="labelFiltre">Filtres</label>
+				<div class="col-md-6 offset-sm-2">
+					<!-- RECHERCHE ARTICLE PAR NOM -->
+					<div class="row mx-auto">
+						<div class="col-md-4 ">
+							<label for="filtre" class="labelFiltre">Filtres</label>
+						</div>
+						<div class="col-md-8">
+							<input type="text" class="form-control"
+								placeholder="Ex : voiture, console" aria-label="labelFiltre"
+								name="rechercherArticle">
+						</div>
+					</div>
+					<!-- RECHERCHE PAR SELECT CATEGORIE -->
+					<div class="row mx-auto">
+						<div class="col-md-4 ">
+							<label for="categorie" class="labelCategorie">Catégories</label>
+						</div>
+						<div class="col-md-8">
+							<select class="custom-select" id="categorie" name="categorie">
+								<!--  Valeur par defaut pour filtrer avec toutes les catégories  -->
+								<option value="0" name="toutesCategories">Toutes</option>
+								<!--  Affichage des catégories en fonction de la liste dans la BD  -->
+								<c:forEach var="categorie" items="${listeCategories}">
+									<option value="${categorie.noCategorie}"
+										${(categorieSaisie == categorie.noCategorie)?'selected':''}>${categorie.libelle}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
 				</div>
-				<div class="col-md-4">
-					<input type="text" class="form-control"
-						placeholder="Ex : voiture, console" aria-label="labelFiltre"
-						name="rechercherArticle">
-				</div>
-			
-			<!-- RECHERCHE PAR SELECT CATEGORIE -->
-			
-				<div class="col-md-2 offset-sm-3">
-					<label for="categorie" class="labelCategorie">Catégories</label>
-				</div>
-				<div class="col-md-4">
-					<select class="custom-select" id="categorie" name="categorie">
-						<!--  Valeur par defaut pour filtrer avec toutes les catégories  -->
-						<option value="0" name="toutesCategories">Toutes</option>
-						<!--  Affichage des catégories en fonction de la liste dans la BD  -->
-						<c:forEach var="categorie" items="${listeCategories}">
-							<option value="${categorie.noCategorie}"
-								 ${(categorieSaisie == categorie.noCategorie)?'selected':''}>${categorie.libelle}</option>
-						</c:forEach>
-					</select>
-				</div>
-				</div>
-				<div class="row mx-auto">
-				<div class="col-md-2 offset-sm-9">
-					<button type="submit" class="btn btn-secondary btn-lg">Rechercher</button>
-					<br> <br>
+				<div class="col-md-2 ">
+					<button type="submit" class="btn btn-primary btn-lg">Rechercher</button>
+
 				</div>
 			</div>
-
+			<br>
 
 			<!--  Bouton choix achats ou ventes -->
 			<c:if test="${(noUtilisateur != null)}">
-				
+
 				<div class="row ">
-					<div class="col-md-2 offset-sm-3">
+					<div class="col-md-2 offset-sm-4">
 						<a href="${pageContext.request.contextPath }/Accueil?choix=achat"
 							class="btn btn-secondary btn-sm">Achats</a>
 					</div>
@@ -87,60 +84,63 @@
 							href="${pageContext.request.contextPath }/Accueil?choix=mesVentes"
 							class="btn btn-secondary btn-sm">Mes ventes</a>
 					</div>
-					<div class="col-md-3">
-						<a
-							href="${pageContext.request.contextPath }/Accueil?choix=annuler"
-							class="btn btn-secondary btn-sm">Annuler</a>
-					</div>	
 				</div>
-				
+
 			</c:if>
-			
+
 			<!-- AFFICHAGE DES CHECKBOXES EN FONCTION DU CHOIX "ACHATS" OU "MES VENTES" -->
-			
+
 			<!--  ACHAT -->
-			
+
 			<c:if test="${(choixAchat eq 'achat') and (noUtilisateur != null)}">
-			<input type="hidden" value="achat" name="choix">
+				<input type="hidden" value="achat" name="choix">
 				<div class="row ">
-					<div class="col-md-2 offset-sm-3">
+					<div class="col-md-2 offset-sm-4">
 						<div>
-							<input type="checkbox" name="encheresOuvertes" >Enchères
-							ouvertes<br> <input type="checkbox" name="mesEncheres">Mes
-							enchères<br> <input type="checkbox"
-								name="encheresRemportees">Mes enchères remportées<br>
+							<input type="checkbox" name="encheresOuvertes"
+								${ckEncheresOuvertesCheck?'checked':'' }>Enchères
+							ouvertes<br> <input type="checkbox" name="mesEncheres"
+								${ckMesEncheresCheck?'checked':'' }>Mes enchères<br>
+							<input type="checkbox" name="encheresRemportees"
+								${ckEncheresEmporteesCheck?'checked':'' }>Mes enchères
+							remportées<br>
 						</div>
 					</div>
 				</div>
-				
+
 			</c:if>
-			
-			
+
+
 			<!--  VENTES -->
 			<c:if test="${(choixAchat == 'ventes') && (noUtilisateur != null) }">
-			<input type="hidden" value=" " name="choix">
+				<input type="hidden" value="ventes" name="choix">
 				<div class="row ">
-					<div class="col-md-4 offset-sm-5">
-						<input type="checkbox" name="ventesEnCours">Mes ventes en
-						cours<br> <input type="checkbox" name="ventesNonDebutees">Ventes
-						non débutées<br> <input type="checkbox"
-							name="ventesTerminees">Ventes terminées<br>
+					<div class="col-md-4 offset-sm-6">
+						<input type="checkbox" name="ventesEnCours"
+							${ckMesVentesEnCoursCheck ?'checked':'' }>Mes ventes en
+						cours<br> <input type="checkbox" name="ventesNonDebutees"
+							${ckMesVentesNonDebuteesCheck ?'checked':'' }>Ventes non
+						débutées<br> <input type="checkbox" name="ventesTerminees"
+							${ckVentesTermineesCheck ?'checked':'' }>Ventes terminées<br>
 					</div>
 				</div>
 			</c:if>
 		</form>
 	</div>
-	<br> <br>
-	
-	
-		<div class="row justify-content-center">
-			<!--  Affichage de la liste des articles -->
-			<c:forEach var="article" items="${listeArticlesAAfficher }">
-				<div class="justify-content-around row-cols-4 ">
-				<div class="col-md-1 offset-sm-1 ">
+	<br>
+	<br>
+
+
+	<div class="row justify-content-center">
+		<!--  Affichage de la liste des articles -->
+		<c:forEach var="article" items="${listeArticlesAAfficher }">
+			<div class="justify-content-around row-cols-4 ">
+				<div class="col-md-1 offset-sm-1">
 					<!-- Affichage d'article en vente -->
 					<div class="card" style="width: 18rem;">
-						<img src="${pageContext.request.contextPath }/img/Photo Objets.jpg" class="card-img-top" alt="photo article">
+						<img
+							src="${pageContext.request.contextPath }/img/Photo Objets.jpg"
+							class="card-img-top" alt="photo article">
 						<div class="card-body">
 							<!--  Nom de l'article avec un lien vers detail de l'article -->
 							<h5 class="card-title">
@@ -177,11 +177,11 @@
 					</div>
 				</div>
 			</div>
-			</c:forEach>
-		</div>
-		
-	
-	
+		</c:forEach>
+	</div>
+
+
+
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

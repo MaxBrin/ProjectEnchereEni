@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import fr.eni.projetenchere.bll.BLLException;
 import fr.eni.projetenchere.bll.UtilisateurMgr;
 import fr.eni.projetenchere.bo.Utilisateur;
@@ -63,6 +66,8 @@ public class ServletVersCreationCompte extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 				e.printStackTrace();
 			}
+			Logger monLogger = (Logger) LoggerFactory.getLogger("fr.eni.ProjectEnchereEni");
+			monLogger.info("Connexion : " + utilisateur.getPseudo());
 			HttpSession session = request.getSession();
 			session.setAttribute("noUtilisateur", utilisateur.getNoUtilisateur());
 			request = Chargement.chargementListArticle(request, response);

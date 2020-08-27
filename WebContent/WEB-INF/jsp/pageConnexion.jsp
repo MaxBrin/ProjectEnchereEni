@@ -9,24 +9,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Connexion</title>
 
-<link
-	href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
-	rel="stylesheet">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
-
 
 
 <!-- Bootstrap CSS -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
-
 
 </head>
 
@@ -36,7 +25,7 @@
 
 
 		<div class="row mx-auto">
-			<div class="mx-auto offset-sm-3" >
+			<div class="mx-auto offset-sm-2">
 				<h1>Connexion</h1>
 			</div>
 		</div>
@@ -44,15 +33,15 @@
 		<br>
 		<!--  Initialisation Message Erreur  -->
 		<c:set var="erreur" value="${listeErreurs}" />
-		
-		
+
+
 		<form action="Connexion" method="post">
 
 			<div class="row mx-auto">
-				<div class="col-md-2 offset-sm-3">
+				<div class="col-md-2 offset-sm-2">
 					<label for="identifiant">Identifiant</label>
 				</div>
-				<div class="col-sm-4">
+				<div class="col-sm-5">
 					<div class="input-group mb-3">
 						<input type="text"
 							class="form-control ${erreur.containsKey('IdentifiantInvalide')?'border border-danger':'border border-secondary' }"
@@ -63,7 +52,7 @@
 			</div>
 			<!--  Afficher message d'erreurs -->
 			<div class="row mx-auto">
-				<div class="col-sm-6 offset-sm-3">
+				<div class="col-sm-6 offset-sm-2">
 					<c:if test="${erreur.containsKey('IdentifiantInvalide')}">
 						<p class="text-danger">${erreur.get('IdentifiantInvalide')}</p>
 					</c:if>
@@ -73,10 +62,10 @@
 
 
 			<div class="row mx-auto">
-				<div class="col-md-2 offset-sm-3">
+				<div class="col-md-2 offset-sm-2">
 					<label for="motDePasse">Mot de passe</label>
 				</div>
-				<div class="col-sm-4">
+				<div class="col-sm-5">
 					<div class="input-group mb-3">
 						<input type="password"
 							class="form-control ${erreur.containsKey('motDePasseInvalide')?'border border-danger':'border border-secondary' }"
@@ -87,7 +76,7 @@
 			</div>
 			<!--  Afficher message d'erreurs -->
 			<div class="row mx-auto">
-				<div class="col-sm-6 offset-sm-3">
+				<div class="col-sm-6 offset-sm-2">
 					<c:if test="${erreur.containsKey('motDePasseInvalide')}">
 						<p class="text-danger">${erreur.get('motDePasseInvalide')}</p>
 					</c:if>
@@ -96,15 +85,22 @@
 
 			<br>
 
-			
+
 			<div class="row">
-				<div class="col-md-3 offset-sm-5">
+				<div class="col-md-2 offset-sm-4">
 					<button type="submit" class="btn btn-primary btn-lg">Connexion</button>
-					<br>
-					<c:if test="${erreurAuthentification!=null }">${erreurAuthentification }</c:if>
 				</div>
+				<div class="col-sm-3">
+					<a href="${pageContext.request.contextPath }/CreationCompte"
+						class="btn btn-success btn-lg">Création Compte</a>
+				</div>
+				<br>
+				<c:if test="${erreurAuthentification!=null }">${erreurAuthentification }</c:if>
+
 			</div>
 		</form>
+		<br>
+		
 	</div>
 
 	<!-- Optional JavaScript -->

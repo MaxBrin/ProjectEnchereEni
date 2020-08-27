@@ -7,15 +7,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/Erreur.css">
+
 <title>Mon profil</title>
 
+
 <!-- Bootstrap CSS -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/bootstrap/4.5.2/css/bootstrap.min.css"
-	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-	crossorigin="anonymous">
+	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
+	
 </head>
 
 
@@ -223,7 +224,7 @@
 							class="form-control ${erreurs.containsKey('MotDePasseNonValide') || erreurs.containsKey('MotDePasseNonIdentique')?'border border-danger':'border border-secondary' }"
 							aria-label="motDePasse" name="motDePasse"
 							value="${utilisateur.motDePasse }" required="required"
-							pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$">
+							pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" oninvalid="this.setCustomValidity('Le mot de passe doit faire au moins 8 caracètre avec une majuscule,une minuscule,un caractère spécial et un chiffre.')">
 					</div>
 				</div>
 				<!-- CONFIRMATION  -->
@@ -236,7 +237,7 @@
 							class="form-control ${erreurs.containsKey('MotDePasseNonValide') || erreurs.containsKey('MotDePasseNonIdentique')?'border border-danger':'border border-secondary' }"
 							aria-label="confirmerMotDePasse" name="confirmerMotDePasse"
 							required="required"
-							pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$">
+							pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" onInvalid="setCustomValidity('Le mot de passe doit faire au moins 8 caracètre avec une majuscule,une minuscule,un caractère spécial et un chiffre.')">
 					</div>
 				</div>
 			</div>

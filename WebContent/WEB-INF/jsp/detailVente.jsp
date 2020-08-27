@@ -7,10 +7,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<!-- CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/Fragment/StyleCommun.css">
 
+<!-- Bootstrap CSS -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
 
 <title>Détail vente</title>
 </head>

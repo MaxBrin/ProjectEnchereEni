@@ -6,11 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<!--  CSS  -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/Fragment/enTete.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/Fragment/StyleCommun.css">
+
 
 <!-- Bootstrap CSS -->
 <meta name="viewport"

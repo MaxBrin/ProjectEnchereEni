@@ -6,6 +6,6 @@ encoding//WebContent/WEB-INF/jsp/detailVente.jsp=UTF-8
 encoding//WebContent/WEB-INF/jsp/modificationProfil.jsp=UTF-8
 encoding//WebContent/WEB-INF/jsp/nouvelleVente.jsp=UTF-8
 encoding//WebContent/WEB-INF/jsp/pageAccueil.jsp=UTF-8
-encoding//WebContent/WEB-INF/jsp/pageConnection.jsp=UTF-8
+encoding//WebContent/WEB-INF/jsp/pageConnexion.jsp=UTF-8
 encoding//src/fr/eni/projetenchere/ihm/ServletVersCreationCompte.java=UTF-8
 encoding/<project>=UTF-8

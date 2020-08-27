@@ -42,10 +42,4 @@ public class RetraitDAOImpl implements RetraitDAO {
 		return retrait;
 	}
 
-	@Override
-	public void deleteRetrait(Retrait retrait) throws DALException {
-		// TODO Auto-generated method stub
-
-	}
-
 }
