@@ -31,7 +31,7 @@
 	<jsp:include page="/WEB-INF/jsp/Fragment/enTete.jsp" />
 	<div class="container">
 		<div class="row mx-auto">
-			<div class="mx-auto" style="width: 500px;">
+			<div class="mx-auto offset-sm-3" >
 				<h1>Liste des Enchères</h1>
 			</div>
 		</div>
@@ -39,8 +39,8 @@
 		<form action="${pageContext.request.contextPath}/Accueil"
 			method="post">
 			<!-- RECHERCHE ARTICLE PAR NOM -->
-			<div class="row ">
-				<div class="col-md-2">
+			<div class="row mx-auto">
+				<div class="col-md-2 offset-sm-3">
 					<label for="filtre" class="labelFiltre">Filtres</label>
 				</div>
 				<div class="col-md-4">
@@ -48,10 +48,10 @@
 						placeholder="Ex : voiture, console" aria-label="labelFiltre"
 						name="rechercherArticle">
 				</div>
-			</div>
+			
 			<!-- RECHERCHE PAR SELECT CATEGORIE -->
-			<div class="row ">
-				<div class="col-md-2">
+			
+				<div class="col-md-2 offset-sm-3">
 					<label for="categorie" class="labelCategorie">Catégories</label>
 				</div>
 				<div class="col-md-4">
@@ -65,43 +65,45 @@
 						</c:forEach>
 					</select>
 				</div>
-				<div class="col-md-4 offset-sm-1">
+				</div>
+				<div class="row mx-auto">
+				<div class="col-md-2 offset-sm-9">
 					<button type="submit" class="btn btn-secondary btn-lg">Rechercher</button>
 					<br> <br>
 				</div>
 			</div>
 
+
 			<!--  Bouton choix achats ou ventes -->
 			<c:if test="${(noUtilisateur != null)}">
+				
 				<div class="row ">
-					<div class="col-md-1 offset-sm-2">
-
+					<div class="col-md-2 offset-sm-3">
 						<a href="${pageContext.request.contextPath }/Accueil?choix=achat"
 							class="btn btn-secondary btn-sm">Achats</a>
 					</div>
-					<div class="col-md-2 offset-sm-1">
+					<div class="col-md-2 ">
 						<a
 							href="${pageContext.request.contextPath }/Accueil?choix=mesVentes"
 							class="btn btn-secondary btn-sm">Mes ventes</a>
 					</div>
-						
-					<div class="col-md-2">
+					<div class="col-md-3">
 						<a
 							href="${pageContext.request.contextPath }/Accueil?choix=annuler"
 							class="btn btn-secondary btn-sm">Annuler</a>
 					</div>	
-						
-	
-								
 				</div>
+				
 			</c:if>
+			
 			<!-- AFFICHAGE DES CHECKBOXES EN FONCTION DU CHOIX "ACHATS" OU "MES VENTES" -->
 			
 			<!--  ACHAT -->
+			
 			<c:if test="${(choixAchat eq 'achat') and (noUtilisateur != null)}">
 			<input type="hidden" value="achat" name="choix">
 				<div class="row ">
-					<div class="col-md-8 offset-sm-2">
+					<div class="col-md-2 offset-sm-3">
 						<div>
 							<input type="checkbox" name="encheresOuvertes" >Enchères
 							ouvertes<br> <input type="checkbox" name="mesEncheres">Mes
@@ -110,13 +112,15 @@
 						</div>
 					</div>
 				</div>
+				
 			</c:if>
+			
 			
 			<!--  VENTES -->
 			<c:if test="${(choixAchat == 'ventes') && (noUtilisateur != null) }">
 			<input type="hidden" value=" " name="choix">
 				<div class="row ">
-					<div class="col-md-8 offset-sm-4">
+					<div class="col-md-4 offset-sm-5">
 						<input type="checkbox" name="ventesEnCours">Mes ventes en
 						cours<br> <input type="checkbox" name="ventesNonDebutees">Ventes
 						non débutées<br> <input type="checkbox"
@@ -125,16 +129,18 @@
 				</div>
 			</c:if>
 		</form>
-
-
-		<div class="row   justify-content-center">
+	</div>
+	<br> <br>
+	
+	
+		<div class="row justify-content-center">
 			<!--  Affichage de la liste des articles -->
 			<c:forEach var="article" items="${listeArticlesAAfficher }">
-
-				<div class="col-lg-3 col-md-6">
+				<div class="justify-content-around row-cols-4 ">
+				<div class="col-md-1 offset-sm-1 ">
 					<!-- Affichage d'article en vente -->
 					<div class="card" style="width: 18rem;">
-						<img src="${pageContext.request.contextPath }/img/Photo PC.jpg" class="card-img-top" alt="photo article">
+						<img src="${pageContext.request.contextPath }/img/Photo Objets.jpg" class="card-img-top" alt="photo article">
 						<div class="card-body">
 							<!--  Nom de l'article avec un lien vers detail de l'article -->
 							<h5 class="card-title">
@@ -170,10 +176,12 @@
 						</div>
 					</div>
 				</div>
-
+			</div>
 			</c:forEach>
 		</div>
-	</div>
+		
+	
+	
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
