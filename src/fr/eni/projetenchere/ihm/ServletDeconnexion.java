@@ -37,7 +37,7 @@ public class ServletDeconnexion extends HttpServlet {
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
 		Logger monLogger = (Logger) LoggerFactory.getLogger("fr.eni.ProjectEnchereEni");

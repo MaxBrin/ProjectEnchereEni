@@ -126,13 +126,6 @@
 			</c:if>
 		</form>
 
-		<c:if test="${ErreurBD!=null}">
-			<div class="row mx-auto">
-				<div class="mx-auto" style="width: 500px;">
-					<h3 class="text-danger ">${ErreurBD}</h3>
-				</div>
-			</div>
-		</c:if>
 
 		<div class="row   justify-content-center">
 			<!--  Affichage de la liste des articles -->
@@ -141,7 +134,7 @@
 				<div class="col-lg-3 col-md-6">
 					<!-- Affichage d'article en vente -->
 					<div class="card" style="width: 18rem;">
-						<img src="..." class="card-img-top" alt="...">
+						<img src="${pageContext.request.contextPath }/img/Photo PC.jpg" class="card-img-top" alt="photo article">
 						<div class="card-body">
 							<!--  Nom de l'article avec un lien vers detail de l'article -->
 							<h5 class="card-title">

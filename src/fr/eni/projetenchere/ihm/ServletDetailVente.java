@@ -81,6 +81,7 @@ public class ServletDetailVente extends HttpServlet {
 			retraitArticleEnVente = RetraitMgr.getRetraitByNoArticle(noArticle);
 
 		} catch (BLLException e) {
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
 
@@ -114,6 +115,7 @@ public class ServletDetailVente extends HttpServlet {
 				}
 				request.setAttribute("meilleurEnchere", meilleurEnchere);
 			} catch (BLLException e) {
+				request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 				e.printStackTrace();
 			}
 		} else {

@@ -45,7 +45,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
 		request = Chargement.chargementListCategorie(request, response);
@@ -70,6 +70,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 		} catch (BLLException e3) {
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e3.printStackTrace();
 		}
 
@@ -108,7 +109,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		try {
 			categorie = CategorieMgr.getCategorie(categorieSaisie);
 		} catch (BLLException e2) {
-			// TODO Auto-generated catch block
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e2.printStackTrace();
 		}
 
