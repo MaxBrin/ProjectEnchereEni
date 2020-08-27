@@ -50,15 +50,22 @@ public class ServletDetailVente extends HttpServlet {
 			meilleurEnchere = EnchereMgr.getEnchereByArticle_BestOffer(noIdArticle);
 
 		} catch (BLLException e) {
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
+
 		// Envoi du paramètre article et de l'utilisateur
 		request.setAttribute("meilleurEnchere", meilleurEnchere);
 		request.setAttribute("retrait", retrait);
 		request.setAttribute("article", article);
 		request.setAttribute("utilisateur", article.getUtilisateur());
+		traitementArticle(article);
+		if (article.getDebutEnchere().isAfter(LocalDateTime.now())) {
+			request.setAttribute("modifiable", true);
+		}
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp");
 		rd.forward(request, response);
+
 	}
 
 	/**
@@ -84,6 +91,7 @@ public class ServletDetailVente extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
+		traitementArticle(articleEnVente);
 
 		int proposition = Integer.parseInt(request.getParameter("proposition"));
 		Enchere encherePropose = new Enchere(LocalDateTime.now(), proposition, noArticle, noUtilisateur);
@@ -128,6 +136,22 @@ public class ServletDetailVente extends HttpServlet {
 		request.setAttribute("utilisateur", articleEnVente.getUtilisateur());
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp");
 		rd.forward(request, response);
+	}
+
+	protected void traitementArticle(Article article) {
+		// On regarde si la date de fin d'enchère est avant maintenant et donc que
+		// l'enchère est fini
+		if (article.getFinEnchere().isBefore(LocalDateTime.now())) {
+			try {
+				// On initialise le prix de vente avec le montant de la meilleure enchere
+				article.setPrixVente(
+						EnchereMgr.getEnchereByArticle_BestOffer(article.getNoArticle()).getMontantEnchere());
+				// On modifie l'article en base de données
+				ArticlesMgr.modifierArticle(article);
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

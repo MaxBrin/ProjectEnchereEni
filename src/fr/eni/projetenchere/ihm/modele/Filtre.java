@@ -1,28 +1,31 @@
 package fr.eni.projetenchere.ihm.modele;
 
-import java.util.Arrays;
-
 public class Filtre {
 
 	private int noCategorie;
-	private int noUtilisateur;
+	private int noUtilisateurVendeur;
+	private int noUtilisateurAcheteur;
 	private String[] saisieUtilisateur;
-	private boolean EnCours;
-	private boolean Fini;
-	private boolean NonDisponible;
-
-	public Filtre(int noCategorie, int noUtilisateur, String[] saisieUtilisateur, boolean enCours, boolean fini,
-			boolean nonDisponible) {
-		super();
-		this.noCategorie = noCategorie;
-		this.noUtilisateur = noUtilisateur;
-		this.saisieUtilisateur = saisieUtilisateur;
-		EnCours = enCours;
-		Fini = fini;
-		NonDisponible = nonDisponible;
-	}
+	private boolean enCours;
+	private boolean fini;
+	private boolean nonDisponible;
+	private boolean achat;
 
 	public Filtre() {
+		super();
+	}
+
+	public Filtre(int noCategorie, int noUtilisateurVendeur, int noUtilisateurAcheteur, String[] saisieUtilisateur,
+			boolean enCours, boolean fini, boolean nonDisponible, boolean achat) {
+		super();
+		this.noCategorie = noCategorie;
+		this.noUtilisateurVendeur = noUtilisateurVendeur;
+		this.noUtilisateurAcheteur = noUtilisateurAcheteur;
+		this.saisieUtilisateur = saisieUtilisateur;
+		this.enCours = enCours;
+		this.fini = fini;
+		this.nonDisponible = nonDisponible;
+		this.achat = achat;
 	}
 
 	public int getNoCategorie() {
@@ -33,12 +36,20 @@ public class Filtre {
 		this.noCategorie = noCategorie;
 	}
 
-	public int getNoUtilisateur() {
-		return noUtilisateur;
+	public int getNoUtilisateurVendeur() {
+		return noUtilisateurVendeur;
 	}
 
-	public void setNoUtilisateur(int noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
+	public void setNoUtilisateurVendeur(int noUtilisateurVendeur) {
+		this.noUtilisateurVendeur = noUtilisateurVendeur;
+	}
+
+	public int getNoUtilisateurAcheteur() {
+		return noUtilisateurAcheteur;
+	}
+
+	public void setNoUtilisateurAcheteur(int noUtilisateurAcheteur) {
+		this.noUtilisateurAcheteur = noUtilisateurAcheteur;
 	}
 
 	public String[] getSaisieUtilisateur() {
@@ -50,34 +61,35 @@ public class Filtre {
 	}
 
 	public boolean isEnCours() {
-		return EnCours;
+		return enCours;
 	}
 
 	public void setEnCours(boolean enCours) {
-		EnCours = enCours;
+		this.enCours = enCours;
 	}
 
 	public boolean isFini() {
-		return Fini;
+		return fini;
 	}
 
 	public void setFini(boolean fini) {
-		Fini = fini;
+		this.fini = fini;
 	}
 
 	public boolean isNonDisponible() {
-		return NonDisponible;
+		return nonDisponible;
 	}
 
 	public void setNonDisponible(boolean nonDisponible) {
-		NonDisponible = nonDisponible;
+		this.nonDisponible = nonDisponible;
 	}
 
-	@Override
-	public String toString() {
-		return "Filtre [noCategorie=" + noCategorie + ", noUtilisateur=" + noUtilisateur + ", saisieUtilisateur="
-				+ Arrays.toString(saisieUtilisateur) + ", EnCours=" + EnCours + ", Fini=" + Fini + ", NonDisponible="
-				+ NonDisponible + "]";
+	public boolean isAchat() {
+		return achat;
+	}
+
+	public void setAchat(boolean achat) {
+		this.achat = achat;
 	}
 
 }
