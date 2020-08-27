@@ -62,12 +62,11 @@ public class ServletVersPageAccueil extends HttpServlet {
 		// String radioAchats = request.getParameter("achat");
 		String radioMesVentes = request.getParameter("mesVentes");
 		// Récupération des checkboxes
-		// String chkboxeEncheresOuvertes = request.getParameter("encheresOuvertes");
-		// String chkboxeMesEncheres = request.getParameter("mesEncheres");
-		// String chkboxeEncheresEmportees = request.getParameter("encheresRemportees");
+		String chkboxeEncheresOuvertes = request.getParameter("encheresOuvertes");
+		String chkboxeMesEncheres = request.getParameter("mesEncheres");
+		String chkboxeEncheresEmportees = request.getParameter("encheresRemportees");
 		String chkboxeMesVentesEnCours = request.getParameter("ventesEnCours");
 		String chkboxeMesVentesNonDebutees = request.getParameter("ventesNonDebutees");
-		System.out.println(chkboxeMesVentesNonDebutees);
 		String chkboxeVentesTerminees = request.getParameter("ventesTerminees");
 
 		// Creation du filtre

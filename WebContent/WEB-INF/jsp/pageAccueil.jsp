@@ -93,10 +93,9 @@
 				<div class="row ">
 					<div class="col-md-8 offset-sm-2">
 						<div>
-							<input type="checkbox" name="encheresOuvertes">Enchères
-							ouvertes<br> <input type="checkbox" name="mesEncheres">Mes
-							enchères<br> <input type="checkbox"
-								name="encheresRemportees">Mes enchères remportées<br>
+							<input type="checkbox" name="encheresOuvertes">Enchères ouvertes<br> 
+							<input type="checkbox" name="mesEncheres">Mes enchères<br> 
+							<input type="checkbox" name="encheresRemportees">Mes enchères remportées<br>
 						</div>
 					</div>
 				</div>
