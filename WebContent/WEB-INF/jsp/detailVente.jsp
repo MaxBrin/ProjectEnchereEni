@@ -190,7 +190,7 @@
 		<div class="row mx-auto">
 			<div class="col-md-4 offset-sm-5">
 				<a
-					href="${pageContext.request.contextPath }/NouvelleVente?ModificationArticle= ${article.noArticle}"
+					href="${pageContext.request.contextPath }/NouvelleVente?ModificationArticle=${article.noArticle}"
 					class="btn btn-primary">Modification de l'article</a>
 			</div>
 		</div>

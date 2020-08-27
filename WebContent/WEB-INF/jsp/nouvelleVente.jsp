@@ -26,7 +26,14 @@
 
 		<div class="row mx-auto">
 			<div class="mx-auto" style="width: 500px;">
-				<h1>Nouvelle Vente</h1>
+			<c:choose> 
+				<c:when test="${article == null}">
+					<h1>Nouvelle Vente</h1>
+				</c:when>
+				<c:otherwise>
+					<h1>Modifier Vente</h1>
+				</c:otherwise>
+			</c:choose>
 			</div>
 		</div>
 
@@ -130,7 +137,7 @@
 					<input type="date" aria-label="debutEnchere"
 						class="form-control ${erreur.containsKey('datesEncheres')?'border border-danger':'border border-secondary' }"
 						name="debutEnchere" required="required"
-						value="${article.debutEnchere}">
+						value="${(ModificationArticle != null)?'debutEnchere':'article.debutEnchere'}">
 				</div>
 			</div>
 
@@ -142,10 +149,11 @@
 					<label for="finEnchere">Fin de l'enchère :</label>
 				</div>
 				<div class="col-sm-3">
+				<c:set var="dateFin" value="${dateFin}"/>
 					<input type="date" aria-label="finEnchere"
 						class="form-control ${erreur.containsKey('datesEncheres')?'border border-danger':'border border-secondary' }"
 						name="finEnchere" required="required"
-						value="${article.finEnchere}">
+						value="${ article.finEnchere}">
 				</div>
 			</div>
 			<!--  AFFICHAGE DU MESSAGE D'ERREUR -->

@@ -43,6 +43,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		HttpSession session = request.getSession();
 		Integer noUtilisateur = (int) session.getAttribute("noUtilisateur");
 		Utilisateur utilisateur = new Utilisateur();
+
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 		} catch (BLLException e) {
@@ -51,18 +52,32 @@ public class ServletNouvelleVente extends HttpServlet {
 		}
 
 		// Vérification si l'utilisateur a cliqué sur "Modifier"
-		if (request.getParameter("ModificationArticle") != null) {
-			int noArticle = Integer.parseInt(request.getParameter("ModificationArticle"));
+		if (!(("").equals(request.getParameter("ModificationArticle")))
+				&& ((request.getParameter("ModificationArticle")) != null)) {
+			String noUsuer = request.getParameter("ModificationArticle");
+			System.out.println(noUsuer);
+			int noArticle = Integer.parseInt(noUsuer);
+			System.out.println(noArticle);
 			Article article = null;
+
 			try {
 				article = ArticlesMgr.getArticle(noArticle);
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
+
 			request.setAttribute("article", article);
+			// Récupération et conversion des dates d'enchères LocalDateTime -> LocalTime
+//			LocalDateTime dateDebutEnchere = article.getDebutEnchere();
+//			LocalDateTime dateFinEnchere = article.getFinEnchere();
+//			LocalDate debutEnchere = dateDebutEnchere.toLocalDate();
+//			LocalDate finEnchere = dateFinEnchere.toLocalDate();
+//			request.setAttribute("dateDebut", debutEnchere);
+//			request.setAttribute("dateFin", finEnchere);
 		}
 		request = Chargement.chargementListCategorie(request, response);
 		request.setAttribute("utilisateur", utilisateur);
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente.jsp");
 		rd.forward(request, response);
 	}
