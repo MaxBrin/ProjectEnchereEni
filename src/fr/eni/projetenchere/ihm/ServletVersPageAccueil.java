@@ -31,7 +31,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 		// Récupération du numéro d'utilisateur si il est connecter
 		HttpSession session = request.getSession();
-		int noUtilisateur = (Integer) session.getAttribute("noUtilisateur");
+		Integer noUtilisateur = (Integer) session.getAttribute("noUtilisateur");
 		// Récupération valeur bouton radio
 		String choix = request.getParameter("choix");
 		// Creation du filtre
