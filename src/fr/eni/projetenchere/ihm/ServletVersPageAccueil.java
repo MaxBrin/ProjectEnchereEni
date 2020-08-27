@@ -42,8 +42,8 @@ public class ServletVersPageAccueil extends HttpServlet {
 			request.setAttribute("choixAchat", "ventes");
 		}
 		// Récupération des listes Articles et Catégories
-		request = Chargement.chargementListArticle(request);
-		request = Chargement.chargementListCategorie(request);
+		request = Chargement.chargementListArticle(request, response);
+		request = Chargement.chargementListCategorie(request, response);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		rd.forward(request, response);
 	}
@@ -127,7 +127,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 //**************************************************************************************		
 		// Envoie des informations
-		request = Chargement.chargementListCategorie(request);
+		request = Chargement.chargementListCategorie(request, response);
 		request.setAttribute("categorieSaisie", noCategorie);
 		request.setAttribute("listeArticlesAAfficher", listeArticlesAAfficher);
 		request.setAttribute("saisieUtilisateur", rechercheUtilisateurARenvoyer);

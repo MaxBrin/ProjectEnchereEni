@@ -35,6 +35,7 @@ public class ServletVisualiserProfil extends HttpServlet {
 		try {
 			utilisateurAAfficher = UtilisateurMgr.getUtilisateur(noVendeur);
 		} catch (BLLException e) {
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
 		request.setAttribute("utilisateurAAfficher", utilisateurAAfficher);

@@ -48,7 +48,7 @@ public class ServletNouvelleVente extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request = Chargement.chargementListCategorie(request);
+		request = Chargement.chargementListCategorie(request, response);
 		request.setAttribute("utilisateur", utilisateur);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente.jsp");
 		rd.forward(request, response);
@@ -131,11 +131,11 @@ public class ServletNouvelleVente extends HttpServlet {
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
-			request = Chargement.chargementListArticle(request);
-			request = Chargement.chargementListCategorie(request);
+			request = Chargement.chargementListArticle(request, response);
+			request = Chargement.chargementListCategorie(request, response);
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		} else {
-			request = Chargement.chargementListCategorie(request);
+			request = Chargement.chargementListCategorie(request, response);
 			request.setAttribute("listeErreur", erreurs);
 			request.setAttribute("article", article);
 			request.setAttribute("utilisateur", utilisateur);

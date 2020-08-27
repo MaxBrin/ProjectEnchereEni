@@ -65,8 +65,8 @@ public class ServletVersPageConnection extends HttpServlet {
 						monLogger.info("Connexion : " + utilisateur.getPseudo());
 						HttpSession session = request.getSession();
 						session.setAttribute("noUtilisateur", utilisateur.getNoUtilisateur());
-						request = Chargement.chargementListArticle(request);
-						request = Chargement.chargementListCategorie(request);
+						request = Chargement.chargementListArticle(request, response);
+						request = Chargement.chargementListCategorie(request, response);
 						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 						rd.forward(request, response);
 					} else {

@@ -44,8 +44,8 @@ public class ServletDeconnexion extends HttpServlet {
 		monLogger.info("Deconnexion : " + utilisateur.getPseudo());
 		session.invalidate();
 
-		request = Chargement.chargementListArticle(request);
-		request = Chargement.chargementListCategorie(request);
+		request = Chargement.chargementListArticle(request, response);
+		request = Chargement.chargementListCategorie(request, response);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		rd.forward(request, response);
 	}
