@@ -17,7 +17,7 @@ import fr.eni.projetenchere.ihm.modele.Filtre;
 
 public class ArticleDAOImpl implements ArticleDAO {
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS VALUES (?,?,?,?,?,null,?,?)";
-	private static final String SELECTALL = "SELECT no_article,nom_article,description,date_debut_encheres,"
+	private static final String SELECTALL = "SELECT a.no_article,nom_article,description,date_debut_encheres,"
 			+ "date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,"
 			+ "pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,"
 			+ "libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur "
@@ -183,8 +183,9 @@ public class ArticleDAOImpl implements ArticleDAO {
 			// L'utilisateur veux afficher ses achats
 			if (filtre.isAchat()) {
 				// On affiche les articles qui ont une enchère de l'utilisateur
-				listeRequete.add("no_article=(SELECT top 1 no_article FROM ENCHERES WHERE no_utilisateur = "
-						+ filtre.getNoUtilisateurAcheteur() + " ORDER BY montant_enchere DESC)");
+				listeRequete.add(
+						"a.no_article=(SELECT top 1 no_article FROM ENCHERES WHERE no_article=a.no_article AND no_utilisateur = "
+								+ filtre.getNoUtilisateurAcheteur() + " ORDER BY montant_enchere DESC)");
 			}
 			StringBuilder choix = new StringBuilder();
 			// si l'utilisateur n'a rien coché,
