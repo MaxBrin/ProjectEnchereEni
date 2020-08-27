@@ -245,7 +245,7 @@
 			<div class="row mx-auto">
 				<div class="mx-auto">
 					<button type="submit" class="btn btn-primary">Enregistrer</button>
-					<a href="/ProjectEnchereEni/Accueil" class="btn btn-secondary">Annuler</a>
+					<a href="${pageContext.request.contextPath }/Accueil" class="btn btn-secondary">Annuler</a>
 				</div>
 			</div>
 		</form>
