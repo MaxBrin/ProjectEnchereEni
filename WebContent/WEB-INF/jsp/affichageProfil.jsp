@@ -8,9 +8,21 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Affichage profil</title>
 	
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/style.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/stylePageAccueil.css">
-	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
+	rel="stylesheet">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/bootstrap/4.5.2/css/bootstrap.css">
+
+
+
+	
 </head>
 
 <body>
@@ -19,13 +31,13 @@
 	<!-- L'utlisateur consulte le profil d'un autre vendeur -->
 			<!-- Titre  -->
 			<div class="row mx-auto">
-				<div class="mx-auto" style="width: 600px; margin-bottom: 50px; margin-top: 50px; margin-left: 300px;">
-					<h1 style="width: 600px;">Profil de ${utilisateurAAfficher.pseudo}</h1>
+				<div class="mx-auto offset-sm-3" >
+					<h1>Profil de ${utilisateurAAfficher.pseudo}</h1>
 				</div>
 			</div>
 			<!-- PSEUDO -->
-			<div class="row">
-				<div class="col-md-2" style="margin-left: 260px;">
+			<div class="row mx-auto">
+				<div class="col-md-2 offset-sm-3">
 					<label for="pseudo">Pseudo</label>
 				</div>
 				<div class="col-sm-4">
@@ -36,8 +48,8 @@
 				</div>
 			</div>
 			<!-- PRENOM -->
-			<div class="row">
-				<div class="col-md-2" style="margin-left: 260px;">
+			<div class="row mx-auto">
+				<div class="col-md-2 offset-sm-3">
 					<label for="pseudo">Prénom</label>
 				</div>
 				<div class="col-sm-4">
@@ -48,8 +60,8 @@
 				</div>
 			</div>
 			<!-- CODE POSTAL -->
-			<div class="row">
-				<div class="col-md-2" style="margin-left: 260px;">
+			<div class="row mx-auto">
+				<div class="col-md-2 offset-sm-3">
 					<label for="pseudo">Code Postal</label>
 				</div>
 				<div class="col-sm-4">
@@ -60,8 +72,8 @@
 				</div>
 			</div>
 			<!-- VILLE -->
-			<div class="row">
-				<div class="col-md-2" style="margin-left: 260px;">
+			<div class="row mx-auto">
+				<div class="col-md-2 offset-sm-3">
 					<label for="pseudo">Ville</label>
 				</div>
 				<div class="col-sm-4">
