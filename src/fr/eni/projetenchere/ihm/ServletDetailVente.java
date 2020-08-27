@@ -59,10 +59,12 @@ public class ServletDetailVente extends HttpServlet {
 		request.setAttribute("retrait", retrait);
 		request.setAttribute("article", article);
 		request.setAttribute("utilisateur", article.getUtilisateur());
-		traitementArticle(article);
+		Utilisateur utilisateurGagnantEnchere = traitementArticle(article);
+		// Si l'enchère n'est pas commencée on peux la modifier
 		if (article.getDebutEnchere().isAfter(LocalDateTime.now())) {
 			request.setAttribute("modifiable", true);
 		}
+		request.setAttribute("utilisateurGagnant", utilisateurGagnantEnchere);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp");
 		rd.forward(request, response);
 
@@ -95,34 +97,13 @@ public class ServletDetailVente extends HttpServlet {
 
 		int proposition = Integer.parseInt(request.getParameter("proposition"));
 		Enchere encherePropose = new Enchere(LocalDateTime.now(), proposition, noArticle, noUtilisateur);
-
+		// Verification si l'enchère est possible
 		if (EnchereMgr.verifEnchere(articleEnVente, acheteur, encherePropose)) {
-			// Modification des crédits de l'acheteur
-			acheteur.setCredit(acheteur.getCredit() - encherePropose.getMontantEnchere());
-			Enchere deuxiemeMeilleurEnchere = new Enchere();
 			try {
-				// Mise à jour de la bd avec les crédits modifier pour l'acheteur
-				UtilisateurMgr.modificationUtilisateur(acheteur);
-				// Récupération de la dernière meilleur enchère
-				deuxiemeMeilleurEnchere = EnchereMgr.getEnchereByArticle_BestOffer(articleEnVente.getNoArticle());
-				// Ajout de l'enchere actuelle dans la BD
-				EnchereMgr.ajouterEnchere(encherePropose);
-				// La meilleur enchere deviens l'enchere proposer
-				meilleurEnchere = encherePropose;
-				// Remboursement de l'utilisateur que si il y'a une deuxième meilleur enchère
-				if (deuxiemeMeilleurEnchere != null) {
-					// Récupération de l'utilisateur en fonction du numéro d'utilisateur dans
-					// l'enchère
-					Utilisateur utilisateurARembourser = UtilisateurMgr
-							.getUtilisateur(deuxiemeMeilleurEnchere.getNoUtilisateur());
-					// Modification des crédits de l'utilisateur
-					utilisateurARembourser.setCredit(
-							utilisateurARembourser.getCredit() + deuxiemeMeilleurEnchere.getMontantEnchere());
-					// Mise à jour de la bd avec les crédits modifier
-					UtilisateurMgr.modificationUtilisateur(utilisateurARembourser);
-				}
+				// Traitement de l'enchère
+				meilleurEnchere = traitementEnchere(encherePropose, acheteur, articleEnVente);
 				request.setAttribute("meilleurEnchere", meilleurEnchere);
-			} catch (BLLException e) {
+			} catch (Exception e) {
 				request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 				e.printStackTrace();
 			}
@@ -138,20 +119,78 @@ public class ServletDetailVente extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	protected void traitementArticle(Article article) {
+	/**
+	 * Méthode qui vérifie si l'enchère est fini et si le montant de de la vente est
+	 * égale à 0
+	 * 
+	 * @param article
+	 * @return
+	 */
+	protected Utilisateur traitementArticle(Article article) {
 		// On regarde si la date de fin d'enchère est avant maintenant et donc que
 		// l'enchère est fini
+		Utilisateur utilisateur = null;
 		if (article.getFinEnchere().isBefore(LocalDateTime.now())) {
 			try {
-				// On initialise le prix de vente avec le montant de la meilleure enchere
-				article.setPrixVente(
-						EnchereMgr.getEnchereByArticle_BestOffer(article.getNoArticle()).getMontantEnchere());
-				// On modifie l'article en base de données
-				ArticlesMgr.modifierArticle(article);
+				// On récupère la meilleur enchère de cet article
+				Enchere enchere = EnchereMgr.getEnchereByArticle_BestOffer(article.getNoArticle());
+				// On vérifie qu'il y'a une enchère
+				if (enchere == null) {
+					// S'il n'y a pas d'enchère le prix de vente = 0
+					article.setPrixVente(0);
+					// Si personne n'a remporté l'enchère on initialise le numéro d'utilisateur à 0
+					utilisateur = new Utilisateur();
+					utilisateur.setNoUtilisateur(0);
+				} else {
+					// Sinon il est égale au montant de la meilleur enchère
+					article.setPrixVente(enchere.getMontantEnchere());
+					// on récupère l'utilisateur qui a remporté l'enchère
+					utilisateur = UtilisateurMgr.getUtilisateur(enchere.getNoUtilisateur());
+				}
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
 		}
+		try
+
+		{
+			ArticlesMgr.modifierArticle(article);
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
+		return utilisateur;
+	}
+
+	protected Enchere traitementEnchere(Enchere encherePropose, Utilisateur acheteur, Article articleEnVente)
+			throws Exception {
+		Enchere meilleurEnchere = null;
+		acheteur.setCredit(acheteur.getCredit() - encherePropose.getMontantEnchere());
+		Enchere deuxiemeMeilleurEnchere = new Enchere();
+		try {
+			// Mise à jour de la bd avec les crédits modifier pour l'acheteur
+			UtilisateurMgr.modificationUtilisateur(acheteur);
+			// Récupération de la dernière meilleur enchère
+			deuxiemeMeilleurEnchere = EnchereMgr.getEnchereByArticle_BestOffer(articleEnVente.getNoArticle());
+			// Ajout de l'enchere actuelle dans la BD
+			EnchereMgr.ajouterEnchere(encherePropose);
+			// La meilleur enchere deviens l'enchere proposer
+			meilleurEnchere = encherePropose;
+			// Remboursement de l'utilisateur que si il y'a une deuxième meilleur enchère
+			if (deuxiemeMeilleurEnchere != null) {
+				// Récupération de l'utilisateur en fonction du numéro d'utilisateur dans
+				// l'enchère
+				Utilisateur utilisateurARembourser = UtilisateurMgr
+						.getUtilisateur(deuxiemeMeilleurEnchere.getNoUtilisateur());
+				// Modification des crédits de l'utilisateur
+				utilisateurARembourser
+						.setCredit(utilisateurARembourser.getCredit() + deuxiemeMeilleurEnchere.getMontantEnchere());
+				// Mise à jour de la bd avec les crédits modifier
+				UtilisateurMgr.modificationUtilisateur(utilisateurARembourser);
+			}
+		} catch (BLLException e) {
+			throw new Exception("Erreur traitementEnchere", e);
+		}
+		return meilleurEnchere;
 	}
 
 }

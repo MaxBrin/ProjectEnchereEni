@@ -51,8 +51,7 @@ public class ServletModificationProfil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		// Je recup�re l'utilisateur de la session
+		// Je récupère l'utilisateur de la session
 		HttpSession session = request.getSession();
 		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
 
@@ -63,7 +62,7 @@ public class ServletModificationProfil extends HttpServlet {
 			e1.printStackTrace();
 		}
 		Utilisateur utilisateurModifie = new Utilisateur();
-		// Je r�cup�re les donn�es saisie par l'utilisateur
+		// Je récupère les données saisie par l'utilisateur
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");

@@ -1,6 +1,5 @@
 package fr.eni.projetenchere.dal.impl;
 
-
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -13,34 +12,34 @@ import javax.sql.DataSource;
 
 public abstract class ConnectionProvider {
 	private static DataSource dataSource;
-	
+
 	/**
-	 * Au chargement de la classe, la DataSource est recherchée dans l'arbre JNDI
+	 * Au chargement de la classe, la DataSource est recherchï¿½e dans l'arbre JNDI
 	 */
-	static
-	{
+	static {
 		Context context;
 		try {
-			//créer un context
+			// crï¿½er un context
 			context = new InitialContext();
-			//Recherche de la dataSource qui va pvr fournir des connections vers la bdd. La ressource recherchée commence tjs par "java:comp/env/
-			ConnectionProvider.dataSource = (DataSource)context.lookup("java:comp/env/jdbc/pool_cnx");
+			// Recherche de la dataSource qui va pvr fournir des connections vers la bdd. La
+			// ressource recherchï¿½e commence tjs par "java:comp/env/
+			ConnectionProvider.dataSource = (DataSource) context.lookup("java:comp/env/jdbc/pool_cnx");
 		} catch (NamingException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Impossible d'accéder à la base de données");
+			throw new RuntimeException("Impossible d'accÃ©der Ã  la base de donnÃ©es");
 		}
 	}
-	
+
 	/**
-	 * Cette méthode retourne une connection opérationnelle issue du pool de connexion
-	 * vers la base de données. 
+	 * Cette mï¿½thode retourne une connection opï¿½rationnelle issue du pool de
+	 * connexion vers la base de donnï¿½es.
+	 * 
 	 * @return
 	 * @throws SQLException
 	 */
-	public static Connection getConnection() throws SQLException
-	{
-		//demande une connexion avec getConnection()
-		//met la demande en attente tant qu'il n'y a pas de cnx dispo dans le pool
+	public static Connection getConnection() throws SQLException {
+		// demande une connexion avec getConnection()
+		// met la demande en attente tant qu'il n'y a pas de cnx dispo dans le pool
 		return ConnectionProvider.dataSource.getConnection();
 	}
 }

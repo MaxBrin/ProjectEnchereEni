@@ -96,23 +96,7 @@
 
 			<br>
 
-			<div class="row">
-				<div class="col-md-2 offset-sm-5">
-					<input type="checkbox" name="encheresOuvertes" disabled="disabled">
-					Se souvenir de moi<br>
-				</div>
-			</div>
-
-			<br>
-
-			<div class="row">
-				<div class="col-md-3 offset-sm-5" >
-					<a href="">Mot de passe oublié</a> <br>
-				</div>
-			</div>
-
-			<br>
-
+			
 			<div class="row">
 				<div class="col-md-3 offset-sm-5">
 					<button type="submit" class="btn btn-primary btn-lg">Connexion</button>

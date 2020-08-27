@@ -20,11 +20,39 @@
 
 
 	<!--  TITRE  -->
-	<div class="row mx-auto">
-		<div class="mx-auto">
-			<h1>Détail vente</h1>
-		</div>
-	</div>
+
+	<c:choose>
+		<c:when test="${utilisateurGagnant.noUtilisateur==0 }">
+			<div class="row mx-auto">
+				<div class="mx-auto">
+					<h1>Personne n'a remporté cette vente.</h1>
+				</div>
+			</div>
+		</c:when>
+		<c:when test="${utilisateurGagnant.noUtilisateur==noUtilisateur }">
+			<div class="row mx-auto">
+				<div class="mx-auto">
+					<h1>Vous avez remporté cette vente.</h1>
+				</div>
+			</div>
+		</c:when>
+		<c:when test="${utilisateurGagnant.noUtilisateur!=null and utilisateurGagnant.noUtilisateur!=noUtilisateur }">
+			<div class="row mx-auto">
+				<div class="mx-auto">
+					<h1>${utilisateurGagnant.pseudo} a remporté cette vente.</h1>
+				</div>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="row mx-auto">
+				<div class="mx-auto">
+					<h1>Détail vente</h1>
+				</div>
+			</div>
+		</c:otherwise>
+	</c:choose>
+	
+	
 	<div class="row mx-auto">
 		<div class="mx-auto">
 			<img src="${pageContext.request.contextPath }/img/Photo Objets.jpg"

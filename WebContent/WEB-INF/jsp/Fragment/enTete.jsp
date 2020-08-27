@@ -35,8 +35,6 @@
 			<ul class="navbar-nav ml-auto">
 				<c:choose>
 					<c:when test="${noUtilisateur != null }">
-						<li class="nav-item "><a class="nav-link" href="">Enchères
-						</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="${pageContext.request.contextPath }/NouvelleVente">Vendre un article</a></li>
 						<li class="nav-item"><a class="nav-link"
