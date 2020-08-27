@@ -42,9 +42,10 @@ public class ServletVersPageAccueil extends HttpServlet {
 			request.setAttribute("choixAchat", "ventes");
 			request.setAttribute("ckMesVentesEnCoursCheck", true);
 			filtre.setNoUtilisateurVendeur(noUtilisateur);
+		} else {
+			request.setAttribute("choixAchat", "achat");
+			request.setAttribute("ckEncheresOuvertesCheck", true);
 		}
-		request.setAttribute("choixAchat", "achat");
-		request.setAttribute("ckEncheresOuvertesCheck", true);
 		// Récupération des article en bdd
 		List<Article> listeArticlesAAfficher = new ArrayList<>();
 		// Attribution des filtres "recherche par nom" et "categorie"
