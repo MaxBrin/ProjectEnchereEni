@@ -84,10 +84,12 @@ public class ServletDetailVente extends HttpServlet {
 		Article articleEnVente = null;
 		Retrait retraitArticleEnVente = null;
 		Enchere meilleurEnchere = null;
+		Enchere meilleurEnchereActuel = null;
 		try {
 			acheteur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 			articleEnVente = ArticlesMgr.getArticle(noArticle);
 			retraitArticleEnVente = RetraitMgr.getRetraitByNoArticle(noArticle);
+			meilleurEnchereActuel = EnchereMgr.getEnchereByArticle_BestOffer(noArticle);
 
 		} catch (BLLException e) {
 			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
@@ -109,6 +111,7 @@ public class ServletDetailVente extends HttpServlet {
 			}
 		} else {
 			String enchereInvalide = "L'enchère est invalide.";
+			request.setAttribute("meilleurEnchere", meilleurEnchereActuel);
 			request.setAttribute("Erreur", enchereInvalide);
 		}
 
