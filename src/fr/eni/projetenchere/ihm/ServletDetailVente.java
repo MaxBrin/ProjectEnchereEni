@@ -111,7 +111,7 @@ public class ServletDetailVente extends HttpServlet {
 			String enchereInvalide = "L'enchère est invalide.";
 			request.setAttribute("Erreur", enchereInvalide);
 		}
-		request.setAttribute("meilleurEnchere", encherePropose);
+
 		request.setAttribute("retrait", retraitArticleEnVente);
 		request.setAttribute("article", articleEnVente);
 		request.setAttribute("utilisateur", articleEnVente.getUtilisateur());

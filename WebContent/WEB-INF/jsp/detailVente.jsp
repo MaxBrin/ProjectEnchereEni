@@ -133,10 +133,10 @@
 		<div class="col-sm-4">
 			<div class="input-group mb-3">
 				<!--   FORMATAGE DE LA DATE POUR FAIRE UN AFFICHAGE DANS CE STYLE 20 Aout 2020 10:30:25 -->
-				<input type="text" class="form-control" aria-label="finEnchere"
-					value="<fmt:parseDate value="${article.finEnchere}"
+				<fmt:parseDate value="${article.finEnchere}"
 								pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" type="both" />
-							<fmt:formatDate value="${parsedDate }" dateStyle="long"
+				<input type="text" class="form-control text-left" aria-label="finEnchere"
+					value="<fmt:formatDate value="${parsedDate }" dateStyle="long"
 								timeStyle="medium" type="both" /> "
 					readonly="readonly">
 			</div>

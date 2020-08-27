@@ -1,5 +1,6 @@
 package fr.eni.projetenchere.bll;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -108,18 +109,22 @@ public class ArticlesMgr {
 		if (article.getPrixInitial() == 0) {
 			erreurs.put("prixInitial", "Le prix initial de vente ne peut pas être égal à zero. ");
 		}
-		if (article.getFinEnchere().isBefore(article.getDebutEnchere().plusDays(1).minusSeconds(1))) {
+		if (article.getDebutEnchere().isBefore(LocalDateTime.now())) {
 			erreurs.put("datesEncheres",
-					"Dates d'enchères invalides. Il faut 1 jour entre le debut de l'enchère et la fin de l'enchère");
+					"Date de début d'enchère invalide. On ne peux pas mettre une date de début d'enchère avant la date d'aujourd'hui. ");
+		}
+		if (article.getFinEnchere().isBefore(article.getDebutEnchere().plusDays(1))) {
+			erreurs.put("datesEncheres",
+					"Dates d'enchères invalides. Il faut 1 jour entre le debut de l'enchère et la fin de l'enchère. ");
 		}
 		if (rue.trim().equals("")) {
-			erreurs.put("rue", "Adresse invalide");
+			erreurs.put("rue", "Adresse invalide.");
 		}
 		if (codePostal.trim().equals("") || !(StringUtils.isNumeric(codePostal))) {
-			erreurs.put("codePostal", "Adresse invalide");
+			erreurs.put("codePostal", "Adresse invalide.");
 		}
 		if (ville.trim().equals("")) {
-			erreurs.put("ville", "Adresse invalide");
+			erreurs.put("ville", "Adresse invalide.");
 		}
 		return erreurs;
 	}
