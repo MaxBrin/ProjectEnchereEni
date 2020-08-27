@@ -56,21 +56,25 @@ public class ArticleDAOImpl implements ArticleDAO {
 	@Override
 	public List<Article> selectAllArticle(Filtre filtre) throws DALException {
 		List<Article> listArticles = new ArrayList<>();
+		// Création de la requete SQL
 		String requete = SELECTALL + creationRequeteSql(filtre);
-		System.out.println(requete);
 		try (PreparedStatement pStmt = ConnectionProvider.getConnection().prepareStatement(requete)) {
 
 			ResultSet rs = pStmt.executeQuery();
 			while (rs.next()) {
+				// Création de l'attribut utilisateur contenu dans l'article
 				Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"),
 						rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
 						rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
 						rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
+				// Création de l'attribut catégorie contenu dans l'article
 				Categorie categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
+				// Création de l'article
 				Article article = new Article(rs.getInt("no_article"), rs.getString("nom_article"),
 						rs.getString("description"), rs.getTimestamp("date_debut_encheres").toLocalDateTime(),
 						rs.getTimestamp("date_fin_encheres").toLocalDateTime(), rs.getInt("prix_initial"),
 						rs.getInt("prix_vente"), utilisateur, categorie);
+				// Ajout de l'article dans la liste
 				listArticles.add(article);
 			}
 		} catch (SQLException e) {
@@ -86,11 +90,14 @@ public class ArticleDAOImpl implements ArticleDAO {
 			pStmt.setInt(1, noArticle);
 			ResultSet rs = pStmt.executeQuery();
 			if (rs.next()) {
+				// Création de l'attribut utilisateur contenu dans l'article
 				Utilisateur utilisateur = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"),
 						rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
 						rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
 						rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
+				// Création de l'attribut catégorie contenu dans l'article
 				Categorie categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
+				// Création de l'article
 				article = new Article(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"),
 						rs.getTimestamp("date_debut_encheres").toLocalDateTime(),
 						rs.getTimestamp("date_fin_encheres").toLocalDateTime(), rs.getInt("prix_initial"),
@@ -197,20 +204,27 @@ public class ArticleDAOImpl implements ArticleDAO {
 			}
 			// L'utilisateur veux afficher ses achats
 			if (filtre.isAchat()) {
-				// On affiche les articles qui ont une enchère de l'utilisateur
+				// On affiche les articles qui ont une enchère de l'utilisateur en filtrant les
+				// articles pour eviter les doublons
 				listeRequete.add(
 						"a.no_article=(SELECT top 1 no_article FROM ENCHERES WHERE no_article=a.no_article AND no_utilisateur = "
 								+ filtre.getNoUtilisateurAcheteur() + " ORDER BY montant_enchere DESC)");
 			}
+			// Construction des contraintes après le SELECT si il y'a des élement dans la
+			// listeRequete
 			if (!(listeRequete.isEmpty())) {
+				// On met d'abord un WHERE
 				sbRequete.append(" WHERE ");
+				// On insere le premier élément
 				sbRequete.append(listeRequete.get(0));
 				for (int i = 1; i < listeRequete.size(); i++) {
+					// Si il y'a d'autres éléments dans la liste on les ajoute en metant AND avant
 					sbRequete.append(" AND ");
 					sbRequete.append(listeRequete.get(i));
 				}
 			}
 		}
+
 		return sbRequete.toString();
 	}
 
