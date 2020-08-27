@@ -122,6 +122,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 			// Filtrage de la liste
 			listeArticlesAAfficher = ArticlesMgr.getListArticleFiltre(filtre);
 		} catch (BLLException e) {
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
 

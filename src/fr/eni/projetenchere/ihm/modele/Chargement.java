@@ -33,6 +33,8 @@ public class Chargement {
 		try {
 			articles = ArticlesMgr.getListArticleFiltre(filtre);
 		} catch (BLLException e) {
+			request.setAttribute("ErreurBD",
+					"Nous sommes désolés mais nous rencontrons actuellement des problèmes de serveurs.");
 			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}

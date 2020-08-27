@@ -17,7 +17,7 @@
 
 		<div class="row mx-auto">
 			<div class="mx-auto" style="width: 500px;">
-				<h3 class="text-danger ">${ErreurBD}</h3>
+				<h3 class="text-danger ">Nous sommes désolés mais nous rencontrons actuellement des problèmes de serveurs.</h3>
 			</div>
 		</div>
 		<div class="row mx-auto">

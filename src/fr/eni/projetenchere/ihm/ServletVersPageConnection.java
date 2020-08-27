@@ -51,6 +51,7 @@ public class ServletVersPageConnection extends HttpServlet {
 		try {
 			listeUtilisateur = UtilisateurMgr.getListUtilisateur();
 		} catch (BLLException e) {
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
 		HashMap<String, String> erreurs = new HashMap<>();

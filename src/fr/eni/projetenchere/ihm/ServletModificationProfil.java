@@ -135,6 +135,7 @@ public class ServletModificationProfil extends HttpServlet {
 				try {
 					UtilisateurMgr.modificationUtilisateur(utilisateurModifie);
 				} catch (BLLException e) {
+					request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 					e.printStackTrace();
 				}
 				// On remet le numéro en attribut de session pour rester connecter
