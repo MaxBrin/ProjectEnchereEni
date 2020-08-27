@@ -31,7 +31,8 @@ public class ServletSupprimerCompte extends HttpServlet {
 		HttpSession session = request.getSession();
 		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
 		// Création d'un utilisateur sans données
-		Utilisateur utilisateurSuppresion = new Utilisateur("", "", "", "", "", "", "", "", "", 0, false);
+		Utilisateur utilisateurSuppresion = new Utilisateur("Utilisateur Supprimé", "", "", "", "", "", "", "", "", 0,
+				false);
 		// Affecter le numero d'utilisateur de la session à l'utilisateur sans données
 		utilisateurSuppresion.setNoUtilisateur(noUtilisateur);
 		try {

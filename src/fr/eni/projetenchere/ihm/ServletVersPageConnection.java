@@ -61,7 +61,7 @@ public class ServletVersPageConnection extends HttpServlet {
 				if ((utilisateur.getEmail().equals(identifiant) || utilisateur.getPseudo().equals(identifiant))) {
 					identifiantPresent = true;
 
-					if (utilisateur.getMotDePasse().equals(mdp)) {
+					if (utilisateur.getMotDePasse().equals(mdp) && mdp.length() > 0) {
 						Logger monLogger = (Logger) LoggerFactory.getLogger("fr.eni.ProjectEnchereEni");
 						monLogger.info("Connexion : " + utilisateur.getPseudo());
 						HttpSession session = request.getSession();

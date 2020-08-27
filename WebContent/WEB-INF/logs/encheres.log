@@ -18,3 +18,9 @@
 2020-08-27 16:42:16,731 INFO [http-nio-8081-exec-8] f.e.ProjectEnchereEni [ServletVersPageConnection.java:66] Connexion : adeline44
 2020-08-27 16:48:51,297 INFO [http-nio-8081-exec-3] f.e.ProjectEnchereEni [ServletDeconnexion.java:44] Deconnexion : adeline44
 2020-08-27 16:48:59,575 INFO [http-nio-8081-exec-4] f.e.ProjectEnchereEni [ServletVersPageConnection.java:66] Connexion : adeline44
+2020-08-27 17:11:53,720 INFO [http-nio-8081-exec-9] f.e.ProjectEnchereEni [ServletDeconnexion.java:44] Deconnexion : adeline44
+2020-08-27 17:12:00,334 INFO [http-nio-8081-exec-2] f.e.ProjectEnchereEni [ServletVersPageConnection.java:66] Connexion : Max
+2020-08-27 17:12:51,108 INFO [http-nio-8081-exec-11] f.e.ProjectEnchereEni [ServletVersPageConnection.java:66] Connexion : adeline44
+2020-08-27 17:13:07,080 INFO [http-nio-8081-exec-15] f.e.ProjectEnchereEni [ServletDeconnexion.java:44] Deconnexion : adeline44
+2020-08-27 17:13:23,429 INFO [http-nio-8081-exec-20] f.e.ProjectEnchereEni [ServletVersPageConnection.java:66] Connexion : Utilisateur Supprimé
+2020-08-27 17:13:30,507 INFO [http-nio-8081-exec-19] f.e.ProjectEnchereEni [ServletDeconnexion.java:44] Deconnexion : Utilisateur Supprimé
