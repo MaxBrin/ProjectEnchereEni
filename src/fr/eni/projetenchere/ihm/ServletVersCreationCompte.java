@@ -61,12 +61,13 @@ public class ServletVersCreationCompte extends HttpServlet {
 			try {
 				UtilisateurMgr.ajoutUtilisateur(utilisateur);
 			} catch (BLLException e) {
+				request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 				e.printStackTrace();
 			}
 			HttpSession session = request.getSession();
 			session.setAttribute("noUtilisateur", utilisateur.getNoUtilisateur());
-			request = Chargement.chargementListArticle(request);
-			request = Chargement.chargementListCategorie(request);
+			request = Chargement.chargementListArticle(request, response);
+			request = Chargement.chargementListCategorie(request, response);
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 
 		} else {

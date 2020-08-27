@@ -38,11 +38,12 @@ public class ServletSupprimerCompte extends HttpServlet {
 			// Modification de l'utisilateur avec l'utilisateur sans données
 			UtilisateurMgr.modificationUtilisateur(utilisateurSuppresion);
 		} catch (BLLException e) {
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
 		session.invalidate();
-		request = Chargement.chargementListArticle(request);
-		request = Chargement.chargementListCategorie(request);
+		request = Chargement.chargementListArticle(request, response);
+		request = Chargement.chargementListCategorie(request, response);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		rd.forward(request, response);
 

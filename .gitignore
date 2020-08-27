@@ -13,3 +13,4 @@
 *.class
 .classpath
 *.class
+*.log

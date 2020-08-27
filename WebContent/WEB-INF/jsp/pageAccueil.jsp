@@ -61,7 +61,7 @@
 						<!--  Affichage des catégories en fonction de la liste dans la BD  -->
 						<c:forEach var="categorie" items="${listeCategories}">
 							<option value="${categorie.noCategorie}"
-								name="${categorie.libelle}">${categorie.libelle}</option>
+								 ${(categorieSaisie == categorie.noCategorie)?'selected':''}>${categorie.libelle}</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -71,7 +71,7 @@
 				</div>
 			</div>
 
-
+			<!--  Bouton choix achats ou ventes -->
 			<c:if test="${(noUtilisateur != null)}">
 				<div class="row ">
 					<div class="col-md-1 offset-sm-2">
@@ -79,23 +79,34 @@
 						<a href="${pageContext.request.contextPath }/Accueil?choix=achat"
 							class="btn btn-secondary btn-sm">Achats</a>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-2 offset-sm-1">
 						<a
 							href="${pageContext.request.contextPath }/Accueil?choix=mesVentes"
 							class="btn btn-secondary btn-sm">Mes ventes</a>
 					</div>
+						
+					<div class="col-md-2">
+						<a
+							href="${pageContext.request.contextPath }/Accueil?choix=annuler"
+							class="btn btn-secondary btn-sm">Annuler</a>
+					</div>	
+						
+	
+								
 				</div>
 			</c:if>
 			<!-- AFFICHAGE DES CHECKBOXES EN FONCTION DU CHOIX "ACHATS" OU "MES VENTES" -->
 			
 			<!--  ACHAT -->
 			<c:if test="${(choixAchat eq 'achat') and (noUtilisateur != null)}">
+			<input type="hidden" value="achat" name="choix">
 				<div class="row ">
 					<div class="col-md-8 offset-sm-2">
 						<div>
-							<input type="checkbox" name="encheresOuvertes">Enchères ouvertes<br> 
-							<input type="checkbox" name="mesEncheres">Mes enchères<br> 
-							<input type="checkbox" name="encheresRemportees">Mes enchères remportées<br>
+							<input type="checkbox" name="encheresOuvertes" >Enchères
+							ouvertes<br> <input type="checkbox" name="mesEncheres">Mes
+							enchères<br> <input type="checkbox"
+								name="encheresRemportees">Mes enchères remportées<br>
 						</div>
 					</div>
 				</div>
@@ -103,8 +114,9 @@
 			
 			<!--  VENTES -->
 			<c:if test="${(choixAchat == 'ventes') && (noUtilisateur != null) }">
+			<input type="hidden" value=" " name="choix">
 				<div class="row ">
-					<div class="col-md-8 offset-sm-3">
+					<div class="col-md-8 offset-sm-4">
 						<input type="checkbox" name="ventesEnCours">Mes ventes en
 						cours<br> <input type="checkbox" name="ventesNonDebutees">Ventes
 						non débutées<br> <input type="checkbox"
@@ -114,13 +126,6 @@
 			</c:if>
 		</form>
 
-		<c:if test="${ErreurBD!=null}">
-			<div class="row mx-auto">
-				<div class="mx-auto" style="width: 500px;">
-					<h3 class="text-danger ">${ErreurBD}</h3>
-				</div>
-			</div>
-		</c:if>
 
 		<div class="row   justify-content-center">
 			<!--  Affichage de la liste des articles -->
@@ -129,7 +134,7 @@
 				<div class="col-lg-3 col-md-6">
 					<!-- Affichage d'article en vente -->
 					<div class="card" style="width: 18rem;">
-						<img src="..." class="card-img-top" alt="...">
+						<img src="${pageContext.request.contextPath }/img/Photo PC.jpg" class="card-img-top" alt="photo article">
 						<div class="card-body">
 							<!--  Nom de l'article avec un lien vers detail de l'article -->
 							<h5 class="card-title">

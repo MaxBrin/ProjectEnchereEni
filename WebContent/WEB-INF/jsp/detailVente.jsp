@@ -25,7 +25,13 @@
 			<h1>Détail vente</h1>
 		</div>
 	</div>
-
+	<div class="row mx-auto">
+		<div class="mx-auto">
+			<img src="${pageContext.request.contextPath }/img/Photo PC.jpg"
+				class="rounded float-left img-thumbnail" width="400" height="400"
+				alt="Photo Article">
+		</div>
+	</div>
 	<!--  NOM  -->
 	<div class="row mx-auto">
 		<div class="col-md-2 offset-sm-2">
@@ -159,23 +165,45 @@
 		</div>
 	</div>
 
-	<!--  FORMULAIRE POUR ENCHERIR  -->
-	<form action="${pageContext.request.contextPath}/DetailVente"
-		method="post">
-		<input type="hidden" name="noArticle" value="${article.noArticle }">
-		<div class="row mx-auto">
-			<div class="col-md-2 offset-sm-2">
-				<label for="pseudo">Ma proposition</label>
-			</div>
-			<div class="col-md-4">
-				<div class="input-group mb-3">
-					<input type="number" id="proposition" name="proposition" min="0"
-						max="500" step="5">
-					<button type="submit" class="btn btn-primary">Enchérir</button>
+	<!--  FORMULAIRE POUR ENCHERIR QUE SI ON EST PAS LE VENDEUR -->
+	<c:if test="${utilisateur.noUtilisateur!=noUtilisateur }">
+		<form action="${pageContext.request.contextPath}/DetailVente"
+			method="post">
+			<input type="hidden" name="noArticle" value="${article.noArticle }">
+			<div class="row mx-auto">
+				<div class="col-md-2 offset-sm-2">
+					<label for="pseudo">Ma proposition</label>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group mb-3">
+						<input type="number" id="proposition" name="proposition" min="0"
+							max="500" step="5">
+						<button type="submit" class="btn btn-primary">Enchérir</button>
+					</div>
 				</div>
 			</div>
+		</form>
+	</c:if>
+
+
+	<c:if test="${modifiable}">
+		<div class="row mx-auto">
+			<div class="col-md-4 offset-sm-5">
+				<a
+					href="${pageContext.request.contextPath }/NouvelleVente?ModificationArticle= ${article.noArticle}"
+					class="btn btn-primary">Modification de l'article</a>
+			</div>
 		</div>
-	</form>
+	</c:if>
+
+	<!--  AFFICHAGE MESSAGE D'ERREUR SI ENCHERE NON VALIDE -->
+	<c:if test="${Erreur!=null}">
+		<div class="row mx-auto">
+			<div class="col-md-2 offset-sm-4">
+				<h5 class="text-danger">${Erreur}</h5>
+			</div>
+		</div>
+	</c:if>
 
 
 

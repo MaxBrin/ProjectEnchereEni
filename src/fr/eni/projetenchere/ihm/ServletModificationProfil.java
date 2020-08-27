@@ -29,18 +29,18 @@ public class ServletModificationProfil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//Recuperation du parametre noUtilisateur
+		// Recuperation du parametre noUtilisateur
 		HttpSession session = request.getSession();
 		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
-		
-		//Récupération de l'utilisateur par son noUtilisateur
+
+		// Récupération de l'utilisateur par son noUtilisateur
 		try {
 			request.setAttribute("utilisateur", UtilisateurMgr.getUtilisateur(noUtilisateur));
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-		
-		//Envoi de l'utilisateur à la JSP modificationProfil
+
+		// Envoi de l'utilisateur à la JSP modificationProfil
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modificationProfil.jsp");
 		rd.forward(request, response);
 	}
@@ -135,12 +135,13 @@ public class ServletModificationProfil extends HttpServlet {
 				try {
 					UtilisateurMgr.modificationUtilisateur(utilisateurModifie);
 				} catch (BLLException e) {
+					request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 					e.printStackTrace();
 				}
 				// On remet le numéro en attribut de session pour rester connecter
 				session.setAttribute("noUtilisateur", utilisateurModifie.getNoUtilisateur());
-				request = Chargement.chargementListArticle(request);
-				request = Chargement.chargementListCategorie(request);
+				request = Chargement.chargementListArticle(request, response);
+				request = Chargement.chargementListCategorie(request, response);
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 				rd.forward(request, response);
 			} else {

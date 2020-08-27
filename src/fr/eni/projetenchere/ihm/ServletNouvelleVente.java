@@ -45,10 +45,10 @@ public class ServletNouvelleVente extends HttpServlet {
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
-		request = Chargement.chargementListCategorie(request);
+		request = Chargement.chargementListCategorie(request, response);
 		request.setAttribute("utilisateur", utilisateur);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente.jsp");
 		rd.forward(request, response);
@@ -70,6 +70,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 		} catch (BLLException e3) {
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e3.printStackTrace();
 		}
 
@@ -108,7 +109,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		try {
 			categorie = CategorieMgr.getCategorie(categorieSaisie);
 		} catch (BLLException e2) {
-			// TODO Auto-generated catch block
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e2.printStackTrace();
 		}
 
@@ -131,11 +132,11 @@ public class ServletNouvelleVente extends HttpServlet {
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
-			request = Chargement.chargementListArticle(request);
-			request = Chargement.chargementListCategorie(request);
+			request = Chargement.chargementListArticle(request, response);
+			request = Chargement.chargementListCategorie(request, response);
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		} else {
-			request = Chargement.chargementListCategorie(request);
+			request = Chargement.chargementListCategorie(request, response);
 			request.setAttribute("listeErreur", erreurs);
 			request.setAttribute("article", article);
 			request.setAttribute("utilisateur", utilisateur);

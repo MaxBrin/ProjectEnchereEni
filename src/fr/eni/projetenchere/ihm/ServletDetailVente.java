@@ -50,15 +50,22 @@ public class ServletDetailVente extends HttpServlet {
 			meilleurEnchere = EnchereMgr.getEnchereByArticle_BestOffer(noIdArticle);
 
 		} catch (BLLException e) {
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
+
 		// Envoi du paramètre article et de l'utilisateur
 		request.setAttribute("meilleurEnchere", meilleurEnchere);
 		request.setAttribute("retrait", retrait);
 		request.setAttribute("article", article);
 		request.setAttribute("utilisateur", article.getUtilisateur());
+		traitementArticle(article);
+		if (article.getDebutEnchere().isAfter(LocalDateTime.now())) {
+			request.setAttribute("modifiable", true);
+		}
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp");
 		rd.forward(request, response);
+
 	}
 
 	/**
@@ -74,14 +81,17 @@ public class ServletDetailVente extends HttpServlet {
 		Utilisateur acheteur = null;
 		Article articleEnVente = null;
 		Retrait retraitArticleEnVente = null;
+		Enchere meilleurEnchere = null;
 		try {
 			acheteur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 			articleEnVente = ArticlesMgr.getArticle(noArticle);
 			retraitArticleEnVente = RetraitMgr.getRetraitByNoArticle(noArticle);
 
 		} catch (BLLException e) {
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
+		traitementArticle(articleEnVente);
 
 		int proposition = Integer.parseInt(request.getParameter("proposition"));
 		Enchere encherePropose = new Enchere(LocalDateTime.now(), proposition, noArticle, noUtilisateur);
@@ -97,6 +107,8 @@ public class ServletDetailVente extends HttpServlet {
 				deuxiemeMeilleurEnchere = EnchereMgr.getEnchereByArticle_BestOffer(articleEnVente.getNoArticle());
 				// Ajout de l'enchere actuelle dans la BD
 				EnchereMgr.ajouterEnchere(encherePropose);
+				// La meilleur enchere deviens l'enchere proposer
+				meilleurEnchere = encherePropose;
 				// Remboursement de l'utilisateur que si il y'a une deuxième meilleur enchère
 				if (deuxiemeMeilleurEnchere != null) {
 					// Récupération de l'utilisateur en fonction du numéro d'utilisateur dans
@@ -109,10 +121,14 @@ public class ServletDetailVente extends HttpServlet {
 					// Mise à jour de la bd avec les crédits modifier
 					UtilisateurMgr.modificationUtilisateur(utilisateurARembourser);
 				}
-				request.setAttribute("meilleurEnchere", encherePropose);
+				request.setAttribute("meilleurEnchere", meilleurEnchere);
 			} catch (BLLException e) {
+				request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 				e.printStackTrace();
 			}
+		} else {
+			String enchereInvalide = "L'enchère est invalide.";
+			request.setAttribute("Erreur", enchereInvalide);
 		}
 		request.setAttribute("meilleurEnchere", encherePropose);
 		request.setAttribute("retrait", retraitArticleEnVente);
@@ -120,6 +136,22 @@ public class ServletDetailVente extends HttpServlet {
 		request.setAttribute("utilisateur", articleEnVente.getUtilisateur());
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/detailVente.jsp");
 		rd.forward(request, response);
+	}
+
+	protected void traitementArticle(Article article) {
+		// On regarde si la date de fin d'enchère est avant maintenant et donc que
+		// l'enchère est fini
+		if (article.getFinEnchere().isBefore(LocalDateTime.now())) {
+			try {
+				// On initialise le prix de vente avec le montant de la meilleure enchere
+				article.setPrixVente(
+						EnchereMgr.getEnchereByArticle_BestOffer(article.getNoArticle()).getMontantEnchere());
+				// On modifie l'article en base de données
+				ArticlesMgr.modifierArticle(article);
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

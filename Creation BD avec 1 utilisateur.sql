@@ -110,11 +110,21 @@ INSERT INTO CATEGORIES VALUES('Ameublement');
 INSERT INTO CATEGORIES VALUES('Vetements');
 INSERT INTO CATEGORIES VALUES ('Sport & Loisirs');
 
-INSERT INTO ARTICLES_VENDUS VALUES('PC Gamer','Super Pc qui défonce','20201201 10:34:09 AM','20210101 10:34:09 AM',10,null,2,1)
-INSERT INTO ARTICLES_VENDUS VALUES('PC Gamer','Super Pc qui défonce','20200101 8:34:09 AM','20201201 9:10:09 AM',10,null,2,1)
-INSERT INTO ARTICLES_VENDUS VALUES('PC Gamer','Super Pc qui défonce','20200101 10:25:09 AM','20200110 5:08:09 pM',10,null,3,1)
+INSERT INTO ARTICLES_VENDUS VALUES('PC Enchere non dispo','Super Pc qui défonce','20201201 10:34:09 AM','20210101 10:34:09 AM',10,null,2,1);
+INSERT INTO ARTICLES_VENDUS VALUES('PC Enchere en cours','Super Pc qui défonce','20200101 8:34:09 AM','20201201 9:10:09 AM',10,null,2,1);
+INSERT INTO ARTICLES_VENDUS VALUES('PC Enchere fini','Super Pc qui défonce','20200101 10:25:09 AM','20200110 5:08:09 pM',10,null,2,1);
+INSERT INTO ARTICLES_VENDUS VALUES('Table Enchere non dispo','Super Table','20201201 10:34:09 AM','20210101 10:34:09 AM',10,null,3,2);
+INSERT INTO ARTICLES_VENDUS VALUES('Table Enchere en cours','Super Table','20200101 8:34:09 AM','20201201 9:10:09 AM',10,null,3,2);
+INSERT INTO ARTICLES_VENDUS VALUES('Table Enchere fini','Super Table','20200101 10:25:09 AM','20200110 5:08:09 pM',10,null,3,2);
 
-INSERT INTO RETRAITS VALUES (3,'3 rue Mickeal Faradayr','44800','SAINT HERBLAIN');
+INSERT INTO RETRAITS VALUES (3,'10 rue du calvaire','85530','LA BRUFFIERE');
 INSERT INTO RETRAITS VALUES (1,'10 rue du calvaire','85530','LA BRUFFIERE');
 INSERT INTO RETRAITS VALUES (2,'10 rue du calvaire','85530','LA BRUFFIERE');
+INSERT INTO RETRAITS VALUES (4,'3 rue Mickeal Faraday','44800','SAINT HERBLAIN');
+INSERT INTO RETRAITS VALUES (5,'3 rue Mickeal Faraday','44800','SAINT HERBLAIN');
+INSERT INTO RETRAITS VALUES (6,'3 rue Mickeal Faraday','44800','SAINT HERBLAIN');
 
+
+SELECT * FROM ARTICLES_VENDUS WHERE no_article=(SELECT top 1 no_article FROM ENCHERES WHERE no_utilisateur = 2 ORDER BY montant_enchere);
+
+SELECT  a.no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle,montant_enchere FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie JOIN ENCHERES e ON e.no_article = a.no_article  WHERE (nom_article LIKE '%%' ) AND (date_debut_encheres < GETDATE() AND date_fin_encheres > GETDATE() ) ORDER BY montant_enchere

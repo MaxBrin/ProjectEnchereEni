@@ -132,37 +132,62 @@ public class ArticleDAOImpl implements ArticleDAO {
 
 	}
 
+	// creation de la requete sql
 	protected String creationRequeteSql(Filtre filtre) {
+		// construction de la requete sql
 		StringBuilder sbRequete = new StringBuilder();
+		// s'il n'ya pas de filtre
 		if (filtre != null) {
+			// creation d'une liste de string
 			List<String> listeRequete = new ArrayList<String>();
+			// creation tableau à partir des mots saisis dans la recherche utilisateur
 			String[] saisieUtilisateur = filtre.getSaisieUtilisateur();
+			// si l'utilisateur a fait une recherche par nom
 			if (saisieUtilisateur.length > 0) {
+				// création de la chaine de caractères
 				StringBuilder sb = new StringBuilder();
+				// Ajoute au Stringbuilder le premier mot de la saisie utilisateur
 				sb.append("(nom_article LIKE '%" + saisieUtilisateur[0] + "%' ");
+				// s'il existe un deuxième mot saisit par l'utilisateur, on l'ajoute au Sb
 				for (int i = 1; i < saisieUtilisateur.length; i++) {
 					sb.append("Or nom_article LIKE '%" + saisieUtilisateur[i] + "%' ");
 				}
 				sb.append(")");
+				// on ajoute la saisie/chaine de caracteres à la requete
 				listeRequete.add(sb.toString());
 			}
+			// si l'utilisateur a sélectionné une catégorie
 			if (filtre.getNoCategorie() != 0) {
+				// ajouter le critère catégorie sélectionné au sb
 				listeRequete.add("c.no_categorie = " + filtre.getNoCategorie() + " ");
 			}
-			if (filtre.getNoUtilisateur() != 0) {
-				listeRequete.add("u.no_utilisateur = " + filtre.getNoUtilisateur() + " ");
+			// Ajout de quel utilisateur a fait la demande
+			if (filtre.getNoUtilisateurVendeur() != 0) {
+				listeRequete.add("u.no_utilisateur = " + filtre.getNoUtilisateurVendeur() + " ");
 			}
+			// creation de la liste choixUtilisateur
 			List<String> choixUtilisateur = new ArrayList<>();
+			// si le filtre est vente en cours
 			if (filtre.isEnCours()) {
+				// selectionner les ventes qui sont en cours
 				choixUtilisateur.add("date_debut_encheres < GETDATE() AND date_fin_encheres > GETDATE() ");
 			}
 			if (filtre.isFini()) {
+				// selectionner les ventes qui sont non débutées
 				choixUtilisateur.add("date_fin_encheres <= GETDATE() ");
 			}
 			if (filtre.isNonDisponible()) {
+				// selectionner les ventes qui sont terminées
 				choixUtilisateur.add("date_debut_encheres >= GETDATE() ");
 			}
+			// L'utilisateur veux afficher ses achats
+			if (filtre.isAchat()) {
+				// On affiche les articles qui ont une enchère de l'utilisateur
+				listeRequete.add("no_article=(SELECT top 1 no_article FROM ENCHERES WHERE no_utilisateur = "
+						+ filtre.getNoUtilisateurAcheteur() + " ORDER BY montant_enchere DESC)");
+			}
 			StringBuilder choix = new StringBuilder();
+			// si l'utilisateur n'a rien coché,
 			if (!(choixUtilisateur.isEmpty())) {
 				choix.append("(");
 				choix.append(choixUtilisateur.get(0));
