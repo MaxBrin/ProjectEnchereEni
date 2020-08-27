@@ -42,7 +42,7 @@
 
 		<div class="row mx-auto">
 			<div class="mx-auto offset-sm-3" >
-				<h1>CONNEXION</h1>
+				<h1>Connexion</h1>
 			</div>
 		</div>
 

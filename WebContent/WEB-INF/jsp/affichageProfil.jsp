@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/stylePageAccueil.css">
 	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+	
 </head>
 
 <body>

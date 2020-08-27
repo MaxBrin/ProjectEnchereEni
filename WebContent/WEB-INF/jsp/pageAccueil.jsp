@@ -32,7 +32,7 @@
 	<div class="container">
 		<div class="row mx-auto">
 			<div class="mx-auto" style="width: 500px;">
-				<h1>LISTE DES ENCHERES</h1>
+				<h1>Liste des Enchères</h1>
 			</div>
 		</div>
 
