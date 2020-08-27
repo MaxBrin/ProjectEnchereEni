@@ -61,7 +61,7 @@
 						<!--  Affichage des catégories en fonction de la liste dans la BD  -->
 						<c:forEach var="categorie" items="${listeCategories}">
 							<option value="${categorie.noCategorie}"
-								name="${categorie.libelle}" ${(categorieSaisie == categorie.noCategorie)?'selected':''}>${categorie.libelle}</option>
+								 ${(categorieSaisie == categorie.noCategorie)?'selected':''}>${categorie.libelle}</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -114,7 +114,7 @@
 			
 			<!--  VENTES -->
 			<c:if test="${(choixAchat == 'ventes') && (noUtilisateur != null) }">
-			<input type="hidden" value="ventes" name="choix">
+			<input type="hidden" value=" " name="choix">
 				<div class="row ">
 					<div class="col-md-8 offset-sm-4">
 						<input type="checkbox" name="ventesEnCours">Mes ventes en
