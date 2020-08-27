@@ -34,6 +34,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 		Integer noUtilisateur = (Integer) session.getAttribute("noUtilisateur");
 		// Récupération valeur bouton radio
 		String choix = request.getParameter("choix");
+
 		// Creation du filtre
 		Filtre filtre = new Filtre();
 		if ("annuler".equals(choix)) {

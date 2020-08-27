@@ -39,14 +39,27 @@ public class ServletNouvelleVente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Récupération de l'utilisateur dans la session
 		HttpSession session = request.getSession();
-		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
+		Integer noUtilisateur = (int) session.getAttribute("noUtilisateur");
 		Utilisateur utilisateur = new Utilisateur();
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 		} catch (BLLException e) {
 			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
+		}
+
+		// Vérification si l'utilisateur a cliqué sur "Modifier"
+		if (request.getParameter("ModificationArticle") != null) {
+			int noArticle = Integer.parseInt(request.getParameter("ModificationArticle"));
+			Article article = null;
+			try {
+				article = ArticlesMgr.getArticle(noArticle);
+			} catch (BLLException e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("article", article);
 		}
 		request = Chargement.chargementListCategorie(request, response);
 		request.setAttribute("utilisateur", utilisateur);
