@@ -16,7 +16,7 @@ public class Article implements Serializable {
 	private LocalDateTime debutEnchere;
 	private LocalDateTime finEnchere;
 	private int prixInitial;
-	private int prixVente;
+	private Integer prixVente;
 	private Utilisateur utilisateur;
 	private Categorie categorie;
 
@@ -38,7 +38,7 @@ public class Article implements Serializable {
 	}
 
 	public Article(String nomArticle, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
-			int prixInitial, int prixVente, Utilisateur utilisateur, Categorie categorie) {
+			int prixInitial, Integer prixVente, Utilisateur utilisateur, Categorie categorie) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -51,7 +51,8 @@ public class Article implements Serializable {
 	}
 
 	public Article(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere,
-			LocalDateTime finEnchere, int prixInitial, int prixVente, Utilisateur utilisateur, Categorie categorie) {
+			LocalDateTime finEnchere, int prixInitial, Integer prixVente, Utilisateur utilisateur,
+			Categorie categorie) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -126,11 +127,11 @@ public class Article implements Serializable {
 		this.prixInitial = prixInitial;
 	}
 
-	public int getPrixVente() {
+	public Integer getPrixVente() {
 		return prixVente;
 	}
 
-	public void setPrixVente(int prixVente) {
+	public void setPrixVente(Integer prixVente) {
 		this.prixVente = prixVente;
 	}
 

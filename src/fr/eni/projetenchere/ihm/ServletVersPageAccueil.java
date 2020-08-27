@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.projetenchere.bll.ArticlesMgr;
 import fr.eni.projetenchere.bll.BLLException;
+import fr.eni.projetenchere.bll.EnchereMgr;
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.ihm.modele.Chargement;
 import fr.eni.projetenchere.ihm.modele.Filtre;
@@ -34,6 +35,7 @@ public class ServletVersPageAccueil extends HttpServlet {
 		Integer noUtilisateur = (Integer) session.getAttribute("noUtilisateur");
 		// Récupération valeur bouton radio
 		String choix = request.getParameter("choix");
+
 		// Creation du filtre
 		Filtre filtre = new Filtre();
 		if ("annuler".equals(choix)) {
@@ -104,7 +106,24 @@ public class ServletVersPageAccueil extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
-
+		// Filtrage de la liste des encheres que j'ai enchéris et où je ne suis pas la
+		// meilleur enchère
+		if (chkboxeEncheresEmportees != null) {
+			List<Article> listClonePourFiltrage = listeArticlesAAfficher;
+			for (Article article : listClonePourFiltrage) {
+				// Si le numéro d'utilisateur de la session n'est pas égale au numéro
+				// d'utilisateur ayant la meilleur enchere sur l'article on l'enlève de la liste
+				try {
+					if (noUtilisateur != EnchereMgr.getEnchereByArticle_BestOffer(article.getNoArticle())
+							.getNoUtilisateur()) {
+						listeArticlesAAfficher.remove(article);
+					}
+				} catch (BLLException e) {
+					request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
+					e.printStackTrace();
+				}
+			}
+		}
 		// Récupération valeur bouton radio
 		String choix = request.getParameter("choix");
 		if ("annuler".equals(choix)) {
