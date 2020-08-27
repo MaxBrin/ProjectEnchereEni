@@ -124,7 +124,8 @@ INSERT INTO RETRAITS VALUES (4,'3 rue Mickeal Faraday','44800','SAINT HERBLAIN')
 INSERT INTO RETRAITS VALUES (5,'3 rue Mickeal Faraday','44800','SAINT HERBLAIN');
 INSERT INTO RETRAITS VALUES (6,'3 rue Mickeal Faraday','44800','SAINT HERBLAIN');
 
+INSERT INTO ENCHERES VALUES('20200104 10:25:09 AM',20,3,2);
 
 SELECT * FROM ARTICLES_VENDUS WHERE no_article=(SELECT top 1 no_article FROM ENCHERES WHERE no_utilisateur = 2 ORDER BY montant_enchere);
 
-SELECT  a.no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle,montant_enchere FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie JOIN ENCHERES e ON e.no_article = a.no_article  WHERE (nom_article LIKE '%%' ) AND (date_debut_encheres < GETDATE() AND date_fin_encheres > GETDATE() ) ORDER BY montant_enchere
+SELECT no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,u.no_utilisateur,c.no_categorie,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur,libelle FROM ARTICLES_VENDUS a JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur JOIN CATEGORIES c ON c.no_categorie=a.no_categorie  WHERE (nom_article LIKE '%%' ) AND no_article=(SELECT top 1 no_article FROM ENCHERES WHERE no_utilisateur = 2  ORDER BY montant_enchere DESC) GROUP BY no_article
