@@ -38,20 +38,13 @@ public class ServletVersPageAccueil extends HttpServlet {
 
 		// Creation du filtre
 		Filtre filtre = new Filtre();
-		if ("annuler".equals(choix)) {
-			request.setAttribute("choixAchat", null);
-		}
-
-		if ("achat".equals(choix)) {
-			request.setAttribute("choixAchat", "achat");
-			request.setAttribute("ckEncheresOuvertesCheck", true);
-		}
 		if ("mesVentes".equals(choix)) {
 			request.setAttribute("choixAchat", "ventes");
 			request.setAttribute("ckMesVentesEnCoursCheck", true);
 			filtre.setNoUtilisateurVendeur(noUtilisateur);
 		}
-
+		request.setAttribute("choixAchat", "achat");
+		request.setAttribute("ckEncheresOuvertesCheck", true);
 		// Récupération des article en bdd
 		List<Article> listeArticlesAAfficher = new ArrayList<>();
 		// Attribution des filtres "recherche par nom" et "categorie"

@@ -31,19 +31,24 @@ public class ServletDeconnexion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Récupération de la session
 		HttpSession session = request.getSession();
+		// Récupération de l'utilisateur pour les logs de deconnexion
 		int noUtilisateur = (Integer) session.getAttribute("noUtilisateur");
 		Utilisateur utilisateur = null;
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 		} catch (BLLException e) {
+			// Si Erreur de connexion avec la base de donnée envoie sur une page l'indiquant
 			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
+		// Log de déconnexion
 		Logger monLogger = (Logger) LoggerFactory.getLogger("fr.eni.ProjectEnchereEni");
 		monLogger.info("Deconnexion : " + utilisateur.getPseudo());
+		// Destruction de la session
 		session.invalidate();
-
+		// Chargement des listes à afficher par default et retour à la page d'accueil
 		request = Chargement.chargementListArticle(request, response);
 		request = Chargement.chargementListCategorie(request, response);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");

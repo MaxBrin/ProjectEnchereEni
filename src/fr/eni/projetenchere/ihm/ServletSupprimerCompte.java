@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import fr.eni.projetenchere.bll.BLLException;
 import fr.eni.projetenchere.bll.UtilisateurMgr;
 import fr.eni.projetenchere.bo.Utilisateur;
@@ -28,8 +31,17 @@ public class ServletSupprimerCompte extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Récupération de la session
 		HttpSession session = request.getSession();
 		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
+		// Récupération de l'utilisateur de la session pour le log de deconnexion
+		Utilisateur utilisateur = null;
+		try {
+			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
+		} catch (BLLException e1) {
+			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
+			e1.printStackTrace();
+		}
 		// Création d'un utilisateur sans données
 		Utilisateur utilisateurSuppresion = new Utilisateur("Utilisateur Supprimé", "", "", "", "", "", "", "", "", 0,
 				false);
@@ -42,7 +54,12 @@ public class ServletSupprimerCompte extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
+		// Log de déconnexion
+		Logger monLogger = (Logger) LoggerFactory.getLogger("fr.eni.ProjectEnchereEni");
+		monLogger.info("Deconnexion et Suppression : " + utilisateur.getPseudo());
+		// Destruction de la session
 		session.invalidate();
+		// Chargement des listes à afficher par default et retour à la page d'accueil
 		request = Chargement.chargementListArticle(request, response);
 		request = Chargement.chargementListCategorie(request, response);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");

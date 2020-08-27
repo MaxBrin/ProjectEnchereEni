@@ -146,17 +146,17 @@ public class UtilisateurMgr {
 		}
 		// Rue
 		if (utilisateur.getRue() == null || utilisateur.getRue().trim().equals("")) {
-			erreurs.put("rue", "La rue doit être renseigné.");
+			erreurs.put("rue", "La rue est invalide.");
 		}
 
 		// CodePostal
 		if (!(StringUtils.isNumeric(utilisateur.getCodePostal())) || (!(utilisateur.getCodePostal().length() == 5))) {
-			erreurs.put("codePostal", "Le code postal doit être renseigné.");
+			erreurs.put("codePostal", "Le code postal est invalide.");
 		}
 
 		// Ville
 		if (utilisateur.getVille() == null || utilisateur.getVille().trim().equals("")) {
-			erreurs.put("ville", "La ville doit être renseigné.");
+			erreurs.put("ville", "La ville est invalide.");
 		}
 		// Test si les mot de passe ne sont pas identiquent
 		if (utilisateur.getMotDePasse() == null) {

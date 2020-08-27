@@ -39,7 +39,7 @@ public class ServletNouvelleVente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Récupération de l'utilisateur dans la session
+		// Récupération de l'utilisateur dans la session pour l'adresse par default
 		HttpSession session = request.getSession();
 		Integer noUtilisateur = (int) session.getAttribute("noUtilisateur");
 		Utilisateur utilisateur = new Utilisateur();
@@ -47,32 +47,35 @@ public class ServletNouvelleVente extends HttpServlet {
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 		} catch (BLLException e) {
+			// Si Erreur de connexion avec la base de donnée envoie sur une page l'indiquant
 			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e.printStackTrace();
 		}
-
+		Retrait retrait = new Retrait(utilisateur.getRue(), utilisateur.getCodePostal(), utilisateur.getVille());
 		// Vérification si l'utilisateur a cliqué sur "Modifier"
 		if (!(("").equals(request.getParameter("ModificationArticle")))
 				&& ((request.getParameter("ModificationArticle")) != null)) {
-			String noUsuer = request.getParameter("ModificationArticle");
-			System.out.println(noUsuer);
-			int noArticle = Integer.parseInt(noUsuer);
-			System.out.println(noArticle);
+			// Récupération du numéro de l'article à modifier
+			String noArticleAModifier = request.getParameter("ModificationArticle");
+			int noArticle = Integer.parseInt(noArticleAModifier);
 			Article article = null;
-
+			// Récupération de l'article à modifier
 			try {
 				article = ArticlesMgr.getArticle(noArticle);
 			} catch (BLLException e) {
+				// Si Erreur de connexion avec la base de donnée envoie sur une page l'indiquant
+				request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 				e.printStackTrace();
 			}
-
+			// Envoie d'attribut à afficher
 			request.setAttribute("article", article);
 			request.setAttribute("dateDebut", article.getDebutEnchere().toLocalDate());
 			request.setAttribute("dateFin", article.getFinEnchere().toLocalDate());
 		}
+		// Si c'est une nouvelle vente chargment de la liste des catégorie
 		request = Chargement.chargementListCategorie(request, response);
-		request.setAttribute("utilisateur", utilisateur);
-
+		// Envoie de l'utilisateur pour son adresse de retrait
+		request.setAttribute("retrait", retrait);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente.jsp");
 		rd.forward(request, response);
 	}
@@ -90,6 +93,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		try {
 			utilisateur = UtilisateurMgr.getUtilisateur(noUtilisateur);
 		} catch (BLLException e3) {
+			// Si Erreur de connexion avec la base de donnée envoie sur une page l'indiquant
 			request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 			e3.printStackTrace();
 		}
@@ -139,16 +143,18 @@ public class ServletNouvelleVente extends HttpServlet {
 		Article article = new Article(nom, description, debutEnchere, finEnchere, miseAPrix, utilisateur, categorie);
 		// Vérification de la validité des données saisies avant de valider l'article
 		HashMap<String, String> erreurs = ArticlesMgr.verifierVenteArticle(article, rue, codePostal, ville);
+		Retrait retrait = new Retrait(rue, codePostal, ville);
 		RequestDispatcher rd;
 		if (erreurs.isEmpty()) {
 
 			try {
 				ArticlesMgr.ajoutArticle(article);
 			} catch (BLLException e) {
+				// Si Erreur de connexion avec la base de donnée envoie sur une page l'indiquant
 				request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 				e.printStackTrace();
 			}
-			Retrait retrait = new Retrait(article.getNoArticle(), rue, codePostal, ville);
+			retrait.setNoArticle(article.getNoArticle());
 			try {
 				RetraitMgr.ajouterRetrait(retrait);
 			} catch (BLLException e) {
@@ -156,15 +162,22 @@ public class ServletNouvelleVente extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 				e.printStackTrace();
 			}
+			// Chargement des listes à afficher par default
 			request = Chargement.chargementListArticle(request, response);
 			request = Chargement.chargementListCategorie(request, response);
+			// Checkbox par default
+			request.setAttribute("choixAchat", "achat");
+			request.setAttribute("ckEncheresOuvertesCheck", true);
+			// Redirection vers la pages d'accueil
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 		} else {
+			// Si il y'a des erreurs renvoie des données saisies par l'utilisateur
 			request = Chargement.chargementListCategorie(request, response);
 			request.setAttribute("listeErreur", erreurs);
 			request.setAttribute("article", article);
 			request.setAttribute("dateFin", article.getDebutEnchere().toLocalDate());
 			request.setAttribute("dateDebut", article.getFinEnchere().toLocalDate());
+			request.setAttribute("retrait", retrait);
 			request.setAttribute("utilisateur", utilisateur);
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente.jsp");
 		}

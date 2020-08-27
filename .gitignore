@@ -21,3 +21,4 @@ build/classes/fr/eni/projetenchere/ihm/ServletVersPageAccueil.class
 .classpath
 .classpath
 *.class
+.classpath

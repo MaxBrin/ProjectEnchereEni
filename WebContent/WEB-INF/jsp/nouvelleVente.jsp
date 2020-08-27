@@ -178,7 +178,7 @@
 							<input
 								class="form-control ${erreur.containsKey('rue')?'border border-danger':'border border-secondary' }"
 								placeholder="Rue" aria-label="rue" name="rue"
-								value="${utilisateur.rue }">
+								value="${retrait.rue }">
 						</div>
 					</div>
 				</div>
@@ -201,7 +201,7 @@
 							<input
 								class="form-control ${erreur.containsKey('codePostal')?'border border-danger':'border border-secondary' }"
 								placeholder="Code Postal" aria-label="codePostal"
-								name="codePostal" value="${utilisateur.codePostal }">
+								name="codePostal" value="${retrait.codePostal }">
 						</div>
 					</div>
 				</div>
@@ -224,7 +224,7 @@
 							<input
 								class="form-control ${erreur.containsKey('ville')?'border border-danger':'border border-secondary' }"
 								placeholder="Ville" aria-label="ville" name="ville"
-								value="${utilisateur.ville }">
+								value="${retrait.ville }">
 						</div>
 					</div>
 				</div>

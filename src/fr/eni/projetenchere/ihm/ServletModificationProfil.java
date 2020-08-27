@@ -93,40 +93,36 @@ public class ServletModificationProfil extends HttpServlet {
 			utilisateurModifie.setMotDePasse(motDePasseActuel);
 			// Si nouveauMdp ET confirmationMdp ne sont pas nuls
 			if (!("".equals(nouveauMotDePasse) && "".equals(confirmationNouveauMdp))) {
-
 				if (nouveauMotDePasse.equals(confirmationNouveauMdp)) {
 					utilisateurModifie.setMotDePasse(nouveauMotDePasse);
 				} else {
-
-					// On lui envoie une erreur
-
+					// Si il y'a des erreurs on renvoie les données saisies et la HasMap des erreurs
 					erreurs.put("MotDePasseDifferent",
 							"Le nouveau mot de Passe et la confirmation ne sont pas identiques");
 					request.setAttribute("listeErreur", erreurs);
 					request.setAttribute("utilisateur", utilisateurModifie);
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modificationProfil.jsp");
 					rd.forward(request, response);
-
 				}
 			}
-
 			erreurs = UtilisateurMgr.verifierUtilisateur(utilisateurModifie);
 			// Si le nouveau
 			// pseudo
 			// saisi existe déjà
 			// dans la bd
 			if (erreurs.containsKey("pseudoPresent")) {
+				// Si c'est le pseudo actuel on enlève l'erreur
 				if (utilisateur.getPseudo().equals(utilisateurModifie.getPseudo())) {
 					erreurs.remove("pseudoPresent");
 				}
 			}
 			// Si le nouveau email existe déjà dans la bd
 			if (erreurs.containsKey("emailPresent")) {
+				// Si c'est l'email actuel on enlève l'erreur
 				if (utilisateur.getEmail().equals(utilisateurModifie.getEmail())) {
 					erreurs.remove("emailPresent");
 				}
 			}
-
 			if (erreurs.isEmpty()) {
 				// Il n'y pas d'erreur donc on peut mettre le numéro d'utilsateur de la session
 				utilisateurModifie.setNoUtilisateur(utilisateur.getNoUtilisateur());
@@ -134,23 +130,30 @@ public class ServletModificationProfil extends HttpServlet {
 				try {
 					UtilisateurMgr.modificationUtilisateur(utilisateurModifie);
 				} catch (BLLException e) {
+					// Si Erreur de connexion avec la base de donnée envoie sur une page l'indiquant
 					request.getRequestDispatcher("/WEB-INF/jsp/erreurConnexionServeur.jsp").forward(request, response);
 					e.printStackTrace();
 				}
 				// On remet le numéro en attribut de session pour rester connecter
 				session.setAttribute("noUtilisateur", utilisateurModifie.getNoUtilisateur());
+				// Chargement des listes à afficher par default
 				request = Chargement.chargementListArticle(request, response);
 				request = Chargement.chargementListCategorie(request, response);
+				// Checkbox par default
+				request.setAttribute("choixAchat", "achat");
+				request.setAttribute("ckEncheresOuvertesCheck", true);
+				// Retour à la page d'accueil
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/pageAccueil.jsp");
 				rd.forward(request, response);
 			} else {
+				// Si il y'a des erreurs on renvoie les données saisies et la HasMap des erreurs
 				request.setAttribute("utilisateur", utilisateurModifie);
 				request.setAttribute("listeErreur", erreurs);
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modificationProfil.jsp");
 				rd.forward(request, response);
 			}
 		} else {
-			// On lui envoie une erreur de mot de passe non valide
+			// Si il y'a des erreurs on renvoie les données saisies et la HasMap des erreurs
 			erreurs.put("MotDePasseNonValide", "Mot de passe incorrect");
 			request.setAttribute("utilisateur", utilisateurModifie);
 			request.setAttribute("listeErreur", erreurs);

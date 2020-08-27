@@ -118,13 +118,13 @@ public class ArticlesMgr {
 					"Dates d'enchères invalides. Il faut 1 jour entre le debut de l'enchère et la fin de l'enchère. ");
 		}
 		if (rue.trim().equals("")) {
-			erreurs.put("rue", "Adresse invalide.");
+			erreurs.put("rue", "Rue Invalide.");
 		}
-		if (codePostal.trim().equals("") || !(StringUtils.isNumeric(codePostal))) {
-			erreurs.put("codePostal", "Adresse invalide.");
+		if (!(StringUtils.isNumeric(codePostal)) || (!(codePostal.length() == 5))) {
+			erreurs.put("codePostal", "Code Postal invalide.");
 		}
 		if (ville.trim().equals("")) {
-			erreurs.put("ville", "Adresse invalide.");
+			erreurs.put("ville", "Ville Invalide");
 		}
 		return erreurs;
 	}
